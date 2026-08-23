@@ -1,8 +1,11 @@
 {
-  "extends": "@workspace/typescript-config/react-library.json",
+  "extends": "@superdao/typescript-config/react-library.json",
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
     "paths": {
-      "@workspace/ui/*": ["./src/*"]
+      "@superdao/ui/*": ["./src/*"]
     }
   },
   "include": ["."],
