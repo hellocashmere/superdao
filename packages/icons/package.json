@@ -1,0 +1,32 @@
+{
+  "name": "@superdao/icons",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./outline": "./src/outline/index.ts",
+    "./outline/*": "./src/outline/*.tsx",
+    "./bold": "./src/bold/index.ts",
+    "./bold/*": "./src/bold/*.tsx",
+    "./nav": "./src/nav/index.ts",
+    "./nav/*": "./src/nav/*.tsx"
+  },
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "19.2.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@superdao/typescript-config": "workspace:*",
+    "eslint": "^9",
+    "prettier": "^3.8.3",
+    "react": "19.2.4",
+    "typescript": "^5"
+  }
+}

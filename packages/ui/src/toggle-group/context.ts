@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react"
 import type { VariantProps } from "class-variance-authority"
 
-import { toggleVariants } from "@superdao/ui/components/toggle"
+import type { toggleVariants } from "@superdao/ui/components/toggle"
 
 export interface ToggleGroupContextValue extends VariantProps<
   typeof toggleVariants

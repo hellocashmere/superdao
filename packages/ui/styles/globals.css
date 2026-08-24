@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 @source "../../../apps/**/*.{ts,tsx}";
@@ -109,7 +110,8 @@
   --secondary-foreground: #ffffff;
 
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  /*--muted-foreground: oklch(0.708 0 0);*/
+  --muted-foreground: #A2A8B4;
 
   --accent: #d0dcf514;
   --accent-foreground: #ffffff;

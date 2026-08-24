@@ -3,10 +3,12 @@
 import * as React from "react"
 
 import { DayPicker, getDefaultClassNames } from "react-day-picker"
+import type { DateRange, OnSelectHandler } from "react-day-picker"
 
 import { cn } from "@superdao/ui/lib/utils"
 
-import { Button, buttonVariants } from "@superdao/ui/components/button"
+import type { Button } from "@superdao/ui/components/button"
+import { buttonVariants } from "@superdao/ui/components/button"
 
 import {
   ChevronLeftIcon,
@@ -21,6 +23,8 @@ export interface CalendarProps extends Pick<
   keyof React.ComponentProps<typeof DayPicker>
 > {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"]
+  selected?: DateRange
+  onSelect?: OnSelectHandler<DateRange | undefined>
 }
 
 /**

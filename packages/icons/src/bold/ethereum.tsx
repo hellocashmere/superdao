@@ -1,0 +1,30 @@
+import type { ComponentPropsWithRef } from "react"
+
+import { IconBase } from "../shared/icon"
+
+export interface EthereumBoldIconProps extends ComponentPropsWithRef<
+  typeof IconBase
+> {}
+
+export function EthereumBoldIcon({
+  className,
+  ref,
+  ...props
+}: EthereumBoldIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.7616 2.68348C12.591 2.41342 12.2975 2.25033 11.9825 2.25061C11.6674 2.25089 11.3742 2.41451 11.2041 2.68488L6.14732 10.724C5.9988 10.9601 5.96099 11.2514 6.04417 11.5187C6.12734 11.7861 6.32287 12.0019 6.57772 12.1076L11.6345 14.2048C11.8588 14.2978 12.1099 14.2975 12.334 14.204L17.3994 12.0893C17.6539 11.9831 17.8489 11.7669 17.9315 11.4994C18.0142 11.232 17.9758 10.9409 17.8269 10.7051L12.7616 2.68348ZM17.7706 15.4845C18.0518 15.1563 18.0761 14.6745 17.8293 14.3187C17.5825 13.963 17.1289 13.8257 16.7317 13.9866L11.9842 15.9097L7.28762 13.9878C6.89122 13.8256 6.43743 13.961 6.18934 14.3155C5.94124 14.6699 5.96327 15.1515 6.24265 15.4809L11.2823 21.4228C11.4576 21.6295 11.7121 21.7486 11.9801 21.7493C12.2481 21.75 12.5033 21.6322 12.6796 21.4264L17.7706 15.4845Z"
+          fill="currentColor"
+        />
+      </g>
+    </IconBase>
+  )
+}

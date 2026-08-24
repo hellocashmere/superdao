@@ -1,0 +1,30 @@
+import type { ComponentPropsWithRef } from "react"
+
+import { IconBase } from "../shared/icon"
+
+export interface TelegramBoldIconProps extends ComponentPropsWithRef<
+  typeof IconBase
+> {}
+
+export function TelegramBoldIcon({
+  className,
+  ref,
+  ...props
+}: TelegramBoldIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M16.6822 20.4886C17.8804 21.0128 18.3297 19.9145 18.3297 19.9145L21.5 3.98809C21.475 2.91469 20.0272 3.56372 20.0272 3.56372L2.27853 10.5284C2.27853 10.5284 1.42979 10.8279 1.50468 11.3522C1.57957 11.8764 2.25357 12.126 2.25357 12.126L6.72194 13.6238C6.72194 13.6238 8.06993 18.0422 8.34453 18.891C8.59416 19.7148 8.81882 19.7397 8.81882 19.7397C9.06845 19.8396 9.29312 19.6648 9.29312 19.6648L12.1888 17.0437L16.6822 20.4886ZM17.4562 6.80933C17.4562 6.80933 18.0803 6.43489 18.0553 6.80933C18.0553 6.80933 18.1551 6.85926 17.8306 7.20874C17.5311 7.50829 10.4666 13.8489 9.51797 14.6976C9.44308 14.7476 9.39315 14.8224 9.39315 14.9223L9.11856 17.2688C9.06863 17.5184 8.74411 17.5434 8.66923 17.3187L7.49597 13.4744C7.44604 13.3247 7.49597 13.1499 7.64574 13.0501L17.4562 6.80933Z"
+          fill="currentColor"
+        />
+      </g>
+    </IconBase>
+  )
+}

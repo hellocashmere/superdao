@@ -1,0 +1,26 @@
+import type { ComponentPropsWithRef } from "react"
+
+import { IconBase } from "../shared/icon"
+
+export interface BlockIconProps extends ComponentPropsWithRef<
+  typeof IconBase
+> {}
+
+export function BlockIcon({ className, ref, ...props }: BlockIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M5.146 6.56022C3.95907 8.05373 3.25 9.94406 3.25 12C3.25 16.8325 7.16751 20.75 12 20.75C14.0559 20.75 15.9463 20.0409 17.4398 18.854L5.146 6.56022ZM6.56022 5.146L18.854 17.4398C20.0409 15.9463 20.75 14.0559 20.75 12C20.75 7.16751 16.8325 3.25 12 3.25C9.94406 3.25 8.05373 3.95907 6.56022 5.146ZM1.25 12C1.25 6.06294 6.06294 1.25 12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12Z"
+          fill="currentColor"
+        />
+      </g>
+    </IconBase>
+  )
+}

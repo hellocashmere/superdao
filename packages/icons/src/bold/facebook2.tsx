@@ -1,0 +1,28 @@
+import type { ComponentPropsWithRef } from "react"
+
+import { IconBase } from "../shared/icon"
+
+export interface Facebook2BoldIconProps extends ComponentPropsWithRef<
+  typeof IconBase
+> {}
+
+export function Facebook2BoldIcon({
+  className,
+  ref,
+  ...props
+}: Facebook2BoldIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+    >
+      <g>
+        <path
+          d="M12 1.25C6.06278 1.25 1.25 6.06735 1.25 12.0102C1.25 17.8154 5.84563 22.5337 11.5926 22.75V15.2803H9.07385V12.3481H11.5926V10.1907C11.5926 7.68999 13.1202 6.32667 15.3497 6.32667C16.1011 6.32452 16.8515 6.36326 17.5986 6.43965V9.05439H16.0635C14.8488 9.05439 14.6123 9.62898 14.6123 10.4769V12.3438H17.5147L17.1374 15.2759H14.595V22.4412C19.2756 21.278 22.75 17.0557 22.75 12.0102C22.75 6.06735 17.9372 1.25 12 1.25Z"
+          fill="currentColor"
+        />
+      </g>
+    </IconBase>
+  )
+}

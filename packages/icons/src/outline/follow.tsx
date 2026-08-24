@@ -1,0 +1,26 @@
+import type { ComponentPropsWithRef } from "react"
+
+import { IconBase } from "../shared/icon"
+
+export interface FollowIconProps extends ComponentPropsWithRef<
+  typeof IconBase
+> {}
+
+export function FollowIcon({ className, ref, ...props }: FollowIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+    >
+      <g>
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M20 1.5C20.5523 1.5 21 1.94772 21 2.5C21 3.05228 20.5523 3.5 20 3.5C10.5523 3.5 3.5 10.5523 3.5 20C3.5 20.5523 3.05228 21 2.5 21C1.94772 21 1.5 20.5523 1.5 20C1.5 9.44772 9.44771 1.5 20 1.5ZM20 7C20.5523 7 21 7.44772 21 8C21 8.55228 20.5523 9 20 9C13.5523 9 9 13.5523 9 20C9 20.5523 8.55229 21 8 21C7.44771 21 7 20.5523 7 20C7 12.4477 12.4477 7 20 7ZM20 12.5C20.5523 12.5 21 12.9477 21 13.5C21 14.0523 20.5523 14.5 20 14.5C17.0523 14.5 14.5 17.0523 14.5 20C14.5 20.5523 14.0523 21 13.5 21C12.9477 21 12.5 20.5523 12.5 20C12.5 15.9477 15.9477 12.5 20 12.5ZM19.5 21C20.3284 21 21 20.3284 21 19.5C21 18.6716 20.3284 18 19.5 18C18.6716 18 18 18.6716 18 19.5C18 20.3284 18.6716 21 19.5 21Z"
+          fill="currentColor"
+        />
+      </g>
+    </IconBase>
+  )
+}

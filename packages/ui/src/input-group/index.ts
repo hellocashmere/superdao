@@ -1,4 +1,4 @@
-export type { InputGroupProps } from "./root/input-group"
+export type { InputGroupProps, InputGroupVariant } from "./root/input-group"
 export { InputGroup } from "./root/input-group"
 export type { InputGroupAddonProps } from "./addon/input-group-addon"
 export { InputGroupAddon } from "./addon/input-group-addon"

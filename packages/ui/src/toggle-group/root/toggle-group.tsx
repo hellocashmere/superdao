@@ -4,7 +4,7 @@ import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group
 import type { VariantProps } from "class-variance-authority"
 import type { ComponentPropsWithRef, CSSProperties } from "react"
 
-import { toggleVariants } from "@superdao/ui/components/toggle"
+import type { toggleVariants } from "@superdao/ui/components/toggle"
 import { cn } from "@superdao/ui/lib/utils"
 
 import { ToggleGroupContext } from "../context"
@@ -50,7 +50,7 @@ export function ToggleGroup({
       data-orientation={orientation}
       style={{ "--gap": spacing } as CSSProperties}
       className={cn(
-        "group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] rounded-lg data-vertical:flex-col data-vertical:items-stretch data-[size=sm]:rounded-[min(var(--radius-md),10px)]",
+        "group/toggle-group flex w-fit flex-row items-center gap-[--spacing(var(--gap))] rounded-lg data-[size=sm]:rounded-[min(var(--radius-md),10px)] data-vertical:flex-col data-vertical:items-stretch",
         className
       )}
       {...props}

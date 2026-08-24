@@ -2,11 +2,8 @@
 
 import * as React from "react"
 
-import {
-  getDefaultClassNames,
-  type DayButton,
-  type Locale,
-} from "react-day-picker"
+import { getDefaultClassNames } from "react-day-picker"
+import type { DayButton, Locale } from "react-day-picker"
 
 import { cn } from "@superdao/ui/lib/utils"
 
