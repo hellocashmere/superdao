@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MoreHIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MoreHIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function MoreHIcon({ className, ref, ...props }: MoreHIconProps) {
   return (
@@ -30,5 +28,5 @@ export function MoreHIcon({ className, ref, ...props }: MoreHIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

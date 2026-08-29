@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface TwitterIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface TwitterIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function TwitterIcon({ className, ref, ...props }: TwitterIconProps) {
   return (
@@ -20,5 +18,5 @@ export function TwitterIcon({ className, ref, ...props }: TwitterIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

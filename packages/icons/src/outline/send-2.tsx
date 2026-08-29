@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Send2IconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Send2IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function Send2Icon({ className, ref, ...props }: Send2IconProps) {
   return (
@@ -22,5 +20,5 @@ export function Send2Icon({ className, ref, ...props }: Send2IconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

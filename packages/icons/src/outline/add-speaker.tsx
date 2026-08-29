@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AddSpeakerIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AddSpeakerIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function AddSpeakerIcon({
-  className,
-  ref,
-  ...props
-}: AddSpeakerIconProps) {
+export function AddSpeakerIcon({ className, ref, ...props }: AddSpeakerIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function AddSpeakerIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SearchBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SearchBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function SearchBoldIcon({
-  className,
-  ref,
-  ...props
-}: SearchBoldIconProps) {
+export function SearchBoldIcon({ className, ref, ...props }: SearchBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function SearchBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

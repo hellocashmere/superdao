@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface GeoBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface GeoBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function GeoBoldIcon({ className, ref, ...props }: GeoBoldIconProps) {
   return (
@@ -26,5 +24,5 @@ export function GeoBoldIcon({ className, ref, ...props }: GeoBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface EtherscanBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface EtherscanBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function EtherscanBoldIcon({
-  className,
-  ref,
-  ...props
-}: EtherscanBoldIconProps) {
+export function EtherscanBoldIcon({ className, ref, ...props }: EtherscanBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function EtherscanBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

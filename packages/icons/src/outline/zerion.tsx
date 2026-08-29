@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ZerionIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ZerionIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function ZerionIcon({ className, ref, ...props }: ZerionIconProps) {
   return (
@@ -22,5 +20,5 @@ export function ZerionIcon({ className, ref, ...props }: ZerionIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

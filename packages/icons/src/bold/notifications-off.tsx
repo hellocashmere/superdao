@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface NotificationsOffBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface NotificationsOffBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function NotificationsOffBoldIcon({
-  className,
-  ref,
-  ...props
-}: NotificationsOffBoldIconProps) {
+export function NotificationsOffBoldIcon({ className, ref, ...props }: NotificationsOffBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function NotificationsOffBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

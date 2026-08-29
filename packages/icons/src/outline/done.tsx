@@ -1,6 +1,6 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
 export interface DoneIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
@@ -20,5 +20,5 @@ export function DoneIcon({ className, ref, ...props }: DoneIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface FlashlightIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface FlashlightIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function FlashlightIcon({
-  className,
-  ref,
-  ...props
-}: FlashlightIconProps) {
+export function FlashlightIcon({ className, ref, ...props }: FlashlightIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function FlashlightIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

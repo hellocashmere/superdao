@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface FlowchartIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface FlowchartIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function FlowchartIcon({
-  className,
-  ref,
-  ...props
-}: FlowchartIconProps) {
+export function FlowchartIcon({ className, ref, ...props }: FlowchartIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function FlowchartIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

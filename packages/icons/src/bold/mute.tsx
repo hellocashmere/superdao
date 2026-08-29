@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MuteBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MuteBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function MuteBoldIcon({ className, ref, ...props }: MuteBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function MuteBoldIcon({ className, ref, ...props }: MuteBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

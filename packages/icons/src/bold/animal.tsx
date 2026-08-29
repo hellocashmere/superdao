@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AnimalBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AnimalBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function AnimalBoldIcon({
-  className,
-  ref,
-  ...props
-}: AnimalBoldIconProps) {
+export function AnimalBoldIcon({ className, ref, ...props }: AnimalBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function AnimalBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

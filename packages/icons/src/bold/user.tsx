@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface UserBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface UserBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function UserBoldIcon({ className, ref, ...props }: UserBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function UserBoldIcon({ className, ref, ...props }: UserBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

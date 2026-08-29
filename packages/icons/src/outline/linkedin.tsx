@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LinkedinIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LinkedinIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function LinkedinIcon({ className, ref, ...props }: LinkedinIconProps) {
   return (
@@ -36,5 +34,5 @@ export function LinkedinIcon({ className, ref, ...props }: LinkedinIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

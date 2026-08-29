@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DownloadIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DownloadIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function DownloadIcon({ className, ref, ...props }: DownloadIconProps) {
   return (
@@ -22,5 +20,5 @@ export function DownloadIcon({ className, ref, ...props }: DownloadIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
 export interface Map3IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
@@ -20,5 +20,5 @@ export function Map3Icon({ className, ref, ...props }: Map3IconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

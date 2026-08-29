@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AssetCoinBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AssetCoinBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function AssetCoinBoldIcon({
-  className,
-  ref,
-  ...props
-}: AssetCoinBoldIconProps) {
+export function AssetCoinBoldIcon({ className, ref, ...props }: AssetCoinBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function AssetCoinBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

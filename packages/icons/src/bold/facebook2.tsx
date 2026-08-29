@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Facebook2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Facebook2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function Facebook2BoldIcon({
-  className,
-  ref,
-  ...props
-}: Facebook2BoldIconProps) {
+export function Facebook2BoldIcon({ className, ref, ...props }: Facebook2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function Facebook2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DiscoverIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DiscoverIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function DiscoverIcon({ className, ref, ...props }: DiscoverIconProps) {
   return (
@@ -28,5 +26,5 @@ export function DiscoverIcon({ className, ref, ...props }: DiscoverIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

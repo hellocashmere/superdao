@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ClearIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ClearIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function ClearIcon({ className, ref, ...props }: ClearIconProps) {
   return (
@@ -28,5 +26,5 @@ export function ClearIcon({ className, ref, ...props }: ClearIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

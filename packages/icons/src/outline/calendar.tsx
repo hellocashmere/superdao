@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface CalendarIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface CalendarIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function CalendarIcon({ className, ref, ...props }: CalendarIconProps) {
   return (
@@ -22,5 +20,5 @@ export function CalendarIcon({ className, ref, ...props }: CalendarIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

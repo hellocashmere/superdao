@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface KeynoteIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface KeynoteIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function KeynoteIcon({ className, ref, ...props }: KeynoteIconProps) {
   return (
@@ -22,5 +20,5 @@ export function KeynoteIcon({ className, ref, ...props }: KeynoteIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface NullBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface NullBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function NullBoldIcon({ className, ref, ...props }: NullBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function NullBoldIcon({ className, ref, ...props }: NullBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

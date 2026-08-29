@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AndroidBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AndroidBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function AndroidBoldIcon({
-  className,
-  ref,
-  ...props
-}: AndroidBoldIconProps) {
+export function AndroidBoldIcon({ className, ref, ...props }: AndroidBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function AndroidBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

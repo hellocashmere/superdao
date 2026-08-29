@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LockBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LockBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function LockBoldIcon({ className, ref, ...props }: LockBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function LockBoldIcon({ className, ref, ...props }: LockBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

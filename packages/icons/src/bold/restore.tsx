@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface RestoreBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface RestoreBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function RestoreBoldIcon({
-  className,
-  ref,
-  ...props
-}: RestoreBoldIconProps) {
+export function RestoreBoldIcon({ className, ref, ...props }: RestoreBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function RestoreBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

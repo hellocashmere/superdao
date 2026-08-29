@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface InviteOff2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface InviteOff2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function InviteOff2BoldIcon({
-  className,
-  ref,
-  ...props
-}: InviteOff2BoldIconProps) {
+export function InviteOff2BoldIcon({ className, ref, ...props }: InviteOff2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function InviteOff2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

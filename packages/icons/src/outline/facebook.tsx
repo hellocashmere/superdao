@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface FacebookIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface FacebookIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function FacebookIcon({ className, ref, ...props }: FacebookIconProps) {
   return (
@@ -22,5 +20,5 @@ export function FacebookIcon({ className, ref, ...props }: FacebookIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

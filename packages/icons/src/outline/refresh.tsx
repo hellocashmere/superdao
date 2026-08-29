@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface RefreshIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface RefreshIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function RefreshIcon({ className, ref, ...props }: RefreshIconProps) {
   return (
@@ -22,5 +20,5 @@ export function RefreshIcon({ className, ref, ...props }: RefreshIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

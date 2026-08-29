@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface EraseBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface EraseBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function EraseBoldIcon({
-  className,
-  ref,
-  ...props
-}: EraseBoldIconProps) {
+export function EraseBoldIcon({ className, ref, ...props }: EraseBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -30,5 +24,5 @@ export function EraseBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

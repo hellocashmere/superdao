@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Cycle2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Cycle2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function Cycle2BoldIcon({
-  className,
-  ref,
-  ...props
-}: Cycle2BoldIconProps) {
+export function Cycle2BoldIcon({ className, ref, ...props }: Cycle2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function Cycle2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

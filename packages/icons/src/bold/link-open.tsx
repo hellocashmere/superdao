@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LinkOpenBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LinkOpenBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function LinkOpenBoldIcon({
-  className,
-  ref,
-  ...props
-}: LinkOpenBoldIconProps) {
+export function LinkOpenBoldIcon({ className, ref, ...props }: LinkOpenBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function LinkOpenBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

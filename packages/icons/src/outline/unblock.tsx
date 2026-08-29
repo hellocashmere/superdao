@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface UnblockIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface UnblockIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function UnblockIcon({ className, ref, ...props }: UnblockIconProps) {
   return (
@@ -28,5 +26,5 @@ export function UnblockIcon({ className, ref, ...props }: UnblockIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

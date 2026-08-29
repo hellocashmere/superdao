@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface RandomIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface RandomIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function RandomIcon({ className, ref, ...props }: RandomIconProps) {
   return (
@@ -22,5 +20,5 @@ export function RandomIcon({ className, ref, ...props }: RandomIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

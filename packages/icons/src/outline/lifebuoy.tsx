@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LifebuoyIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LifebuoyIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function LifebuoyIcon({ className, ref, ...props }: LifebuoyIconProps) {
   return (
@@ -78,5 +76,5 @@ export function LifebuoyIcon({ className, ref, ...props }: LifebuoyIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

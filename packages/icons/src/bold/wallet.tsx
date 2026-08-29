@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface WalletBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface WalletBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function WalletBoldIcon({
-  className,
-  ref,
-  ...props
-}: WalletBoldIconProps) {
+export function WalletBoldIcon({ className, ref, ...props }: WalletBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function WalletBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

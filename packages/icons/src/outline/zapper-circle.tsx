@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ZapperCircleIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ZapperCircleIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function ZapperCircleIcon({
-  className,
-  ref,
-  ...props
-}: ZapperCircleIconProps) {
+export function ZapperCircleIcon({ className, ref, ...props }: ZapperCircleIconProps) {
   return (
     <IconBase
       {...props}
@@ -33,5 +27,5 @@ export function ZapperCircleIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

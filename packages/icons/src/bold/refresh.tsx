@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface RefreshBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface RefreshBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function RefreshBoldIcon({
-  className,
-  ref,
-  ...props
-}: RefreshBoldIconProps) {
+export function RefreshBoldIcon({ className, ref, ...props }: RefreshBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function RefreshBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

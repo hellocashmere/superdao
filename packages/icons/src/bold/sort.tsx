@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SortBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SortBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function SortBoldIcon({ className, ref, ...props }: SortBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function SortBoldIcon({ className, ref, ...props }: SortBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

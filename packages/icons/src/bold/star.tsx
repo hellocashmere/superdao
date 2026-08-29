@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface StarBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface StarBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function StarBoldIcon({ className, ref, ...props }: StarBoldIconProps) {
   return (
@@ -20,5 +18,5 @@ export function StarBoldIcon({ className, ref, ...props }: StarBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

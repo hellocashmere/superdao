@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface WhaleBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface WhaleBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function WhaleBoldIcon({
-  className,
-  ref,
-  ...props
-}: WhaleBoldIconProps) {
+export function WhaleBoldIcon({ className, ref, ...props }: WhaleBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function WhaleBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

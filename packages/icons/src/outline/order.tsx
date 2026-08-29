@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface OrderIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface OrderIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function OrderIcon({ className, ref, ...props }: OrderIconProps) {
   return (
@@ -22,5 +20,5 @@ export function OrderIcon({ className, ref, ...props }: OrderIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

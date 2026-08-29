@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface NotificationsOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface NotificationsOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function NotificationsOffIcon({
-  className,
-  ref,
-  ...props
-}: NotificationsOffIconProps) {
+export function NotificationsOffIcon({ className, ref, ...props }: NotificationsOffIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function NotificationsOffIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

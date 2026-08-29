@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface KeyboardIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface KeyboardIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function KeyboardIcon({ className, ref, ...props }: KeyboardIconProps) {
   return (
@@ -22,5 +20,5 @@ export function KeyboardIcon({ className, ref, ...props }: KeyboardIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

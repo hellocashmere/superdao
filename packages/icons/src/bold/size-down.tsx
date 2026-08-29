@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SizeDownBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SizeDownBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function SizeDownBoldIcon({
-  className,
-  ref,
-  ...props
-}: SizeDownBoldIconProps) {
+export function SizeDownBoldIcon({ className, ref, ...props }: SizeDownBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function SizeDownBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

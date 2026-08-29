@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface TelegramIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface TelegramIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function TelegramIcon({ className, ref, ...props }: TelegramIconProps) {
   return (
@@ -20,5 +18,5 @@ export function TelegramIcon({ className, ref, ...props }: TelegramIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

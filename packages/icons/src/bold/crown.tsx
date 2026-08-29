@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface CrownBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface CrownBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function CrownBoldIcon({
-  className,
-  ref,
-  ...props
-}: CrownBoldIconProps) {
+export function CrownBoldIcon({ className, ref, ...props }: CrownBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -30,5 +24,5 @@ export function CrownBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

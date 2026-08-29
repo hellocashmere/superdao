@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface BlockIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface BlockIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function BlockIcon({ className, ref, ...props }: BlockIconProps) {
   return (
@@ -22,5 +20,5 @@ export function BlockIcon({ className, ref, ...props }: BlockIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

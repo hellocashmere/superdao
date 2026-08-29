@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MonetBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MonetBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MonetBoldIcon({
-  className,
-  ref,
-  ...props
-}: MonetBoldIconProps) {
+export function MonetBoldIcon({ className, ref, ...props }: MonetBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function MonetBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

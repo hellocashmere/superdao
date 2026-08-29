@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DiscoverBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DiscoverBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function DiscoverBoldIcon({
-  className,
-  ref,
-  ...props
-}: DiscoverBoldIconProps) {
+export function DiscoverBoldIcon({ className, ref, ...props }: DiscoverBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function DiscoverBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

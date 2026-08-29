@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface TransportBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface TransportBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function TransportBoldIcon({
-  className,
-  ref,
-  ...props
-}: TransportBoldIconProps) {
+export function TransportBoldIcon({ className, ref, ...props }: TransportBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function TransportBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

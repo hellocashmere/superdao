@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface BriefcaseBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface BriefcaseBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function BriefcaseBoldIcon({
-  className,
-  ref,
-  ...props
-}: BriefcaseBoldIconProps) {
+export function BriefcaseBoldIcon({ className, ref, ...props }: BriefcaseBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function BriefcaseBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

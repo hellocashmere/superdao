@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MarkupH2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MarkupH2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MarkupH2BoldIcon({
-  className,
-  ref,
-  ...props
-}: MarkupH2BoldIconProps) {
+export function MarkupH2BoldIcon({ className, ref, ...props }: MarkupH2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function MarkupH2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

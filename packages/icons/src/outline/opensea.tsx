@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface OpenseaIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface OpenseaIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function OpenseaIcon({ className, ref, ...props }: OpenseaIconProps) {
   return (
@@ -22,5 +20,5 @@ export function OpenseaIcon({ className, ref, ...props }: OpenseaIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

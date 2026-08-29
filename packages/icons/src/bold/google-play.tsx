@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface GooglePlayBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface GooglePlayBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function GooglePlayBoldIcon({
-  className,
-  ref,
-  ...props
-}: GooglePlayBoldIconProps) {
+export function GooglePlayBoldIcon({ className, ref, ...props }: GooglePlayBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -38,5 +32,5 @@ export function GooglePlayBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

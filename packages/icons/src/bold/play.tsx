@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface PlayBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface PlayBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function PlayBoldIcon({ className, ref, ...props }: PlayBoldIconProps) {
   return (
@@ -20,5 +18,5 @@ export function PlayBoldIcon({ className, ref, ...props }: PlayBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

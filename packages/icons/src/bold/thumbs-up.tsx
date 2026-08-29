@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ThumbsUpBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ThumbsUpBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function ThumbsUpBoldIcon({
-  className,
-  ref,
-  ...props
-}: ThumbsUpBoldIconProps) {
+export function ThumbsUpBoldIcon({ className, ref, ...props }: ThumbsUpBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function ThumbsUpBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

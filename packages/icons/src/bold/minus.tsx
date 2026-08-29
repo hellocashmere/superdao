@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MinusBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MinusBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MinusBoldIcon({
-  className,
-  ref,
-  ...props
-}: MinusBoldIconProps) {
+export function MinusBoldIcon({ className, ref, ...props }: MinusBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function MinusBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

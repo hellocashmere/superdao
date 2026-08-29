@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface FullScreenIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface FullScreenIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function FullScreenIcon({
-  className,
-  ref,
-  ...props
-}: FullScreenIconProps) {
+export function FullScreenIcon({ className, ref, ...props }: FullScreenIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function FullScreenIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface EthereumIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface EthereumIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function EthereumIcon({ className, ref, ...props }: EthereumIconProps) {
   return (
@@ -22,5 +20,5 @@ export function EthereumIcon({ className, ref, ...props }: EthereumIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface GridBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface GridBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function GridBoldIcon({ className, ref, ...props }: GridBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function GridBoldIcon({ className, ref, ...props }: GridBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

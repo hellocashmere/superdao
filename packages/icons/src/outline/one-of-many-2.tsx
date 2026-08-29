@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface OneOfMany2IconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface OneOfMany2IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function OneOfMany2Icon({
-  className,
-  ref,
-  ...props
-}: OneOfMany2IconProps) {
+export function OneOfMany2Icon({ className, ref, ...props }: OneOfMany2IconProps) {
   return (
     <IconBase
       {...props}
@@ -32,5 +26,5 @@ export function OneOfMany2Icon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

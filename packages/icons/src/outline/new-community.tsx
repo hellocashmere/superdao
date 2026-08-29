@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface NewCommunityIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface NewCommunityIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function NewCommunityIcon({
-  className,
-  ref,
-  ...props
-}: NewCommunityIconProps) {
+export function NewCommunityIcon({ className, ref, ...props }: NewCommunityIconProps) {
   return (
     <IconBase
       {...props}
@@ -56,5 +50,5 @@ export function NewCommunityIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

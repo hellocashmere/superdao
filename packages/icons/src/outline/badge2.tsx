@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Badge2IconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Badge2IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function Badge2Icon({ className, ref, ...props }: Badge2IconProps) {
   return (
@@ -20,5 +18,5 @@ export function Badge2Icon({ className, ref, ...props }: Badge2IconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface VolumeOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface VolumeOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function VolumeOffIcon({
-  className,
-  ref,
-  ...props
-}: VolumeOffIconProps) {
+export function VolumeOffIcon({ className, ref, ...props }: VolumeOffIconProps) {
   return (
     <IconBase
       {...props}
@@ -32,5 +26,5 @@ export function VolumeOffIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

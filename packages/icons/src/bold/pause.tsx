@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface PauseBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface PauseBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function PauseBoldIcon({
-  className,
-  ref,
-  ...props
-}: PauseBoldIconProps) {
+export function PauseBoldIcon({ className, ref, ...props }: PauseBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -30,5 +24,5 @@ export function PauseBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

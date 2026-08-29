@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface VideoOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface VideoOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function VideoOffIcon({ className, ref, ...props }: VideoOffIconProps) {
   return (
@@ -45,5 +43,5 @@ export function VideoOffIcon({ className, ref, ...props }: VideoOffIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

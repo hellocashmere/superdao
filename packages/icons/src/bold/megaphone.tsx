@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MegaphoneBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MegaphoneBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MegaphoneBoldIcon({
-  className,
-  ref,
-  ...props
-}: MegaphoneBoldIconProps) {
+export function MegaphoneBoldIcon({ className, ref, ...props }: MegaphoneBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function MegaphoneBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

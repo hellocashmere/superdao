@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface PolygonIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface PolygonIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function PolygonIcon({ className, ref, ...props }: PolygonIconProps) {
   return (
@@ -20,5 +18,5 @@ export function PolygonIcon({ className, ref, ...props }: PolygonIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

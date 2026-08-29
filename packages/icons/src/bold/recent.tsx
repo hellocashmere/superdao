@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface RecentBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface RecentBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function RecentBoldIcon({
-  className,
-  ref,
-  ...props
-}: RecentBoldIconProps) {
+export function RecentBoldIcon({ className, ref, ...props }: RecentBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function RecentBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

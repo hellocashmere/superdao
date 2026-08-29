@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Verified2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Verified2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function Verified2BoldIcon({
-  className,
-  ref,
-  ...props
-}: Verified2BoldIconProps) {
+export function Verified2BoldIcon({ className, ref, ...props }: Verified2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function Verified2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DiscordBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DiscordBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function DiscordBoldIcon({
-  className,
-  ref,
-  ...props
-}: DiscordBoldIconProps) {
+export function DiscordBoldIcon({ className, ref, ...props }: DiscordBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function DiscordBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

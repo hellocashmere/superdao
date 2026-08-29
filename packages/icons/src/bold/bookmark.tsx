@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface BookmarkBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface BookmarkBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function BookmarkBoldIcon({
-  className,
-  ref,
-  ...props
-}: BookmarkBoldIconProps) {
+export function BookmarkBoldIcon({ className, ref, ...props }: BookmarkBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function BookmarkBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

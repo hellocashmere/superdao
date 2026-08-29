@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MarkupItalicBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MarkupItalicBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MarkupItalicBoldIcon({
-  className,
-  ref,
-  ...props
-}: MarkupItalicBoldIconProps) {
+export function MarkupItalicBoldIcon({ className, ref, ...props }: MarkupItalicBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function MarkupItalicBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

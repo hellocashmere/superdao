@@ -1,40 +1,29 @@
-import type { ComponentPropsWithRef, ReactNode } from "react"
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
-export interface IconProps extends Omit<
-  ComponentPropsWithRef<"svg">,
-  "children" | "height" | "width"
-> {
+export interface IconProps extends Omit<ComponentPropsWithRef<"svg">, "children" | "height" | "width"> {
   /**
    * Sets both the icon width and height.
    *
    * @default 24
    */
-  size?: number | string
+  size?: number | string;
 
   /**
    * Provides an accessible name when the icon conveys meaning by itself.
    */
-  title?: string
+  title?: string;
 }
 
 export interface IconBaseProps extends IconProps {
-  children?: ReactNode
+  children?: ReactNode;
 }
 
 /**
  * Renders the shared accessible SVG frame used by custom product icons.
  */
-export function IconBase({
-  children,
-  ref,
-  size = 24,
-  title,
-  ...props
-}: IconBaseProps) {
-  const isLabelled = Boolean(
-    title || props["aria-label"] || props["aria-labelledby"]
-  )
-  const ariaHidden = props["aria-hidden"] ?? (isLabelled ? undefined : true)
+export function IconBase({ children, ref, size = 24, title, viewBox = "0 0 24 24", ...props }: IconBaseProps) {
+  const isLabelled = Boolean(title || props["aria-label"] || props["aria-labelledby"]);
+  const ariaHidden = props["aria-hidden"] ?? (isLabelled ? undefined : true);
 
   return (
     <svg
@@ -42,7 +31,7 @@ export function IconBase({
       ref={ref}
       width={size}
       height={size}
-      viewBox="0 0 24 24"
+      viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       focusable="false"
@@ -52,5 +41,5 @@ export function IconBase({
       {title ? <title>{title}</title> : null}
       {children}
     </svg>
-  )
+  );
 }

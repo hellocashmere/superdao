@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SettingsIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SettingsIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function SettingsIcon({ className, ref, ...props }: SettingsIconProps) {
   return (
@@ -22,5 +20,5 @@ export function SettingsIcon({ className, ref, ...props }: SettingsIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

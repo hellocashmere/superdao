@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DeleteBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DeleteBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function DeleteBoldIcon({
-  className,
-  ref,
-  ...props
-}: DeleteBoldIconProps) {
+export function DeleteBoldIcon({ className, ref, ...props }: DeleteBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -37,5 +31,5 @@ export function DeleteBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface DocumentBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface DocumentBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function DocumentBoldIcon({
-  className,
-  ref,
-  ...props
-}: DocumentBoldIconProps) {
+export function DocumentBoldIcon({ className, ref, ...props }: DocumentBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function DocumentBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

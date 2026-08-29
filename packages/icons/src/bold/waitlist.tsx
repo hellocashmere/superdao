@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface WaitlistBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface WaitlistBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function WaitlistBoldIcon({
-  className,
-  ref,
-  ...props
-}: WaitlistBoldIconProps) {
+export function WaitlistBoldIcon({ className, ref, ...props }: WaitlistBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function WaitlistBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

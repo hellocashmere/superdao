@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ZombieBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ZombieBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function ZombieBoldIcon({
-  className,
-  ref,
-  ...props
-}: ZombieBoldIconProps) {
+export function ZombieBoldIcon({ className, ref, ...props }: ZombieBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function ZombieBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

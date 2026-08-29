@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ArrowRightIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ArrowRightIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function ArrowRightIcon({
-  className,
-  ref,
-  ...props
-}: ArrowRightIconProps) {
+export function ArrowRightIcon({ className, ref, ...props }: ArrowRightIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function ArrowRightIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AtBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AtBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function AtBoldIcon({ className, ref, ...props }: AtBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function AtBoldIcon({ className, ref, ...props }: AtBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

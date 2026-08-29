@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SettingsNavIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SettingsNavIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function SettingsNavIcon({
-  className,
-  ref,
-  ...props
-}: SettingsNavIconProps) {
+export function SettingsNavIcon({ className, ref, ...props }: SettingsNavIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function SettingsNavIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

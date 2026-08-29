@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface Settings2BoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface Settings2BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function Settings2BoldIcon({
-  className,
-  ref,
-  ...props
-}: Settings2BoldIconProps) {
+export function Settings2BoldIcon({ className, ref, ...props }: Settings2BoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function Settings2BoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

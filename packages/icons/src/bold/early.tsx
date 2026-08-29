@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface EarlyBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface EarlyBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function EarlyBoldIcon({
-  className,
-  ref,
-  ...props
-}: EarlyBoldIconProps) {
+export function EarlyBoldIcon({ className, ref, ...props }: EarlyBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function EarlyBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

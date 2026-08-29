@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface StickerIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface StickerIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function StickerIcon({ className, ref, ...props }: StickerIconProps) {
   return (
@@ -32,5 +30,5 @@ export function StickerIcon({ className, ref, ...props }: StickerIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

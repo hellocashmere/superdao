@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ScreenBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ScreenBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function ScreenBoldIcon({
-  className,
-  ref,
-  ...props
-}: ScreenBoldIconProps) {
+export function ScreenBoldIcon({ className, ref, ...props }: ScreenBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function ScreenBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

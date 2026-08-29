@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface TraderBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface TraderBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function TraderBoldIcon({
-  className,
-  ref,
-  ...props
-}: TraderBoldIconProps) {
+export function TraderBoldIcon({ className, ref, ...props }: TraderBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function TraderBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ForwardIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ForwardIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function ForwardIcon({ className, ref, ...props }: ForwardIconProps) {
   return (
@@ -22,5 +20,5 @@ export function ForwardIcon({ className, ref, ...props }: ForwardIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

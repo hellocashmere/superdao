@@ -1,6 +1,6 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
 export interface LinkIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
@@ -24,5 +24,5 @@ export function LinkIcon({ className, ref, ...props }: LinkIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

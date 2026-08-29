@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface CameraBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface CameraBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function CameraBoldIcon({
-  className,
-  ref,
-  ...props
-}: CameraBoldIconProps) {
+export function CameraBoldIcon({ className, ref, ...props }: CameraBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -32,5 +26,5 @@ export function CameraBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

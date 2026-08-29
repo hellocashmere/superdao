@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MessageCounterIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MessageCounterIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MessageCounterIcon({
-  className,
-  ref,
-  ...props
-}: MessageCounterIconProps) {
+export function MessageCounterIcon({ className, ref, ...props }: MessageCounterIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function MessageCounterIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

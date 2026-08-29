@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface SmileIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface SmileIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function SmileIcon({ className, ref, ...props }: SmileIconProps) {
   return (
@@ -36,5 +34,5 @@ export function SmileIcon({ className, ref, ...props }: SmileIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MagicIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MagicIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function MagicIcon({ className, ref, ...props }: MagicIconProps) {
   return (
@@ -30,5 +28,5 @@ export function MagicIcon({ className, ref, ...props }: MagicIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface VolumeIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface VolumeIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function VolumeIcon({ className, ref, ...props }: VolumeIconProps) {
   return (
@@ -32,5 +30,5 @@ export function VolumeIcon({ className, ref, ...props }: VolumeIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

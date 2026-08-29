@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface FeedBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface FeedBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function FeedBoldIcon({ className, ref, ...props }: FeedBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function FeedBoldIcon({ className, ref, ...props }: FeedBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

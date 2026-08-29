@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface CopyBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface CopyBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function CopyBoldIcon({ className, ref, ...props }: CopyBoldIconProps) {
   return (
@@ -26,5 +24,5 @@ export function CopyBoldIcon({ className, ref, ...props }: CopyBoldIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

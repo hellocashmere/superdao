@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface ProOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface ProOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function ProOffIcon({ className, ref, ...props }: ProOffIconProps) {
   return (
@@ -28,5 +26,5 @@ export function ProOffIcon({ className, ref, ...props }: ProOffIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

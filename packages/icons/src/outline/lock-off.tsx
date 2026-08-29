@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LockOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LockOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function LockOffIcon({ className, ref, ...props }: LockOffIconProps) {
   return (
@@ -22,5 +20,5 @@ export function LockOffIcon({ className, ref, ...props }: LockOffIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

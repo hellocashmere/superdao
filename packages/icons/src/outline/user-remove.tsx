@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface UserRemoveIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface UserRemoveIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function UserRemoveIcon({
-  className,
-  ref,
-  ...props
-}: UserRemoveIconProps) {
+export function UserRemoveIcon({ className, ref, ...props }: UserRemoveIconProps) {
   return (
     <IconBase
       {...props}
@@ -36,5 +30,5 @@ export function UserRemoveIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

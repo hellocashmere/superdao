@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface CopyrightIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface CopyrightIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function CopyrightIcon({
-  className,
-  ref,
-  ...props
-}: CopyrightIconProps) {
+export function CopyrightIcon({ className, ref, ...props }: CopyrightIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function CopyrightIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

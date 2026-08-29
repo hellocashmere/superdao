@@ -1,6 +1,6 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
 export interface HideIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
@@ -43,5 +43,5 @@ export function HideIcon({ className, ref, ...props }: HideIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

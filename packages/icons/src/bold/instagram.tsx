@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface InstagramBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface InstagramBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function InstagramBoldIcon({
-  className,
-  ref,
-  ...props
-}: InstagramBoldIconProps) {
+export function InstagramBoldIcon({ className, ref, ...props }: InstagramBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -24,5 +18,5 @@ export function InstagramBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

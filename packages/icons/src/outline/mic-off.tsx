@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MicOffIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MicOffIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function MicOffIcon({ className, ref, ...props }: MicOffIconProps) {
   return (
@@ -22,5 +20,5 @@ export function MicOffIcon({ className, ref, ...props }: MicOffIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

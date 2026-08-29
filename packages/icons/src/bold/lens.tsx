@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface LensBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface LensBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function LensBoldIcon({ className, ref, ...props }: LensBoldIconProps) {
   return (
@@ -22,5 +20,5 @@ export function LensBoldIcon({ className, ref, ...props }: LensBoldIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

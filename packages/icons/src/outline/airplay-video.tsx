@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface AirplayVideoIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface AirplayVideoIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function AirplayVideoIcon({
-  className,
-  ref,
-  ...props
-}: AirplayVideoIconProps) {
+export function AirplayVideoIcon({ className, ref, ...props }: AirplayVideoIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function AirplayVideoIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

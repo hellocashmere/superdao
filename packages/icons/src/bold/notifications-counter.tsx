@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface NotificationsCounterBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface NotificationsCounterBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function NotificationsCounterBoldIcon({
-  className,
-  ref,
-  ...props
-}: NotificationsCounterBoldIconProps) {
+export function NotificationsCounterBoldIcon({ className, ref, ...props }: NotificationsCounterBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function NotificationsCounterBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

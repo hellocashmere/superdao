@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MailLockedIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MailLockedIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MailLockedIcon({
-  className,
-  ref,
-  ...props
-}: MailLockedIconProps) {
+export function MailLockedIcon({ className, ref, ...props }: MailLockedIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function MailLockedIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }

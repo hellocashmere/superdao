@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MirrorIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MirrorIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function MirrorIcon({ className, ref, ...props }: MirrorIconProps) {
   return (
@@ -22,5 +20,5 @@ export function MirrorIcon({ className, ref, ...props }: MirrorIconProps) {
         />
       </g>
     </IconBase>
-  )
+  );
 }

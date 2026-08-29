@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface MagicBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface MagicBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function MagicBoldIcon({
-  className,
-  ref,
-  ...props
-}: MagicBoldIconProps) {
+export function MagicBoldIcon({ className, ref, ...props }: MagicBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -34,5 +28,5 @@ export function MagicBoldIcon({
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

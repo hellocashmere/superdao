@@ -1,10 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface UnreadIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface UnreadIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
 export function UnreadIcon({ className, ref, ...props }: UnreadIconProps) {
   return (
@@ -28,5 +26,5 @@ export function UnreadIcon({ className, ref, ...props }: UnreadIconProps) {
         </g>
       </g>
     </IconBase>
-  )
+  );
 }

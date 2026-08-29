@@ -1,16 +1,10 @@
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { IconBase } from "../shared/icon"
+import { IconBase } from "../shared/icon";
 
-export interface PassiveBoldIconProps extends ComponentPropsWithRef<
-  typeof IconBase
-> {}
+export interface PassiveBoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 
-export function PassiveBoldIcon({
-  className,
-  ref,
-  ...props
-}: PassiveBoldIconProps) {
+export function PassiveBoldIcon({ className, ref, ...props }: PassiveBoldIconProps) {
   return (
     <IconBase
       {...props}
@@ -26,5 +20,5 @@ export function PassiveBoldIcon({
         />
       </g>
     </IconBase>
-  )
+  );
 }
