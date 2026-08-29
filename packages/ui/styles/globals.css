@@ -10,12 +10,12 @@
 @theme inline {
   --font-heading: var(--font-sf-pro-display), var(--font-sf-pro-text), var(--font-inter), sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-badge-indicator-yellow: var(--badge-indicator-yellow);
-  --color-badge-indicator-purple: var(--badge-indicator-purple);
-  --color-badge-indicator-red: var(--badge-indicator-red);
-  --color-badge-indicator-lime: var(--badge-indicator-lime);
-  --color-badge-indicator-orange: var(--badge-indicator-orange);
-  --color-badge-indicator-pink: var(--badge-indicator-pink);
+  --color-yellow: var(--yellow);
+  --color-purple: var(--purple);
+  --color-red: var(--red);
+  --color-lime: var(--lime);
+  --color-orange: var(--orange);
+  --color-pink: var(--pink);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-accent: var(--sidebar-accent);
@@ -26,6 +26,10 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-chart-9: var(--chart-9);
+  --color-chart-8: var(--chart-8);
+  --color-chart-7: var(--chart-7);
+  --color-chart-6: var(--chart-6);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -80,93 +84,85 @@
 :root {
   color-scheme: dark;
 
-  /*--background: oklch(0.145 0 0);*/
-  /*--foreground: oklch(0.985 0 0);*/
-  --background: #1b202a;
-  --foreground: #ffffff;
+  --background: lab(12.088% -0.099 -7.541);
+  --foreground: lab(100% 0 0);
 
-  /*--card: oklch(0.205 0 0);*/
-  /*--card-foreground: oklch(0.985 0 0);*/
-  --card: #252b36;
-  --card-foreground: #ffffff;
+  --card: lab(17.306% -0.366 -8.04);
+  --card-foreground: var(--foreground);
 
-  /*--popover: oklch(0.205 0 0);*/
-  /*--popover-foreground: oklch(0.985 0 0);*/
-  --popover: #343a46;
-  --popover-foreground: #ffffff;
+  --popover: lab(24.221% -0.231 -8.312);
+  --popover-foreground: var(--foreground);
 
-  /*--primary: oklch(0.922 0 0);*/
-  /*--primary-foreground: oklch(0.205 0 0);*/
-  --primary: #fc7900;
-  --primary-hover: #ff932f;
-  --primary-active: #f07300;
-  --primary-foreground: #ffffff;
+  --primary: lab(66.035% 47.617 73.661);
+  --primary-hover: lab(71.786% 36.924 66.716);
+  --primary-active: lab(63.078% 45.849 70.999);
+  --primary-foreground: var(--foreground);
 
-  /*--secondary: oklch(0.269 0 0);*/
-  /*--secondary-foreground: oklch(0.985 0 0);*/
-  --secondary: #d0dcf524;
-  --secondary-hover: #d0dcf533;
-  --secondary-active: #d0dcf514;
-  --secondary-foreground: #ffffff;
+  --secondary: lab(87.425% -0.446 -13.686 / 14%);
+  --secondary-hover: lab(87.425% -0.446 -13.686 / 20%);
+  --secondary-active: var(--muted);
+  --secondary-foreground: var(--foreground);
 
-  --muted: oklch(0.269 0 0);
-  /*--muted-foreground: oklch(0.708 0 0);*/
-  --muted-foreground: #A2A8B4;
+  --muted: lab(87.425% -0.446 -13.686 / 8%);
+  --muted-foreground: lab(68.662% -0.384 -6.954);
 
-  --accent: #d0dcf514;
-  --accent-foreground: #ffffff;
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
 
-  /*--destructive: oklch(0.704 0.191 22.216);*/
-  --destructive: oklch(0.6863 0.2061 14.63);
-  --destructive-hover: #ff4060;
-  --destructive-active: #d92140;
-  --destructive-foreground: #ffffff;
+  --destructive: lab(54.424% 72.559 31.91);
+  --destructive-hover: lab(58.637% 72.516 28.924);
+  --destructive-active: lab(48.06% 68.538 33.095);
+  --destructive-foreground: var(--foreground);
 
-  --constructive: #32d74b;
+  --constructive: lab(75.977% -63.121 54.399);
 
-  --skeleton: #d0dcf514;
-  --tooltip: #464c59;
-  --tooltip-foreground: #ffffff;
+  --skeleton: var(--muted);
+  --tooltip: lab(32.144% -0.099 -8.558);
+  --tooltip-foreground: var(--foreground);
 
-  --tabs-list: #d0dcf514;
-  --tabs-active: #464c59;
-  --tabs-foreground: #a2a8b4;
+  --tabs-list: var(--muted);
+  --tabs-active: var(--tooltip);
+  --tabs-foreground: var(--muted-foreground);
 
-  --field: #d0dcf514;
-  --field-hover: #d0dcf524;
-  --field-placeholder: #717a8c;
-  --field-disabled-foreground: #465065;
+  --field: var(--muted);
+  --field-hover: var(--accent);
+  --field-placeholder: lab(50.939% -0.412 -11.011);
+  --field-disabled-foreground: lab(33.779% 0.025 -13.654);
 
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: lab(87.425% -0.446 -13.686 / 10%);
+  --input: lab(87.425% -0.446 -13.686 / 15%);
+  --ring: lab(87.425% -0.446 -13.686 / 40%);
 
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --chart-1: lab(75.977% -63.121 54.399);
+  --chart-2: lab(70.829% -30.39 -24.559);
+  --chart-3: lab(51.331% 55.708 -75.631);
+  --chart-4: lab(54.937% 72.198 -21.912);
+  --chart-5: lab(66.035% 47.617 73.661);
+  --chart-6: lab(74.298% 30.697 74.618);
+  --chart-7: lab(82.183% -22.532 71.621);
+  --chart-8: lab(78.061% -47.86 66.091);
+  --chart-9: lab(57.415% -3.806 -51.919);
 
   --radius: 0.5rem;
 
-  --badge-indicator-pink: #e539ac;
-  --badge-indicator-orange: #ff9f1a;
-  --badge-indicator-lime: #a8f230;
-  --badge-indicator-red: #f23051;
-  --badge-indicator-purple: #d898ff;
-  --badge-indicator-yellow: #ffda1a;
+  --pink: lab(54.937% 72.198 -21.912);
+  --orange: lab(74.298% 30.697 74.618);
+  --lime: lab(88.23% -43.072 76.696);
+  --red: var(--destructive);
+  --purple: lab(72.128% 38.159 -42.126);
+  --yellow: lab(88.245% 1.674 84.403);
 
-  --sidebar: #252b36;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: oklch(0.922 0 0);
-  --sidebar-primary-foreground: oklch(0.205 0 0);
-  --sidebar-accent: #d0dcf514;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-active: #fc790026;
-  --sidebar-active-foreground: #fc7900;
-  --sidebar-muted-foreground: #b9bfcb;
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar: var(--card);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--muted);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-active: lab(66.035% 47.617 73.661 / 15%);
+  --sidebar-active-foreground: var(--primary);
+  --sidebar-muted-foreground: lab(77.139% -0.387 -6.793);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
 }
 
 @layer base {

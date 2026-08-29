@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
 export interface DropdownMenuProps extends MenuPrimitive.Root.Props {}
 
@@ -19,7 +19,6 @@ export interface DropdownMenuProps extends MenuPrimitive.Root.Props {}
  * ├── DropdownMenuCheckboxItem
  * ├── DropdownMenuRadioGroup
  * ├── DropdownMenuRadioItem
- * ├── DropdownMenuSeparator
  * ├── DropdownMenuShortcut
  * ├── DropdownMenuSub
  * ├── DropdownMenuSubTrigger
@@ -34,5 +33,5 @@ export function DropdownMenu({ ...props }: DropdownMenuProps) {
       data-slot="dropdown-menu"
       {...props}
     />
-  )
+  );
 }

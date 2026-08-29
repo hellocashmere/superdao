@@ -1,19 +1,18 @@
-"use client"
+"use client";
 
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { cn } from "@superdao/lib/utils";
+import { Button } from "@superdao/ui/components/button";
+import { XIcon } from "lucide-react";
 
-import { cn } from "@superdao/ui/lib/utils"
-
-import { Button } from "@superdao/ui/components/button"
-
-import { XIcon } from "lucide-react"
-
-import { DialogOverlay } from "../overlay/dialog-overlay"
-
-import { DialogPortal } from "../portal/dialog-portal"
+import { DialogOverlay } from "../overlay/dialog-overlay";
+import { DialogPortal } from "../portal/dialog-portal";
 
 export interface DialogContentProps extends DialogPrimitive.Popup.Props {
-  showCloseButton?: boolean
+  /**
+   * Displays a close button in the dialog content.
+   */
+  showCloseButton?: boolean;
 }
 
 /**
@@ -21,12 +20,7 @@ export interface DialogContentProps extends DialogPrimitive.Popup.Props {
  *
  * @see https://base-ui.com/react/components/dialog
  */
-export function DialogContent({
-  className,
-  children,
-  showCloseButton = false,
-  ...props
-}: DialogContentProps) {
+export function DialogContent({ className, children, showCloseButton = false, ...props }: DialogContentProps) {
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -56,5 +50,5 @@ export function DialogContent({
         )}
       </DialogPrimitive.Popup>
     </DialogPortal>
-  )
+  );
 }

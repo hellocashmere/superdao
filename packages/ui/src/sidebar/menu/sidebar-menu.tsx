@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarMenuProps extends React.ComponentProps<"ul"> {}
+export interface SidebarMenuProps extends ComponentProps<"ul"> {}
 
 /**
  * Renders the sidebar menu component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarMenu({ className, ...props }: SidebarMenuProps) {
   return (
@@ -19,5 +17,5 @@ export function SidebarMenu({ className, ...props }: SidebarMenuProps) {
       className={cn("flex w-full min-w-0 flex-col", className)}
       {...props}
     />
-  )
+  );
 }

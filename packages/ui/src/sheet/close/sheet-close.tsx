@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
 export interface SheetCloseProps extends SheetPrimitive.Close.Props {}
 
@@ -15,5 +15,5 @@ export function SheetClose({ ...props }: SheetCloseProps) {
       data-slot="sheet-close"
       {...props}
     />
-  )
+  );
 }

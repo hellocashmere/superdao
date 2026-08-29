@@ -1,13 +1,13 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface CardContentProps extends React.ComponentProps<"div"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface CardContentProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the card content component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function CardContent({ className, ...props }: CardContentProps) {
   return (
@@ -16,5 +16,5 @@ export function CardContent({ className, ...props }: CardContentProps) {
       className={cn("px-(--card-spacing)", className)}
       {...props}
     />
-  )
+  );
 }

@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface FieldTitleProps extends React.ComponentProps<"div"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface FieldTitleProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the field title component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function FieldTitle({ className, ...props }: FieldTitleProps) {
   return (
@@ -19,5 +19,5 @@ export function FieldTitle({ className, ...props }: FieldTitleProps) {
       )}
       {...props}
     />
-  )
+  );
 }

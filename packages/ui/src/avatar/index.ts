@@ -1,12 +1,12 @@
-export type { AvatarProps } from "./root/avatar"
-export { Avatar } from "./root/avatar"
-export type { AvatarImageProps } from "./image/avatar-image"
-export { AvatarImage } from "./image/avatar-image"
-export type { AvatarFallbackProps } from "./fallback/avatar-fallback"
-export { AvatarFallback } from "./fallback/avatar-fallback"
-export type { AvatarGroupProps } from "./group/avatar-group"
-export { AvatarGroup } from "./group/avatar-group"
-export type { AvatarGroupCountProps } from "./group-count/avatar-group-count"
-export { AvatarGroupCount } from "./group-count/avatar-group-count"
-export type { AvatarBadgeProps } from "./badge/avatar-badge"
-export { AvatarBadge } from "./badge/avatar-badge"
+export type { AvatarBadgeProps } from "./badge/avatar-badge";
+export { AvatarBadge } from "./badge/avatar-badge";
+export type { AvatarFallbackProps } from "./fallback/avatar-fallback";
+export { AvatarFallback } from "./fallback/avatar-fallback";
+export type { AvatarGroupProps } from "./group/avatar-group";
+export { AvatarGroup } from "./group/avatar-group";
+export type { AvatarGroupCountProps } from "./group-count/avatar-group-count";
+export { AvatarGroupCount } from "./group-count/avatar-group-count";
+export type { AvatarImageProps } from "./image/avatar-image";
+export { AvatarImage } from "./image/avatar-image";
+export type { AvatarProps } from "./root/avatar";
+export { Avatar } from "./root/avatar";

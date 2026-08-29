@@ -1,12 +1,10 @@
-"use client"
+"use client";
 
-import * as RechartsPrimitive from "recharts"
+import type { ComponentPropsWithRef } from "react";
 
-import type { ComponentPropsWithRef } from "react"
+import * as RechartsPrimitive from "recharts";
 
-export interface ChartTooltipProps extends ComponentPropsWithRef<
-  typeof RechartsPrimitive.Tooltip
-> {}
+export interface ChartTooltipProps extends ComponentPropsWithRef<typeof RechartsPrimitive.Tooltip> {}
 
 /**
  * Renders the chart tooltip component.
@@ -14,5 +12,5 @@ export interface ChartTooltipProps extends ComponentPropsWithRef<
  * @see https://recharts.github.io/en-US/guide
  */
 export function ChartTooltip(props: ChartTooltipProps) {
-  return <RechartsPrimitive.Tooltip {...props} />
+  return <RechartsPrimitive.Tooltip {...props} />;
 }

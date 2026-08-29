@@ -1,27 +1,23 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-import { ChevronLeftIcon } from "lucide-react"
+import { cn } from "@superdao/lib/utils";
+import { ChevronLeftIcon } from "lucide-react";
 
-import { PaginationLink } from "../link/pagination-link"
+import { PaginationLink } from "../link/pagination-link";
 
-export interface PaginationPreviousProps extends React.ComponentProps<
-  typeof PaginationLink
-> {
-  text?: string
+export interface PaginationPreviousProps extends ComponentProps<typeof PaginationLink> {
+  /**
+   * Overrides the text shown for the previous-page control.
+   */
+  text?: string;
 }
 
 /**
  * Renders the pagination previous component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function PaginationPrevious({
-  className,
-  text = "Previous",
-  ...props
-}: PaginationPreviousProps) {
+export function PaginationPrevious({ className, text = "Previous", ...props }: PaginationPreviousProps) {
   return (
     <PaginationLink
       aria-label="Go to previous page"
@@ -32,5 +28,5 @@ export function PaginationPrevious({
       <ChevronLeftIcon data-icon="inline-start" />
       <span className="hidden sm:block">{text}</span>
     </PaginationLink>
-  )
+  );
 }

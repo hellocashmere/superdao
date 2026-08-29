@@ -1,7 +1,10 @@
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
+
+import { cn } from "@superdao/lib/utils";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 export const buttonGroupVariants = cva(
   "flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-lg [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
@@ -9,21 +12,18 @@ export const buttonGroupVariants = cva(
     variants: {
       orientation: {
         horizontal:
-          "*:data-slot:rounded-r-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-r-lg! [&>[data-slot]~[data-slot]]:rounded-l-none [&>[data-slot]~[data-slot]]:border-l-0",
+          "*:data-slot:rounded-r-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-r-lg! [&>[data-slot]~[data-slot]]:rounded-l-none",
         vertical:
-          "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>[data-slot]~[data-slot]]:rounded-t-none [&>[data-slot]~[data-slot]]:border-t-0",
+          "flex-col *:data-slot:rounded-b-none [&>[data-slot]:not(:has(~[data-slot]))]:rounded-b-lg! [&>[data-slot]~[data-slot]]:rounded-t-none",
       },
     },
     defaultVariants: {
       orientation: "horizontal",
     },
   }
-)
+);
 
-export interface ButtonGroupProps
-  extends
-    React.ComponentProps<"div">,
-    VariantProps<typeof buttonGroupVariants> {}
+export interface ButtonGroupProps extends ComponentProps<"div">, VariantProps<typeof buttonGroupVariants> {}
 
 /**
  * Renders the button group component.
@@ -31,17 +31,10 @@ export interface ButtonGroupProps
  * Composition:
  * ```text
  * ButtonGroup
- * ├── ButtonGroupSeparator
  * └── ButtonGroupText
  * ```
- *
- * @see https://react.dev/reference/react/Component
  */
-export function ButtonGroup({
-  className,
-  orientation,
-  ...props
-}: ButtonGroupProps) {
+export function ButtonGroup({ className, orientation, ...props }: ButtonGroupProps) {
   return (
     <div
       role="group"
@@ -50,5 +43,5 @@ export function ButtonGroup({
       className={cn(buttonGroupVariants({ orientation }), className)}
       {...props}
     />
-  )
+  );
 }

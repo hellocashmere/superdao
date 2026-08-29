@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible"
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
 export interface CollapsibleProps extends CollapsiblePrimitive.Root.Props {}
 
@@ -22,5 +22,5 @@ export function Collapsible({ ...props }: CollapsibleProps) {
       data-slot="collapsible"
       {...props}
     />
-  )
+  );
 }

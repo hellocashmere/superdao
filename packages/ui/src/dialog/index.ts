@@ -1,22 +1,22 @@
-export type { DialogProps } from "./root/dialog"
-export { Dialog } from "./root/dialog"
-export type { DialogCloseProps } from "./close/dialog-close"
-export { DialogClose } from "./close/dialog-close"
-export type { DialogBodyProps } from "./body/dialog-body"
-export { DialogBody } from "./body/dialog-body"
-export type { DialogContentProps } from "./content/dialog-content"
-export { DialogContent } from "./content/dialog-content"
-export type { DialogDescriptionProps } from "./description/dialog-description"
-export { DialogDescription } from "./description/dialog-description"
-export type { DialogFooterProps } from "./footer/dialog-footer"
-export { DialogFooter } from "./footer/dialog-footer"
-export type { DialogHeaderProps } from "./header/dialog-header"
-export { DialogHeader } from "./header/dialog-header"
-export type { DialogOverlayProps } from "./overlay/dialog-overlay"
-export { DialogOverlay } from "./overlay/dialog-overlay"
-export type { DialogPortalProps } from "./portal/dialog-portal"
-export { DialogPortal } from "./portal/dialog-portal"
-export type { DialogTitleProps } from "./title/dialog-title"
-export { DialogTitle } from "./title/dialog-title"
-export type { DialogTriggerProps } from "./trigger/dialog-trigger"
-export { DialogTrigger } from "./trigger/dialog-trigger"
+export type { DialogBodyProps } from "./body/dialog-body";
+export { DialogBody } from "./body/dialog-body";
+export type { DialogCloseProps } from "./close/dialog-close";
+export { DialogClose } from "./close/dialog-close";
+export type { DialogContentProps } from "./content/dialog-content";
+export { DialogContent } from "./content/dialog-content";
+export type { DialogDescriptionProps } from "./description/dialog-description";
+export { DialogDescription } from "./description/dialog-description";
+export type { DialogFooterProps } from "./footer/dialog-footer";
+export { DialogFooter } from "./footer/dialog-footer";
+export type { DialogHeaderProps } from "./header/dialog-header";
+export { DialogHeader } from "./header/dialog-header";
+export type { DialogOverlayProps } from "./overlay/dialog-overlay";
+export { DialogOverlay } from "./overlay/dialog-overlay";
+export type { DialogPortalProps } from "./portal/dialog-portal";
+export { DialogPortal } from "./portal/dialog-portal";
+export type { DialogProps } from "./root/dialog";
+export { Dialog } from "./root/dialog";
+export type { DialogTitleProps } from "./title/dialog-title";
+export { DialogTitle } from "./title/dialog-title";
+export type { DialogTriggerProps } from "./trigger/dialog-trigger";
+export { DialogTrigger } from "./trigger/dialog-trigger";

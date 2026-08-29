@@ -1,22 +1,24 @@
-"use client"
+"use client";
 
-import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group"
-import type { VariantProps } from "class-variance-authority"
-import type { ComponentPropsWithRef, CSSProperties } from "react"
+import type { ComponentPropsWithRef, CSSProperties } from "react";
 
-import type { toggleVariants } from "@superdao/ui/components/toggle"
-import { cn } from "@superdao/ui/lib/utils"
+import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
+import { cn } from "@superdao/lib/utils";
+import type { toggleVariants } from "@superdao/ui/components/toggle";
+import type { VariantProps } from "class-variance-authority";
 
-import { ToggleGroupContext } from "../context"
+import { ToggleGroupContext } from "../context";
 
 export interface ToggleGroupProps
-  extends
-    ComponentPropsWithRef<typeof ToggleGroupPrimitive>,
-    VariantProps<typeof toggleVariants> {
-  /** Gap between toggle items in Tailwind spacing units. */
-  spacing?: number
-  /** Axis used to arrange toggle items. */
-  orientation?: "horizontal" | "vertical"
+  extends ComponentPropsWithRef<typeof ToggleGroupPrimitive>, VariantProps<typeof toggleVariants> {
+  /**
+   * Gap between toggle items in Tailwind spacing units.
+   */
+  spacing?: number;
+  /**
+   * Axis used to arrange toggle items.
+   */
+  orientation?: "horizontal" | "vertical";
 }
 
 /**
@@ -55,11 +57,9 @@ export function ToggleGroup({
       )}
       {...props}
     >
-      <ToggleGroupContext.Provider
-        value={{ variant, size, spacing, orientation }}
-      >
+      <ToggleGroupContext.Provider value={{ variant, size, spacing, orientation }}>
         {children}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive>
-  )
+  );
 }

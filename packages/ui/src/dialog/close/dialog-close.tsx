@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 
 export interface DialogCloseProps extends DialogPrimitive.Close.Props {}
 
@@ -15,5 +15,5 @@ export function DialogClose({ ...props }: DialogCloseProps) {
       data-slot="dialog-close"
       {...props}
     />
-  )
+  );
 }

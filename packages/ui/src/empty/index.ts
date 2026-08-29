@@ -1,12 +1,12 @@
-export type { EmptyProps } from "./root/empty"
-export { Empty } from "./root/empty"
-export type { EmptyHeaderProps } from "./header/empty-header"
-export { EmptyHeader } from "./header/empty-header"
-export type { EmptyTitleProps } from "./title/empty-title"
-export { EmptyTitle } from "./title/empty-title"
-export type { EmptyDescriptionProps } from "./description/empty-description"
-export { EmptyDescription } from "./description/empty-description"
-export type { EmptyContentProps } from "./content/empty-content"
-export { EmptyContent } from "./content/empty-content"
-export type { EmptyMediaProps } from "./media/empty-media"
-export { EmptyMedia } from "./media/empty-media"
+export type { EmptyContentProps } from "./content/empty-content";
+export { EmptyContent } from "./content/empty-content";
+export type { EmptyDescriptionProps } from "./description/empty-description";
+export { EmptyDescription } from "./description/empty-description";
+export type { EmptyHeaderProps } from "./header/empty-header";
+export { EmptyHeader } from "./header/empty-header";
+export type { EmptyMediaProps } from "./media/empty-media";
+export { EmptyMedia } from "./media/empty-media";
+export type { EmptyProps } from "./root/empty";
+export { Empty } from "./root/empty";
+export type { EmptyTitleProps } from "./title/empty-title";
+export { EmptyTitle } from "./title/empty-title";

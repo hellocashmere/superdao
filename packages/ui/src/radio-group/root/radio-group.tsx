@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group";
+import { cn } from "@superdao/lib/utils";
 
 export interface RadioGroupProps extends RadioGroupPrimitive.Props {}
 
@@ -24,5 +23,5 @@ export function RadioGroup({ className, ...props }: RadioGroupProps) {
       className={cn("grid w-full gap-2", className)}
       {...props}
     />
-  )
+  );
 }

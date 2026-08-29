@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
+import { cn } from "@superdao/lib/utils";
 
 export interface ToastContentProps extends ToastPrimitive.Content.Props {}
 
@@ -21,5 +20,5 @@ export function ToastContent({ className, ...props }: ToastContentProps) {
       )}
       {...props}
     />
-  )
+  );
 }

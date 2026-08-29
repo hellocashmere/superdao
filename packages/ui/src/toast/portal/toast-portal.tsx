@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 
 export interface ToastPortalProps extends ToastPrimitive.Portal.Props {}
 
@@ -15,5 +15,5 @@ export function ToastPortal({ ...props }: ToastPortalProps) {
       data-slot="toast-portal"
       {...props}
     />
-  )
+  );
 }

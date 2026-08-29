@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
 export interface SheetProps extends SheetPrimitive.Root.Props {}
 
@@ -27,5 +27,5 @@ export function Sheet({ ...props }: SheetProps) {
       data-slot="sheet"
       {...props}
     />
-  )
+  );
 }

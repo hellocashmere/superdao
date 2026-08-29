@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as SheetPrimitive } from "@base-ui/react/dialog"
+import { Dialog as SheetPrimitive } from "@base-ui/react/dialog";
 
 export interface SheetTriggerProps extends SheetPrimitive.Trigger.Props {}
 
@@ -15,5 +15,5 @@ export function SheetTrigger({ ...props }: SheetTriggerProps) {
       data-slot="sheet-trigger"
       {...props}
     />
-  )
+  );
 }

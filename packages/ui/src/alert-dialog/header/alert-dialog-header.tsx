@@ -1,6 +1,8 @@
-import type { ComponentPropsWithRef } from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentPropsWithRef } from "react";
+
+import { cn } from "@superdao/lib/utils";
 
 export interface AlertDialogHeaderProps extends ComponentPropsWithRef<"div"> {}
 
@@ -9,11 +11,7 @@ export interface AlertDialogHeaderProps extends ComponentPropsWithRef<"div"> {}
  *
  * @see https://base-ui.com/react/components/alert-dialog
  */
-export function AlertDialogHeader({
-  className,
-  ref,
-  ...props
-}: AlertDialogHeaderProps) {
+export function AlertDialogHeader({ className, ref, ...props }: AlertDialogHeaderProps) {
   return (
     <div
       ref={ref}
@@ -24,5 +22,5 @@ export function AlertDialogHeader({
       )}
       {...props}
     />
-  )
+  );
 }

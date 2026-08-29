@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Select as SelectPrimitive } from "@base-ui/react/select"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { cn } from "@superdao/lib/utils";
 
 export interface SelectGroupProps extends SelectPrimitive.Group.Props {}
 
@@ -18,5 +17,5 @@ export function SelectGroup({ className, ...props }: SelectGroupProps) {
       className={cn("scroll-my-1 py-1", className)}
       {...props}
     />
-  )
+  );
 }

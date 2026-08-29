@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-import { Select as SelectPrimitive } from "@base-ui/react/select"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-import { CheckIcon } from "lucide-react"
+import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { cn } from "@superdao/lib/utils";
+import { CheckIcon } from "lucide-react";
 
 export interface SelectItemProps extends SelectPrimitive.Item.Props {}
 
@@ -27,12 +25,10 @@ export function SelectItem({ className, children, ...props }: SelectItemProps) {
         {children}
       </SelectPrimitive.ItemText>
       <SelectPrimitive.ItemIndicator
-        render={
-          <span className="pointer-events-none absolute right-4 flex size-4 items-center justify-center" />
-        }
+        render={<span className="pointer-events-none absolute right-4 flex size-4 items-center justify-center" />}
       >
         <CheckIcon className="pointer-events-none" />
       </SelectPrimitive.ItemIndicator>
     </SelectPrimitive.Item>
-  )
+  );
 }

@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
-import { Toggle as TogglePrimitive } from "@base-ui/react/toggle"
-import type { VariantProps } from "class-variance-authority"
-import type { ComponentPropsWithRef } from "react"
+import type { ComponentPropsWithRef } from "react";
 
-import { toggleVariants } from "@superdao/ui/components/toggle"
-import { cn } from "@superdao/ui/lib/utils"
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
+import { cn } from "@superdao/lib/utils";
+import { toggleVariants } from "@superdao/ui/components/toggle";
+import type { VariantProps } from "class-variance-authority";
 
-import { useToggleGroup } from "../context"
+import { useToggleGroup } from "../context";
 
 export interface ToggleGroupItemProps
-  extends
-    ComponentPropsWithRef<typeof TogglePrimitive>,
-    VariantProps<typeof toggleVariants> {}
+  extends ComponentPropsWithRef<typeof TogglePrimitive>, VariantProps<typeof toggleVariants> {}
 
 /**
  * Renders one toggle controlled by its surrounding toggle group.
@@ -27,7 +25,7 @@ export function ToggleGroupItem({
   size = "default",
   ...props
 }: ToggleGroupItemProps) {
-  const context = useToggleGroup()
+  const context = useToggleGroup();
 
   return (
     <TogglePrimitive
@@ -48,5 +46,5 @@ export function ToggleGroupItem({
     >
       {children}
     </TogglePrimitive>
-  )
+  );
 }

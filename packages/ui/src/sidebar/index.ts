@@ -1,47 +1,45 @@
-export type { SidebarProps } from "./root/sidebar"
-export { Sidebar } from "./root/sidebar"
-export type { SidebarContentProps } from "./content/sidebar-content"
-export { SidebarContent } from "./content/sidebar-content"
-export type { SidebarFooterProps } from "./footer/sidebar-footer"
-export { SidebarFooter } from "./footer/sidebar-footer"
-export type { SidebarGroupProps } from "./group/sidebar-group"
-export { SidebarGroup } from "./group/sidebar-group"
-export type { SidebarGroupActionProps } from "./group-action/sidebar-group-action"
-export { SidebarGroupAction } from "./group-action/sidebar-group-action"
-export type { SidebarGroupContentProps } from "./group-content/sidebar-group-content"
-export { SidebarGroupContent } from "./group-content/sidebar-group-content"
-export type { SidebarGroupLabelProps } from "./group-label/sidebar-group-label"
-export { SidebarGroupLabel } from "./group-label/sidebar-group-label"
-export type { SidebarHeaderProps } from "./header/sidebar-header"
-export { SidebarHeader } from "./header/sidebar-header"
-export type { SidebarInputProps } from "./input/sidebar-input"
-export { SidebarInput } from "./input/sidebar-input"
-export type { SidebarInsetProps } from "./inset/sidebar-inset"
-export { SidebarInset } from "./inset/sidebar-inset"
-export type { SidebarMenuProps } from "./menu/sidebar-menu"
-export { SidebarMenu } from "./menu/sidebar-menu"
-export type { SidebarMenuActionProps } from "./menu-action/sidebar-menu-action"
-export { SidebarMenuAction } from "./menu-action/sidebar-menu-action"
-export type { SidebarMenuBadgeProps } from "./menu-badge/sidebar-menu-badge"
-export { SidebarMenuBadge } from "./menu-badge/sidebar-menu-badge"
-export type { SidebarMenuButtonProps } from "./menu-button/sidebar-menu-button"
-export { SidebarMenuButton } from "./menu-button/sidebar-menu-button"
-export type { SidebarMenuItemProps } from "./menu-item/sidebar-menu-item"
-export { SidebarMenuItem } from "./menu-item/sidebar-menu-item"
-export type { SidebarMenuSkeletonProps } from "./menu-skeleton/sidebar-menu-skeleton"
-export { SidebarMenuSkeleton } from "./menu-skeleton/sidebar-menu-skeleton"
-export type { SidebarMenuSubProps } from "./menu-sub/sidebar-menu-sub"
-export { SidebarMenuSub } from "./menu-sub/sidebar-menu-sub"
-export type { SidebarMenuSubButtonProps } from "./menu-sub-button/sidebar-menu-sub-button"
-export { SidebarMenuSubButton } from "./menu-sub-button/sidebar-menu-sub-button"
-export type { SidebarMenuSubItemProps } from "./menu-sub-item/sidebar-menu-sub-item"
-export { SidebarMenuSubItem } from "./menu-sub-item/sidebar-menu-sub-item"
-export type { SidebarProviderProps } from "./provider/sidebar-provider"
-export { SidebarProvider } from "./provider/sidebar-provider"
-export type { SidebarRailProps } from "./rail/sidebar-rail"
-export { SidebarRail } from "./rail/sidebar-rail"
-export type { SidebarSeparatorProps } from "./separator/sidebar-separator"
-export { SidebarSeparator } from "./separator/sidebar-separator"
-export type { SidebarTriggerProps } from "./trigger/sidebar-trigger"
-export { SidebarTrigger } from "./trigger/sidebar-trigger"
-export { useSidebar } from "./context"
+export type { SidebarContentProps } from "./content/sidebar-content";
+export { SidebarContent } from "./content/sidebar-content";
+export { useSidebar } from "./context";
+export type { SidebarFooterProps } from "./footer/sidebar-footer";
+export { SidebarFooter } from "./footer/sidebar-footer";
+export type { SidebarGroupProps } from "./group/sidebar-group";
+export { SidebarGroup } from "./group/sidebar-group";
+export type { SidebarGroupActionProps } from "./group-action/sidebar-group-action";
+export { SidebarGroupAction } from "./group-action/sidebar-group-action";
+export type { SidebarGroupContentProps } from "./group-content/sidebar-group-content";
+export { SidebarGroupContent } from "./group-content/sidebar-group-content";
+export type { SidebarGroupLabelProps } from "./group-label/sidebar-group-label";
+export { SidebarGroupLabel } from "./group-label/sidebar-group-label";
+export type { SidebarHeaderProps } from "./header/sidebar-header";
+export { SidebarHeader } from "./header/sidebar-header";
+export type { SidebarInputProps } from "./input/sidebar-input";
+export { SidebarInput } from "./input/sidebar-input";
+export type { SidebarInsetProps } from "./inset/sidebar-inset";
+export { SidebarInset } from "./inset/sidebar-inset";
+export type { SidebarMenuProps } from "./menu/sidebar-menu";
+export { SidebarMenu } from "./menu/sidebar-menu";
+export type { SidebarMenuActionProps } from "./menu-action/sidebar-menu-action";
+export { SidebarMenuAction } from "./menu-action/sidebar-menu-action";
+export type { SidebarMenuBadgeProps } from "./menu-badge/sidebar-menu-badge";
+export { SidebarMenuBadge } from "./menu-badge/sidebar-menu-badge";
+export type { SidebarMenuButtonProps } from "./menu-button/sidebar-menu-button";
+export { SidebarMenuButton } from "./menu-button/sidebar-menu-button";
+export type { SidebarMenuItemProps } from "./menu-item/sidebar-menu-item";
+export { SidebarMenuItem } from "./menu-item/sidebar-menu-item";
+export type { SidebarMenuSkeletonProps } from "./menu-skeleton/sidebar-menu-skeleton";
+export { SidebarMenuSkeleton } from "./menu-skeleton/sidebar-menu-skeleton";
+export type { SidebarMenuSubProps } from "./menu-sub/sidebar-menu-sub";
+export { SidebarMenuSub } from "./menu-sub/sidebar-menu-sub";
+export type { SidebarMenuSubButtonProps } from "./menu-sub-button/sidebar-menu-sub-button";
+export { SidebarMenuSubButton } from "./menu-sub-button/sidebar-menu-sub-button";
+export type { SidebarMenuSubItemProps } from "./menu-sub-item/sidebar-menu-sub-item";
+export { SidebarMenuSubItem } from "./menu-sub-item/sidebar-menu-sub-item";
+export type { SidebarProviderProps } from "./provider/sidebar-provider";
+export { SidebarProvider } from "./provider/sidebar-provider";
+export type { SidebarRailProps } from "./rail/sidebar-rail";
+export { SidebarRail } from "./rail/sidebar-rail";
+export type { SidebarProps } from "./root/sidebar";
+export { Sidebar } from "./root/sidebar";
+export type { SidebarTriggerProps } from "./trigger/sidebar-trigger";
+export { SidebarTrigger } from "./trigger/sidebar-trigger";

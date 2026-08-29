@@ -1,66 +1,54 @@
-import { mergeProps } from "@base-ui/react/merge-props"
+"use client";
 
-import { useRender } from "@base-ui/react/use-render"
+import type { ComponentPropsWithRef } from "react";
 
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
+import { cn } from "@superdao/lib/utils";
 
-import { cn } from "@superdao/ui/lib/utils"
+export type BadgeVariant = "default" | "indicator";
 
-export const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center gap-1 font-sans [font-feature-settings:'liga'_off,'clig'_off] text-[11px] leading-3 font-semibold tracking-[0.25px] whitespace-nowrap",
-  {
-    variants: {
-      variant: {
-        default: "text-foreground",
-        secondary: "text-secondary-foreground",
-        destructive:
-          "text-destructive focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40",
-        outline: "text-foreground",
-        ghost: "text-muted-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
+export type BadgeColor = "gray" | "lime" | "orange" | "pink" | "purple" | "red" | "yellow";
 
-export interface BadgeProps
-  extends
-    useRender.ComponentProps<"span">,
-    VariantProps<typeof badgeVariants> {}
+export interface BadgeProps extends ComponentPropsWithRef<"span"> {
+  /**
+   * Sets the badge color.
+   */
+  color?: BadgeColor;
+  /**
+   * Sets the badge presentation style.
+   */
+  variant?: BadgeVariant;
+}
 
 /**
- * Renders a text label with optional status indicator content.
- *
- * Composition:
- * ```text
- * Badge
- * └── BadgeIndicator
- * ```
- *
- * @see https://react.dev/reference/react/Component
+ * Renders a color-coded label with an optional leading status indicator.
  */
-export function Badge({
-  className,
-  variant = "default",
-  render,
-  ...props
-}: BadgeProps) {
-  return useRender({
-    defaultTagName: "span",
-    props: mergeProps<"span">(
-      {
-        className: cn(badgeVariants({ variant }), className),
-      },
-      props
-    ),
-    render,
-    state: {
-      slot: "badge",
-      variant,
-    },
-  })
+export function Badge({ className, color = "gray", ref, variant = "default", ...props }: BadgeProps) {
+  return (
+    <span
+      {...props}
+      ref={ref}
+      data-slot="badge"
+      data-color={color}
+      data-variant={variant}
+      className={cn(
+        "inline-flex w-fit shrink-0 items-center rounded-sm px-1.5 py-1 font-sans [font-feature-settings:'liga'_off,'clig'_off] text-[12px] leading-3 font-semibold whitespace-nowrap",
+        "data-[color=gray]:bg-muted-foreground/15 data-[color=gray]:text-muted-foreground",
+        "data-[color=lime]:bg-lime/15 data-[color=lime]:text-lime",
+        "data-[color=orange]:bg-orange/15 data-[color=orange]:text-orange",
+        "data-[color=pink]:bg-pink/15 data-[color=pink]:text-pink",
+        "data-[color=purple]:bg-purple/15 data-[color=purple]:text-purple",
+        "data-[color=red]:bg-red/15 data-[color=red]:text-red",
+        "data-[color=yellow]:bg-yellow/15 data-[color=yellow]:text-yellow",
+        "data-[variant=indicator]:gap-1.5 data-[variant=indicator]:bg-transparent data-[variant=indicator]:px-0 data-[variant=indicator]:text-foreground data-[variant=indicator]:before:size-1 data-[variant=indicator]:before:shrink-0 data-[variant=indicator]:before:rounded-full",
+        "data-[variant=indicator]:data-[color=gray]:before:bg-muted-foreground",
+        "data-[variant=indicator]:data-[color=lime]:before:bg-lime",
+        "data-[variant=indicator]:data-[color=orange]:before:bg-orange",
+        "data-[variant=indicator]:data-[color=pink]:before:bg-pink",
+        "data-[variant=indicator]:data-[color=purple]:before:bg-purple",
+        "data-[variant=indicator]:data-[color=red]:before:bg-red",
+        "data-[variant=indicator]:data-[color=yellow]:before:bg-yellow",
+        className
+      )}
+    />
+  );
 }

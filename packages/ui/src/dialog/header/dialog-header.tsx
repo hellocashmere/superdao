@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface DialogHeaderProps extends React.ComponentProps<"div"> {}
+export interface DialogHeaderProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the dialog header component.
@@ -15,11 +15,8 @@ export function DialogHeader({ className, ...props }: DialogHeaderProps) {
   return (
     <div
       data-slot="dialog-header"
-      className={cn(
-        "flex flex-col items-start gap-2 rounded-t-xl bg-card px-6 pt-5 pb-4 text-foreground",
-        className
-      )}
+      className={cn("flex flex-col items-start gap-2 rounded-t-xl bg-card px-6 pt-5 pb-4 text-foreground", className)}
       {...props}
     />
-  )
+  );
 }

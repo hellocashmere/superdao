@@ -1,8 +1,10 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface AvatarGroupProps extends React.ComponentProps<"div"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface AvatarGroupProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the avatar group component.
@@ -19,5 +21,5 @@ export function AvatarGroup({ className, ...props }: AvatarGroupProps) {
       )}
       {...props}
     />
-  )
+  );
 }

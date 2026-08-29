@@ -1,12 +1,12 @@
-export type { PopoverProps } from "./root/popover"
-export { Popover } from "./root/popover"
-export type { PopoverContentProps } from "./content/popover-content"
-export { PopoverContent } from "./content/popover-content"
-export type { PopoverDescriptionProps } from "./description/popover-description"
-export { PopoverDescription } from "./description/popover-description"
-export type { PopoverHeaderProps } from "./header/popover-header"
-export { PopoverHeader } from "./header/popover-header"
-export type { PopoverTitleProps } from "./title/popover-title"
-export { PopoverTitle } from "./title/popover-title"
-export type { PopoverTriggerProps } from "./trigger/popover-trigger"
-export { PopoverTrigger } from "./trigger/popover-trigger"
+export type { PopoverContentProps } from "./content/popover-content";
+export { PopoverContent } from "./content/popover-content";
+export type { PopoverDescriptionProps } from "./description/popover-description";
+export { PopoverDescription } from "./description/popover-description";
+export type { PopoverHeaderProps } from "./header/popover-header";
+export { PopoverHeader } from "./header/popover-header";
+export type { PopoverProps } from "./root/popover";
+export { Popover } from "./root/popover";
+export type { PopoverTitleProps } from "./title/popover-title";
+export { PopoverTitle } from "./title/popover-title";
+export type { PopoverTriggerProps } from "./trigger/popover-trigger";
+export { PopoverTrigger } from "./trigger/popover-trigger";

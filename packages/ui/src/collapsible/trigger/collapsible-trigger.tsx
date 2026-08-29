@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible"
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
-export interface CollapsibleTriggerProps
-  extends CollapsiblePrimitive.Trigger.Props {}
+export interface CollapsibleTriggerProps extends CollapsiblePrimitive.Trigger.Props {}
 
 /**
  * Renders the collapsible trigger component.
@@ -16,5 +15,5 @@ export function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
       data-slot="collapsible-trigger"
       {...props}
     />
-  )
+  );
 }

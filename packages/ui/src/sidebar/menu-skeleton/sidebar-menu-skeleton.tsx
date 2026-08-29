@@ -1,29 +1,23 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps, CSSProperties } from "react";
+import { useState } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
+import { Skeleton } from "@superdao/ui/components/skeleton";
 
-import { Skeleton } from "@superdao/ui/components/skeleton"
-
-export interface SidebarMenuSkeletonProps extends React.ComponentProps<"div"> {
-  showIcon?: boolean
+export interface SidebarMenuSkeletonProps extends ComponentProps<"div"> {
+  showIcon?: boolean;
 }
 
 /**
  * Renders the sidebar menu skeleton component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarMenuSkeleton({
-  className,
-  showIcon = false,
-  ...props
-}: SidebarMenuSkeletonProps) {
+export function SidebarMenuSkeleton({ className, showIcon = false, ...props }: SidebarMenuSkeletonProps) {
   // Random width between 50 to 90%.
-  const [width] = React.useState(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`
-  })
+  const [width] = useState(() => {
+    return `${Math.floor(Math.random() * 40) + 50}%`;
+  });
 
   return (
     <div
@@ -44,9 +38,9 @@ export function SidebarMenuSkeleton({
         style={
           {
             "--skeleton-width": width,
-          } as React.CSSProperties
+          } as CSSProperties
         }
       />
     </div>
-  )
+  );
 }

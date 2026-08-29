@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { cn } from "@superdao/lib/utils";
 
 export interface PopoverTitleProps extends PopoverPrimitive.Title.Props {}
 
@@ -18,5 +17,5 @@ export function PopoverTitle({ className, ...props }: PopoverTitleProps) {
       className={cn("font-medium", className)}
       {...props}
     />
-  )
+  );
 }

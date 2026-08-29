@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarInsetProps extends React.ComponentProps<"main"> {}
+export interface SidebarInsetProps extends ComponentProps<"main"> {}
 
 /**
  * Renders the sidebar inset component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarInset({ className, ...props }: SidebarInsetProps) {
   return (
@@ -21,5 +19,5 @@ export function SidebarInset({ className, ...props }: SidebarInsetProps) {
       )}
       {...props}
     />
-  )
+  );
 }

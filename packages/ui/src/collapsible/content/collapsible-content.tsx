@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible"
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 
-export interface CollapsibleContentProps
-  extends CollapsiblePrimitive.Panel.Props {}
+export interface CollapsibleContentProps extends CollapsiblePrimitive.Panel.Props {}
 
 /**
  * Renders the collapsible content component.
@@ -16,5 +15,5 @@ export function CollapsibleContent({ ...props }: CollapsibleContentProps) {
       data-slot="collapsible-content"
       {...props}
     />
-  )
+  );
 }

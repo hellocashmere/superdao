@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
-import type { ComponentProps } from "react"
+import type { ComponentProps } from "react";
 
-import { useCarousel } from "../context"
+import { cn } from "@superdao/lib/utils";
+
+import { useCarousel } from "../context";
 
 export interface CarouselContentProps extends ComponentProps<"div"> {}
 
@@ -13,7 +14,7 @@ export interface CarouselContentProps extends ComponentProps<"div"> {}
  * @see https://www.embla-carousel.com/get-started/react/
  */
 export function CarouselContent({ className, ...props }: CarouselContentProps) {
-  const { carouselRef, orientation } = useCarousel()
+  const { carouselRef, orientation } = useCarousel();
 
   return (
     <div
@@ -22,13 +23,13 @@ export function CarouselContent({ className, ...props }: CarouselContentProps) {
       data-slot="carousel-content"
     >
       <div
+        data-orientation={orientation}
         className={cn(
-          "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          "flex data-[orientation=horizontal]:-ml-4 data-[orientation=vertical]:-mt-4 data-[orientation=vertical]:flex-col",
           className
         )}
         {...props}
       />
     </div>
-  )
+  );
 }

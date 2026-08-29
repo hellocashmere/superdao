@@ -1,27 +1,21 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-import { Button } from "@superdao/ui/components/button"
+import { cn } from "@superdao/lib/utils";
+import { Button } from "@superdao/ui/components/button";
 
-export interface PaginationLinkProps
-  extends
-    Pick<React.ComponentProps<typeof Button>, "size">,
-    React.ComponentProps<"a"> {
-  isActive?: boolean
+export interface PaginationLinkProps extends Pick<ComponentProps<typeof Button>, "size">, ComponentProps<"a"> {
+  /**
+   * Marks the link as the currently active page.
+   */
+  isActive?: boolean;
 }
 
 /**
  * Renders the pagination link component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function PaginationLink({
-  className,
-  isActive,
-  size = "icon",
-  ...props
-}: PaginationLinkProps) {
+export function PaginationLink({ className, isActive, size = "icon", ...props }: PaginationLinkProps) {
   return (
     <Button
       variant={isActive ? "secondary" : "ghost"}
@@ -37,5 +31,5 @@ export function PaginationLink({
         />
       }
     />
-  )
+  );
 }

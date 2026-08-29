@@ -1,17 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
+import { Input } from "@superdao/ui/components/input";
 
-import { Input } from "@superdao/ui/components/input"
-
-export interface InputGroupInputProps extends React.ComponentProps<"input"> {}
+export interface InputGroupInputProps extends ComponentProps<"input"> {}
 
 /**
  * Renders the input group input component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function InputGroupInput({ className, ...props }: InputGroupInputProps) {
   return (
@@ -23,5 +20,5 @@ export function InputGroupInput({ className, ...props }: InputGroupInputProps) {
       )}
       {...props}
     />
-  )
+  );
 }

@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 
-export interface AlertDialogTriggerProps
-  extends AlertDialogPrimitive.Trigger.Props {}
+export interface AlertDialogTriggerProps extends AlertDialogPrimitive.Trigger.Props {}
 
 /**
  * Opens its associated alert dialog.
@@ -17,5 +16,5 @@ export function AlertDialogTrigger({ ref, ...props }: AlertDialogTriggerProps) {
       data-slot="alert-dialog-trigger"
       {...props}
     />
-  )
+  );
 }

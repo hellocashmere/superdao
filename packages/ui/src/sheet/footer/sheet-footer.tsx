@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SheetFooterProps extends React.ComponentProps<"div"> {}
+export interface SheetFooterProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the sheet footer component.
@@ -18,5 +18,5 @@ export function SheetFooter({ className, ...props }: SheetFooterProps) {
       className={cn("mt-auto flex flex-col gap-2 p-4", className)}
       {...props}
     />
-  )
+  );
 }

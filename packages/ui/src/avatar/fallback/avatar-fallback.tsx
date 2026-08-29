@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
+import { cn } from "@superdao/lib/utils";
 
 export interface AvatarFallbackProps extends AvatarPrimitive.Fallback.Props {}
 
@@ -21,5 +20,5 @@ export function AvatarFallback({ className, ...props }: AvatarFallbackProps) {
       )}
       {...props}
     />
-  )
+  );
 }

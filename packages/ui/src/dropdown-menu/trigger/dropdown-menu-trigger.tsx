@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
 export interface DropdownMenuTriggerProps extends MenuPrimitive.Trigger.Props {}
 
@@ -15,5 +15,5 @@ export function DropdownMenuTrigger({ ...props }: DropdownMenuTriggerProps) {
       data-slot="dropdown-menu-trigger"
       {...props}
     />
-  )
+  );
 }

@@ -1,16 +1,12 @@
-"use client"
+"use client";
 
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { cn } from "@superdao/lib/utils";
 
 export interface DropdownMenuContentProps
   extends
     MenuPrimitive.Popup.Props,
-    Pick<
-      MenuPrimitive.Positioner.Props,
-      "align" | "alignOffset" | "side" | "sideOffset"
-    > {}
+    Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset"> {}
 
 /**
  * Renders the dropdown menu content component.
@@ -44,5 +40,5 @@ export function DropdownMenuContent({
         />
       </MenuPrimitive.Positioner>
     </MenuPrimitive.Portal>
-  )
+  );
 }

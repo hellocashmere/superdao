@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
+import { cn } from "@superdao/lib/utils";
 
 export interface ToastTitleProps extends ToastPrimitive.Title.Props {}
 
@@ -18,5 +17,5 @@ export function ToastTitle({ className, ...props }: ToastTitleProps) {
       className={cn("text-sm font-medium", className)}
       {...props}
     />
-  )
+  );
 }

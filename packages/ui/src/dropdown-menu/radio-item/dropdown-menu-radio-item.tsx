@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
+import { cn } from "@superdao/lib/utils";
+import { CheckIcon } from "lucide-react";
 
-import { cn } from "@superdao/ui/lib/utils"
-
-import { CheckIcon } from "lucide-react"
-
-export interface DropdownMenuRadioItemProps
-  extends MenuPrimitive.RadioItem.Props {
-  inset?: boolean
+export interface DropdownMenuRadioItemProps extends MenuPrimitive.RadioItem.Props {
+  /**
+   * Adds left inset spacing to align the item with labeled menu content.
+   */
+  inset?: boolean;
 }
 
 /**
@@ -16,24 +16,19 @@ export interface DropdownMenuRadioItemProps
  *
  * @see https://base-ui.com/react/components/menu
  */
-export function DropdownMenuRadioItem({
-  className,
-  children,
-  inset,
-  ...props
-}: DropdownMenuRadioItemProps) {
+export function DropdownMenuRadioItem({ className, children, inset, ...props }: DropdownMenuRadioItemProps) {
   return (
     <MenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm outline-hidden select-none focus:bg-accent focus:text-accent-foreground focus:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-default items-center gap-1.5 px-4 py-2 text-sm outline-hidden select-none data-highlighted:bg-accent data-highlighted:text-accent-foreground data-highlighted:**:text-accent-foreground data-inset:pl-7 data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}
     >
       <span
-        className="pointer-events-none absolute right-2 flex items-center justify-center"
+        className="pointer-events-none absolute right-4 flex items-center justify-center"
         data-slot="dropdown-menu-radio-item-indicator"
       >
         <MenuPrimitive.RadioItemIndicator>
@@ -42,5 +37,5 @@ export function DropdownMenuRadioItem({
       </span>
       {children}
     </MenuPrimitive.RadioItem>
-  )
+  );
 }

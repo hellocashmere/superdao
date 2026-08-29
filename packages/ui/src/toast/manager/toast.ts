@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 
-export const toast = ToastPrimitive.createToastManager()
+export const toast = ToastPrimitive.createToastManager();
 
-export const createToastManager = ToastPrimitive.createToastManager
+export const createToastManager = ToastPrimitive.createToastManager;
 
-export const useToastManager = ToastPrimitive.useToastManager
+export const useToastManager = ToastPrimitive.useToastManager;

@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarMenuSubItemProps extends React.ComponentProps<"li"> {}
+export interface SidebarMenuSubItemProps extends ComponentProps<"li"> {}
 
 /**
  * Renders the sidebar menu sub item component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarMenuSubItem({
-  className,
-  ...props
-}: SidebarMenuSubItemProps) {
+export function SidebarMenuSubItem({ className, ...props }: SidebarMenuSubItemProps) {
   return (
     <li
       data-slot="sidebar-menu-sub-item"
@@ -22,5 +17,5 @@ export function SidebarMenuSubItem({
       className={cn("group/menu-sub-item relative", className)}
       {...props}
     />
-  )
+  );
 }

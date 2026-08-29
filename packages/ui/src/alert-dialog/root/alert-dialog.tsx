@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 
 export interface AlertDialogProps extends AlertDialogPrimitive.Root.Props {}
 
@@ -29,5 +29,5 @@ export function AlertDialog(props: AlertDialogProps) {
       data-slot="alert-dialog"
       {...props}
     />
-  )
+  );
 }

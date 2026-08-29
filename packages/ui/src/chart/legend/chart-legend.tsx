@@ -1,12 +1,10 @@
-"use client"
+"use client";
 
-import * as RechartsPrimitive from "recharts"
+import type { ComponentPropsWithRef } from "react";
 
-import type { ComponentPropsWithRef } from "react"
+import * as RechartsPrimitive from "recharts";
 
-export interface ChartLegendProps extends ComponentPropsWithRef<
-  typeof RechartsPrimitive.Legend
-> {}
+export interface ChartLegendProps extends ComponentPropsWithRef<typeof RechartsPrimitive.Legend> {}
 
 /**
  * Renders the chart legend component.
@@ -14,5 +12,5 @@ export interface ChartLegendProps extends ComponentPropsWithRef<
  * @see https://recharts.github.io/en-US/guide
  */
 export function ChartLegend(props: ChartLegendProps) {
-  return <RechartsPrimitive.Legend {...props} />
+  return <RechartsPrimitive.Legend {...props} />;
 }

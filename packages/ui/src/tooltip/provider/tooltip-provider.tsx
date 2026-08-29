@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
 export interface TooltipProviderProps extends TooltipPrimitive.Provider.Props {}
 
@@ -16,5 +16,5 @@ export function TooltipProvider({ delay = 0, ...props }: TooltipProviderProps) {
       delay={delay}
       {...props}
     />
-  )
+  );
 }

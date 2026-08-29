@@ -1,14 +1,14 @@
-export type { ChartContainerProps } from "./root/chart-container"
-export { ChartContainer } from "./root/chart-container"
-export type { ChartTooltipProps } from "./tooltip/chart-tooltip"
-export { ChartTooltip } from "./tooltip/chart-tooltip"
-export type { ChartTooltipContentProps } from "./tooltip-content/chart-tooltip-content"
-export { ChartTooltipContent } from "./tooltip-content/chart-tooltip-content"
-export type { ChartLegendProps } from "./legend/chart-legend"
-export { ChartLegend } from "./legend/chart-legend"
-export type { ChartLegendContentProps } from "./legend-content/chart-legend-content"
-export { ChartLegendContent } from "./legend-content/chart-legend-content"
-export type { ChartStyleProps } from "./style/chart-style"
-export { ChartStyle } from "./style/chart-style"
-export type { ChartConfig } from "./context"
-export * as ChartPrimitive from "recharts"
+export type { ChartConfig } from "./context";
+export type { ChartLegendProps } from "./legend/chart-legend";
+export { ChartLegend } from "./legend/chart-legend";
+export type { ChartLegendContentProps } from "./legend-content/chart-legend-content";
+export { ChartLegendContent } from "./legend-content/chart-legend-content";
+export type { ChartContainerProps } from "./root/chart-container";
+export { ChartContainer } from "./root/chart-container";
+export type { ChartStyleProps } from "./style/chart-style";
+export { ChartStyle } from "./style/chart-style";
+export type { ChartTooltipProps } from "./tooltip/chart-tooltip";
+export { ChartTooltip } from "./tooltip/chart-tooltip";
+export type { ChartTooltipContentProps } from "./tooltip-content/chart-tooltip-content";
+export { ChartTooltipContent } from "./tooltip-content/chart-tooltip-content";
+export * as ChartPrimitive from "recharts";

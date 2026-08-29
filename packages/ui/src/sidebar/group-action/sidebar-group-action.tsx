@@ -1,26 +1,17 @@
-"use client"
+"use client";
 
-import type * as React from "react"
+import type { ComponentProps } from "react";
 
-import { mergeProps } from "@base-ui/react/merge-props"
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
+import { cn } from "@superdao/lib/utils";
 
-import { useRender } from "@base-ui/react/use-render"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-export interface SidebarGroupActionProps
-  extends useRender.ComponentProps<"button">, React.ComponentProps<"button"> {}
+export interface SidebarGroupActionProps extends useRender.ComponentProps<"button">, ComponentProps<"button"> {}
 
 /**
  * Renders the sidebar group action component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarGroupAction({
-  className,
-  render,
-  ...props
-}: SidebarGroupActionProps) {
+export function SidebarGroupAction({ className, render, ...props }: SidebarGroupActionProps) {
   return useRender({
     defaultTagName: "button",
     props: mergeProps<"button">(
@@ -37,5 +28,5 @@ export function SidebarGroupAction({
       slot: "sidebar-group-action",
       sidebar: "group-action",
     },
-  })
+  });
 }

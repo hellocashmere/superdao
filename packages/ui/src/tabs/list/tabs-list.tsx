@@ -1,11 +1,9 @@
-"use client"
+"use client";
 
-import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
-
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { cn } from "@superdao/lib/utils";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 export const tabsListVariants = cva(
   "group/tabs-list inline-flex w-fit items-center justify-center group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col",
@@ -21,21 +19,16 @@ export const tabsListVariants = cva(
       variant: "default",
     },
   }
-)
+);
 
-export interface TabsListProps
-  extends TabsPrimitive.List.Props, VariantProps<typeof tabsListVariants> {}
+export interface TabsListProps extends TabsPrimitive.List.Props, VariantProps<typeof tabsListVariants> {}
 
 /**
  * Renders the tabs list component.
  *
  * @see https://base-ui.com/react/components/tabs
  */
-export function TabsList({
-  className,
-  variant = "default",
-  ...props
-}: TabsListProps) {
+export function TabsList({ className, variant = "default", ...props }: TabsListProps) {
   return (
     <TabsPrimitive.List
       data-slot="tabs-list"
@@ -43,5 +36,5 @@ export function TabsList({
       className={cn(tabsListVariants({ variant }), className)}
       {...props}
     />
-  )
+  );
 }

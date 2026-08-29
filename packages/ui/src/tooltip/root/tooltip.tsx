@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
 
 export interface TooltipProps extends TooltipPrimitive.Root.Props {}
 
@@ -23,5 +23,5 @@ export function Tooltip({ ...props }: TooltipProps) {
       data-slot="tooltip"
       {...props}
     />
-  )
+  );
 }

@@ -1,12 +1,10 @@
-"use client"
+"use client";
 
-import { Select as SelectPrimitive } from "@base-ui/react/select"
+import type { ComponentPropsWithRef } from "react";
 
-import type { ComponentPropsWithRef } from "react"
+import { Select as SelectPrimitive } from "@base-ui/react/select";
 
-export interface SelectProps extends ComponentPropsWithRef<
-  typeof SelectPrimitive.Root
-> {}
+export interface SelectProps extends ComponentPropsWithRef<typeof SelectPrimitive.Root> {}
 
 /**
  * Renders the select component.
@@ -20,7 +18,6 @@ export interface SelectProps extends ComponentPropsWithRef<
  * ├── SelectLabel
  * ├── SelectScrollDownButton
  * ├── SelectScrollUpButton
- * ├── SelectSeparator
  * ├── SelectTrigger
  * └── SelectValue
  * ```
@@ -28,5 +25,5 @@ export interface SelectProps extends ComponentPropsWithRef<
  * @see https://base-ui.com/react/components/select
  */
 export function Select(props: SelectProps) {
-  return <SelectPrimitive.Root {...props} />
+  return <SelectPrimitive.Root {...props} />;
 }

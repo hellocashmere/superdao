@@ -1,32 +1,25 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-import { MoreHorizontalIcon } from "lucide-react"
+import { cn } from "@superdao/lib/utils";
+import { MoreHorizontalIcon } from "lucide-react";
 
-export interface PaginationEllipsisProps extends React.ComponentProps<"span"> {}
+export interface PaginationEllipsisProps extends ComponentProps<"span"> {}
 
 /**
  * Renders the pagination ellipsis component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function PaginationEllipsis({
-  className,
-  ...props
-}: PaginationEllipsisProps) {
+export function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
   return (
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn(
-        "flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4",
-        className
-      )}
+      className={cn("flex size-8 items-center justify-center [&_svg:not([class*='size-'])]:size-4", className)}
       {...props}
     >
       <MoreHorizontalIcon />
       <span className="sr-only">More pages</span>
     </span>
-  )
+  );
 }

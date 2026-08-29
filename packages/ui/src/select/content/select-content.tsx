@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import { Select as SelectPrimitive } from "@base-ui/react/select"
+import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { cn } from "@superdao/lib/utils";
 
-import { cn } from "@superdao/ui/lib/utils"
-
-import { SelectScrollDownButton } from "../scroll-down-button/select-scroll-down-button"
-
-import { SelectScrollUpButton } from "../scroll-up-button/select-scroll-up-button"
+import { SelectScrollDownButton } from "../scroll-down-button/select-scroll-down-button";
+import { SelectScrollUpButton } from "../scroll-up-button/select-scroll-up-button";
 
 export interface SelectContentProps
   extends
     SelectPrimitive.Popup.Props,
-    Pick<
-      SelectPrimitive.Positioner.Props,
-      "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"
-    > {}
+    Pick<SelectPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset" | "alignItemWithTrigger"> {}
 
 /**
  * Renders the select content component.
@@ -56,5 +51,5 @@ export function SelectContent({
         </SelectPrimitive.Popup>
       </SelectPrimitive.Positioner>
     </SelectPrimitive.Portal>
-  )
+  );
 }

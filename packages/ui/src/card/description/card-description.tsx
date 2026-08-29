@@ -1,13 +1,13 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface CardDescriptionProps extends React.ComponentProps<"div"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface CardDescriptionProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the card description component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function CardDescription({ className, ...props }: CardDescriptionProps) {
   return (
@@ -16,5 +16,5 @@ export function CardDescription({ className, ...props }: CardDescriptionProps) {
       className={cn("text-sm text-muted-foreground", className)}
       {...props}
     />
-  )
+  );
 }

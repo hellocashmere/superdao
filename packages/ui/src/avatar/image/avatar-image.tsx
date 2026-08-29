@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
+import { cn } from "@superdao/lib/utils";
 
 export interface AvatarImageProps extends AvatarPrimitive.Image.Props {}
 
@@ -15,11 +14,8 @@ export function AvatarImage({ className, ...props }: AvatarImageProps) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
-      className={cn(
-        "aspect-square size-full rounded-full object-cover",
-        className
-      )}
+      className={cn("aspect-square size-full rounded-full object-cover", className)}
       {...props}
     />
-  )
+  );
 }

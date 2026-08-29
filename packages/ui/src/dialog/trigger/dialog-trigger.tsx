@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 
 export interface DialogTriggerProps extends DialogPrimitive.Trigger.Props {}
 
@@ -15,5 +15,5 @@ export function DialogTrigger({ ...props }: DialogTriggerProps) {
       data-slot="dialog-trigger"
       {...props}
     />
-  )
+  );
 }

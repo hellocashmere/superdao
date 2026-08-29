@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 
-export interface AlertDialogPortalProps
-  extends AlertDialogPrimitive.Portal.Props {}
+export interface AlertDialogPortalProps extends AlertDialogPrimitive.Portal.Props {}
 
 /**
  * Portals an alert-dialog layer outside its parent stacking context.
@@ -16,5 +15,5 @@ export function AlertDialogPortal(props: AlertDialogPortalProps) {
       data-slot="alert-dialog-portal"
       {...props}
     />
-  )
+  );
 }

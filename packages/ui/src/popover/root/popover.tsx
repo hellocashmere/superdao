@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 
 export interface PopoverProps extends PopoverPrimitive.Root.Props {}
 
@@ -25,5 +25,5 @@ export function Popover({ ...props }: PopoverProps) {
       data-slot="popover"
       {...props}
     />
-  )
+  );
 }

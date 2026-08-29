@@ -1,22 +1,16 @@
-"use client"
+"use client";
 
-import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
+import { cn } from "@superdao/lib/utils";
 
-import { cn } from "@superdao/ui/lib/utils"
-
-export interface AlertDialogOverlayProps
-  extends AlertDialogPrimitive.Backdrop.Props {}
+export interface AlertDialogOverlayProps extends AlertDialogPrimitive.Backdrop.Props {}
 
 /**
  * Dims and isolates the page behind an open alert dialog.
  *
  * @see https://base-ui.com/react/components/alert-dialog
  */
-export function AlertDialogOverlay({
-  className,
-  ref,
-  ...props
-}: AlertDialogOverlayProps) {
+export function AlertDialogOverlay({ className, ref, ...props }: AlertDialogOverlayProps) {
   return (
     <AlertDialogPrimitive.Backdrop
       ref={ref}
@@ -27,5 +21,5 @@ export function AlertDialogOverlay({
       )}
       {...props}
     />
-  )
+  );
 }

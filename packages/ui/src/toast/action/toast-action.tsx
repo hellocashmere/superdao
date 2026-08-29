@@ -1,10 +1,8 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-import { Button } from "@superdao/ui/components/button"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
+import { cn } from "@superdao/lib/utils";
+import { Button } from "@superdao/ui/components/button";
 
 export interface ToastActionProps extends ToastPrimitive.Action.Props {}
 
@@ -30,5 +28,5 @@ export function ToastAction({
       className={cn("shrink-0", className)}
       {...props}
     />
-  )
+  );
 }

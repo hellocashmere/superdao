@@ -1,11 +1,11 @@
-import * as React from "react"
+"use client";
 
-export interface PaginationItemProps extends React.ComponentProps<"li"> {}
+import type { ComponentProps } from "react";
+
+export interface PaginationItemProps extends ComponentProps<"li"> {}
 
 /**
  * Renders the pagination item component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function PaginationItem({ ...props }: PaginationItemProps) {
   return (
@@ -13,5 +13,5 @@ export function PaginationItem({ ...props }: PaginationItemProps) {
       data-slot="pagination-item"
       {...props}
     />
-  )
+  );
 }

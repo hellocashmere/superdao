@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarContentProps extends React.ComponentProps<"div"> {}
+export interface SidebarContentProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the sidebar content component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarContent({ className, ...props }: SidebarContentProps) {
   return (
@@ -22,5 +20,5 @@ export function SidebarContent({ className, ...props }: SidebarContentProps) {
       )}
       {...props}
     />
-  )
+  );
 }

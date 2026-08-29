@@ -1,8 +1,10 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface AvatarBadgeProps extends React.ComponentProps<"span"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface AvatarBadgeProps extends ComponentProps<"span"> {}
 
 /**
  * Renders the avatar badge component.
@@ -25,5 +27,5 @@ export function AvatarBadge({ className, ...props }: AvatarBadgeProps) {
       )}
       {...props}
     />
-  )
+  );
 }

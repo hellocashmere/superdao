@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface DialogBodyProps extends React.ComponentProps<"div"> {}
+export interface DialogBodyProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the dialog body component.
@@ -18,5 +18,5 @@ export function DialogBody({ className, ...props }: DialogBodyProps) {
       className={cn("bg-card px-6 pt-4 pb-5", className)}
       {...props}
     />
-  )
+  );
 }

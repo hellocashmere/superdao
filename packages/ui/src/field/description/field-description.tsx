@@ -1,18 +1,15 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface FieldDescriptionProps extends React.ComponentProps<"p"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface FieldDescriptionProps extends ComponentProps<"p"> {}
 
 /**
  * Renders the field description component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function FieldDescription({
-  className,
-  ...props
-}: FieldDescriptionProps) {
+export function FieldDescription({ className, ...props }: FieldDescriptionProps) {
   return (
     <p
       data-slot="field-description"
@@ -24,5 +21,5 @@ export function FieldDescription({
       )}
       {...props}
     />
-  )
+  );
 }

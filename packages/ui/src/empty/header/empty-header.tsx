@@ -1,11 +1,13 @@
-import { cn } from "@superdao/ui/lib/utils"
+"use client";
 
-export interface EmptyHeaderProps extends React.ComponentProps<"div"> {}
+import type { ComponentProps } from "react";
+
+import { cn } from "@superdao/lib/utils";
+
+export interface EmptyHeaderProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the empty header component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function EmptyHeader({ className, ...props }: EmptyHeaderProps) {
   return (
@@ -14,5 +16,5 @@ export function EmptyHeader({ className, ...props }: EmptyHeaderProps) {
       className={cn("flex max-w-sm flex-col items-center gap-2", className)}
       {...props}
     />
-  )
+  );
 }

@@ -1,16 +1,12 @@
-"use client"
+"use client";
 
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
+import { cn } from "@superdao/lib/utils";
 
 export interface PopoverContentProps
   extends
     PopoverPrimitive.Popup.Props,
-    Pick<
-      PopoverPrimitive.Positioner.Props,
-      "align" | "alignOffset" | "side" | "sideOffset"
-    > {}
+    Pick<PopoverPrimitive.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset"> {}
 
 /**
  * Renders the popover content component.
@@ -44,5 +40,5 @@ export function PopoverContent({
         />
       </PopoverPrimitive.Positioner>
     </PopoverPrimitive.Portal>
-  )
+  );
 }

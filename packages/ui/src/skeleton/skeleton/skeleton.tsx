@@ -1,11 +1,13 @@
-import { cn } from "@superdao/ui/lib/utils"
+"use client";
 
-export interface SkeletonProps extends React.ComponentProps<"div"> {}
+import type { ComponentProps } from "react";
+
+import { cn } from "@superdao/lib/utils";
+
+export interface SkeletonProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the skeleton component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function Skeleton({ className, ...props }: SkeletonProps) {
   return (
@@ -14,5 +16,5 @@ export function Skeleton({ className, ...props }: SkeletonProps) {
       className={cn("rounded-md bg-skeleton", className)}
       {...props}
     />
-  )
+  );
 }

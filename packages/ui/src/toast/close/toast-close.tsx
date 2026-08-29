@@ -1,12 +1,9 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-import { Button } from "@superdao/ui/components/button"
-
-import { XIcon } from "lucide-react"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
+import { cn } from "@superdao/lib/utils";
+import { Button } from "@superdao/ui/components/button";
+import { XIcon } from "lucide-react";
 
 export interface ToastCloseProps extends ToastPrimitive.Close.Props {}
 
@@ -39,5 +36,5 @@ export function ToastClose({
     >
       {children ?? <XIcon aria-hidden="true" />}
     </ToastPrimitive.Close>
-  )
+  );
 }

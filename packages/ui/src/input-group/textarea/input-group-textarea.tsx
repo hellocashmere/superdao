@@ -1,22 +1,16 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
+import { Textarea } from "@superdao/ui/components/textarea";
 
-import { Textarea } from "@superdao/ui/components/textarea"
-
-export interface InputGroupTextareaProps extends React.ComponentProps<"textarea"> {}
+export interface InputGroupTextareaProps extends ComponentProps<"textarea"> {}
 
 /**
  * Renders the input group textarea component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function InputGroupTextarea({
-  className,
-  ...props
-}: InputGroupTextareaProps) {
+export function InputGroupTextarea({ className, ...props }: InputGroupTextareaProps) {
   return (
     <Textarea
       data-slot="input-group-control"
@@ -26,5 +20,5 @@ export function InputGroupTextarea({
       )}
       {...props}
     />
-  )
+  );
 }

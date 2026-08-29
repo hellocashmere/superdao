@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
 
 export interface ToastProviderProps extends ToastPrimitive.Provider.Props {}
 
@@ -10,5 +10,5 @@ export interface ToastProviderProps extends ToastPrimitive.Provider.Props {}
  * @see https://base-ui.com/react/components/toast
  */
 export function ToastProvider({ ...props }: ToastProviderProps) {
-  return <ToastPrimitive.Provider {...props} />
+  return <ToastPrimitive.Provider {...props} />;
 }

@@ -1,11 +1,14 @@
-"use client"
+"use client";
 
-import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
+import { cn } from "@superdao/lib/utils";
 
 export interface AvatarProps extends AvatarPrimitive.Root.Props {
-  size?: "xs" | "s" | "m" | "l" | "xl" | "xxl"
+  /**
+   * Controls the avatar's visual size.
+   * TODO: вынести в type, например: export type AvatarSize
+   */
+  size?: "xs" | "s" | "m" | "l" | "xl" | "xxl";
 }
 
 /**
@@ -29,10 +32,10 @@ export function Avatar({ className, size = "m", ...props }: AvatarProps) {
       data-slot="avatar"
       data-size={size}
       className={cn(
-        "group/avatar relative flex shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken data-[size=l]:size-14 data-[size=m]:size-10 data-[size=s]:size-8 data-[size=xl]:size-18 data-[size=xs]:size-6 data-[size=xxl]:size-24 dark:after:mix-blend-lighten",
+        "group/avatar relative flex shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:mix-blend-darken data-[size=l]:size-14 data-[size=m]:size-10 data-[size=s]:size-8 data-[size=xl]:size-18 data-[size=xs]:size-6 data-[size=xxl]:size-24 dark:after:mix-blend-lighten",
         className
       )}
       {...props}
     />
-  )
+  );
 }

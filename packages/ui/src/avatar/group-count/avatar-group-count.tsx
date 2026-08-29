@@ -1,26 +1,25 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface AvatarGroupCountProps extends React.ComponentProps<"div"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface AvatarGroupCountProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the avatar group count component.
  *
  * @see https://base-ui.com/react/components/avatar
  */
-export function AvatarGroupCount({
-  className,
-  ...props
-}: AvatarGroupCountProps) {
+export function AvatarGroupCount({ className, ...props }: AvatarGroupCountProps) {
   return (
     <div
       data-slot="avatar-group-count"
       className={cn(
-        "relative flex shrink-0 items-center justify-center rounded-full bg-card text-muted-foreground ring-2 ring-background group-has-data-[size=l]/avatar-group:size-14 group-has-data-[size=l]/avatar-group:text-base group-has-data-[size=m]/avatar-group:size-10 group-has-data-[size=m]/avatar-group:text-sm group-has-data-[size=s]/avatar-group:size-8 group-has-data-[size=s]/avatar-group:text-xs group-has-data-[size=xl]/avatar-group:size-18 group-has-data-[size=xl]/avatar-group:text-lg group-has-data-[size=xs]/avatar-group:size-6 group-has-data-[size=xs]/avatar-group:text-[10px] group-has-data-[size=xxl]/avatar-group:size-24 group-has-data-[size=xxl]/avatar-group:text-xl [&>svg]:size-4 group-has-data-[size=l]/avatar-group:[&>svg]:size-5 group-has-data-[size=s]/avatar-group:[&>svg]:size-3.5 group-has-data-[size=xl]/avatar-group:[&>svg]:size-6 group-has-data-[size=xs]/avatar-group:[&>svg]:size-3 group-has-data-[size=xxl]/avatar-group:[&>svg]:size-8",
+        "relative flex shrink-0 items-center justify-center rounded-full bg-card font-semibold text-muted-foreground ring-2 ring-card group-has-data-[size=l]/avatar-group:size-14 group-has-data-[size=l]/avatar-group:text-base group-has-data-[size=m]/avatar-group:size-10 group-has-data-[size=m]/avatar-group:text-sm group-has-data-[size=s]/avatar-group:size-8 group-has-data-[size=s]/avatar-group:text-xs group-has-data-[size=xl]/avatar-group:size-18 group-has-data-[size=xl]/avatar-group:text-lg group-has-data-[size=xs]/avatar-group:size-6 group-has-data-[size=xs]/avatar-group:text-[13px] group-has-data-[size=xxl]/avatar-group:size-24 group-has-data-[size=xxl]/avatar-group:text-xl [&>svg]:size-4 group-has-data-[size=l]/avatar-group:[&>svg]:size-5 group-has-data-[size=s]/avatar-group:[&>svg]:size-3.5 group-has-data-[size=xl]/avatar-group:[&>svg]:size-6 group-has-data-[size=xs]/avatar-group:[&>svg]:size-3 group-has-data-[size=xxl]/avatar-group:[&>svg]:size-8",
         className
       )}
       {...props}
     />
-  )
+  );
 }

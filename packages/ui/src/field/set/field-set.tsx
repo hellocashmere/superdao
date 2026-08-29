@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface FieldSetProps extends React.ComponentProps<"fieldset"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface FieldSetProps extends ComponentProps<"fieldset"> {}
 
 /**
  * Renders the field set component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function FieldSet({ className, ...props }: FieldSetProps) {
   return (
@@ -19,5 +19,5 @@ export function FieldSet({ className, ...props }: FieldSetProps) {
       )}
       {...props}
     />
-  )
+  );
 }

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface TableProps extends React.ComponentProps<"table"> {}
+export interface TableProps extends ComponentProps<"table"> {}
 
 /**
  * Renders the table component.
@@ -20,8 +20,6 @@ export interface TableProps extends React.ComponentProps<"table"> {}
  * ├── TableCell
  * └── TableCaption
  * ```
- *
- * @see https://react.dev/reference/react/Component
  */
 export function Table({ className, ...props }: TableProps) {
   return (
@@ -35,5 +33,5 @@ export function Table({ className, ...props }: TableProps) {
         {...props}
       />
     </div>
-  )
+  );
 }

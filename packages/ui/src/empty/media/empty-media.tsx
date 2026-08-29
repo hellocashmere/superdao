@@ -1,7 +1,10 @@
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
+
+import { cn } from "@superdao/lib/utils";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 const emptyMediaVariants = cva(
   "mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
@@ -16,23 +19,14 @@ const emptyMediaVariants = cva(
       variant: "default",
     },
   }
-)
+);
 
-export interface EmptyMediaProps
-  extends
-    React.ComponentProps<"div">,
-    VariantProps<typeof emptyMediaVariants> {}
+export interface EmptyMediaProps extends ComponentProps<"div">, VariantProps<typeof emptyMediaVariants> {}
 
 /**
  * Renders the empty media component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function EmptyMedia({
-  className,
-  variant = "default",
-  ...props
-}: EmptyMediaProps) {
+export function EmptyMedia({ className, variant = "default", ...props }: EmptyMediaProps) {
   return (
     <div
       data-slot="empty-icon"
@@ -40,5 +34,5 @@ export function EmptyMedia({
       className={cn(emptyMediaVariants({ variant, className }))}
       {...props}
     />
-  )
+  );
 }

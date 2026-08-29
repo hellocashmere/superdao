@@ -1,9 +1,14 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface CardProps extends React.ComponentProps<"div"> {
-  size?: "default" | "sm"
+import { cn } from "@superdao/lib/utils";
+
+export interface CardProps extends ComponentProps<"div"> {
+  /**
+   * Controls the card's spacing scale.
+   */
+  size?: "default" | "sm";
 }
 
 /**
@@ -19,8 +24,6 @@ export interface CardProps extends React.ComponentProps<"div"> {
  * ├── CardDescription
  * └── CardContent
  * ```
- *
- * @see https://react.dev/reference/react/Component
  */
 export function Card({ className, size = "default", ...props }: CardProps) {
   return (
@@ -33,5 +36,5 @@ export function Card({ className, size = "default", ...props }: CardProps) {
       )}
       {...props}
     />
-  )
+  );
 }

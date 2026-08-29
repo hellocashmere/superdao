@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { cn } from "@superdao/lib/utils";
 
 export interface TabsContentProps extends TabsPrimitive.Panel.Props {}
 
@@ -18,5 +17,5 @@ export function TabsContent({ className, ...props }: TabsContentProps) {
       className={cn("flex-1 text-sm outline-none", className)}
       {...props}
     />
-  )
+  );
 }

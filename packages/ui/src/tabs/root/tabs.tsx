@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Tabs as TabsPrimitive } from "@base-ui/react/tabs"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
+import { cn } from "@superdao/lib/utils";
 
 export interface TabsProps extends TabsPrimitive.Root.Props {}
 
@@ -19,20 +18,13 @@ export interface TabsProps extends TabsPrimitive.Root.Props {}
  *
  * @see https://base-ui.com/react/components/tabs
  */
-export function Tabs({
-  className,
-  orientation = "horizontal",
-  ...props
-}: TabsProps) {
+export function Tabs({ className, orientation = "horizontal", ...props }: TabsProps) {
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
       data-orientation={orientation}
-      className={cn(
-        "group/tabs flex gap-2 data-horizontal:flex-col",
-        className
-      )}
+      className={cn("group/tabs flex gap-2 data-horizontal:flex-col", className)}
       {...props}
     />
-  )
+  );
 }

@@ -1,8 +1,10 @@
-import * as React from "react"
+"use client";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ComponentProps } from "react";
 
-export interface PaginationProps extends React.ComponentProps<"nav"> {}
+import { cn } from "@superdao/lib/utils";
+
+export interface PaginationProps extends ComponentProps<"nav"> {}
 
 /**
  * Renders the pagination component.
@@ -17,8 +19,6 @@ export interface PaginationProps extends React.ComponentProps<"nav"> {}
  * ├── PaginationNext
  * └── PaginationPrevious
  * ```
- *
- * @see https://react.dev/reference/react/Component
  */
 export function Pagination({ className, ...props }: PaginationProps) {
   return (
@@ -29,5 +29,5 @@ export function Pagination({ className, ...props }: PaginationProps) {
       className={cn("mx-auto flex w-full justify-center", className)}
       {...props}
     />
-  )
+  );
 }

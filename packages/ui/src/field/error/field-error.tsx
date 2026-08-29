@@ -1,53 +1,45 @@
-"use client"
+"use client";
 
-import { useMemo } from "react"
+import type { ComponentProps } from "react";
+import { useMemo } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface FieldErrorProps extends React.ComponentProps<"div"> {
-  errors?: Array<{ message?: string } | undefined>
+export interface FieldErrorProps extends ComponentProps<"div"> {
+  /**
+   * Lists validation errors whose messages are rendered by the component.
+   */
+  errors?: Array<{ message?: string } | undefined>;
 }
 
 /**
  * Renders the field error component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function FieldError({
-  className,
-  children,
-  errors,
-  ...props
-}: FieldErrorProps) {
+export function FieldError({ className, children, errors, ...props }: FieldErrorProps) {
   const content = useMemo(() => {
     if (children) {
-      return children
+      return children;
     }
 
     if (!errors?.length) {
-      return null
+      return null;
     }
 
-    const uniqueErrors = [
-      ...new Map(errors.map((error) => [error?.message, error])).values(),
-    ]
+    const uniqueErrors = [...new Map(errors.map((error) => [error?.message, error])).values()];
 
     if (uniqueErrors?.length == 1) {
-      return uniqueErrors[0]?.message
+      return uniqueErrors[0]?.message;
     }
 
     return (
       <ul className="ml-4 flex list-disc flex-col gap-1">
-        {uniqueErrors.map(
-          (error, index) =>
-            error?.message && <li key={index}>{error.message}</li>
-        )}
+        {uniqueErrors.map((error, index) => error?.message && <li key={index}>{error.message}</li>)}
       </ul>
-    )
-  }, [children, errors])
+    );
+  }, [children, errors]);
 
   if (!content) {
-    return null
+    return null;
   }
 
   return (
@@ -59,5 +51,5 @@ export function FieldError({
     >
       {content}
     </div>
-  )
+  );
 }

@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
+import { cn } from "@superdao/lib/utils";
 
 export interface DialogOverlayProps extends DialogPrimitive.Backdrop.Props {}
 
@@ -21,5 +20,5 @@ export function DialogOverlay({ className, ...props }: DialogOverlayProps) {
       )}
       {...props}
     />
-  )
+  );
 }

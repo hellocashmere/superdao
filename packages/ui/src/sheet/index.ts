@@ -1,16 +1,20 @@
-export type { SheetProps } from "./root/sheet"
-export { Sheet } from "./root/sheet"
-export type { SheetTriggerProps } from "./trigger/sheet-trigger"
-export { SheetTrigger } from "./trigger/sheet-trigger"
-export type { SheetCloseProps } from "./close/sheet-close"
-export { SheetClose } from "./close/sheet-close"
-export type { SheetContentProps } from "./content/sheet-content"
-export { SheetContent } from "./content/sheet-content"
-export type { SheetHeaderProps } from "./header/sheet-header"
-export { SheetHeader } from "./header/sheet-header"
-export type { SheetFooterProps } from "./footer/sheet-footer"
-export { SheetFooter } from "./footer/sheet-footer"
-export type { SheetTitleProps } from "./title/sheet-title"
-export { SheetTitle } from "./title/sheet-title"
-export type { SheetDescriptionProps } from "./description/sheet-description"
-export { SheetDescription } from "./description/sheet-description"
+export type { SheetCloseProps } from "./close/sheet-close";
+export { SheetClose } from "./close/sheet-close";
+export type { SheetContentProps } from "./content/sheet-content";
+export { SheetContent } from "./content/sheet-content";
+export type { SheetDescriptionProps } from "./description/sheet-description";
+export { SheetDescription } from "./description/sheet-description";
+export type { SheetFooterProps } from "./footer/sheet-footer";
+export { SheetFooter } from "./footer/sheet-footer";
+export type { SheetHeaderProps } from "./header/sheet-header";
+export { SheetHeader } from "./header/sheet-header";
+export type { SheetOverlayProps } from "./overlay/sheet-overlay";
+export { SheetOverlay } from "./overlay/sheet-overlay";
+export type { SheetPortalProps } from "./portal/sheet-portal";
+export { SheetPortal } from "./portal/sheet-portal";
+export type { SheetProps } from "./root/sheet";
+export { Sheet } from "./root/sheet";
+export type { SheetTitleProps } from "./title/sheet-title";
+export { SheetTitle } from "./title/sheet-title";
+export type { SheetTriggerProps } from "./trigger/sheet-trigger";
+export { SheetTrigger } from "./trigger/sheet-trigger";

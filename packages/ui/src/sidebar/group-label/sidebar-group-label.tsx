@@ -1,26 +1,17 @@
-"use client"
+"use client";
 
-import type * as React from "react"
+import type { ComponentProps } from "react";
 
-import { mergeProps } from "@base-ui/react/merge-props"
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
+import { cn } from "@superdao/lib/utils";
 
-import { useRender } from "@base-ui/react/use-render"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-export interface SidebarGroupLabelProps
-  extends useRender.ComponentProps<"div">, React.ComponentProps<"div"> {}
+export interface SidebarGroupLabelProps extends useRender.ComponentProps<"div">, ComponentProps<"div"> {}
 
 /**
  * Renders the sidebar group label component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarGroupLabel({
-  className,
-  render,
-  ...props
-}: SidebarGroupLabelProps) {
+export function SidebarGroupLabel({ className, render, ...props }: SidebarGroupLabelProps) {
   return useRender({
     defaultTagName: "div",
     props: mergeProps<"div">(
@@ -37,5 +28,5 @@ export function SidebarGroupLabel({
       slot: "sidebar-group-label",
       sidebar: "group-label",
     },
-  })
+  });
 }

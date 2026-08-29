@@ -1,13 +1,14 @@
-import { cn } from "@superdao/ui/lib/utils"
+"use client";
 
-import { Loader2Icon } from "lucide-react"
+import type { ComponentProps } from "react";
 
-export interface SpinnerProps extends React.ComponentProps<"svg"> {}
+import { cn } from "@superdao/lib/utils";
+import { Loader2Icon } from "lucide-react";
+
+export interface SpinnerProps extends ComponentProps<"svg"> {}
 
 /**
  * Renders the spinner component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function Spinner({ className, ...props }: SpinnerProps) {
   return (
@@ -18,5 +19,5 @@ export function Spinner({ className, ...props }: SpinnerProps) {
       className={cn("size-4 animate-spin", className)}
       {...props}
     />
-  )
+  );
 }

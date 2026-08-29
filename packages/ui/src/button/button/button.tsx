@@ -1,34 +1,31 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
+"use client";
 
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cn } from "@superdao/lib/utils";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
 export const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding font-semibold whitespace-nowrap transition-[background-color,color,border-color,box-shadow,opacity,transform] duration-150 outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg bg-clip-padding font-semibold whitespace-nowrap transition-[background-color,color,box-shadow,opacity,transform] duration-150 outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active disabled:bg-primary disabled:text-primary-foreground/60 aria-expanded:bg-primary-active disabled:[&_svg]:opacity-60",
+          "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active aria-expanded:bg-primary-active",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary-hover active:bg-secondary-active disabled:bg-secondary disabled:text-secondary-foreground/60 aria-expanded:bg-secondary-active aria-expanded:text-secondary-foreground disabled:[&_svg]:opacity-60",
-        ghost:
-          "hover:bg-[#D0DCF514] active:bg-[#D0DCF524] disabled:bg-transparent disabled:opacity-50 aria-expanded:bg-[#D0DCF524]",
+          "bg-secondary text-secondary-foreground hover:bg-secondary-hover active:bg-secondary-active aria-expanded:bg-secondary-active aria-expanded:text-secondary-foreground",
+        ghost: "hover:bg-[#D0DCF514] active:bg-[#D0DCF524] aria-expanded:bg-[#D0DCF524]",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive-hover focus-visible:border-destructive/40 focus-visible:ring-destructive/20 active:bg-destructive-active disabled:bg-destructive disabled:text-destructive-foreground/60 dark:focus-visible:ring-destructive/40 disabled:[&_svg]:opacity-60",
-        link: "text-primary underline-offset-4 hover:underline disabled:opacity-50",
+          "bg-destructive text-destructive-foreground hover:bg-destructive-hover focus-visible:ring-destructive/20 active:bg-destructive-active dark:focus-visible:ring-destructive/40",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default:
-          "h-10 gap-2 px-4 text-[15px] leading-6 tracking-[-0.24px] has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-5",
-        sm: "h-8 gap-2 px-3 text-sm leading-5 tracking-[-0.24px] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-4",
+          "h-10 gap-2 px-4 text-[15px] leading-6 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-5",
+        sm: "h-8 gap-2 px-3 text-sm leading-5 in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-4",
         icon: "size-10 [&_svg:not([class*='size-'])]:size-6",
-        "icon-xs":
-          "size-6 rounded-md in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-4",
-        "icon-sm":
-          "size-8 in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-4",
+        "icon-xs": "size-6 rounded-md in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-4",
+        "icon-sm": "size-8 in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-4",
       },
     },
     defaultVariants: {
@@ -36,27 +33,19 @@ export const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
-export interface ButtonProps
-  extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {}
+export interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {}
 
 /**
  * Renders the button component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: ButtonProps) {
+export function Button({ className, variant = "default", size = "default", ...props }: ButtonProps) {
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />
-  )
+  );
 }

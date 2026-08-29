@@ -1,29 +1,19 @@
-"use client"
+"use client";
 
-import type * as React from "react"
+import type { ComponentProps } from "react";
 
-import { mergeProps } from "@base-ui/react/merge-props"
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
+import { cn } from "@superdao/lib/utils";
 
-import { useRender } from "@base-ui/react/use-render"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-export interface SidebarMenuActionProps
-  extends useRender.ComponentProps<"button">, React.ComponentProps<"button"> {
-  showOnHover?: boolean
+export interface SidebarMenuActionProps extends useRender.ComponentProps<"button">, ComponentProps<"button"> {
+  showOnHover?: boolean;
 }
 
 /**
  * Renders the sidebar menu action component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarMenuAction({
-  className,
-  render,
-  showOnHover = false,
-  ...props
-}: SidebarMenuActionProps) {
+export function SidebarMenuAction({ className, render, showOnHover = false, ...props }: SidebarMenuActionProps) {
   return useRender({
     defaultTagName: "button",
     props: mergeProps<"button">(
@@ -42,5 +32,5 @@ export function SidebarMenuAction({
       slot: "sidebar-menu-action",
       sidebar: "menu-action",
     },
-  })
+  });
 }

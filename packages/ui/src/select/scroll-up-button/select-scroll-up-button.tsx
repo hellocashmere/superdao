@@ -1,26 +1,19 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { Select as SelectPrimitive } from "@base-ui/react/select"
+import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { cn } from "@superdao/lib/utils";
+import { ChevronUpIcon } from "lucide-react";
 
-import { cn } from "@superdao/ui/lib/utils"
-
-import { ChevronUpIcon } from "lucide-react"
-
-export interface SelectScrollUpButtonProps extends React.ComponentProps<
-  typeof SelectPrimitive.ScrollUpArrow
-> {}
+export interface SelectScrollUpButtonProps extends ComponentProps<typeof SelectPrimitive.ScrollUpArrow> {}
 
 /**
  * Renders the select scroll up button component.
  *
  * @see https://base-ui.com/react/components/select
  */
-export function SelectScrollUpButton({
-  className,
-  ...props
-}: SelectScrollUpButtonProps) {
+export function SelectScrollUpButton({ className, ...props }: SelectScrollUpButtonProps) {
   return (
     <SelectPrimitive.ScrollUpArrow
       data-slot="select-scroll-up-button"
@@ -32,5 +25,5 @@ export function SelectScrollUpButton({
     >
       <ChevronUpIcon />
     </SelectPrimitive.ScrollUpArrow>
-  )
+  );
 }

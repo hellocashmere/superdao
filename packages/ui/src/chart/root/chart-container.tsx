@@ -1,28 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
+import { useId } from "react";
 
-import * as RechartsPrimitive from "recharts"
+import { cn } from "@superdao/lib/utils";
+import * as RechartsPrimitive from "recharts";
 
-import { cn } from "@superdao/ui/lib/utils"
+import type { ChartConfig } from "../context";
+import { ChartContext } from "../context";
+import { ChartStyle } from "../style/chart-style";
 
-import { ChartStyle } from "../style/chart-style"
+const INITIAL_DIMENSION = { width: 320, height: 200 } as const;
 
-import type { ChartConfig } from "../context"
+export interface ChartContainerProps extends ComponentProps<"div"> {
+  /**
+   * Maps chart data keys to their labels, icons, and colors.
+   */
+  config: ChartConfig;
 
-import { ChartContext } from "../context"
+  /**
+   * Provides the Recharts elements rendered within the responsive chart container.
+   */
+  children: ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>["children"];
 
-const INITIAL_DIMENSION = { width: 320, height: 200 } as const
-
-export interface ChartContainerProps extends React.ComponentProps<"div"> {
-  config: ChartConfig
-  children: React.ComponentProps<
-    typeof RechartsPrimitive.ResponsiveContainer
-  >["children"]
+  /**
+   * Sets fallback dimensions used before the responsive container measures its layout.
+   */
   initialDimension?: {
-    width: number
-    height: number
-  }
+    width: number;
+    height: number;
+  };
 }
 
 /**
@@ -48,8 +55,8 @@ export function ChartContainer({
   initialDimension = INITIAL_DIMENSION,
   ...props
 }: ChartContainerProps) {
-  const uniqueId = React.useId()
-  const chartId = `chart-${id ?? uniqueId.replace(/:/g, "")}`
+  const uniqueId = useId();
+  const chartId = `chart-${id ?? uniqueId.replace(/:/g, "")}`;
 
   return (
     <ChartContext.Provider value={{ config }}>
@@ -66,12 +73,10 @@ export function ChartContainer({
           id={chartId}
           config={config}
         />
-        <RechartsPrimitive.ResponsiveContainer
-          initialDimension={initialDimension}
-        >
+        <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension}>
           {children}
         </RechartsPrimitive.ResponsiveContainer>
       </div>
     </ChartContext.Provider>
-  )
+  );
 }

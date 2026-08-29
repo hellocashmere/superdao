@@ -1,22 +1,20 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface TableBodyProps extends React.ComponentProps<"tbody"> {}
+export interface TableBodyProps extends ComponentProps<"tbody"> {}
 
 /**
  * Renders the table body component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function TableBody({ className, ...props }: TableBodyProps) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
+      className={cn(className)}
       {...props}
     />
-  )
+  );
 }

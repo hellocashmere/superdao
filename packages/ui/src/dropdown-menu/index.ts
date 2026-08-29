@@ -1,30 +1,28 @@
-export type { DropdownMenuProps } from "./root/dropdown-menu"
-export { DropdownMenu } from "./root/dropdown-menu"
-export type { DropdownMenuPortalProps } from "./portal/dropdown-menu-portal"
-export { DropdownMenuPortal } from "./portal/dropdown-menu-portal"
-export type { DropdownMenuTriggerProps } from "./trigger/dropdown-menu-trigger"
-export { DropdownMenuTrigger } from "./trigger/dropdown-menu-trigger"
-export type { DropdownMenuContentProps } from "./content/dropdown-menu-content"
-export { DropdownMenuContent } from "./content/dropdown-menu-content"
-export type { DropdownMenuGroupProps } from "./group/dropdown-menu-group"
-export { DropdownMenuGroup } from "./group/dropdown-menu-group"
-export type { DropdownMenuLabelProps } from "./label/dropdown-menu-label"
-export { DropdownMenuLabel } from "./label/dropdown-menu-label"
-export type { DropdownMenuItemProps } from "./item/dropdown-menu-item"
-export { DropdownMenuItem } from "./item/dropdown-menu-item"
-export type { DropdownMenuCheckboxItemProps } from "./checkbox-item/dropdown-menu-checkbox-item"
-export { DropdownMenuCheckboxItem } from "./checkbox-item/dropdown-menu-checkbox-item"
-export type { DropdownMenuRadioGroupProps } from "./radio-group/dropdown-menu-radio-group"
-export { DropdownMenuRadioGroup } from "./radio-group/dropdown-menu-radio-group"
-export type { DropdownMenuRadioItemProps } from "./radio-item/dropdown-menu-radio-item"
-export { DropdownMenuRadioItem } from "./radio-item/dropdown-menu-radio-item"
-export type { DropdownMenuSeparatorProps } from "./separator/dropdown-menu-separator"
-export { DropdownMenuSeparator } from "./separator/dropdown-menu-separator"
-export type { DropdownMenuShortcutProps } from "./shortcut/dropdown-menu-shortcut"
-export { DropdownMenuShortcut } from "./shortcut/dropdown-menu-shortcut"
-export type { DropdownMenuSubProps } from "./sub/dropdown-menu-sub"
-export { DropdownMenuSub } from "./sub/dropdown-menu-sub"
-export type { DropdownMenuSubTriggerProps } from "./sub-trigger/dropdown-menu-sub-trigger"
-export { DropdownMenuSubTrigger } from "./sub-trigger/dropdown-menu-sub-trigger"
-export type { DropdownMenuSubContentProps } from "./sub-content/dropdown-menu-sub-content"
-export { DropdownMenuSubContent } from "./sub-content/dropdown-menu-sub-content"
+export type { DropdownMenuCheckboxItemProps } from "./checkbox-item/dropdown-menu-checkbox-item";
+export { DropdownMenuCheckboxItem } from "./checkbox-item/dropdown-menu-checkbox-item";
+export type { DropdownMenuContentProps } from "./content/dropdown-menu-content";
+export { DropdownMenuContent } from "./content/dropdown-menu-content";
+export type { DropdownMenuGroupProps } from "./group/dropdown-menu-group";
+export { DropdownMenuGroup } from "./group/dropdown-menu-group";
+export type { DropdownMenuItemProps } from "./item/dropdown-menu-item";
+export { DropdownMenuItem } from "./item/dropdown-menu-item";
+export type { DropdownMenuLabelProps } from "./label/dropdown-menu-label";
+export { DropdownMenuLabel } from "./label/dropdown-menu-label";
+export type { DropdownMenuPortalProps } from "./portal/dropdown-menu-portal";
+export { DropdownMenuPortal } from "./portal/dropdown-menu-portal";
+export type { DropdownMenuRadioGroupProps } from "./radio-group/dropdown-menu-radio-group";
+export { DropdownMenuRadioGroup } from "./radio-group/dropdown-menu-radio-group";
+export type { DropdownMenuRadioItemProps } from "./radio-item/dropdown-menu-radio-item";
+export { DropdownMenuRadioItem } from "./radio-item/dropdown-menu-radio-item";
+export type { DropdownMenuProps } from "./root/dropdown-menu";
+export { DropdownMenu } from "./root/dropdown-menu";
+export type { DropdownMenuShortcutProps } from "./shortcut/dropdown-menu-shortcut";
+export { DropdownMenuShortcut } from "./shortcut/dropdown-menu-shortcut";
+export type { DropdownMenuSubProps } from "./sub/dropdown-menu-sub";
+export { DropdownMenuSub } from "./sub/dropdown-menu-sub";
+export type { DropdownMenuSubContentProps } from "./sub-content/dropdown-menu-sub-content";
+export { DropdownMenuSubContent } from "./sub-content/dropdown-menu-sub-content";
+export type { DropdownMenuSubTriggerProps } from "./sub-trigger/dropdown-menu-sub-trigger";
+export { DropdownMenuSubTrigger } from "./sub-trigger/dropdown-menu-sub-trigger";
+export type { DropdownMenuTriggerProps } from "./trigger/dropdown-menu-trigger";
+export { DropdownMenuTrigger } from "./trigger/dropdown-menu-trigger";

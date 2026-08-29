@@ -1,18 +1,16 @@
-"use client"
+"use client";
 
-import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
+import { cn } from "@superdao/lib/utils";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { AlertDialogOverlay } from "../overlay/alert-dialog-overlay";
+import { AlertDialogPortal } from "../portal/alert-dialog-portal";
 
-import { AlertDialogOverlay } from "../overlay/alert-dialog-overlay"
-import { AlertDialogPortal } from "../portal/alert-dialog-portal"
-
-export interface AlertDialogContentProps
-  extends AlertDialogPrimitive.Popup.Props {
+export interface AlertDialogContentProps extends AlertDialogPrimitive.Popup.Props {
   /**
    * Controls the maximum dialog width.
    */
-  size?: "default" | "sm"
+  size?: "default" | "sm";
 }
 
 /**
@@ -20,12 +18,7 @@ export interface AlertDialogContentProps
  *
  * @see https://base-ui.com/react/components/alert-dialog
  */
-export function AlertDialogContent({
-  className,
-  ref,
-  size = "default",
-  ...props
-}: AlertDialogContentProps) {
+export function AlertDialogContent({ className, ref, size = "default", ...props }: AlertDialogContentProps) {
   return (
     <AlertDialogPortal>
       <AlertDialogOverlay />
@@ -40,5 +33,5 @@ export function AlertDialogContent({
         {...props}
       />
     </AlertDialogPortal>
-  )
+  );
 }

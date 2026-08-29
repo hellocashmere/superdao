@@ -1,32 +1,23 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { mergeProps } from "@base-ui/react/merge-props"
+import { mergeProps } from "@base-ui/react/merge-props";
+import { useRender } from "@base-ui/react/use-render";
+import { cn } from "@superdao/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@superdao/ui/components/tooltip";
+import type { VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 
-import { useRender } from "@base-ui/react/use-render"
-
-import { cva } from "class-variance-authority"
-import type { VariantProps } from "class-variance-authority"
-
-import { cn } from "@superdao/ui/lib/utils"
-
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@superdao/ui/components/tooltip"
-
-import { useSidebar } from "../context"
+import { useSidebar } from "../context";
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button group/menu-button flex w-full items-center gap-3 overflow-hidden rounded-none px-5 text-left text-[15px]/[24px] font-semibold tracking-[-0.24px] outline-hidden group-has-data-[sidebar=menu-action]/menu-item:pr-12 group-data-[collapsible=icon]:size-10! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-ring/40 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:bg-sidebar-accent data-open:text-sidebar-accent-foreground data-active:bg-sidebar-active data-active:text-sidebar-active-foreground [&_svg]:size-6 [&_svg]:shrink-0 [&_svg]:text-sidebar-muted-foreground hover:[&_svg]:text-sidebar-accent-foreground active:[&_svg]:text-sidebar-accent-foreground data-open:[&_svg]:text-sidebar-accent-foreground data-active:[&_svg]:text-sidebar-active-foreground [&>span:last-child]:truncate",
+  "peer/menu-button group/menu-button flex w-full items-center gap-3 overflow-hidden rounded-none px-5 text-left text-[15px]/[24px] font-semibold outline-hidden group-has-data-[sidebar=menu-action]/menu-item:pr-12 group-data-[collapsible=icon]:size-10! group-data-[collapsible=icon]:p-2! hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 focus-visible:ring-ring/40 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-open:bg-sidebar-accent data-open:text-sidebar-accent-foreground data-active:bg-sidebar-active data-active:text-sidebar-active-foreground [&_svg]:size-6 [&_svg]:shrink-0 [&_svg]:text-sidebar-muted-foreground hover:[&_svg]:text-sidebar-accent-foreground active:[&_svg]:text-sidebar-accent-foreground data-open:[&_svg]:text-sidebar-accent-foreground data-active:[&_svg]:text-sidebar-active-foreground [&>span:last-child]:truncate",
   {
     variants: {
       variant: {
         default: "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-        outline:
-          "bg-background shadow-[0_0_0_1px_var(--sidebar-border)] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_var(--sidebar-accent)]",
+        outline: "bg-background hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
       },
       size: {
         default: "h-10",
@@ -39,21 +30,16 @@ const sidebarMenuButtonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 export interface SidebarMenuButtonProps
-  extends
-    useRender.ComponentProps<"button">,
-    React.ComponentProps<"button">,
-    VariantProps<typeof sidebarMenuButtonVariants> {
-  isActive?: boolean
-  tooltip?: string | React.ComponentProps<typeof TooltipContent>
+  extends useRender.ComponentProps<"button">, ComponentProps<"button">, VariantProps<typeof sidebarMenuButtonVariants> {
+  isActive?: boolean;
+  tooltip?: string | ComponentProps<typeof TooltipContent>;
 }
 
 /**
  * Renders the sidebar menu button component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarMenuButton({
   render,
@@ -64,7 +50,7 @@ export function SidebarMenuButton({
   className,
   ...props
 }: SidebarMenuButtonProps) {
-  const { isMobile, state } = useSidebar()
+  const { isMobile, state } = useSidebar();
   const comp = useRender({
     defaultTagName: "button",
     props: mergeProps<"button">(
@@ -80,16 +66,16 @@ export function SidebarMenuButton({
       size,
       active: isActive,
     },
-  })
+  });
 
   if (!tooltip) {
-    return comp
+    return comp;
   }
 
   if (typeof tooltip === "string") {
     tooltip = {
       children: tooltip,
-    }
+    };
   }
 
   return (
@@ -102,5 +88,5 @@ export function SidebarMenuButton({
         {...tooltip}
       />
     </Tooltip>
-  )
+  );
 }

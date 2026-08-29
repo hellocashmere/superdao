@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Menu as MenuPrimitive } from "@base-ui/react/menu"
+import { Menu as MenuPrimitive } from "@base-ui/react/menu";
 
 export interface DropdownMenuPortalProps extends MenuPrimitive.Portal.Props {}
 
@@ -15,5 +15,5 @@ export function DropdownMenuPortal({ ...props }: DropdownMenuPortalProps) {
       data-slot="dropdown-menu-portal"
       {...props}
     />
-  )
+  );
 }

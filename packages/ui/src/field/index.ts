@@ -1,20 +1,18 @@
-export type { FieldProps } from "./root/field"
-export { Field } from "./root/field"
-export type { FieldLabelProps } from "./label/field-label"
-export { FieldLabel } from "./label/field-label"
-export type { FieldDescriptionProps } from "./description/field-description"
-export { FieldDescription } from "./description/field-description"
-export type { FieldErrorProps } from "./error/field-error"
-export { FieldError } from "./error/field-error"
-export type { FieldGroupProps } from "./group/field-group"
-export { FieldGroup } from "./group/field-group"
-export type { FieldLegendProps } from "./legend/field-legend"
-export { FieldLegend } from "./legend/field-legend"
-export type { FieldSeparatorProps } from "./separator/field-separator"
-export { FieldSeparator } from "./separator/field-separator"
-export type { FieldSetProps } from "./set/field-set"
-export { FieldSet } from "./set/field-set"
-export type { FieldContentProps } from "./content/field-content"
-export { FieldContent } from "./content/field-content"
-export type { FieldTitleProps } from "./title/field-title"
-export { FieldTitle } from "./title/field-title"
+export type { FieldContentProps } from "./content/field-content";
+export { FieldContent } from "./content/field-content";
+export type { FieldDescriptionProps } from "./description/field-description";
+export { FieldDescription } from "./description/field-description";
+export type { FieldErrorProps } from "./error/field-error";
+export { FieldError } from "./error/field-error";
+export type { FieldGroupProps } from "./group/field-group";
+export { FieldGroup } from "./group/field-group";
+export type { FieldLabelProps } from "./label/field-label";
+export { FieldLabel } from "./label/field-label";
+export type { FieldLegendProps } from "./legend/field-legend";
+export { FieldLegend } from "./legend/field-legend";
+export type { FieldProps } from "./root/field";
+export { Field } from "./root/field";
+export type { FieldSetProps } from "./set/field-set";
+export { FieldSet } from "./set/field-set";
+export type { FieldTitleProps } from "./title/field-title";
+export { FieldTitle } from "./title/field-title";

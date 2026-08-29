@@ -1,32 +1,30 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentType, ReactNode } from "react";
+import { createContext, useContext } from "react";
 
-export const THEMES = { light: "", dark: ".dark" } as const
+export const THEMES = { light: "", dark: ".dark" } as const;
 
 export type ChartConfig = Record<
   string,
   {
-    label?: React.ReactNode
-    icon?: React.ComponentType
-  } & (
-    | { color?: string; theme?: never }
-    | { color?: never; theme: Record<keyof typeof THEMES, string> }
-  )
->
+    label?: ReactNode;
+    icon?: ComponentType;
+  } & ({ color?: string; theme?: never } | { color?: never; theme: Record<keyof typeof THEMES, string> })
+>;
 
 export type ChartContextProps = {
-  config: ChartConfig
-}
+  config: ChartConfig;
+};
 
-export const ChartContext = React.createContext<ChartContextProps | null>(null)
+export const ChartContext = createContext<ChartContextProps | null>(null);
 
 export function useChart() {
-  const context = React.useContext(ChartContext)
+  const context = useContext(ChartContext);
 
   if (!context) {
-    throw new Error("useChart must be used within a <ChartContainer />")
+    throw new Error("useChart must be used within a <ChartContainer />");
   }
 
-  return context
+  return context;
 }

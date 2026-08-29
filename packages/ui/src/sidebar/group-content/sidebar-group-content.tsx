@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarGroupContentProps extends React.ComponentProps<"div"> {}
+export interface SidebarGroupContentProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the sidebar group content component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarGroupContent({
-  className,
-  ...props
-}: SidebarGroupContentProps) {
+export function SidebarGroupContent({ className, ...props }: SidebarGroupContentProps) {
   return (
     <div
       data-slot="sidebar-group-content"
@@ -22,5 +17,5 @@ export function SidebarGroupContent({
       className={cn("w-full text-sm", className)}
       {...props}
     />
-  )
+  );
 }

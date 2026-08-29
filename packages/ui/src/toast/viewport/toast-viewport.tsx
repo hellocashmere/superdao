@@ -1,8 +1,7 @@
-"use client"
+"use client";
 
-import { Toast as ToastPrimitive } from "@base-ui/react/toast"
-
-import { cn } from "@superdao/ui/lib/utils"
+import { Toast as ToastPrimitive } from "@base-ui/react/toast";
+import { cn } from "@superdao/lib/utils";
 
 export interface ToastViewportProps extends ToastPrimitive.Viewport.Props {}
 
@@ -21,5 +20,5 @@ export function ToastViewport({ className, ...props }: ToastViewportProps) {
       )}
       {...props}
     />
-  )
+  );
 }

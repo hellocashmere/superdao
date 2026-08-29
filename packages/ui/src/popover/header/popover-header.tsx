@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface PopoverHeaderProps extends React.ComponentProps<"div"> {}
+export interface PopoverHeaderProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the popover header component.
@@ -18,5 +18,5 @@ export function PopoverHeader({ className, ...props }: PopoverHeaderProps) {
       className={cn("flex flex-col gap-0.5 text-sm", className)}
       {...props}
     />
-  )
+  );
 }

@@ -1,20 +1,18 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-import { useSidebar } from "../context"
+import { useSidebar } from "../context";
 
-export interface SidebarRailProps extends React.ComponentProps<"button"> {}
+export interface SidebarRailProps extends ComponentProps<"button"> {}
 
 /**
  * Renders the sidebar rail component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarRail({ className, ...props }: SidebarRailProps) {
-  const { toggleSidebar } = useSidebar()
+  const { toggleSidebar } = useSidebar();
 
   return (
     <button
@@ -35,5 +33,5 @@ export function SidebarRail({ className, ...props }: SidebarRailProps) {
       )}
       {...props}
     />
-  )
+  );
 }

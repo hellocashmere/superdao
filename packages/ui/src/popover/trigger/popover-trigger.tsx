@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Popover as PopoverPrimitive } from "@base-ui/react/popover"
+import { Popover as PopoverPrimitive } from "@base-ui/react/popover";
 
 export interface PopoverTriggerProps extends PopoverPrimitive.Trigger.Props {}
 
@@ -15,5 +15,5 @@ export function PopoverTrigger({ ...props }: PopoverTriggerProps) {
       data-slot="popover-trigger"
       {...props}
     />
-  )
+  );
 }

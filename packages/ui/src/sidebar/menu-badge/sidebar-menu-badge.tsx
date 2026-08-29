@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarMenuBadgeProps extends React.ComponentProps<"div"> {}
+export interface SidebarMenuBadgeProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the sidebar menu badge component.
- *
- * @see https://react.dev/reference/react/Component
  */
-export function SidebarMenuBadge({
-  className,
-  ...props
-}: SidebarMenuBadgeProps) {
+export function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
   return (
     <div
       data-slot="sidebar-menu-badge"
@@ -25,5 +20,5 @@ export function SidebarMenuBadge({
       )}
       {...props}
     />
-  )
+  );
 }

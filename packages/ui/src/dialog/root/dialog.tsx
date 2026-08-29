@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
+import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 
 export interface DialogProps extends DialogPrimitive.Root.Props {}
 
@@ -30,5 +30,5 @@ export function Dialog({ ...props }: DialogProps) {
       data-slot="dialog"
       {...props}
     />
-  )
+  );
 }

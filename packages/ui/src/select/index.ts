@@ -1,20 +1,18 @@
-export type { SelectProps } from "./root/select"
-export { Select } from "./root/select"
-export type { SelectContentProps } from "./content/select-content"
-export { SelectContent } from "./content/select-content"
-export type { SelectGroupProps } from "./group/select-group"
-export { SelectGroup } from "./group/select-group"
-export type { SelectItemProps } from "./item/select-item"
-export { SelectItem } from "./item/select-item"
-export type { SelectLabelProps } from "./label/select-label"
-export { SelectLabel } from "./label/select-label"
-export type { SelectScrollDownButtonProps } from "./scroll-down-button/select-scroll-down-button"
-export { SelectScrollDownButton } from "./scroll-down-button/select-scroll-down-button"
-export type { SelectScrollUpButtonProps } from "./scroll-up-button/select-scroll-up-button"
-export { SelectScrollUpButton } from "./scroll-up-button/select-scroll-up-button"
-export type { SelectSeparatorProps } from "./separator/select-separator"
-export { SelectSeparator } from "./separator/select-separator"
-export type { SelectTriggerProps } from "./trigger/select-trigger"
-export { SelectTrigger } from "./trigger/select-trigger"
-export type { SelectValueProps } from "./value/select-value"
-export { SelectValue } from "./value/select-value"
+export type { SelectContentProps } from "./content/select-content";
+export { SelectContent } from "./content/select-content";
+export type { SelectGroupProps } from "./group/select-group";
+export { SelectGroup } from "./group/select-group";
+export type { SelectItemProps } from "./item/select-item";
+export { SelectItem } from "./item/select-item";
+export type { SelectLabelProps } from "./label/select-label";
+export { SelectLabel } from "./label/select-label";
+export type { SelectProps } from "./root/select";
+export { Select } from "./root/select";
+export type { SelectScrollDownButtonProps } from "./scroll-down-button/select-scroll-down-button";
+export { SelectScrollDownButton } from "./scroll-down-button/select-scroll-down-button";
+export type { SelectScrollUpButtonProps } from "./scroll-up-button/select-scroll-up-button";
+export { SelectScrollUpButton } from "./scroll-up-button/select-scroll-up-button";
+export type { SelectTriggerProps } from "./trigger/select-trigger";
+export { SelectTrigger } from "./trigger/select-trigger";
+export type { SelectValueProps } from "./value/select-value";
+export { SelectValue } from "./value/select-value";

@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import type { ComponentProps } from "react";
 
-import { cn } from "@superdao/ui/lib/utils"
+import { cn } from "@superdao/lib/utils";
 
-export interface SidebarFooterProps extends React.ComponentProps<"div"> {}
+export interface SidebarFooterProps extends ComponentProps<"div"> {}
 
 /**
  * Renders the sidebar footer component.
- *
- * @see https://react.dev/reference/react/Component
  */
 export function SidebarFooter({ className, ...props }: SidebarFooterProps) {
   return (
@@ -19,5 +17,5 @@ export function SidebarFooter({ className, ...props }: SidebarFooterProps) {
       className={cn("flex shrink-0 flex-col gap-0 p-0", className)}
       {...props}
     />
-  )
+  );
 }
