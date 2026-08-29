@@ -1,0 +1,26 @@
+{
+  "name": "@superdao/lib",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./utils": "./src/utils.ts"
+  },
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint": "eslint src --max-warnings 0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
+  "devDependencies": {
+    "@superdao/eslint-config": "workspace:*",
+    "@superdao/typescript-config": "workspace:*",
+    "eslint": "^9",
+    "prettier": "^3.8.3",
+    "typescript": "^5"
+  }
+}
