@@ -47,7 +47,10 @@
   --color-field-placeholder: var(--field-placeholder);
   --color-field-hover: var(--field-hover);
   --color-field: var(--field);
+  --color-icon: var(--icon);
   --color-border: var(--border);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
   --color-constructive: var(--constructive);
   --color-destructive-active: var(--destructive-active);
   --color-destructive-hover: var(--destructive-hover);
@@ -115,6 +118,8 @@
   --destructive-foreground: var(--foreground);
 
   --constructive: lab(75.977% -63.121 54.399);
+  --info: lab(70.829% -30.39 -24.559);
+  --warning: var(--yellow);
 
   --skeleton: var(--muted);
   --tooltip: lab(32.144% -0.099 -8.558);
@@ -128,6 +133,7 @@
   --field-hover: var(--accent);
   --field-placeholder: lab(50.939% -0.412 -11.011);
   --field-disabled-foreground: lab(33.779% 0.025 -13.654);
+  --icon: lab(50.939% -0.412 -11.011);
 
   --border: lab(87.425% -0.446 -13.686 / 10%);
   --input: lab(87.425% -0.446 -13.686 / 15%);
