@@ -25,11 +25,13 @@ export function CarouselPrevious({
   return (
     <Button
       data-slot="carousel-previous"
-      data-orientation={orientation}
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full data-[orientation=horizontal]:inset-y-0 data-[orientation=horizontal]:-left-12 data-[orientation=horizontal]:my-auto data-[orientation=vertical]:-top-12 data-[orientation=vertical]:left-1/2 data-[orientation=vertical]:-translate-x-1/2 data-[orientation=vertical]:rotate-90",
+        "absolute touch-manipulation rounded-full",
+        orientation === "horizontal"
+          ? "inset-y-0 -left-12 my-auto"
+          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}

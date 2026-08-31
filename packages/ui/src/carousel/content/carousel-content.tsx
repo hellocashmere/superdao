@@ -23,9 +23,9 @@ export function CarouselContent({ className, ...props }: CarouselContentProps) {
       data-slot="carousel-content"
     >
       <div
-        data-orientation={orientation}
         className={cn(
-          "flex data-[orientation=horizontal]:-ml-4 data-[orientation=vertical]:-mt-4 data-[orientation=vertical]:flex-col",
+          "flex",
+          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
         {...props}

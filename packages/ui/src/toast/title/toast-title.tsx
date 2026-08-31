@@ -14,7 +14,7 @@ export function ToastTitle({ className, ...props }: ToastTitleProps) {
   return (
     <ToastPrimitive.Title
       data-slot="toast-title"
-      className={cn("text-sm font-medium", className)}
+      className={cn("text-[15px] font-semibold leading-6", className)}
       {...props}
     />
   );

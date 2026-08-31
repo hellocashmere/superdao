@@ -20,11 +20,13 @@ export function CarouselNext({ className, variant = "secondary", size = "icon-sm
   return (
     <Button
       data-slot="carousel-next"
-      data-orientation={orientation}
       variant={variant}
       size={size}
       className={cn(
-        "absolute touch-manipulation rounded-full data-[orientation=horizontal]:inset-y-0 data-[orientation=horizontal]:-right-12 data-[orientation=horizontal]:my-auto data-[orientation=vertical]:-bottom-12 data-[orientation=vertical]:left-1/2 data-[orientation=vertical]:-translate-x-1/2 data-[orientation=vertical]:rotate-90",
+        "absolute touch-manipulation rounded-full",
+        orientation === "horizontal"
+          ? "inset-y-0 -right-12 my-auto"
+          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}

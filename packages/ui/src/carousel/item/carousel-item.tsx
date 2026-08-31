@@ -21,9 +21,9 @@ export function CarouselItem({ className, ...props }: CarouselItemProps) {
       role="group"
       aria-roledescription="slide"
       data-slot="carousel-item"
-      data-orientation={orientation}
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full data-[orientation=horizontal]:pl-4 data-[orientation=vertical]:pt-4",
+        "min-w-0 shrink-0 grow-0 basis-full",
+        orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
       {...props}
