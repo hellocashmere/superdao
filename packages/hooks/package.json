@@ -9,8 +9,10 @@
     "./use-mobile": "./src/use-mobile/index.ts",
     "./use-debounce-callback": "./src/use-debounce-callback/index.ts",
     "./use-debounce-value": "./src/use-debounce-value/index.ts",
+    "./use-intersection-observer": "./src/use-intersection-observer/index.ts",
     "./use-loading": "./src/use-loading/index.ts",
-    "./use-media-query": "./src/use-media-query/index.ts"
+    "./use-media-query": "./src/use-media-query/index.ts",
+    "./use-pagination": "./src/use-pagination/index.ts"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
