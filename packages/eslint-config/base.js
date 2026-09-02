@@ -6,6 +6,8 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
 
+import { preferTopLevelTypeReExports } from "./rules/prefer-top-level-type-re-exports.js";
+
 const importSortGroups = [
   ["^node:"],
   ["^react", "^next"],
@@ -29,6 +31,11 @@ export const config = [
     plugins: {
       import: importPlugin,
       "simple-import-sort": simpleImportSort,
+      superdao: {
+        rules: {
+          "prefer-top-level-type-re-exports": preferTopLevelTypeReExports,
+        },
+      },
       turbo: turboPlugin,
     },
     rules: {
@@ -40,6 +47,7 @@ export const config = [
         },
       ],
       "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+      "superdao/prefer-top-level-type-re-exports": "error",
       "quote-props": ["error", "as-needed"],
       "simple-import-sort/imports": ["error", { groups: importSortGroups }],
       "simple-import-sort/exports": "error",
