@@ -1,9 +1,13 @@
 {
-  "extends": "@workspace/typescript-config/nextjs.json",
+  "extends": "@superdao/typescript-config/nextjs.json",
   "compilerOptions": {
     "paths": {
+      "@/widgets/*": ["./widgets/*/index.ts"],
+      "@/features/*": ["./features/*/index.ts"],
+      "@/entities/*": ["./entities/*/index.ts"],
+      "@/shared/ui/*": ["./shared/ui/*/index.ts"],
       "@/*": ["./*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
+      "@superdao/ui/*": ["../../packages/ui/src/*"]
     },
     "plugins": [
       {

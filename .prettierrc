@@ -1,11 +1,13 @@
 {
   "endOfLine": "lf",
-  "semi": false,
+  "semi": true,
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "printWidth": 80,
+  "printWidth": 120,
+  "objectWrap": "preserve",
+  "singleAttributePerLine": true,
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "packages/ui/src/styles/globals.css",
+  "tailwindStylesheet": "packages/ui/styles/globals.css",
   "tailwindFunctions": ["cn", "cva"]
 }

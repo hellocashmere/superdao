@@ -26,6 +26,7 @@ dist
 
 # misc
 .DS_Store
+.idea/
 *.pem
 
 # debug
@@ -34,8 +35,16 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# generated mock API database
+apps/mock-api/db.json
+
+# env files
 .env*
+!.env.example
+!.env.*.example
+!apps/web/.env.test
+!apps/web/.env.example
+!apps/web/.env.*.example
 
 # vercel
 .vercel

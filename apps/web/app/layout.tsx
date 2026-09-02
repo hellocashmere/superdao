@@ -1,30 +1,38 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next";
 
-import "@workspace/ui/globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@superdao/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+import { CookieBanner } from "@/widgets/banners";
 
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+import "@superdao/ui/globals.css";
+
+import { inter, sfProDisplay, sfProText } from "./fonts";
+import { Providers } from "./providers";
+
+export const metadata: Metadata = {
+  title: {
+    default: "Superdao",
+    template: "%s | Superdao",
+  },
+};
+
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn("dark font-sans antialiased", inter.variable, sfProDisplay.variable, sfProText.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <Providers>
+          {children}
+          <CookieBanner />
+        </Providers>
       </body>
     </html>
-  )
+  );
 }
