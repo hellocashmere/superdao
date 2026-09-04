@@ -1,7 +1,7 @@
 "use client";
 
-import type { ButtonProps } from "../../button/button/button";
-import { Button } from "../../button/button/button";
+import type { ButtonProps } from "../../button";
+import { Button } from "../../button";
 
 export interface AlertDialogActionProps extends ButtonProps {}
 

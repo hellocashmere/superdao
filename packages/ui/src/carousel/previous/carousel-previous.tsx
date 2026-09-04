@@ -3,8 +3,8 @@
 import { cn } from "@superdao/lib/utils";
 import { ChevronLeftIcon } from "lucide-react";
 
-import type { ButtonProps } from "../../button/button/button";
-import { Button } from "../../button/button/button";
+import type { ButtonProps } from "../../button";
+import { Button } from "../../button";
 import { useCarousel } from "../context";
 
 export interface CarouselPreviousProps extends ButtonProps {}

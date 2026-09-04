@@ -2,8 +2,8 @@
 
 import { AlertDialog as AlertDialogPrimitive } from "@base-ui/react/alert-dialog";
 
-import type { ButtonProps } from "../../button/button/button";
-import { Button } from "../../button/button/button";
+import type { ButtonProps } from "../../button";
+import { Button } from "../../button";
 
 export interface AlertDialogCancelProps extends AlertDialogPrimitive.Close.Props {
   /**

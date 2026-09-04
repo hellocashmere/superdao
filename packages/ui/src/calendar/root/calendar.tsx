@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps } from "react";
-import type { DateRange, OnSelectHandler } from "react-day-picker";
+import type { DayPickerProps, PropsBase } from "react-day-picker";
 import { DayPicker, getDefaultClassNames } from "react-day-picker";
 
 import { cn } from "@superdao/lib/utils";
@@ -11,22 +11,14 @@ import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react
 
 import { CalendarDayButton } from "../day-button/calendar-day-button";
 
-export interface CalendarProps extends Pick<ComponentProps<typeof DayPicker>, keyof ComponentProps<typeof DayPicker>> {
+export interface CalendarProps extends PropsBase {
   /**
    * Sets the button variant used for calendar controls.
    */
-
   buttonVariant?: ComponentProps<typeof Button>["variant"];
-  /**
-   * TODO: зачем? В https://ui.shadcn.com/docs/components/base/calendar.md нет такого
-   */
-
-  selected?: DateRange;
-  /**
-   * TODO: зачем? В https://ui.shadcn.com/docs/components/base/calendar.md нет такого
-   */
-  onSelect?: OnSelectHandler<DateRange | undefined>;
 }
+
+type CalendarComponentProps = CalendarProps & DayPickerProps;
 
 /**
  * Renders the calendar component.
@@ -43,7 +35,7 @@ export function Calendar({
   formatters,
   components,
   ...props
-}: CalendarProps) {
+}: CalendarComponentProps) {
   const defaultClassNames = getDefaultClassNames();
 
   return (
@@ -179,7 +171,7 @@ export function Calendar({
         },
         ...components,
       }}
-      {...(props as ComponentProps<typeof DayPicker>)}
+      {...(props as DayPickerProps)}
     />
   );
 }
