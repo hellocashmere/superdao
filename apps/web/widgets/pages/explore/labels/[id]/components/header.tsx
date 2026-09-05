@@ -1,0 +1,96 @@
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import Link from "next/link";
+
+import { Group16BoldIcon, PollBoldIcon } from "@superdao/icons/bold";
+import { ArrowLeftIcon } from "@superdao/icons/outline";
+import { cn } from "@superdao/lib/utils";
+import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
+
+import { LabelIcon } from "@/entities/label";
+import { PageHeader } from "@/shared/ui/page-layout";
+
+export interface LabelIDHeaderProps extends ComponentPropsWithRef<typeof PageHeader> {
+  /**
+   * Human-readable label name displayed in the page heading.
+   */
+  title: string;
+
+  /**
+   * Accent color used by the label icon.
+   */
+  color: string;
+
+  /**
+   * Stable label identifier used by the icon and tab navigation.
+   */
+  labelID: string;
+
+  /**
+   * Formatted number of wallets assigned to the label.
+   */
+  walletCount: string;
+}
+
+/**
+ * Renders label identity and wallet count.
+ */
+export function LabelIDHeader({ className, color, labelID, title, ref, walletCount, ...props }: LabelIDHeaderProps) {
+  const labelPath = `/explore/labels/${encodeURIComponent(labelID)}`;
+
+  return (
+    <PageHeader
+      {...props}
+      ref={ref}
+      data-slot="label-id-header"
+      className={cn("flex min-h-18 items-center justify-between gap-5", className)}
+    >
+      <div className="flex min-w-0 items-center gap-3">
+        <Link
+          href="/explore/labels"
+          aria-label="Back to labels"
+          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-full text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+        >
+          <ArrowLeftIcon size={24} />
+        </Link>
+        <span
+          className="flex size-8 shrink-0 items-center justify-center rounded-full"
+          style={{ backgroundColor: `${color}14`, color }}
+        >
+          <LabelIcon
+            labelID={labelID}
+            size={16}
+          />
+        </span>
+        <div className="flex min-w-0 items-end gap-3">
+          <h1 className="truncate text-2xl/7 font-bold">{title}</h1>
+          <span className="pb-0.5 text-xl/6 font-bold text-tabs-foreground">{walletCount}</span>
+        </div>
+      </div>
+      <TabsList className="h-10 w-75 shrink-0">
+        <TabsTrigger
+          className="h-8"
+          value="wallets"
+          nativeButton={false}
+          render={<Link href={`${labelPath}/wallets`} />}
+        >
+          <Group16BoldIcon
+            size={16}
+            className="text-tabs-foreground"
+          />
+          Wallets
+        </TabsTrigger>
+        <TabsTrigger
+          className="h-8"
+          value="insights"
+          nativeButton={false}
+          render={<Link href={`${labelPath}/insights`} />}
+        >
+          <PollBoldIcon className="size-4" />
+          Insights
+        </TabsTrigger>
+      </TabsList>
+    </PageHeader>
+  );
+}

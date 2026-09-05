@@ -1,0 +1,243 @@
+"use client";
+
+import type { ComponentPropsWithRef } from "react";
+import Link from "next/link";
+
+import type { UsePaginationReturn } from "@superdao/hooks";
+import { EthereumIcon, LinkIcon } from "@superdao/icons/outline";
+import { cn } from "@superdao/lib/utils";
+import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
+import { Button } from "@superdao/ui/components/button";
+import { Card } from "@superdao/ui/components/card";
+import { Empty, EmptyDescription, EmptyHeader, EmptyTitle } from "@superdao/ui/components/empty";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@superdao/ui/components/select";
+import { Spinner } from "@superdao/ui/components/spinner";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@superdao/ui/components/table";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+
+import type { TokenView } from "@/entities/token";
+
+export interface TokensRootTableProps extends ComponentPropsWithRef<typeof Card> {
+  isLoading?: boolean;
+  rowOffset?: number;
+  tokens: readonly TokenView[];
+}
+
+/**
+ * Renders clickable token rows and their activity metrics.
+ */
+export function TokensRootTable({
+  className,
+  isLoading = false,
+  ref,
+  rowOffset = 0,
+  tokens,
+  ...props
+}: TokensRootTableProps) {
+  return (
+    <Card
+      {...props}
+      ref={ref}
+      data-slot="tokens-root-table"
+      aria-busy={isLoading}
+      className={cn("relative min-h-0 flex-1", className)}
+    >
+      <div className={cn("min-h-0", tokens.length || isLoading ? "flex-1 overflow-hidden" : "shrink-0")}>
+        <Table className="min-w-215 table-fixed">
+          <TableHeader>
+            <TableRow className="h-13.5 border-0 hover:bg-transparent">
+              <TableHead className="w-12 px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-icon">
+                #
+              </TableHead>
+              <TableHead className="w-72.5 px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-icon">Token</TableHead>
+              <TableHead className="px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-icon">
+                Owners
+              </TableHead>
+              <TableHead className="px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-icon">
+                Active 30d
+              </TableHead>
+              <TableHead className="px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-icon">
+                Market cap
+              </TableHead>
+              <TableHead className="w-45 px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-icon">
+                Price, USD
+              </TableHead>
+              <TableHead className="w-20 px-5 pt-6 pb-3 text-center text-[13px]/[18px] font-semibold text-icon">
+                Chain
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {tokens.map((token, index) => (
+              <TableRow
+                key={token.id}
+                className="group/token-row h-14 border-0"
+              >
+                <TableCell className="px-5 py-0 text-right text-icon">{rowOffset + index + 1}</TableCell>
+                <TableCell className="px-5 py-0 font-semibold">
+                  <Link
+                    href={`/explore/tokens/${encodeURIComponent(token.id)}/wallets`}
+                    className="flex items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
+                  >
+                    <Avatar className="size-7">
+                      <AvatarImage
+                        src={token.avatar}
+                        alt={token.name}
+                      />
+                    </Avatar>
+                    <span className="truncate">{token.name}</span>
+                  </Link>
+                </TableCell>
+                <TableCell className="px-5 py-0 text-right">{token.owners}</TableCell>
+                <TableCell className="px-5 py-0 text-right">{token.activeWallets}</TableCell>
+                <TableCell className="px-5 py-0 text-right">{token.supply}</TableCell>
+                <TableCell className="px-5 py-0 text-right">{token.price}</TableCell>
+                <TableCell className="px-5 py-0 text-center text-icon">
+                  {token.chain === "ethereum" ? (
+                    <EthereumIcon
+                      size={16}
+                      className="mx-auto"
+                    />
+                  ) : (
+                    <LinkIcon
+                      size={16}
+                      className="mx-auto"
+                    />
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      {isLoading ? (
+        <div className="pointer-events-none absolute inset-x-0 top-13.5 bottom-0 flex items-center justify-center">
+          <Spinner className="size-6 text-tabs-foreground" />
+          <span className="sr-only">Searching tokens</span>
+        </div>
+      ) : tokens.length === 0 ? (
+        <Empty className="min-h-0 p-0">
+          <EmptyHeader className="gap-0">
+            <EmptyTitle className="text-2xl/7 font-bold">No results</EmptyTitle>
+            <EmptyDescription className="mt-2 text-[15px]/6 text-tabs-foreground">Try another search</EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      ) : null}
+    </Card>
+  );
+}
+
+export interface TokensRootPaginationProps extends ComponentPropsWithRef<"div"> {
+  pageSizeOptions: readonly number[];
+  pagination: UsePaginationReturn;
+}
+
+/**
+ * Renders compact pagination controls for the tokens directory.
+ */
+export function TokensRootPagination({
+  className,
+  pageSizeOptions,
+  pagination,
+  ref,
+  ...props
+}: TokensRootPaginationProps) {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      data-slot="directory-table-pagination"
+      className={cn(
+        "flex min-h-17 flex-wrap items-center justify-end gap-6 px-6 py-3 text-[13px]/[18px] text-tabs-foreground",
+        className
+      )}
+    >
+      <div className="hidden items-center gap-2 lg:flex">
+        <span className="min-w-20 text-center text-foreground">Rows per page</span>
+        <Select
+          value={`${pagination.limit}`}
+          onValueChange={(value) => pagination.setLimit(Number(value))}
+        >
+          <SelectTrigger
+            size="sm"
+            className="w-20"
+            aria-label="Rows per page"
+          >
+            <SelectValue placeholder={pagination.limit} />
+          </SelectTrigger>
+          <SelectContent side="top">
+            <SelectGroup>
+              {pageSizeOptions.map((option) => (
+                <SelectItem
+                  key={option}
+                  value={`${option}`}
+                >
+                  {option}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+
+      <span
+        className="min-w-20 text-center text-foreground"
+        aria-live="polite"
+      >
+        {pagination.page} of {pagination.pageCount.toLocaleString("en-US").replace(/,/g, " ")} pages
+      </span>
+
+      <div className="flex items-center gap-2">
+        <Button
+          type="button"
+          variant="secondary"
+          size="icon-sm"
+          className="hidden lg:inline-flex"
+          disabled={!pagination.canGoPrevious}
+          aria-label="Go to first page"
+          onClick={pagination.goToFirst}
+        >
+          <ChevronsLeft />
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          size="icon-sm"
+          disabled={!pagination.canGoPrevious}
+          aria-label="Go to previous page"
+          onClick={pagination.goToPrevious}
+        >
+          <ChevronLeft />
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          size="icon-sm"
+          disabled={!pagination.canGoNext}
+          aria-label="Go to next page"
+          onClick={pagination.goToNext}
+        >
+          <ChevronRight />
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          size="icon-sm"
+          className="hidden lg:inline-flex"
+          disabled={!pagination.canGoNext}
+          aria-label="Go to last page"
+          onClick={pagination.goToLast}
+        >
+          <ChevronsRight />
+        </Button>
+      </div>
+    </div>
+  );
+}
