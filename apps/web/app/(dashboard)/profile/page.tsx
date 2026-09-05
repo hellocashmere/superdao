@@ -1,8 +1,14 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+
+import { ProfilePage } from "@/widgets/pages/profile/root";
+
+export const metadata: Metadata = {
+  title: "Profile",
+};
 
 /**
- * Redirects the former profile route to the profile settings page.
+ * Renders the profile overview route.
  */
 export default function Page() {
-  redirect("/profile/settings");
+  return <ProfilePage />;
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ExploreWalletsPage } from "@/widgets/explore/wallets/root";
+import { ExploreWalletsPage } from "@/widgets/pages/explore/wallets/root";
 
 export const metadata: Metadata = {
   title: "Wallets",

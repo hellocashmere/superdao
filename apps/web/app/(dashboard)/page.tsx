@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { HomePage } from "@/widgets/home";
+import { HomePage } from "@/widgets/pages/home/root";
 
 export const metadata: Metadata = {
   title: "Explore",

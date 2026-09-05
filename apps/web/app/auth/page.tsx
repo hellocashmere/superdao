@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { AuthPage } from "@/widgets/auth";
+import { AuthPage } from "@/widgets/pages/auth/root";
 
 export const metadata: Metadata = {
   title: "Connect wallet",

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ProfileSettings } from "@/widgets/profile/settings";
+import { ProfileSettings } from "@/widgets/pages/profile/settings";
 
 export const metadata: Metadata = {
   title: "Profile settings",

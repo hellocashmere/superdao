@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { getWalletByID } from "@/entities/wallet";
-import { ExploreWalletDetailsPage } from "@/widgets/explore/wallets/[id]";
+import { ExploreWalletDetailsPage } from "@/widgets/pages/explore/wallets/[id]";
 
 /**
  * Generates metadata for the selected wallet.
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: PageProps<"/explore/wallets/[
   const wallet = await getWalletByID(id);
 
   return {
-    title: `"${wallet.name}" - wallet`,
+    title: `Wallets (${wallet.name})`,
     description: "Review wallet activity, contacts, labels, and onchain statistics.",
   };
 }
