@@ -1,20 +1,21 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 
-export interface CardDescriptionProps extends ComponentProps<"div"> {}
+export interface CardDescriptionProps extends ComponentPropsWithRef<"div"> {}
 
 /**
  * Renders the card description component.
  */
-export function CardDescription({ className, ...props }: CardDescriptionProps) {
+export function CardDescription({ className, ref, ...props }: CardDescriptionProps) {
   return (
     <div
-      data-slot="card-description"
-      className={cn("text-sm text-muted-foreground", className)}
       {...props}
+      ref={ref}
+      data-slot="card-description"
+      className={cn("text-[13px]/[18px] tracking-[-0.08px] text-muted-foreground", className)}
     />
   );
 }

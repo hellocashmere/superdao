@@ -1,12 +1,12 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 
-export interface CardProps extends ComponentProps<"div"> {
+export interface CardProps extends ComponentPropsWithRef<"div"> {
   /**
-   * Controls the card's spacing scale.
+   * Controls the horizontal inset used by the card sections.
    */
   size?: "default" | "sm";
 }
@@ -18,23 +18,24 @@ export interface CardProps extends ComponentProps<"div"> {
  * ```text
  * Card
  * ├── CardHeader
- * ├── CardFooter
- * ├── CardTitle
- * ├── CardAction
- * ├── CardDescription
- * └── CardContent
+ * │   ├── CardTitle
+ * │   ├── CardDescription
+ * │   └── CardAction
+ * ├── CardContent
+ * └── CardFooter
  * ```
  */
-export function Card({ className, size = "default", ...props }: CardProps) {
+export function Card({ className, ref, size = "default", ...props }: CardProps) {
   return (
     <div
+      {...props}
+      ref={ref}
       data-slot="card"
       data-size={size}
       className={cn(
-        "group/card flex flex-col gap-(--card-spacing) overflow-hidden rounded-xl bg-card py-(--card-spacing) text-sm text-card-foreground [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[size=sm]:[--card-spacing:--spacing(3)] data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl",
+        "group/card flex min-w-0 flex-col overflow-hidden rounded-lg bg-card text-sm text-card-foreground [--card-padding-inline:--spacing(5)] data-[size=sm]:[--card-padding-inline:--spacing(4)] *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg",
         className
       )}
-      {...props}
     />
   );
 }

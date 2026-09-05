@@ -1,0 +1,26 @@
+import type { ComponentPropsWithRef } from "react";
+
+import { IconBase } from "../shared/icon";
+
+export interface Group16BoldIconProps extends ComponentPropsWithRef<typeof IconBase> {}
+
+/**
+ * Renders the compact group glyph used by sixteen-pixel controls.
+ */
+export function Group16BoldIcon({ className, ref, ...props }: Group16BoldIconProps) {
+  return (
+    <IconBase
+      {...props}
+      ref={ref}
+      className={className}
+      viewBox="0 0 16 16"
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.27273 4.84848C7.27273 6.05347 6.29589 7.0303 5.09091 7.0303C3.88592 7.0303 2.90909 6.05347 2.90909 4.84848C2.90909 3.6435 3.88592 2.66666 5.09091 2.66666C6.29589 2.66666 7.27273 3.6435 7.27273 4.84848ZM0 11.7576C0 10.6667 1.45455 8.48485 5.09091 8.48485C8.72727 8.48485 10.1818 10.6667 10.1818 11.7576C10.1818 12.8485 9.45455 13.5758 8.36364 13.5758H1.81818C0.727273 13.5758 0 12.8485 0 11.7576ZM10.9091 7.0303C12.1141 7.0303 13.0909 6.05347 13.0909 4.84848C13.0909 3.6435 12.1141 2.66666 10.9091 2.66666C9.70411 2.66666 8.72727 3.6435 8.72727 4.84848C8.72727 6.05347 9.70411 7.0303 10.9091 7.0303ZM10.9091 8.48485C10.542 8.48485 10.1972 8.50708 9.87382 8.54818C11.0247 9.46983 11.6364 10.6738 11.6364 11.7576C11.6364 12.4064 11.4727 13.0372 11.1327 13.5758H14.1818C15.2727 13.5758 16 12.8485 16 11.7576C16 10.6667 14.5455 8.48485 10.9091 8.48485Z"
+        fill="currentColor"
+      />
+    </IconBase>
+  );
+}

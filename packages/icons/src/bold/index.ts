@@ -64,6 +64,8 @@ export { GooglePlayBoldIcon, type GooglePlayBoldIconProps } from "./google-play"
 export { Google2BoldIcon, type Google2BoldIconProps } from "./google2";
 export { GridBoldIcon, type GridBoldIconProps } from "./grid";
 export { GroupBoldIcon, type GroupBoldIconProps } from "./group";
+export type { Group16BoldIconProps } from "./group-16";
+export { Group16BoldIcon } from "./group-16";
 export { HelpBoldIcon, type HelpBoldIconProps } from "./help";
 export { HunterBoldIcon, type HunterBoldIconProps } from "./hunter";
 export { InfoBoldIcon, type InfoBoldIconProps } from "./info";

@@ -1,20 +1,21 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 
-export interface CardContentProps extends ComponentProps<"div"> {}
+export interface CardContentProps extends ComponentPropsWithRef<"div"> {}
 
 /**
  * Renders the card content component.
  */
-export function CardContent({ className, ...props }: CardContentProps) {
+export function CardContent({ className, ref, ...props }: CardContentProps) {
   return (
     <div
-      data-slot="card-content"
-      className={cn("px-(--card-spacing)", className)}
       {...props}
+      ref={ref}
+      data-slot="card-content"
+      className={cn("px-(--card-padding-inline)", className)}
     />
   );
 }

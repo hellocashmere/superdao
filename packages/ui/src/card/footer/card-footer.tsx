@@ -1,20 +1,21 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 
-export interface CardFooterProps extends ComponentProps<"div"> {}
+export interface CardFooterProps extends ComponentPropsWithRef<"div"> {}
 
 /**
  * Renders the card footer component.
  */
-export function CardFooter({ className, ...props }: CardFooterProps) {
+export function CardFooter({ className, ref, ...props }: CardFooterProps) {
   return (
     <div
-      data-slot="card-footer"
-      className={cn("flex items-center rounded-b-xl bg-muted/50 p-(--card-spacing)", className)}
       {...props}
+      ref={ref}
+      data-slot="card-footer"
+      className={cn("mx-(--card-padding-inline) mt-auto flex items-center border-t border-border py-2", className)}
     />
   );
 }

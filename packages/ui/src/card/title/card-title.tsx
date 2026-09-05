@@ -1,20 +1,21 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 
-export interface CardTitleProps extends ComponentProps<"div"> {}
+export interface CardTitleProps extends ComponentPropsWithRef<"div"> {}
 
 /**
  * Renders the card title component.
  */
-export function CardTitle({ className, ...props }: CardTitleProps) {
+export function CardTitle({ className, ref, ...props }: CardTitleProps) {
   return (
     <div
-      data-slot="card-title"
-      className={cn("font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm", className)}
       {...props}
+      ref={ref}
+      data-slot="card-title"
+      className={cn("text-sm/5 font-semibold tracking-[-0.24px] text-muted-foreground", className)}
     />
   );
 }
