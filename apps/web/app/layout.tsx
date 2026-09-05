@@ -12,7 +12,7 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: {
     default: "Superdao",
-    template: "%s | Superdao",
+    template: "%s / Superdao",
   },
 };
 

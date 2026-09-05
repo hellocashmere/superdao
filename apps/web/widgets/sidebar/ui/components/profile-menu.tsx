@@ -60,7 +60,7 @@ export function ProfileMenu({ className, ref, ...props }: ProfileMenuProps) {
           alignOffset={8}
           side="top"
           sideOffset={4}
-          className="w-[272px]"
+          className="w-68"
         >
           <DropdownMenuItem
             className="h-10 gap-3 rounded-none px-3 text-[15px]/[24px] font-semibold"

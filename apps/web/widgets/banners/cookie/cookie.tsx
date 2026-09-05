@@ -3,7 +3,6 @@
 import type { ComponentPropsWithRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 import { Button } from "@superdao/ui/components/button";
 
@@ -15,13 +14,12 @@ export interface CookieBannerProps extends ComponentPropsWithRef<"aside"> {}
 /**
  * Renders the global cookie consent notice until the user accepts it.
  */
-export function CookieBanner({ className, ref, ...props }: CookieBannerProps) {
-  const pathname = usePathname();
+export function CookieBanner({ ref, className, ...props }: CookieBannerProps) {
   const acceptCookies = useUserStore((state) => state.acceptCookies);
   const hasAcceptedCookies = useUserStore((state) => state.hasAcceptedCookies);
   const hasHydrated = useUserStore((state) => state.hasHydrated);
 
-  if (pathname === "/_components" || !hasHydrated) {
+  if (!hasHydrated) {
     return null;
   }
 

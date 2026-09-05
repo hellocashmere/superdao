@@ -94,7 +94,7 @@ export function Error({ action, className, ref, variant, ...props }: ErrorProps)
       {...props}
     >
       <Empty className="max-w-140 gap-0 border-0 p-0">
-        <EmptyMedia className="mb-4 size-[200px]">
+        <EmptyMedia className="mb-4 size-50">
           <Image
             src={variant === "not-found" ? error404 : error500}
             alt="image"
