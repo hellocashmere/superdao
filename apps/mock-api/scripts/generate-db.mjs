@@ -112,7 +112,7 @@ const searchResults = [
     id: "token-investor",
     name: "Token investor",
     type: "Label",
-    href: "/explore/labels/token-investor",
+    href: "/explore/labels/token-investor/wallets",
     glyph: "label",
   },
   {
@@ -133,7 +133,7 @@ const searchResults = [
     id: "music",
     name: "Music",
     type: "Label",
-    href: "/explore/labels/music",
+    href: "/explore/labels/music/wallets",
     glyph: "music",
   },
   {

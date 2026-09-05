@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run seed && json-server db.json --port 3001",
-    "seed": "node scripts/generate-db.mjs"
+    "seed": "node scripts/generate-db.mjs",
+    "start": "json-server db.json --host 0.0.0.0 --port 3001"
   },
-  "devDependencies": {
+  "dependencies": {
     "json-server": "1.0.0-beta.3"
   }
 }
