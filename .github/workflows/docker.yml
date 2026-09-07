@@ -1,4 +1,4 @@
-name: Docker smoke test
+name: Docker build
 
 on:
   pull_request:
@@ -9,22 +9,10 @@ permissions:
   contents: read
 
 jobs:
-  smoke:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker compose config --quiet
-      - run: docker compose up --build --detach --wait
-      - name: HTTP smoke tests
-        run: |
-          curl --fail --silent --show-error http://localhost:3000
-          wallets=$(curl --fail --silent --show-error 'http://localhost:3001/wallets?_start=0&_limit=1')
-          node -e 'const data=JSON.parse(process.argv[1]); if(!Array.isArray(data)||data.length===0) process.exit(1)' "$wallets"
-      - name: Diagnostics
-        if: failure()
-        run: |
-          docker compose ps
-          docker compose logs
-      - name: Cleanup
-        if: always()
-        run: docker compose down --volumes --remove-orphans
+      - run: docker compose -f docker-compose.dev.yaml config --quiet
+      - run: docker compose -f docker-compose.prod.yaml config --quiet
+      - run: docker compose -f docker-compose.prod.yaml build

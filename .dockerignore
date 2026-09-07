@@ -1,5 +1,7 @@
 .git
 .github
+.agents
+.codex
 .idea
 .vscode
 **/node_modules
@@ -13,8 +15,7 @@ pnpm-debug.log*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.env*
+**/.env*
 apps/mock-api/db.json
 plans
 advisor-plans
-

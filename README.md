@@ -41,27 +41,25 @@ packages/
 Prerequisite: Docker Engine or Docker Desktop with Compose v2.
 
 ```bash
-docker compose up --build
+docker compose -f docker-compose.dev.yaml up --build
 ```
 
 Open the app at http://localhost:3000 and the mock API at http://localhost:3001.
-Stop with `docker compose down`; use `docker compose down --remove-orphans` when troubleshooting cleanup. The first build downloads images and dependencies and is slower; subsequent builds use the cache.
+Stop with `docker compose -f docker-compose.dev.yaml down`; add `--remove-orphans` when troubleshooting cleanup. The first build downloads images and dependencies and is slower; subsequent builds use the cache.
 
-To override the browser API origin at build time:
+To run the production Compose variant:
 
 ```bash
-NEXT_PUBLIC_API_URL=https://api.example.com docker compose up --build
-# PowerShell
-$env:NEXT_PUBLIC_API_URL="https://api.example.com"; docker compose up --build
+docker compose -f docker-compose.prod.yaml up --build
 ```
 
-`NEXT_PUBLIC_API_URL` is compiled into the browser bundle, so changing it requires a rebuild.
+Both variants currently compile `NEXT_PUBLIC_API_URL=http://localhost:3001` into the browser bundle. Changing it requires rebuilding the web image.
 
 | Issue | Resolution |
 | --- | --- |
-| Port 3000/3001 occupied | Stop the conflicting process or change the published ports in `compose.yaml`. |
-| Stale images | Run `docker compose up --build`. |
-| Health failures | Run `docker compose logs web mock-api`. |
+| Port 3000/3001 occupied | Stop the conflicting process or change the published ports in the selected Compose file. |
+| Stale images | Run `docker compose -f docker-compose.dev.yaml up --build`. |
+| Health failures | Run `docker compose -f docker-compose.dev.yaml logs web mock-api`. |
 
 ## Running locally
 
