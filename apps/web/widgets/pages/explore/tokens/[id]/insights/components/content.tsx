@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { InfoSmallIcon } from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@superdao/ui/components/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@superdao/ui/components/card";
 import type { ChartConfig } from "@superdao/ui/components/chart";
 import { ChartContainer, ChartPrimitive } from "@superdao/ui/components/chart";
 import { Skeleton } from "@superdao/ui/components/skeleton";
@@ -14,6 +14,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@superdao/ui/components
 
 import type { TokenChartDatumView } from "@/entities/token";
 import { useGetTokenInsights } from "@/entities/token";
+import { MetricCard } from "@/shared/ui/metric-card";
 
 const tokenInsightChartConfig = {
   value: {
@@ -61,7 +62,7 @@ export function TokenInsightBarChart({
         >
           {title}
         </CardTitle>
-        {description ? <CardDescription className="text-icon">{description}</CardDescription> : null}
+        {description ? <CardDescription>{description}</CardDescription> : null}
       </CardHeader>
       <CardContent className="flex min-h-0 flex-1 pb-3">
         <ChartContainer
@@ -109,7 +110,7 @@ export function TokenInsightBarChart({
 }
 
 export interface TokenInsightsProps extends ComponentPropsWithRef<"div"> {
-  tokenID: string;
+  tokenID: number;
 }
 
 /**
@@ -145,47 +146,18 @@ export function TokenInsights({ className, tokenID, ref, ...props }: TokenInsigh
       {...props}
     >
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Balances and transactions</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Balances and transactions</h2>
         <div className="grid gap-5 xl:grid-cols-4">
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
             {insights.balanceMetrics.map((metric) => (
-              <Card
+              <MetricCard
                 key={metric.title}
-                className="min-h-34"
-              >
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    {metric.title}
-                    {metric.info ? (
-                      <Tooltip>
-                        <TooltipTrigger
-                          render={
-                            <button
-                              type="button"
-                              className="inline-flex size-4 cursor-help items-center justify-center rounded-sm text-icon outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-                              aria-label={`About ${metric.title}`}
-                            />
-                          }
-                        >
-                          <InfoSmallIcon size={16} />
-                        </TooltipTrigger>
-                        <TooltipContent
-                          side="right"
-                          sideOffset={8}
-                          className="max-w-64 font-normal"
-                        >
-                          {metric.info}
-                        </TooltipContent>
-                      </Tooltip>
-                    ) : null}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="pt-1">
-                  <p className="text-2xl/7 font-bold">{metric.value}</p>
-                  <CardDescription>{metric.description}</CardDescription>
-                </CardContent>
-                <CardFooter className="text-[13px]/[18px] text-muted-foreground">{metric.footer}</CardFooter>
-              </Card>
+                title={metric.title}
+                tooltip={metric.info}
+                value={metric.value}
+                description={metric.description}
+                footerValue={metric.footer}
+              />
             ))}
           </div>
           {charts.slice(0, 2).map(([title, description, values, tone]) => (
@@ -200,9 +172,9 @@ export function TokenInsights({ className, tokenID, ref, ...props }: TokenInsigh
           ))}
         </div>
         <Card className="mt-5 min-h-29">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              Last 30d transactions
+          <CardContent className="py-3">
+            <div className="flex items-center gap-2 text-sm/5 font-semibold text-tabs-foreground">
+              <span>Last 30d transactions</span>
               <Tooltip>
                 <TooltipTrigger
                   render={
@@ -223,54 +195,42 @@ export function TokenInsights({ className, tokenID, ref, ...props }: TokenInsigh
                   Aggregated onchain transactions completed by audience wallets during the last 30 days.
                 </TooltipContent>
               </Tooltip>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="mt-4 grid gap-4 pb-3 sm:grid-cols-2 xl:grid-cols-4">
-            {insights.transactionStats.map((stat) => (
-              <div key={stat.label}>
-                <p
-                  data-tone={stat.tone}
-                  className="text-xl/6 font-bold data-[tone=negative]:text-[#ff5471] data-[tone=positive]:text-[#32d74b]"
-                >
-                  {stat.value}
-                </p>
-                <p className="mt-1 text-[15px]/6 font-semibold text-tabs-foreground">{stat.label}</p>
-              </div>
-            ))}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {insights.transactionStats.map((stat) => (
+                <div key={stat.label}>
+                  <p
+                    data-tone={stat.tone}
+                    className="text-xl/6 font-bold data-[tone=negative]:text-[#ff5471] data-[tone=positive]:text-[#32d74b]"
+                  >
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-[15px]/6 font-semibold text-tabs-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Contacts</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Contacts</h2>
         <div className="grid gap-5 xl:grid-cols-[245px_1fr]">
           <div className="space-y-5">
             {insights.contactMetrics.map((metric) => (
-              <Card
+              <MetricCard
                 key={metric.title}
-                className="min-h-34"
-              >
-                <CardHeader>
-                  <CardTitle>{metric.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-1">
-                  <p className="text-2xl/7 font-bold">{metric.value}</p>
-                  <CardDescription>{metric.description}</CardDescription>
-                </CardContent>
-                <CardFooter className="text-[13px]/[18px] text-muted-foreground">{metric.footer}</CardFooter>
-              </Card>
+                title={metric.title}
+                tooltip={metric.info}
+                value={metric.value}
+                description={metric.description}
+                footerValue={metric.footer}
+              />
             ))}
           </div>
           <Card>
-            <CardHeader>
-              <CardTitle
-                role="heading"
-                aria-level={3}
-              >
-                Twitter influencers
-              </CardTitle>
-            </CardHeader>
+            <h3 className="px-5 pt-3 text-sm/5 font-medium text-tabs-foreground">Twitter influencers</h3>
             <div className="pb-2.5">
-              <Table className="min-w-[700px] [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
+              <Table className="min-w-[700px] [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
@@ -308,7 +268,7 @@ export function TokenInsights({ className, tokenID, ref, ...props }: TokenInsigh
         </div>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Wallet profile</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Wallet profile</h2>
         <div className="grid gap-5 lg:grid-cols-2">
           {charts.slice(2).map(([title, , values, tone]) => (
             <TokenInsightBarChart
@@ -322,10 +282,10 @@ export function TokenInsights({ className, tokenID, ref, ...props }: TokenInsigh
         </div>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Audience overlap</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Audience overlap</h2>
         <Card>
           <div className="pb-2.5">
-            <Table className="min-w-[1000px] [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-[49px] [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-[49px] [&_thead_tr]:hover:bg-transparent">
+            <Table className="min-w-[1000px] [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-[49px] [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-[49px] [&_thead_tr]:hover:bg-transparent">
               <TableHeader>
                 <TableRow>
                   <TableHead>#</TableHead>

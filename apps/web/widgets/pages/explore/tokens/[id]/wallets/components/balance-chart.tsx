@@ -10,8 +10,10 @@ import { ChartContainer, ChartPrimitive } from "@superdao/ui/components/chart";
 
 import type { TokenChartDatumView } from "@/entities/token";
 
+const WALLET_BALANCE_COLOR = "#32d74b";
+
 const chartConfig = {
-  wallets: { label: "Wallets", color: "#32d74b" },
+  value: { label: "Wallets", color: WALLET_BALANCE_COLOR },
 } satisfies ChartConfig;
 
 export interface TokenBalanceChartProps extends ComponentPropsWithRef<typeof Card> {
@@ -59,9 +61,14 @@ export function TokenBalanceChart({ className, data, ref, ...props }: TokenBalan
             />
             <ChartPrimitive.Bar
               dataKey="value"
-              fill="var(--color-wallets)"
               radius={[4, 4, 4, 4]}
             >
+              {data.map((item) => (
+                <ChartPrimitive.Cell
+                  key={item.label}
+                  fill="var(--color-value)"
+                />
+              ))}
               <ChartPrimitive.LabelList
                 dataKey="displayValue"
                 position="top"

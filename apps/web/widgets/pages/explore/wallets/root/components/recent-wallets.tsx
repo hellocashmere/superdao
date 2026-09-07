@@ -17,6 +17,7 @@ import { Skeleton } from "@superdao/ui/components/skeleton";
 
 import type { WalletPreviewView } from "@/entities/wallet";
 import { useGetRecentWallets } from "@/entities/wallet";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface RecentWalletsProps extends ComponentPropsWithRef<"section"> {}
 
@@ -126,7 +127,7 @@ export function RecentWalletChip({ className, ref, wallet, ...props }: RecentWal
     <Link
       {...props}
       ref={ref}
-      href={`/explore/wallets/${encodeURIComponent(wallet.id)}`}
+      href={exploreRoutes.wallet(wallet.id)}
       data-slot="recent-wallet"
       className={cn(
         "flex h-10 shrink-0 items-center gap-3 rounded-lg bg-card py-2 pr-4 pl-3 text-sm/5 font-semibold text-foreground transition-colors outline-none hover:bg-popover focus-visible:ring-2 focus-visible:ring-ring/40",

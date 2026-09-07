@@ -8,6 +8,7 @@ import { cn } from "@superdao/lib/utils";
 import { Button } from "@superdao/ui/components/button";
 
 import { WalletSearch } from "@/features/wallet-search";
+import { exploreRoutes } from "@/shared/lib/routes";
 import { Container } from "@/shared/ui/container";
 import { PageBody, PageHeader } from "@/shared/ui/page-layout";
 
@@ -20,15 +21,15 @@ import { WalletTransactions } from "./components/transactions";
 
 export interface ExploreWalletDetailsPageProps extends ComponentPropsWithRef<"div"> {
   /**
-   * The route identifier of the wallet to display.
+   * Backend-provided ID of the wallet to display.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
- * Renders the detail page for the wallet identifier in the current URL.
+ * Renders the detail page for the wallet ID in the current URL.
  */
-export function ExploreWalletDetailsPage({ className, id, ref, ...props }: ExploreWalletDetailsPageProps) {
+export function ExploreWalletDetailsPage({ className, ref, walletID, ...props }: ExploreWalletDetailsPageProps) {
   const router = useRouter();
 
   return (
@@ -44,7 +45,7 @@ export function ExploreWalletDetailsPage({ className, id, ref, ...props }: Explo
           variant="ghost"
           className="h-auto gap-3 rounded-none p-0 text-2xl/7 font-bold hover:bg-transparent active:translate-y-0 active:bg-transparent"
           type="button"
-          onClick={() => router.push("/explore/wallets")}
+          onClick={() => router.push(exploreRoutes.wallets())}
         >
           <ArrowLeftIcon className="size-6 text-tabs-foreground" />
           Wallets
@@ -53,12 +54,12 @@ export function ExploreWalletDetailsPage({ className, id, ref, ...props }: Explo
       </PageHeader>
 
       <PageBody className="space-y-5 pb-16">
-        <WalletIDHeader id={id} />
-        <WalletContacts id={id} />
-        <WalletLabels id={id} />
-        <WalletActivity id={id} />
-        <WalletTransactions id={id} />
-        <WalletSimilarWallets id={id} />
+        <WalletIDHeader walletID={walletID} />
+        <WalletContacts walletID={walletID} />
+        <WalletLabels walletID={walletID} />
+        <WalletActivity walletID={walletID} />
+        <WalletTransactions walletID={walletID} />
+        <WalletSimilarWallets walletID={walletID} />
       </PageBody>
     </Container>
   );

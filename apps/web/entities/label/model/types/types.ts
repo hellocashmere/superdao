@@ -7,7 +7,8 @@ export type LabelCategory = "interest" | "persona";
  * Label identity displayed in cards and page headers.
  */
 export interface LabelPreviewView {
-  id: string;
+  id: number;
+  slug: string;
   name: string;
   walletCount: string;
   color: string;

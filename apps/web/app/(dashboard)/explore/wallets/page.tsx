@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * Renders the Explore Wallets route.
+ * Renders the wallet discovery route.
  */
 export default function Page() {
   return <ExploreWalletsPage />;

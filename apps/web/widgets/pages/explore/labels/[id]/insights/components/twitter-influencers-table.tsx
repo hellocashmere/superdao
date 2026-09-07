@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useGetLabelInsights } from "@/entities/label";
 
 export interface LabelTwitterInfluencersTableProps extends ComponentPropsWithRef<typeof Card> {
-  label: string;
+  label: number;
 }
 
 /**
@@ -30,9 +30,9 @@ export function LabelTwitterInfluencersTable({ className, label, ref, ...props }
       data-slot="label-twitter-influencers-table"
       className={className}
     >
-      <h3 className="px-5 pt-3 text-sm/5 font-semibold text-tabs-foreground">Twitter influencers</h3>
+      <h3 className="px-5 pt-3 text-sm/5 font-medium text-tabs-foreground">Twitter influencers</h3>
       <div className="pb-2.5">
-        <Table className="min-w-175 [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-13.5 [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
+        <Table className="min-w-175 [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-13.5 [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
           <TableHeader>
             <TableRow>
               <TableHead>Name</TableHead>

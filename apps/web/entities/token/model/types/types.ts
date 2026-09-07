@@ -2,7 +2,8 @@
  * Resource identity and metrics displayed in directories and details headers.
  */
 export interface TokenView {
-  id: string;
+  id: number;
+  slug: string;
   name: string;
   avatar: string;
   owners: string;

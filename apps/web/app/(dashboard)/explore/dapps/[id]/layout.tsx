@@ -1,14 +1,19 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { getDapp } from "@/entities/dapp";
+import { throwResourceError } from "@/shared/api";
+import { parseRouteID } from "@/shared/lib/parse-route-id";
 
 /**
  * Generates metadata for the selected dapp.
  */
 export async function generateMetadata({ params }: LayoutProps<"/explore/dapps/[id]">): Promise<Metadata> {
   const { id } = await params;
-  const dapp = await getDapp(id);
+  const dappID = parseRouteID(id);
+  if (dappID === undefined) notFound();
+  const dapp = await getDapp(dappID).catch(throwResourceError);
 
   return {
     title: `Dapps (${dapp.name})`,

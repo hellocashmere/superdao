@@ -18,14 +18,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@superdao/ui/components/select";
-import { Spinner } from "@superdao/ui/components/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@superdao/ui/components/table";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 import type { TokenView } from "@/entities/token";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface TokensRootTableProps extends ComponentPropsWithRef<typeof Card> {
-  isLoading?: boolean;
   rowOffset?: number;
   tokens: readonly TokenView[];
 }
@@ -33,23 +32,15 @@ export interface TokensRootTableProps extends ComponentPropsWithRef<typeof Card>
 /**
  * Renders clickable token rows and their activity metrics.
  */
-export function TokensRootTable({
-  className,
-  isLoading = false,
-  ref,
-  rowOffset = 0,
-  tokens,
-  ...props
-}: TokensRootTableProps) {
+export function TokensRootTable({ className, ref, rowOffset = 0, tokens, ...props }: TokensRootTableProps) {
   return (
     <Card
       {...props}
       ref={ref}
       data-slot="tokens-root-table"
-      aria-busy={isLoading}
       className={cn("relative min-h-0 flex-1", className)}
     >
-      <div className={cn("min-h-0", tokens.length || isLoading ? "flex-1 overflow-hidden" : "shrink-0")}>
+      <div className={cn("min-h-0", tokens.length ? "flex-1 overflow-hidden" : "shrink-0")}>
         <Table className="min-w-215 table-fixed">
           <TableHeader>
             <TableRow className="h-13.5 border-0 hover:bg-transparent">
@@ -83,7 +74,7 @@ export function TokensRootTable({
                 <TableCell className="px-5 py-0 text-right text-icon">{rowOffset + index + 1}</TableCell>
                 <TableCell className="px-5 py-0 font-semibold">
                   <Link
-                    href={`/explore/tokens/${encodeURIComponent(token.id)}/wallets`}
+                    href={exploreRoutes.tokenWallets(token.id)}
                     className="flex items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <Avatar className="size-7">
@@ -117,12 +108,7 @@ export function TokensRootTable({
           </TableBody>
         </Table>
       </div>
-      {isLoading ? (
-        <div className="pointer-events-none absolute inset-x-0 top-13.5 bottom-0 flex items-center justify-center">
-          <Spinner className="size-6 text-tabs-foreground" />
-          <span className="sr-only">Searching tokens</span>
-        </div>
-      ) : tokens.length === 0 ? (
+      {tokens.length === 0 ? (
         <Empty className="min-h-0 p-0">
           <EmptyHeader className="gap-0">
             <EmptyTitle className="text-2xl/7 font-bold">No results</EmptyTitle>

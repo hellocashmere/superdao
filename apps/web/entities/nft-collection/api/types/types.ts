@@ -5,6 +5,7 @@
  */
 export interface NftCollectionDTO {
   id: string;
+  slug: string;
   name: string;
   avatar: string;
   owners: string;
@@ -45,7 +46,7 @@ export interface NftCollectionChartDatumDTO {
  */
 export interface NftCollectionHighlightsDTO {
   id: string;
-  nft_collection_id: string;
+  nft_collection_id: number;
   metrics: readonly NftCollectionMetricDTO[];
   balance_distribution: readonly NftCollectionChartDatumDTO[];
 }
@@ -72,8 +73,8 @@ export interface NftCollectionWalletActivityDTO {
  * Endpoint: `GET /nft-collection-wallets?nft_collection_id=:id`.
  */
 export interface NftCollectionWalletDTO {
-  id: number;
-  nft_collection_id: string;
+  id: string;
+  nft_collection_id: number;
   name: string;
   avatar: string;
   rank: string;
@@ -139,7 +140,7 @@ export interface NftCollectionOverlapDTO {
  */
 export interface NftCollectionInsightsDTO {
   id: string;
-  nft_collection_id: string;
+  nft_collection_id: number;
   balance_metrics: readonly NftCollectionInsightMetricDTO[];
   wallet_balance: readonly NftCollectionChartDatumDTO[];
   nft_allocation: readonly NftCollectionChartDatumDTO[];

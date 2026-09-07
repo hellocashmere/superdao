@@ -5,16 +5,16 @@ import { Group16BoldIcon, PollBoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
 
+import { exploreRoutes } from "@/shared/lib/routes";
+
 export interface DappTabsListProps extends ComponentPropsWithRef<typeof TabsList> {
-  dappID: string;
+  dappID: number;
 }
 
 /**
  * Renders route navigation between dapp wallets and insights.
  */
 export function DappTabsList({ className, dappID, ref, ...props }: DappTabsListProps) {
-  const dappPath = `/explore/dapps/${encodeURIComponent(dappID)}`;
-
   return (
     <TabsList
       ref={ref}
@@ -25,7 +25,7 @@ export function DappTabsList({ className, dappID, ref, ...props }: DappTabsListP
         className="h-8 rounded-[4px] px-3 py-1"
         value="wallets"
         nativeButton={false}
-        render={<Link href={`${dappPath}/wallets`} />}
+        render={<Link href={exploreRoutes.dappWallets(dappID)} />}
       >
         <Group16BoldIcon
           size={16}
@@ -37,7 +37,7 @@ export function DappTabsList({ className, dappID, ref, ...props }: DappTabsListP
         className="h-8 rounded-[4px] px-3 py-1"
         value="insights"
         nativeButton={false}
-        render={<Link href={`${dappPath}/insights`} />}
+        render={<Link href={exploreRoutes.dappInsights(dappID)} />}
       >
         <PollBoldIcon className="size-4" />
         Insights

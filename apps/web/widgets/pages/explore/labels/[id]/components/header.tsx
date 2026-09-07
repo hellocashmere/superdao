@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 
@@ -9,6 +7,7 @@ import { cn } from "@superdao/lib/utils";
 import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
 
 import { LabelIcon } from "@/entities/label";
+import { exploreRoutes } from "@/shared/lib/routes";
 import { PageHeader } from "@/shared/ui/page-layout";
 
 export interface LabelIDHeaderProps extends ComponentPropsWithRef<typeof PageHeader> {
@@ -23,9 +22,14 @@ export interface LabelIDHeaderProps extends ComponentPropsWithRef<typeof PageHea
   color: string;
 
   /**
-   * Stable label identifier used by the icon and tab navigation.
+   * Backend-provided label ID used by tab navigation.
    */
-  labelID: string;
+  labelID: number;
+
+  /**
+   * Stable label slug used to select its icon.
+   */
+  labelSlug: string;
 
   /**
    * Formatted number of wallets assigned to the label.
@@ -36,9 +40,16 @@ export interface LabelIDHeaderProps extends ComponentPropsWithRef<typeof PageHea
 /**
  * Renders label identity and wallet count.
  */
-export function LabelIDHeader({ className, color, labelID, title, ref, walletCount, ...props }: LabelIDHeaderProps) {
-  const labelPath = `/explore/labels/${encodeURIComponent(labelID)}`;
-
+export function LabelIDHeader({
+  className,
+  color,
+  labelID,
+  labelSlug,
+  title,
+  ref,
+  walletCount,
+  ...props
+}: LabelIDHeaderProps) {
   return (
     <PageHeader
       {...props}
@@ -48,7 +59,7 @@ export function LabelIDHeader({ className, color, labelID, title, ref, walletCou
     >
       <div className="flex min-w-0 items-center gap-3">
         <Link
-          href="/explore/labels"
+          href={exploreRoutes.labels()}
           aria-label="Back to labels"
           className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-full text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
         >
@@ -59,7 +70,7 @@ export function LabelIDHeader({ className, color, labelID, title, ref, walletCou
           style={{ backgroundColor: `${color}14`, color }}
         >
           <LabelIcon
-            labelID={labelID}
+            labelSlug={labelSlug}
             size={16}
           />
         </span>
@@ -73,7 +84,7 @@ export function LabelIDHeader({ className, color, labelID, title, ref, walletCou
           className="h-8"
           value="wallets"
           nativeButton={false}
-          render={<Link href={`${labelPath}/wallets`} />}
+          render={<Link href={exploreRoutes.labelWallets(labelID)} />}
         >
           <Group16BoldIcon
             size={16}
@@ -85,7 +96,7 @@ export function LabelIDHeader({ className, color, labelID, title, ref, walletCou
           className="h-8"
           value="insights"
           nativeButton={false}
-          render={<Link href={`${labelPath}/insights`} />}
+          render={<Link href={exploreRoutes.labelInsights(labelID)} />}
         >
           <PollBoldIcon className="size-4" />
           Insights

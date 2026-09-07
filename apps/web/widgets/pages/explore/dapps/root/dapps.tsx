@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from "react";
 import { useMemo, useState } from "react";
 
-import { useLoading, usePagination } from "@superdao/hooks";
+import { usePagination } from "@superdao/hooks";
 import { cn } from "@superdao/lib/utils";
 
 import { useGetDapps } from "@/entities/dapp";
@@ -26,8 +26,6 @@ export function ExploreDappsPage({ className, ref, ...props }: ExploreDappsPageP
   const dappsQuery = useGetDapps();
   const dapps = dappsQuery.data;
   const [search, setSearch] = useState("");
-  const isSearching = useLoading(700);
-
   const filteredDapps = useMemo(() => {
     return (dapps ?? []).filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
   }, [dapps, search]);
@@ -74,7 +72,6 @@ export function ExploreDappsPage({ className, ref, ...props }: ExploreDappsPageP
         <DappsRootTable
           dapps={visibleDapps}
           rowOffset={pagination.offset}
-          isLoading={Boolean(search) && isSearching}
         />
         <DappsRootPagination
           pagination={pagination}

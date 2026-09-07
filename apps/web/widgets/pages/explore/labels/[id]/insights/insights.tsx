@@ -4,18 +4,17 @@ import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
 import { Skeleton } from "@superdao/ui/components/skeleton";
-import { MetricCard } from "@/shared/ui/metric-card";
 
 import { useGetLabelInsights } from "@/entities/label";
-
-import { LabelInsightTransactions } from "./components/transactions";
+import { MetricCard } from "@/shared/ui/metric-card";
 
 import { LabelAudienceOverlapTable } from "./components/audience-overlap-table";
 import { LabelInsightBarChart } from "./components/bar-chart";
+import { LabelInsightTransactions } from "./components/transactions";
 import { LabelTwitterInfluencersTable } from "./components/twitter-influencers-table";
 
 export interface LabelInsightsTabProps extends ComponentPropsWithRef<"div"> {
-  label: string;
+  label: number;
 }
 
 /**
@@ -45,7 +44,7 @@ export function LabelInsightsTab({ className, label, ref, ...props }: LabelInsig
       className={cn("space-y-6", className)}
     >
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Balances and transactions</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Balances and transactions</h2>
         <div className="grid gap-5 xl:grid-cols-4">
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
             {insights.balanceMetrics.map((metric) => (
@@ -81,7 +80,7 @@ export function LabelInsightsTab({ className, label, ref, ...props }: LabelInsig
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Contacts</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Contacts</h2>
         <div className="grid gap-5 xl:grid-cols-[245px_1fr]">
           <div className="space-y-5">
             {insights.contactMetrics.map((metric) => (
@@ -100,7 +99,7 @@ export function LabelInsightsTab({ className, label, ref, ...props }: LabelInsig
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Wallet profile</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Wallet profile</h2>
         <div className="grid gap-5 lg:grid-cols-2">
           <LabelInsightBarChart
             label={label}
@@ -125,7 +124,7 @@ export function LabelInsightsTab({ className, label, ref, ...props }: LabelInsig
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Audience overlap</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Audience overlap</h2>
         <LabelAudienceOverlapTable label={label} />
       </section>
     </div>

@@ -2,7 +2,7 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { AddIcon, ArrowDownIcon, CloseIcon, ColumnsIcon, FilterIcon, SearchIcon } from "@superdao/icons/outline";
+import { ArrowDownIcon, CloseIcon, ColumnsIcon, DocumentIcon, FilterIcon, SearchIcon } from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
 import { Button } from "@superdao/ui/components/button";
 import { Checkbox } from "@superdao/ui/components/checkbox";
@@ -187,11 +187,11 @@ export function DataTableToolbar({ className, ref, table, ...props }: DataTableT
             variant="ghost"
             className="font-normal"
           >
-            <AddIcon
+            <DocumentIcon
               data-icon="inline-start"
               className="text-tabs-foreground"
             />
-            Add data
+            FAQ
           </Button>
           <ExportWalletsDialog />
         </div>

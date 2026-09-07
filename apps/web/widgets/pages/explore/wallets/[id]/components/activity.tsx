@@ -13,14 +13,14 @@ export interface WalletActivityProps extends Omit<ComponentPropsWithRef<typeof W
   /**
    * ID of the wallet whose activity is rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
  * Renders NFT collections associated with the wallet.
  */
-export function WalletActivity({ className, id, ref, ...props }: WalletActivityProps) {
-  const activityQuery = useGetWalletActivity(id);
+export function WalletActivity({ className, ref, walletID, ...props }: WalletActivityProps) {
+  const activityQuery = useGetWalletActivity(walletID);
 
   if (activityQuery.error) throw activityQuery.error;
   if (activityQuery.isPending) {

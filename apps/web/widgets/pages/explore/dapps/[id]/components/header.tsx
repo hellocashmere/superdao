@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 
@@ -8,6 +6,7 @@ import { cn } from "@superdao/lib/utils";
 import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
 
 import type { DappView } from "@/entities/dapp";
+import { exploreRoutes } from "@/shared/lib/routes";
 import { PageHeader } from "@/shared/ui/page-layout";
 
 import { DappTabsList } from "./tabs";
@@ -29,13 +28,13 @@ export function DappIDHeader({ className, dapp, ref, ...props }: DappIDHeaderPro
     >
       <div className="flex min-w-0 items-center gap-3">
         <Link
-          href="/explore/dapps"
+          href={exploreRoutes.dapps()}
           aria-label="Back to Dapps"
-          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-md text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-full text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
         >
           <ArrowLeftIcon size={24} />
         </Link>
-        <Avatar className="size-8 shrink-0">
+        <Avatar size="s">
           <AvatarImage
             src={dapp.avatar}
             alt=""

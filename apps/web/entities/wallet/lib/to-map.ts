@@ -26,7 +26,7 @@ import type {
  */
 export function WalletDTOToPreviewView(dto: WalletDTO): WalletPreviewView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
     name: dto.name,
     avatar: dto.avatar,
   };
@@ -52,7 +52,7 @@ export function WalletDTOToRankedView(dto: WalletDTO, filter: WalletFilter): Ran
 export function WalletOverviewDTOToView(dto: WalletOverviewDTO, wallet: WalletPreviewView): WalletDetailsHeaderView {
   return {
     wallet: wallet,
-    ids: Array.from(new Set([wallet.name, wallet.id, ...dto.ids])),
+    ids: Array.from(new Set([wallet.name, ...dto.ids])),
     bio: dto.bio.map((segment) => ({ ...segment })),
     bioTooltip: dto.bio_tooltip,
     superrank: dto.superrank,
@@ -99,7 +99,7 @@ export function WalletActivityCollectionDTOToView(dto: WalletActivityCollectionD
  */
 export function WalletSimilarWalletDTOToView(dto: WalletSimilarWalletDTO): WalletSimilarWalletView {
   return {
-    id: dto.id,
+    id: dto.similar_wallet_id,
     name: dto.name,
     avatar: dto.avatar,
     score: dto.score,

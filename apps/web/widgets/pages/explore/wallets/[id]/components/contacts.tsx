@@ -27,14 +27,14 @@ export interface WalletContactsProps extends Omit<ComponentPropsWithRef<typeof W
   /**
    * ID of the wallet whose contacts are rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
  * Renders the wallet contact and external-profile actions.
  */
-export function WalletContacts({ className, id, ref, ...props }: WalletContactsProps) {
-  const contactsQuery = useGetWalletContacts(id);
+export function WalletContacts({ className, ref, walletID, ...props }: WalletContactsProps) {
+  const contactsQuery = useGetWalletContacts(walletID);
 
   if (contactsQuery.error) throw contactsQuery.error;
   if (contactsQuery.isPending) {

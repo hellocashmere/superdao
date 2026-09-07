@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 
 import { LinkOpenBoldIcon } from "@superdao/icons/bold";

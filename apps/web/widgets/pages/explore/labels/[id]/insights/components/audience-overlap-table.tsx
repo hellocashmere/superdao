@@ -9,7 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useGetLabelInsights } from "@/entities/label";
 
 export interface LabelAudienceOverlapTableProps extends ComponentPropsWithRef<typeof Card> {
-  label: string;
+  label: number;
 }
 
 /**
@@ -31,7 +31,7 @@ export function LabelAudienceOverlapTable({ className, label, ref, ...props }: L
       className={className}
     >
       <div className="pb-2.5">
-        <Table className="min-w-250 [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-12.25 [&_th]:h-13.5 [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-12.25 [&_thead_tr]:hover:bg-transparent">
+        <Table className="min-w-250 [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-12.25 [&_th]:h-13.5 [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-12.25 [&_thead_tr]:hover:bg-transparent">
           <TableHeader>
             <TableRow>
               <TableHead>#</TableHead>
@@ -39,8 +39,6 @@ export function LabelAudienceOverlapTable({ className, label, ref, ...props }: L
               <TableHead className="text-right">Owners in audience</TableHead>
               <TableHead className="text-right">Share in audience</TableHead>
               <TableHead className="text-right">Owners</TableHead>
-              <TableHead className="text-right">Items in audience</TableHead>
-              <TableHead className="text-right">Items</TableHead>
               <TableHead className="text-right">Floor price</TableHead>
             </TableRow>
           </TableHeader>
@@ -63,8 +61,6 @@ export function LabelAudienceOverlapTable({ className, label, ref, ...props }: L
                 <TableCell className="text-right">{collection.ownersInAudience}</TableCell>
                 <TableCell className="text-right">{collection.shareInAudience}</TableCell>
                 <TableCell className="text-right">{collection.owners}</TableCell>
-                <TableCell className="text-right">{collection.itemsInAudience}</TableCell>
-                <TableCell className="text-right">{collection.items}</TableCell>
                 <TableCell className="text-right">{collection.floorPrice}</TableCell>
               </TableRow>
             ))}

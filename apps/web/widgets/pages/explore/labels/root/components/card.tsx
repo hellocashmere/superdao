@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 
@@ -7,6 +5,7 @@ import { cn } from "@superdao/lib/utils";
 
 import type { LabelPreviewView } from "@/entities/label";
 import { LabelIcon } from "@/entities/label";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface LabelCardProps extends Omit<ComponentPropsWithRef<"a">, "id" | "title"> {
   /**
@@ -23,7 +22,7 @@ export function LabelCard({ ref, className, label, ...props }: LabelCardProps) {
     <Link
       {...props}
       ref={ref}
-      href={`/explore/labels/${encodeURIComponent(label.id)}/wallets`}
+      href={exploreRoutes.labelWallets(label.id)}
       data-slot="label-card"
       className={cn(
         "flex h-16 items-center gap-4 rounded-lg outline-none hover:bg-sidebar-accent focus-visible:ring-2 focus-visible:ring-ring/40",
@@ -35,7 +34,7 @@ export function LabelCard({ ref, className, label, ...props }: LabelCardProps) {
         style={{ backgroundColor: `${label.color}14` }}
       >
         <LabelIcon
-          labelID={label.id}
+          labelSlug={label.slug}
           className="size-8"
           style={{ color: label.color }}
         />

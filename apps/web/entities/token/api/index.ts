@@ -1,4 +1,11 @@
-export { getToken, useGetToken, useGetTokenHighlights, useGetTokenInsights, useGetTokens, useGetTokenWallets } from "./api";
+export {
+  getToken,
+  useGetToken,
+  useGetTokenHighlights,
+  useGetTokenInsights,
+  useGetTokens,
+  useGetTokenWallets,
+} from "./api";
 export type {
   TokenChartDatumDTO,
   TokenDTO,

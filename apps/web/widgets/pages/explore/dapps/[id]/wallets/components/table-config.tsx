@@ -1,6 +1,5 @@
 import type { ElementType } from "react";
 
-import { MailBoldIcon } from "@superdao/icons/bold";
 import { ArrowDownIcon, DotsIcon, LinkIcon, MirrorIcon, OpenseaIcon, TwitterIcon } from "@superdao/icons/outline";
 import { Avatar, AvatarGroup, AvatarGroupCount, AvatarImage } from "@superdao/ui/components/avatar";
 import { Badge } from "@superdao/ui/components/badge";
@@ -52,8 +51,9 @@ export const columnLabels: Readonly<Record<string, string>> = {
   wallet: "Wallet",
 };
 
-const contactIcons: Readonly<Record<WalletContact, ElementType>> = {
-  email: MailBoldIcon,
+type VisibleWalletContact = Exclude<WalletContact, "email">;
+
+const contactIcons: Readonly<Record<VisibleWalletContact, ElementType>> = {
   link: LinkIcon,
   mirror: MirrorIcon,
   opensea: OpenseaIcon,
@@ -321,7 +321,7 @@ export const columns = columnHelper.columns([
     header: "Contacts",
     enableSorting: false,
     cell: ({ row }) => {
-      const contacts = row.original.contacts;
+      const contacts = row.original.contacts.filter((contact): contact is VisibleWalletContact => contact !== "email");
       if (!contacts.length) return emptyValue("No linked account");
 
       return (
@@ -334,8 +334,8 @@ export const columns = columnHelper.columns([
               <a
                 key={contact}
                 href={getContactHref(contact, row.original)}
-                target={contact === "email" ? undefined : "_blank"}
-                rel={contact === "email" ? undefined : "noreferrer"}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={`${contactLabels[contact]} contact for ${row.original.name}`}
                 title={contactLabels[contact]}
                 className="flex size-7 items-center justify-center rounded-md transition-colors outline-none hover:bg-secondary-hover hover:text-foreground focus-visible:bg-secondary-hover focus-visible:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40 active:scale-95"

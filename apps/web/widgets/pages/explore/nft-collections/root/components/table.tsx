@@ -18,15 +18,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@superdao/ui/components/select";
-import { Spinner } from "@superdao/ui/components/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@superdao/ui/components/table";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 import type { NftCollectionView } from "@/entities/nft-collection";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface NftCollectionsRootTableProps extends ComponentPropsWithRef<typeof Card> {
   collections: readonly NftCollectionView[];
-  isLoading?: boolean;
   rowOffset?: number;
 }
 
@@ -36,7 +35,6 @@ export interface NftCollectionsRootTableProps extends ComponentPropsWithRef<type
 export function NftCollectionsRootTable({
   className,
   collections,
-  isLoading = false,
   ref,
   rowOffset = 0,
   ...props
@@ -46,10 +44,9 @@ export function NftCollectionsRootTable({
       {...props}
       ref={ref}
       data-slot="nft-collections-root-table"
-      aria-busy={isLoading}
       className={cn("relative min-h-0 flex-1", className)}
     >
-      <div className={cn("min-h-0", collections.length || isLoading ? "flex-1 overflow-hidden" : "shrink-0")}>
+      <div className={cn("min-h-0", collections.length ? "flex-1 overflow-hidden" : "shrink-0")}>
         <Table className="min-w-215 table-fixed">
           <TableHeader>
             <TableRow className="h-13.5 border-0 hover:bg-transparent">
@@ -85,7 +82,7 @@ export function NftCollectionsRootTable({
                 <TableCell className="px-5 py-0 text-right text-icon">{rowOffset + index + 1}</TableCell>
                 <TableCell className="px-5 py-0 font-semibold">
                   <Link
-                    href={`/explore/nft-collections/${encodeURIComponent(collection.id)}/wallets`}
+                    href={exploreRoutes.nftCollectionWallets(collection.id)}
                     className="flex items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <Avatar className="size-7">
@@ -119,12 +116,7 @@ export function NftCollectionsRootTable({
           </TableBody>
         </Table>
       </div>
-      {isLoading ? (
-        <div className="pointer-events-none absolute inset-x-0 top-13.5 bottom-0 flex items-center justify-center">
-          <Spinner className="size-6 text-tabs-foreground" />
-          <span className="sr-only">Searching NFT collections</span>
-        </div>
-      ) : collections.length === 0 ? (
+      {collections.length === 0 ? (
         <Empty className="min-h-0 p-0">
           <EmptyHeader className="gap-0">
             <EmptyTitle className="text-2xl/7 font-bold">No results</EmptyTitle>

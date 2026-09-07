@@ -5,6 +5,7 @@
  */
 export interface LabelDTO {
   id: string;
+  slug: string;
   name: string;
   wallet_count: string;
   color: string;
@@ -43,7 +44,7 @@ export interface LabelChartDatumDTO {
  */
 export interface LabelHighlightsDTO {
   id: string;
-  label_id: string;
+  label_id: number;
   metrics: readonly LabelMetricDTO[];
   balance_distribution: readonly LabelChartDatumDTO[];
 }
@@ -70,8 +71,8 @@ export interface LabelWalletActivityDTO {
  * Endpoint: `GET /label-wallets?label_id=:id`.
  */
 export interface LabelWalletDTO {
-  id: number;
-  label_id: string;
+  id: string;
+  label_id: number;
   name: string;
   avatar: string;
   rank: string;
@@ -140,7 +141,7 @@ export interface LabelAudienceOverlapDTO {
  */
 export interface LabelInsightsDTO {
   id: string;
-  label_id: string;
+  label_id: number;
   balance_metrics: readonly LabelInsightMetricDTO[];
   wallet_balance: readonly LabelChartDatumDTO[];
   nft_allocation: readonly LabelChartDatumDTO[];

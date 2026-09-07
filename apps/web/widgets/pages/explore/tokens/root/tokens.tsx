@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from "react";
 import { useMemo, useState } from "react";
 
-import { useLoading, usePagination } from "@superdao/hooks";
+import { usePagination } from "@superdao/hooks";
 import { cn } from "@superdao/lib/utils";
 
 import { useGetTokens } from "@/entities/token";
@@ -26,8 +26,6 @@ export function ExploreTokensPage({ className, ref, ...props }: ExploreTokensPag
   const tokensQuery = useGetTokens();
   const tokens = tokensQuery.data;
   const [search, setSearch] = useState("");
-  const isSearching = useLoading(700);
-
   const filteredTokens = useMemo(() => {
     return (tokens ?? []).filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
   }, [search, tokens]);
@@ -74,7 +72,6 @@ export function ExploreTokensPage({ className, ref, ...props }: ExploreTokensPag
         <TokensRootTable
           tokens={visibleTokens}
           rowOffset={pagination.offset}
-          isLoading={Boolean(search) && isSearching}
         />
         <TokensRootPagination
           pagination={pagination}

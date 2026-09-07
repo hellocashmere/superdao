@@ -6,7 +6,7 @@ import { TokenHighlights } from "./components/highlights";
 import { DataTable } from "./components/table";
 
 export interface TokenWalletsTabProps extends ComponentPropsWithRef<"div"> {
-  tokenID: string;
+  tokenID: number;
 }
 
 /**

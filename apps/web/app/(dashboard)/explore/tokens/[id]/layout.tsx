@@ -1,14 +1,19 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { getToken } from "@/entities/token";
+import { throwResourceError } from "@/shared/api";
+import { parseRouteID } from "@/shared/lib/parse-route-id";
 
 /**
  * Generates metadata for the selected token.
  */
 export async function generateMetadata({ params }: LayoutProps<"/explore/tokens/[id]">): Promise<Metadata> {
   const { id } = await params;
-  const token = await getToken(id);
+  const tokenID = parseRouteID(id);
+  if (tokenID === undefined) notFound();
+  const token = await getToken(tokenID).catch(throwResourceError);
 
   return {
     title: `Tokens (${token.name})`,

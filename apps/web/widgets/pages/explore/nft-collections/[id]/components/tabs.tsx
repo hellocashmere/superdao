@@ -5,16 +5,16 @@ import { Group16BoldIcon, PollBoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
 
+import { exploreRoutes } from "@/shared/lib/routes";
+
 export interface CollectionTabsListProps extends ComponentPropsWithRef<typeof TabsList> {
-  collectionID: string;
+  collectionID: number;
 }
 
 /**
  * Renders route navigation between collection wallets and insights.
  */
 export function CollectionTabsList({ className, collectionID, ref, ...props }: CollectionTabsListProps) {
-  const collectionPath = `/explore/nft-collections/${encodeURIComponent(collectionID)}`;
-
   return (
     <TabsList
       ref={ref}
@@ -25,7 +25,7 @@ export function CollectionTabsList({ className, collectionID, ref, ...props }: C
         className="h-8 rounded-[4px] px-3 py-1"
         value="wallets"
         nativeButton={false}
-        render={<Link href={`${collectionPath}/wallets`} />}
+        render={<Link href={exploreRoutes.nftCollectionWallets(collectionID)} />}
       >
         <Group16BoldIcon
           size={16}
@@ -37,7 +37,7 @@ export function CollectionTabsList({ className, collectionID, ref, ...props }: C
         className="h-8 rounded-[4px] px-3 py-1"
         value="insights"
         nativeButton={false}
-        render={<Link href={`${collectionPath}/insights`} />}
+        render={<Link href={exploreRoutes.nftCollectionInsights(collectionID)} />}
       >
         <PollBoldIcon className="size-4" />
         Insights

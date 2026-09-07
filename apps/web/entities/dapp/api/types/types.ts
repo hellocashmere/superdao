@@ -5,6 +5,7 @@
  */
 export interface DappDTO {
   id: string;
+  slug: string;
   name: string;
   avatar: string;
   owners: string;
@@ -45,7 +46,7 @@ export interface DappChartDatumDTO {
  */
 export interface DappHighlightsDTO {
   id: string;
-  dapp_id: string;
+  dapp_id: number;
   metrics: readonly DappMetricDTO[];
   balance_distribution: readonly DappChartDatumDTO[];
 }
@@ -72,8 +73,8 @@ export interface DappWalletActivityDTO {
  * Endpoint: `GET /dapp-wallets?dapp_id=:id`.
  */
 export interface DappWalletDTO {
-  id: number;
-  dapp_id: string;
+  id: string;
+  dapp_id: number;
   name: string;
   avatar: string;
   rank: string;
@@ -139,7 +140,7 @@ export interface DappOverlapDTO {
  */
 export interface DappInsightsDTO {
   id: string;
-  dapp_id: string;
+  dapp_id: number;
   balance_metrics: readonly DappInsightMetricDTO[];
   wallet_balance: readonly DappChartDatumDTO[];
   nft_allocation: readonly DappChartDatumDTO[];

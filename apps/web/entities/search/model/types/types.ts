@@ -11,6 +11,8 @@ export interface SearchResultView {
   name: string;
   type: string;
   href: string;
+  targetID?: number;
+  targetKind?: ExploreSearchTargetKind;
   avatarSrc?: string;
   glyph?: SearchGlyph;
 }
@@ -35,3 +37,4 @@ export interface SearchActions {
  * Combines search state with mutations consumed by widgets.
  */
 export type SearchStore = SearchState & SearchActions;
+import type { ExploreSearchTargetKind } from "../../api/types/types";

@@ -2,12 +2,13 @@
 
 import type { ComponentPropsWithRef } from "react";
 
+import { WarningIcon } from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
-import { InfoIcon } from "@superdao/icons/outline";
 import { Alert, AlertDescription, AlertTitle } from "@superdao/ui/components/alert";
 import { Tabs, TabsContent } from "@superdao/ui/components/tabs";
 
 import { useGetNftCollection } from "@/entities/nft-collection";
+import { throwResourceError } from "@/shared/api";
 import { Container } from "@/shared/ui/container";
 import { PageBody } from "@/shared/ui/page-layout";
 
@@ -17,7 +18,7 @@ import { CollectionInsightsTab } from "./insights/insights";
 import { CollectionWalletsTab } from "./wallets/wallets";
 
 export interface ExploreNftCollectionDetailsPageProps extends ComponentPropsWithRef<"div"> {
-  collectionID: string;
+  collectionID: number;
   tab: "insights" | "wallets";
 }
 
@@ -32,7 +33,7 @@ export function ExploreNftCollectionDetailsPage({
   ...props
 }: ExploreNftCollectionDetailsPageProps) {
   const collectionQuery = useGetNftCollection(collectionID);
-  if (collectionQuery.error) throw collectionQuery.error;
+  if (collectionQuery.error) throwResourceError(collectionQuery.error);
 
   if (collectionQuery.isPending) {
     return (
@@ -56,7 +57,16 @@ export function ExploreNftCollectionDetailsPage({
         className="gap-0"
       >
         <CollectionIDHeader collection={collectionQuery.data} />
-        <Alert className="mb-5" variant="info"><InfoIcon aria-hidden="true" /><AlertTitle>Wallet data is updated daily</AlertTitle><AlertDescription>Metrics may take up to 24 hours to reflect the latest on-chain activity.</AlertDescription></Alert>
+        <Alert
+          className="mb-5"
+          variant="warning"
+        >
+          <WarningIcon aria-hidden="true" />
+          <AlertTitle>Recent NFT transfers may not appear yet</AlertTitle>
+          <AlertDescription>
+            Ownership snapshots are rebuilt daily, so fresh transfers can remain pending for up to 24 hours.
+          </AlertDescription>
+        </Alert>
         <PageBody className="pb-16">
           <TabsContent value="wallets">
             {tab === "wallets" ? <CollectionWalletsTab collectionID={collectionID} /> : null}

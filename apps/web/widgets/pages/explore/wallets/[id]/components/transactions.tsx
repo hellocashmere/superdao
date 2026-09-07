@@ -16,7 +16,7 @@ export interface WalletTransactionsProps extends Omit<ComponentPropsWithRef<type
   /**
    * ID of the wallet whose transactions are rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 const transactionIcons: Record<WalletTransactionKind, ElementType> = {
@@ -29,8 +29,8 @@ const transactionIcons: Record<WalletTransactionKind, ElementType> = {
 /**
  * Renders the wallet transaction summary and recent transaction rows.
  */
-export function WalletTransactions({ className, id, ref, ...props }: WalletTransactionsProps) {
-  const transactionsQuery = useGetWalletTransactions(id);
+export function WalletTransactions({ className, ref, walletID, ...props }: WalletTransactionsProps) {
+  const transactionsQuery = useGetWalletTransactions(walletID);
 
   if (transactionsQuery.error) throw transactionsQuery.error;
   if (transactionsQuery.isPending) {

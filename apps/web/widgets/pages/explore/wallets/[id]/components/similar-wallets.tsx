@@ -7,6 +7,7 @@ import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
 import { Skeleton } from "@superdao/ui/components/skeleton";
 
 import { useGetSimilarWallets } from "@/entities/wallet";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 import { WalletIDCard } from "./card";
 
@@ -14,14 +15,14 @@ export interface WalletSimilarWalletsProps extends Omit<ComponentPropsWithRef<ty
   /**
    * ID of the wallet for which similar wallets are rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
  * Renders wallets with similar activity and classification signals.
  */
-export function WalletSimilarWallets({ className, id, ref, ...props }: WalletSimilarWalletsProps) {
-  const similarWalletsQuery = useGetSimilarWallets(id);
+export function WalletSimilarWallets({ className, ref, walletID, ...props }: WalletSimilarWalletsProps) {
+  const similarWalletsQuery = useGetSimilarWallets(walletID);
 
   if (similarWalletsQuery.error) throw similarWalletsQuery.error;
   if (similarWalletsQuery.isPending) {
@@ -57,7 +58,7 @@ export function WalletSimilarWallets({ className, id, ref, ...props }: WalletSim
         {similarWalletsQuery.data.map((similarWallet) => (
           <Link
             key={similarWallet.id}
-            href={`/explore/wallets/${encodeURIComponent(similarWallet.id)}`}
+            href={exploreRoutes.wallet(similarWallet.id)}
             className="flex h-9 w-full cursor-pointer items-center gap-3 rounded-lg px-3 text-left text-sm/5 outline-none hover:bg-sidebar-accent focus-visible:ring-2 focus-visible:ring-ring/40"
           >
             <Avatar className="data-[size=m]:size-5">

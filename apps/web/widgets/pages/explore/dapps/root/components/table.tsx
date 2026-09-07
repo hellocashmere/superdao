@@ -18,22 +18,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@superdao/ui/components/select";
-import { Spinner } from "@superdao/ui/components/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@superdao/ui/components/table";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
 
 import type { DappView } from "@/entities/dapp";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface DappsRootTableProps extends ComponentPropsWithRef<typeof Card> {
   /**
    * Dapps displayed on the current directory page.
    */
   dapps: readonly DappView[];
-
-  /**
-   * Whether filtered rows are being prepared.
-   */
-  isLoading?: boolean;
 
   /**
    * Number added to the visible row index.
@@ -44,23 +39,15 @@ export interface DappsRootTableProps extends ComponentPropsWithRef<typeof Card> 
 /**
  * Renders clickable dapp rows and their activity metrics.
  */
-export function DappsRootTable({
-  className,
-  dapps,
-  isLoading = false,
-  ref,
-  rowOffset = 0,
-  ...props
-}: DappsRootTableProps) {
+export function DappsRootTable({ className, dapps, ref, rowOffset = 0, ...props }: DappsRootTableProps) {
   return (
     <Card
       {...props}
       ref={ref}
       data-slot="dapps-root-table"
-      aria-busy={isLoading}
       className={cn("relative min-h-0 flex-1", className)}
     >
-      <div className={cn("min-h-0", dapps.length || isLoading ? "flex-1 overflow-hidden" : "shrink-0")}>
+      <div className={cn("min-h-0", dapps.length ? "flex-1 overflow-hidden" : "shrink-0")}>
         <Table className="min-w-215 table-fixed">
           <TableHeader>
             <TableRow className="h-13.5 border-0 hover:bg-transparent">
@@ -94,7 +81,7 @@ export function DappsRootTable({
                 <TableCell className="px-5 py-0 text-right text-icon">{rowOffset + index + 1}</TableCell>
                 <TableCell className="px-5 py-0 font-semibold">
                   <Link
-                    href={`/explore/dapps/${encodeURIComponent(dapp.id)}/wallets`}
+                    href={exploreRoutes.dappWallets(dapp.id)}
                     className="flex items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                   >
                     <Avatar className="size-7">
@@ -128,12 +115,7 @@ export function DappsRootTable({
           </TableBody>
         </Table>
       </div>
-      {isLoading ? (
-        <div className="pointer-events-none absolute inset-x-0 top-13.5 bottom-0 flex items-center justify-center">
-          <Spinner className="size-6 text-tabs-foreground" />
-          <span className="sr-only">Searching dapps</span>
-        </div>
-      ) : dapps.length === 0 ? (
+      {dapps.length === 0 ? (
         <Empty className="min-h-0 p-0">
           <EmptyHeader className="gap-0">
             <EmptyTitle className="text-2xl/7 font-bold">No results</EmptyTitle>

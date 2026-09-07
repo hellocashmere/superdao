@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from "react";
 import { useEffect, useState } from "react";
 
-import { SuccessIcon, UserExportIcon } from "@superdao/icons/outline";
+import { ShareIcon, SuccessIcon } from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
 import { Button } from "@superdao/ui/components/button";
 import {
@@ -70,7 +70,7 @@ export function ExportWalletsDialog({ className, ref, ...props }: ExportWalletsD
             />
           }
         >
-          <UserExportIcon
+          <ShareIcon
             data-icon="inline-start"
             className="text-tabs-foreground"
           />

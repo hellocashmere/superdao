@@ -1,15 +1,15 @@
 import type { ComponentPropsWithRef } from "react";
 
+import { MailBoldIcon, Twitter2BoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 
 import { useGetNftCollectionHighlights } from "@/entities/nft-collection";
 import { MetricCard } from "@/shared/ui/metric-card";
-import { MailBoldIcon, Twitter2BoldIcon } from "@superdao/icons/bold";
 
 import { CollectionBalanceChart } from "./balance-chart";
 
 export interface CollectionHighlightsProps extends ComponentPropsWithRef<"section"> {
-  collectionID: string;
+  collectionID: number;
 }
 
 /**
@@ -32,8 +32,19 @@ export function CollectionHighlights({ className, collectionID, ref, ...props }:
       {highlightsQuery.data.metrics.map((metric) => (
         <MetricCard
           key={metric.kind}
-          title={metric.title} value={metric.value} description={metric.description} footerValue={metric.footerValue} footerLabel={metric.footerLabel} tooltip={metric.info}
-          icon={metric.kind === "email" ? <MailBoldIcon size={20} /> : metric.kind === "twitter" ? <Twitter2BoldIcon size={20} /> : undefined}
+          title={metric.title}
+          value={metric.value}
+          description={metric.description}
+          footerValue={metric.footerValue}
+          footerLabel={metric.footerLabel}
+          tooltip={metric.info}
+          icon={
+            metric.kind === "email" ? (
+              <MailBoldIcon size={20} />
+            ) : metric.kind === "twitter" ? (
+              <Twitter2BoldIcon size={20} />
+            ) : undefined
+          }
         />
       ))}
       <CollectionBalanceChart data={highlightsQuery.data.balanceDistribution} />

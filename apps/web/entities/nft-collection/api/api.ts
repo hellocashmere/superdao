@@ -29,9 +29,8 @@ import type {
  *
  * Endpoint: `GET /nft-collections/:id`.
  */
-export async function getNftCollection(id: string): Promise<NftCollectionView> {
-  const normalizedID = id.trim().toLowerCase();
-  const response = await baseQuery<NftCollectionDTO>(`/nft-collections/${encodeURIComponent(normalizedID)}`, {
+export async function getNftCollection(id: number): Promise<NftCollectionView> {
+  const response = await baseQuery<NftCollectionDTO>(`/nft-collections/${id}`, {
     method: "GET",
   });
 
@@ -52,18 +51,15 @@ export function useGetNftCollections(): UseQueryResult<readonly NftCollectionVie
 }
 
 /**
- * Loads one NFT collection by its identifier.
+ * Loads one NFT collection by its backend-provided ID.
  *
  * Endpoint: `GET /nft-collections/:id`.
  */
-export function useGetNftCollection(id: string): UseQueryResult<NftCollectionView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetNftCollection(id: number): UseQueryResult<NftCollectionView, Error> {
   return useQuery<APIResponse<NftCollectionDTO>, Error, NftCollectionView>({
-    queryKey: ["nft-collections", normalizedID],
-    queryFn: () => baseQuery<NftCollectionDTO>(`/nft-collections/${encodeURIComponent(normalizedID)}`, { method: "GET" }),
+    queryKey: ["nft-collections", "by-id", id],
+    queryFn: () => baseQuery<NftCollectionDTO>(`/nft-collections/${id}`, { method: "GET" }),
     select: (response) => NftCollectionDTOToView(response.data),
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -72,26 +68,23 @@ export function useGetNftCollection(id: string): UseQueryResult<NftCollectionVie
  *
  * Endpoint: `GET /nft-collection-highlights?nft_collection_id=:id`.
  */
-export function useGetNftCollectionHighlights(id: string): UseQueryResult<NftCollectionHighlightsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetNftCollectionHighlights(id: number): UseQueryResult<NftCollectionHighlightsView, Error> {
   return useQuery<APIResponse<readonly NftCollectionHighlightsDTO[]>, Error, NftCollectionHighlightsView>({
-    queryKey: ["nft-collections", normalizedID, "highlights"],
+    queryKey: ["nft-collections", "by-id", id, "highlights"],
     queryFn: () =>
       baseQuery<readonly NftCollectionHighlightsDTO[]>("/nft-collection-highlights", {
         method: "GET",
-        params: { nft_collection_id: normalizedID },
+        params: { nft_collection_id: id },
       }),
     select: (response) => {
       const highlights = response.data[0];
 
       if (!highlights) {
-        throw new Error(`Highlights were not found for NFT collection ${normalizedID}.`);
+        throw new Error(`Highlights were not found for NFT collection ${id}.`);
       }
 
       return NftCollectionHighlightsDTOToView(highlights);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -100,18 +93,15 @@ export function useGetNftCollectionHighlights(id: string): UseQueryResult<NftCol
  *
  * Endpoint: `GET /nft-collection-wallets?nft_collection_id=:id`.
  */
-export function useGetNftCollectionWallets(id: string): UseQueryResult<readonly NftCollectionWalletView[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetNftCollectionWallets(id: number): UseQueryResult<readonly NftCollectionWalletView[], Error> {
   return useQuery<APIResponse<readonly NftCollectionWalletDTO[]>, Error, readonly NftCollectionWalletView[]>({
-    queryKey: ["nft-collections", normalizedID, "wallets"],
+    queryKey: ["nft-collections", "by-id", id, "wallets"],
     queryFn: () =>
       baseQuery<readonly NftCollectionWalletDTO[]>("/nft-collection-wallets", {
         method: "GET",
-        params: { nft_collection_id: normalizedID },
+        params: { nft_collection_id: id },
       }),
     select: (response) => response.data.map(NftCollectionWalletDTOToView),
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -120,25 +110,22 @@ export function useGetNftCollectionWallets(id: string): UseQueryResult<readonly 
  *
  * Endpoint: `GET /nft-collection-insights?nft_collection_id=:id`.
  */
-export function useGetNftCollectionInsights(id: string): UseQueryResult<NftCollectionInsightsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetNftCollectionInsights(id: number): UseQueryResult<NftCollectionInsightsView, Error> {
   return useQuery<APIResponse<readonly NftCollectionInsightsDTO[]>, Error, NftCollectionInsightsView>({
-    queryKey: ["nft-collections", normalizedID, "insights"],
+    queryKey: ["nft-collections", "by-id", id, "insights"],
     queryFn: () =>
       baseQuery<readonly NftCollectionInsightsDTO[]>("/nft-collection-insights", {
         method: "GET",
-        params: { nft_collection_id: normalizedID },
+        params: { nft_collection_id: id },
       }),
     select: (response) => {
       const insights = response.data[0];
 
       if (!insights) {
-        throw new Error(`Insights were not found for NFT collection ${normalizedID}.`);
+        throw new Error(`Insights were not found for NFT collection ${id}.`);
       }
 
       return NftCollectionInsightsDTOToView(insights);
     },
-    enabled: normalizedID.length > 0,
   });
 }

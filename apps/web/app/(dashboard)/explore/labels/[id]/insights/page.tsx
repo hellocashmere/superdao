@@ -1,3 +1,6 @@
+import { notFound } from "next/navigation";
+
+import { parseRouteID } from "@/shared/lib/parse-route-id";
 import { ExploreLabelDetailsPage } from "@/widgets/pages/explore/labels/[id]";
 
 /**
@@ -5,10 +8,12 @@ import { ExploreLabelDetailsPage } from "@/widgets/pages/explore/labels/[id]";
  */
 export default async function Page({ params }: PageProps<"/explore/labels/[id]/insights">) {
   const { id } = await params;
+  const labelID = parseRouteID(id);
+  if (labelID === undefined) notFound();
 
   return (
     <ExploreLabelDetailsPage
-      label={id}
+      label={labelID}
       tab="insights"
     />
   );

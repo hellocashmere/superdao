@@ -20,7 +20,8 @@ import type {
  */
 export function NftCollectionDTOToView(dto: NftCollectionDTO): NftCollectionView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
+    slug: dto.slug,
     name: dto.name,
     avatar: dto.avatar,
     owners: dto.owners,
@@ -67,7 +68,7 @@ export function NftCollectionHighlightsDTOToView(dto: NftCollectionHighlightsDTO
  */
 export function NftCollectionWalletDTOToView(dto: NftCollectionWalletDTO): NftCollectionWalletView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
     name: dto.name,
     avatar: dto.avatar,
     rank: dto.rank,

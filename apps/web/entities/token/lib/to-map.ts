@@ -20,7 +20,8 @@ import type {
  */
 export function TokenDTOToView(dto: TokenDTO): TokenView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
+    slug: dto.slug,
     name: dto.name,
     avatar: dto.avatar,
     owners: dto.owners,
@@ -67,7 +68,7 @@ export function TokenHighlightsDTOToView(dto: TokenHighlightsDTO): TokenHighligh
  */
 export function TokenWalletDTOToView(dto: TokenWalletDTO): TokenWalletView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
     name: dto.name,
     avatar: dto.avatar,
     rank: dto.rank,

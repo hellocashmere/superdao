@@ -28,7 +28,7 @@ import { ExportWalletsDialog } from "./export-dialog";
 import { columnLabels, columns, filterLabels } from "./table-config";
 
 export interface DappWalletsTableProps extends ComponentPropsWithRef<typeof Card> {
-  dappID: string;
+  dappID: number;
 }
 
 /**

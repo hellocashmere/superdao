@@ -6,7 +6,7 @@ import { CollectionHighlights } from "./components/highlights";
 import { DataTable } from "./components/table";
 
 export interface CollectionWalletsTabProps extends ComponentPropsWithRef<"div"> {
-  collectionID: string;
+  collectionID: number;
 }
 
 /**

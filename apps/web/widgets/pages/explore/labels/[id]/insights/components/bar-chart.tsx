@@ -24,7 +24,7 @@ export type LabelInsightChartDataKey = "interests" | "nftAllocation" | "personas
 export interface LabelInsightBarChartProps extends ComponentPropsWithRef<typeof Card> {
   dataKey: LabelInsightChartDataKey;
   description?: string;
-  label: string;
+  label: number;
   title: string;
   tone?: "cyan" | "green" | "multi";
 }

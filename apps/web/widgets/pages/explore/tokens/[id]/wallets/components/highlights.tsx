@@ -1,15 +1,15 @@
 import type { ComponentPropsWithRef } from "react";
 
+import { MailBoldIcon, Twitter2BoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 
 import { useGetTokenHighlights } from "@/entities/token";
 import { MetricCard } from "@/shared/ui/metric-card";
-import { MailBoldIcon, Twitter2BoldIcon } from "@superdao/icons/bold";
 
 import { TokenBalanceChart } from "./balance-chart";
 
 export interface TokenHighlightsProps extends ComponentPropsWithRef<"section"> {
-  tokenID: string;
+  tokenID: number;
 }
 
 /**
@@ -32,8 +32,19 @@ export function TokenHighlights({ className, tokenID, ref, ...props }: TokenHigh
       {highlightsQuery.data.metrics.map((metric) => (
         <MetricCard
           key={metric.kind}
-          title={metric.title} value={metric.value} description={metric.description} footerValue={metric.footerValue} footerLabel={metric.footerLabel} tooltip={metric.info}
-          icon={metric.kind === "email" ? <MailBoldIcon size={20} /> : metric.kind === "twitter" ? <Twitter2BoldIcon size={20} /> : undefined}
+          title={metric.title}
+          value={metric.value}
+          description={metric.description}
+          footerValue={metric.footerValue}
+          footerLabel={metric.footerLabel}
+          tooltip={metric.info}
+          icon={
+            metric.kind === "email" ? (
+              <MailBoldIcon size={20} />
+            ) : metric.kind === "twitter" ? (
+              <Twitter2BoldIcon size={20} />
+            ) : undefined
+          }
         />
       ))}
       <TokenBalanceChart data={highlightsQuery.data.balanceDistribution} />

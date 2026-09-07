@@ -7,7 +7,7 @@ export type WalletFilter = "rank" | "balance" | "transactions" | "twitter";
  * Wallet identity displayed in links, cards, and headers.
  */
 export interface WalletPreviewView {
-  id: string;
+  id: number;
   name: string;
   avatar: string;
 }

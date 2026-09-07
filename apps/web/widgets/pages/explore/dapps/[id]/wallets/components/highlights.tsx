@@ -9,7 +9,7 @@ import { MetricCard } from "@/shared/ui/metric-card";
 import { DappBalanceChart } from "./balance-chart";
 
 export interface DappHighlightsProps extends ComponentPropsWithRef<"section"> {
-  dappID: string;
+  dappID: number;
 }
 
 /**
@@ -32,8 +32,19 @@ export function DappHighlights({ className, dappID, ref, ...props }: DappHighlig
       {highlightsQuery.data.metrics.map((metric) => (
         <MetricCard
           key={metric.kind}
-          title={metric.title} value={metric.value} description={metric.description} footerValue={metric.footerValue} footerLabel={metric.footerLabel} tooltip={metric.info}
-          icon={metric.kind === "email" ? <MailBoldIcon size={20} /> : metric.kind === "twitter" ? <Twitter2BoldIcon size={20} /> : undefined}
+          title={metric.title}
+          value={metric.value}
+          description={metric.description}
+          footerValue={metric.footerValue}
+          footerLabel={metric.footerLabel}
+          tooltip={metric.info}
+          icon={
+            metric.kind === "email" ? (
+              <MailBoldIcon size={20} />
+            ) : metric.kind === "twitter" ? (
+              <Twitter2BoldIcon size={20} />
+            ) : undefined
+          }
         />
       ))}
       <DappBalanceChart data={highlightsQuery.data.balanceDistribution} />

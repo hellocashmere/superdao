@@ -1,26 +1,26 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { MailBoldIcon, Twitter2BoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 import { Skeleton } from "@superdao/ui/components/skeleton";
 
 import { useGetLabelHighlights } from "@/entities/label";
-
 import { MetricCard } from "@/shared/ui/metric-card";
 
-import { LabelWalletsTable } from "./components/table";
 import { LabelBalanceChart } from "./components/balance-chart";
+import { LabelWalletsTable } from "./components/table";
 
 export interface LabelWalletsTabProps extends ComponentPropsWithRef<"div"> {
-  label: string;
+  tableActions?: ReactNode;
+  label: number;
 }
 
 /**
  * Composes the highlights and wallet directory shown in the Wallets tab.
  */
-export function LabelWalletsTab({ className, label, ref, ...props }: LabelWalletsTabProps) {
+export function LabelWalletsTab({ className, label, ref, tableActions, ...props }: LabelWalletsTabProps) {
   const highlightsQuery = useGetLabelHighlights(label);
 
   if (highlightsQuery.error) throw highlightsQuery.error;
@@ -66,7 +66,10 @@ export function LabelWalletsTab({ className, label, ref, ...props }: LabelWallet
         ))}
         <LabelBalanceChart label={label} />
       </section>
-      <LabelWalletsTable label={label} />
+      <LabelWalletsTable
+        label={label}
+        toolbarActions={tableActions}
+      />
     </div>
   );
 }

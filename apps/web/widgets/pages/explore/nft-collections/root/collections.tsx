@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from "react";
 import { useMemo, useState } from "react";
 
-import { useLoading, usePagination } from "@superdao/hooks";
+import { usePagination } from "@superdao/hooks";
 import { cn } from "@superdao/lib/utils";
 
 import { useGetNftCollections } from "@/entities/nft-collection";
@@ -26,8 +26,6 @@ export function ExploreNftCollectionsPage({ className, ref, ...props }: ExploreN
   const collectionsQuery = useGetNftCollections();
   const collections = collectionsQuery.data;
   const [search, setSearch] = useState("");
-  const isSearching = useLoading(700);
-
   const filteredCollections = useMemo(() => {
     return (collections ?? []).filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
   }, [collections, search]);
@@ -74,7 +72,6 @@ export function ExploreNftCollectionsPage({ className, ref, ...props }: ExploreN
         <NftCollectionsRootTable
           collections={visibleCollections}
           rowOffset={pagination.offset}
-          isLoading={Boolean(search) && isSearching}
         />
         <NftCollectionsRootPagination
           pagination={pagination}

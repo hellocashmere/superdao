@@ -2,8 +2,8 @@
 
 import type { ComponentPropsWithRef } from "react";
 
-import { cn } from "@superdao/lib/utils";
 import { InfoIcon } from "@superdao/icons/outline";
+import { cn } from "@superdao/lib/utils";
 import { Alert, AlertDescription, AlertTitle } from "@superdao/ui/components/alert";
 import { Card, CardContent } from "@superdao/ui/components/card";
 import { Skeleton } from "@superdao/ui/components/skeleton";
@@ -11,17 +11,18 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent } from "@superdao/ui/components/tabs";
 
 import { useGetLabelDetails } from "@/entities/label";
+import { throwResourceError } from "@/shared/api";
 import { Container } from "@/shared/ui/container";
 import { PageBody, PageHeader } from "@/shared/ui/page-layout";
 
-import { LabelInsightsTab } from "./insights/insights";
 import { LabelIDHeader } from "./components/header";
+import { LabelInsightsTab } from "./insights/insights";
 import { LabelWalletsTab } from "./wallets/wallets";
 
 export type LabelTabValue = "insights" | "wallets";
 
 export interface ExploreLabelDetailsPageProps extends ComponentPropsWithRef<"div"> {
-  label: string;
+  label: number;
   tab: LabelTabValue;
 }
 
@@ -30,7 +31,7 @@ export interface ExploreLabelDetailsPageProps extends ComponentPropsWithRef<"div
  */
 export function ExploreLabelDetailsPage({ className, label, ref, tab, ...props }: ExploreLabelDetailsPageProps) {
   const detailsQuery = useGetLabelDetails(label);
-  if (detailsQuery.error) throw detailsQuery.error;
+  if (detailsQuery.error) throwResourceError(detailsQuery.error);
 
   if (detailsQuery.isPending) {
     return (
@@ -197,11 +198,19 @@ export function ExploreLabelDetailsPage({ className, label, ref, tab, ...props }
       >
         <LabelIDHeader
           labelID={details.id}
+          labelSlug={details.slug}
           title={details.name}
           walletCount={details.walletCount}
           color={details.color}
         />
-        <Alert className="mb-5" variant="info"><InfoIcon aria-hidden="true" /><AlertTitle>Wallet data is updated daily</AlertTitle><AlertDescription>Metrics may take up to 24 hours to reflect the latest on-chain activity.</AlertDescription></Alert>
+        <Alert
+          className="mb-5"
+          variant="info"
+        >
+          <InfoIcon aria-hidden="true" />
+          <AlertTitle>Audience membership refreshes daily</AlertTitle>
+          <AlertDescription>Newly classified wallets can take up to 24 hours to appear in this label.</AlertDescription>
+        </Alert>
         <PageBody className="pb-16">
           <TabsContent value="wallets">{tab === "wallets" ? <LabelWalletsTab label={label} /> : null}</TabsContent>
           <TabsContent value="insights">{tab === "insights" ? <LabelInsightsTab label={label} /> : null}</TabsContent>

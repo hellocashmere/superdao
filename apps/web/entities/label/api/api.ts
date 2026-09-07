@@ -22,13 +22,12 @@ import type {
 import type { LabelDTO, LabelHighlightsDTO, LabelInsightsDTO, LabelWalletDTO } from "./types/types";
 
 /**
- * Loads a label by its identifier for server-side consumers.
+ * Loads a label by its backend-provided ID for server-side consumers.
  *
  * Endpoint: `GET /labels/:id`.
  */
-export async function getLabelDetails(id: string): Promise<LabelDetailsView> {
-  const normalizedID = id.trim().toLowerCase();
-  const response = await baseQuery<LabelDTO>(`/labels/${encodeURIComponent(normalizedID)}`, { method: "GET" });
+export async function getLabelDetails(id: number): Promise<LabelDetailsView> {
+  const response = await baseQuery<LabelDTO>(`/labels/${id}`, { method: "GET" });
 
   return LabelDTOToDetailsView(response.data);
 }
@@ -47,18 +46,15 @@ export function useGetLabels(): UseQueryResult<readonly LabelPreviewView[], Erro
 }
 
 /**
- * Loads a label by its identifier.
+ * Loads a label by its backend-provided ID.
  *
  * Endpoint: `GET /labels/:id`.
  */
-export function useGetLabelDetails(id: string): UseQueryResult<LabelDetailsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetLabelDetails(id: number): UseQueryResult<LabelDetailsView, Error> {
   return useQuery<APIResponse<LabelDTO>, Error, LabelDetailsView>({
-    queryKey: ["labels", normalizedID],
-    queryFn: () => baseQuery<LabelDTO>(`/labels/${encodeURIComponent(normalizedID)}`, { method: "GET" }),
+    queryKey: ["labels", "by-id", id],
+    queryFn: () => baseQuery<LabelDTO>(`/labels/${id}`, { method: "GET" }),
     select: (response) => LabelDTOToDetailsView(response.data),
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -67,26 +63,23 @@ export function useGetLabelDetails(id: string): UseQueryResult<LabelDetailsView,
  *
  * Endpoint: `GET /label-highlights?label_id=:id`.
  */
-export function useGetLabelHighlights(id: string): UseQueryResult<LabelHighlightsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetLabelHighlights(id: number): UseQueryResult<LabelHighlightsView, Error> {
   return useQuery<APIResponse<readonly LabelHighlightsDTO[]>, Error, LabelHighlightsView>({
-    queryKey: ["labels", normalizedID, "highlights"],
+    queryKey: ["labels", "by-id", id, "highlights"],
     queryFn: () =>
       baseQuery<readonly LabelHighlightsDTO[]>("/label-highlights", {
         method: "GET",
-        params: { label_id: normalizedID },
+        params: { label_id: id },
       }),
     select: (response) => {
       const highlights = response.data[0];
 
       if (!highlights) {
-        throw new Error(`Label highlights were not found for label ${normalizedID}.`);
+        throw new Error(`Label highlights were not found for label ${id}.`);
       }
 
       return LabelHighlightsDTOToView(highlights);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -95,18 +88,15 @@ export function useGetLabelHighlights(id: string): UseQueryResult<LabelHighlight
  *
  * Endpoint: `GET /label-wallets?label_id=:id`.
  */
-export function useGetLabelWallets(id: string): UseQueryResult<readonly LabelWallet[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetLabelWallets(id: number): UseQueryResult<readonly LabelWallet[], Error> {
   return useQuery<APIResponse<readonly LabelWalletDTO[]>, Error, readonly LabelWallet[]>({
-    queryKey: ["labels", normalizedID, "wallets"],
+    queryKey: ["labels", "by-id", id, "wallets"],
     queryFn: () =>
       baseQuery<readonly LabelWalletDTO[]>("/label-wallets", {
         method: "GET",
-        params: { label_id: normalizedID },
+        params: { label_id: id },
       }),
     select: (response) => response.data.map(LabelWalletDTOToView),
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -115,25 +105,22 @@ export function useGetLabelWallets(id: string): UseQueryResult<readonly LabelWal
  *
  * Endpoint: `GET /label-insights?label_id=:id`.
  */
-export function useGetLabelInsights(id: string): UseQueryResult<LabelInsightsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetLabelInsights(id: number): UseQueryResult<LabelInsightsView, Error> {
   return useQuery<APIResponse<readonly LabelInsightsDTO[]>, Error, LabelInsightsView>({
-    queryKey: ["labels", normalizedID, "insights"],
+    queryKey: ["labels", "by-id", id, "insights"],
     queryFn: () =>
       baseQuery<readonly LabelInsightsDTO[]>("/label-insights", {
         method: "GET",
-        params: { label_id: normalizedID },
+        params: { label_id: id },
       }),
     select: (response) => {
       const insights = response.data[0];
 
       if (!insights) {
-        throw new Error(`Label insights were not found for label ${normalizedID}.`);
+        throw new Error(`Label insights were not found for label ${id}.`);
       }
 
       return LabelInsightsDTOToView(insights);
     },
-    enabled: normalizedID.length > 0,
   });
 }

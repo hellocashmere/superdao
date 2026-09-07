@@ -32,7 +32,8 @@ export interface WalletDTO {
  * Endpoint: `GET /wallet-overviews?id=:id`.
  */
 export interface WalletOverviewDTO {
-  id: string;
+  id: number;
+  wallet_id: number;
   ids: readonly string[];
   bio: ReadonlyArray<WalletBioLinkSegmentDTO | WalletBioTextSegmentDTO>;
   bio_tooltip: string;
@@ -86,7 +87,7 @@ export interface WalletActivityCollectionDTO {
   id: string;
   name: string;
   avatar: string;
-  wallet_id: string;
+  wallet_id: number;
 }
 
 /**
@@ -98,7 +99,7 @@ export interface WalletContactDTO {
   id: string;
   provider: "email" | "etherscan" | "lens" | "mirror" | "opensea" | "polygonscan" | "twitter" | "zapper";
   label: string;
-  wallet_id: string;
+  wallet_id: number;
 }
 
 /**
@@ -110,7 +111,7 @@ export interface WalletLabelDTO {
   id: string;
   label: string;
   tone: "amber" | "blue" | "constructive" | "cyan" | "fuchsia" | "primary" | "violet" | "yellow";
-  wallet_id: string;
+  wallet_id: number;
 }
 
 /**
@@ -120,10 +121,11 @@ export interface WalletLabelDTO {
  */
 export interface WalletSimilarWalletDTO {
   id: string;
+  similar_wallet_id: number;
   name: string;
   avatar: string;
   score: string;
-  wallet_id: string;
+  wallet_id: number;
 }
 
 /**
@@ -161,7 +163,8 @@ export interface WalletTransactionDTO {
  * Endpoint: `GET /wallet-transaction-summaries?id=:id`.
  */
 export interface WalletTransactionsDTO {
-  id: string;
+  id: number;
+  wallet_id: number;
   title: string;
   tooltip: string;
   metrics: readonly WalletTransactionMetricDTO[];

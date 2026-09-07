@@ -41,12 +41,14 @@ const labelIcons: Readonly<Record<string, ElementType>> = {
 };
 
 export interface LabelIconProps extends ComponentPropsWithRef<typeof MusicRBoldIcon> {
-  labelID: string;
+  labelSlug: string;
 }
 
-/** Renders the domain icon associated with a label identifier. */
-export function LabelIcon({ labelID, ref, ...props }: LabelIconProps) {
-  const Icon = labelIcons[labelID] ?? AppearanceBoldIcon;
+/**
+ * Renders the domain icon associated with a label slug.
+ */
+export function LabelIcon({ labelSlug, ref, ...props }: LabelIconProps) {
+  const Icon = labelIcons[labelSlug] ?? AppearanceBoldIcon;
 
   return (
     <Icon

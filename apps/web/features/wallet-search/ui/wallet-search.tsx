@@ -10,7 +10,9 @@ import { cn } from "@superdao/lib/utils";
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@superdao/ui/components/input-group";
 import { Spinner } from "@superdao/ui/components/spinner";
 
-import { useGetWalletByID } from "@/entities/wallet";
+import { useGetWalletByName } from "@/entities/wallet";
+import { isEthereumAddress } from "@/shared/lib/crypto";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 type WalletValidationState = "idle" | "validating" | "valid" | "invalid";
 
@@ -28,7 +30,8 @@ export function WalletSearch({ className, ref, ...props }: WalletSearchProps) {
   const wallet = query.trim();
   const debouncedWallet = debouncedQuery.trim();
   const isDebounced = wallet === debouncedWallet;
-  const walletQuery = useGetWalletByID(isDebounced ? debouncedWallet : "");
+  const isWalletFormatValid = isEthereumAddress(wallet);
+  const walletQuery = useGetWalletByName(isDebounced && isEthereumAddress(debouncedWallet) ? debouncedWallet : "");
 
   useEffect(() => {
     const nextSearchParams = new URLSearchParams(searchParams.toString());
@@ -50,6 +53,10 @@ export function WalletSearch({ className, ref, ...props }: WalletSearchProps) {
   function getWalletValidationState(): WalletValidationState {
     if (!wallet) {
       return "idle";
+    }
+
+    if (!isWalletFormatValid) {
+      return "invalid";
     }
 
     if (!isDebounced || walletQuery.isFetching) {
@@ -82,7 +89,7 @@ export function WalletSearch({ className, ref, ...props }: WalletSearchProps) {
           onChange={(event) => setQuery(event.target.value)}
           onKeyDown={(event) => {
             if (event.key === "Enter" && walletQuery.data) {
-              router.push(`/explore/wallets/${encodeURIComponent(walletQuery.data.id)}`);
+              router.push(exploreRoutes.wallet(walletQuery.data.id));
             }
           }}
         />

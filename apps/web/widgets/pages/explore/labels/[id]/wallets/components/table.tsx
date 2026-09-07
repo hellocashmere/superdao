@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentPropsWithRef } from "react";
+import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { ArrowDownIcon, CloseIcon, ColumnsIcon, DocumentIcon, FilterIcon, SearchIcon } from "@superdao/icons/outline";
 import { Button } from "@superdao/ui/components/button";
@@ -24,19 +24,20 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-r
 
 import { useGetLabelWallets } from "@/entities/label";
 
+import { columnLabels, columns, filterLabels } from "../config/table-config";
 import { dataTableFeatures } from "../model/data-table-features";
 
-import { columnLabels, columns, filterLabels } from "../config/table-config";
 import { ExportWalletsDialog } from "./export-dialog";
 
 export interface LabelWalletsTableProps extends ComponentPropsWithRef<typeof Card> {
-  label: string;
+  toolbarActions?: ReactNode;
+  label: number;
 }
 
 /**
  * Renders the searchable, sortable, and paginated label wallet table.
  */
-export function LabelWalletsTable({ className, label, ref, ...props }: LabelWalletsTableProps) {
+export function LabelWalletsTable({ className, label, ref, toolbarActions, ...props }: LabelWalletsTableProps) {
   const walletsQuery = useGetLabelWallets(label);
   const table = useTable({
     features: dataTableFeatures,
@@ -83,7 +84,7 @@ export function LabelWalletsTable({ className, label, ref, ...props }: LabelWall
     >
       <div
         data-slot="label-wallets-table-toolbar"
-        className="px-6"
+        className="px-6 pt-5"
       >
         <div className="flex min-h-10 flex-wrap items-center gap-5">
           <label className="block w-full sm:w-55">
@@ -202,6 +203,7 @@ export function LabelWalletsTable({ className, label, ref, ...props }: LabelWall
           ) : null}
 
           <div className="ml-auto flex items-center gap-2">
+            {toolbarActions}
             <Button
               type="button"
               variant="ghost"
@@ -246,13 +248,12 @@ export function LabelWalletsTable({ className, label, ref, ...props }: LabelWall
         ) : null}
       </div>
 
-      <div className="px-6 pb-6">
-        <div
-          data-slot="label-wallets-table-content"
-          data-state={walletsQuery.isPending ? "loading" : table.getRowModel().rows.length ? "populated" : "empty"}
-          className="min-h-100 py-4 *:data-[slot=table-container]:min-h-100"
-        >
-          <Table className="min-w-255 table-fixed">
+      <div
+        data-slot="label-wallets-table-content"
+        data-state={walletsQuery.isPending ? "loading" : table.getRowModel().rows.length ? "populated" : "empty"}
+        className="min-h-100 *:data-[slot=table-container]:min-h-100"
+      >
+        <Table className="min-w-255 table-fixed">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -330,8 +331,7 @@ export function LabelWalletsTable({ className, label, ref, ...props }: LabelWall
               </TableRow>
             )}
           </TableBody>
-          </Table>
-        </div>
+        </Table>
       </div>
 
       <div

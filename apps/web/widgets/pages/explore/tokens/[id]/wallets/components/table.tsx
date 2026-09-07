@@ -17,7 +17,7 @@ import { DataTablePagination } from "./table/pagination";
 import { DataTableToolbar } from "./table/toolbar";
 
 export interface DataTableProps extends ComponentPropsWithRef<typeof Card> {
-  tokenID: string;
+  tokenID: number;
 }
 
 /**

@@ -23,7 +23,8 @@ import type {
  */
 export function LabelDTOToPreviewView(dto: LabelDTO): LabelPreviewView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
+    slug: dto.slug,
     name: dto.name,
     walletCount: dto.wallet_count,
     color: dto.color,
@@ -73,7 +74,7 @@ export function LabelHighlightsDTOToView(dto: LabelHighlightsDTO): LabelHighligh
  */
 export function LabelWalletDTOToView(dto: LabelWalletDTO): LabelWallet {
   return {
-    id: dto.id,
+    id: Number(dto.id),
     name: dto.name,
     avatar: dto.avatar,
     rank: dto.rank,

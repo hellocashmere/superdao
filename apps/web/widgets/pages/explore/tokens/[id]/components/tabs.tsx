@@ -5,16 +5,16 @@ import { Group16BoldIcon, PollBoldIcon } from "@superdao/icons/bold";
 import { cn } from "@superdao/lib/utils";
 import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
 
+import { exploreRoutes } from "@/shared/lib/routes";
+
 export interface TokenTabsListProps extends ComponentPropsWithRef<typeof TabsList> {
-  tokenID: string;
+  tokenID: number;
 }
 
 /**
  * Renders route navigation between token wallets and insights.
  */
 export function TokenTabsList({ className, ref, tokenID, ...props }: TokenTabsListProps) {
-  const tokenPath = `/explore/tokens/${encodeURIComponent(tokenID)}`;
-
   return (
     <TabsList
       ref={ref}
@@ -25,7 +25,7 @@ export function TokenTabsList({ className, ref, tokenID, ...props }: TokenTabsLi
         className="h-8 rounded-[4px] px-3 py-1"
         value="wallets"
         nativeButton={false}
-        render={<Link href={`${tokenPath}/wallets`} />}
+        render={<Link href={exploreRoutes.tokenWallets(tokenID)} />}
       >
         <Group16BoldIcon
           size={16}
@@ -37,7 +37,7 @@ export function TokenTabsList({ className, ref, tokenID, ...props }: TokenTabsLi
         className="h-8 rounded-[4px] px-3 py-1"
         value="insights"
         nativeButton={false}
-        render={<Link href={`${tokenPath}/insights`} />}
+        render={<Link href={exploreRoutes.tokenInsights(tokenID)} />}
       >
         <PollBoldIcon className="size-4" />
         Insights

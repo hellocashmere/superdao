@@ -5,6 +5,7 @@
  */
 export interface TokenDTO {
   id: string;
+  slug: string;
   name: string;
   avatar: string;
   owners: string;
@@ -45,7 +46,7 @@ export interface TokenChartDatumDTO {
  */
 export interface TokenHighlightsDTO {
   id: string;
-  token_id: string;
+  token_id: number;
   metrics: readonly TokenMetricDTO[];
   balance_distribution: readonly TokenChartDatumDTO[];
 }
@@ -72,8 +73,8 @@ export interface TokenWalletActivityDTO {
  * Endpoint: `GET /token-wallets?token_id=:id`.
  */
 export interface TokenWalletDTO {
-  id: number;
-  token_id: string;
+  id: string;
+  token_id: number;
   name: string;
   avatar: string;
   rank: string;
@@ -139,7 +140,7 @@ export interface TokenOverlapDTO {
  */
 export interface TokenInsightsDTO {
   id: string;
-  token_id: string;
+  token_id: number;
   balance_metrics: readonly TokenInsightMetricDTO[];
   wallet_balance: readonly TokenChartDatumDTO[];
   nft_allocation: readonly TokenChartDatumDTO[];

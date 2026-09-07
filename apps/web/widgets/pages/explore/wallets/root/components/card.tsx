@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 
@@ -7,6 +5,7 @@ import { cn } from "@superdao/lib/utils";
 import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
 
 import type { RankedWalletView } from "@/entities/wallet";
+import { exploreRoutes } from "@/shared/lib/routes";
 
 export interface WalletCardProps extends ComponentPropsWithRef<"a"> {
   /**
@@ -23,7 +22,7 @@ export function WalletCard({ className, ref, wallet, ...props }: WalletCardProps
     <Link
       {...props}
       ref={ref}
-      href={`/explore/wallets/${encodeURIComponent(wallet.id)}`}
+      href={exploreRoutes.wallet(wallet.id)}
       data-slot="wallet-card"
       className={cn(
         "flex h-18 min-w-0 items-center gap-4 overflow-hidden rounded-lg bg-card px-5 text-left transition-colors outline-none hover:bg-popover focus-visible:ring-2 focus-visible:ring-ring/40",

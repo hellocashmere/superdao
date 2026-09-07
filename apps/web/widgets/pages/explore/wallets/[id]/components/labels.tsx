@@ -35,14 +35,14 @@ export interface WalletLabelsProps extends Omit<ComponentPropsWithRef<typeof Wal
   /**
    * ID of the wallet whose labels are rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
  * Renders wallet classification labels with interactive hover states.
  */
-export function WalletLabels({ className, id, ref, ...props }: WalletLabelsProps) {
-  const labelsQuery = useGetWalletLabels(id);
+export function WalletLabels({ className, ref, walletID, ...props }: WalletLabelsProps) {
+  const labelsQuery = useGetWalletLabels(walletID);
 
   if (labelsQuery.error) throw labelsQuery.error;
   if (labelsQuery.isPending) {

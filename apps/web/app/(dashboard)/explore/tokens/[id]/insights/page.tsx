@@ -1,3 +1,6 @@
+import { notFound } from "next/navigation";
+
+import { parseRouteID } from "@/shared/lib/parse-route-id";
 import { ExploreTokenDetailsPage } from "@/widgets/pages/explore/tokens/[id]";
 
 /**
@@ -5,10 +8,12 @@ import { ExploreTokenDetailsPage } from "@/widgets/pages/explore/tokens/[id]";
  */
 export default async function Page({ params }: PageProps<"/explore/tokens/[id]/insights">) {
   const { id } = await params;
+  const tokenID = parseRouteID(id);
+  if (tokenID === undefined) notFound();
 
   return (
     <ExploreTokenDetailsPage
-      tokenID={id}
+      tokenID={tokenID}
       tab="insights"
     />
   );

@@ -14,6 +14,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@superdao/ui/components
 
 import type { NftCollectionChartDatumView } from "@/entities/nft-collection";
 import { useGetNftCollectionInsights } from "@/entities/nft-collection";
+import { MetricCard } from "@/shared/ui/metric-card";
 
 const collectionInsightChartConfig = {
   value: {
@@ -61,7 +62,7 @@ export function CollectionInsightBarChart({
         >
           {title}
         </CardTitle>
-        {description ? <CardDescription className="text-icon">{description}</CardDescription> : null}
+        {description ? <CardDescription>{description}</CardDescription> : null}
       </CardHeader>
       <CardContent className="flex min-h-0 flex-1 pb-3">
         <ChartContainer
@@ -109,7 +110,7 @@ export function CollectionInsightBarChart({
 }
 
 export interface CollectionInsightsProps extends ComponentPropsWithRef<"div"> {
-  collectionID: string;
+  collectionID: number;
 }
 
 /**
@@ -145,47 +146,18 @@ export function CollectionInsights({ className, collectionID, ref, ...props }: C
       {...props}
     >
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Balances and transactions</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Balances and transactions</h2>
         <div className="grid gap-5 xl:grid-cols-4">
           <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-1">
             {insights.balanceMetrics.map((metric) => (
-              <Card
+              <MetricCard
                 key={metric.title}
-                className="min-h-34"
-              >
-                <CardContent className="flex flex-1 flex-col py-3">
-                  <div className="flex items-center gap-2 text-sm/5 font-semibold text-[#a2a8b4]">
-                    <span>{metric.title}</span>
-                    {metric.info ? (
-                      <Tooltip>
-                        <TooltipTrigger
-                          render={
-                            <button
-                              type="button"
-                              className="inline-flex size-4 cursor-help items-center justify-center rounded-sm text-[#717a8c] outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
-                              aria-label={`About ${metric.title}`}
-                            />
-                          }
-                        >
-                          <InfoSmallIcon size={16} />
-                        </TooltipTrigger>
-                        <TooltipContent
-                          side="right"
-                          sideOffset={8}
-                          className="max-w-64 font-normal"
-                        >
-                          {metric.info}
-                        </TooltipContent>
-                      </Tooltip>
-                    ) : null}
-                  </div>
-                  <p className="mt-1 text-2xl/7 font-bold">{metric.value}</p>
-                  <p className="mt-1 text-[13px]/[18px] text-tabs-foreground">{metric.description}</p>
-                  <p className="mt-auto border-t border-[#465065] pt-2 text-[13px]/[18px] text-tabs-foreground">
-                    {metric.footer}
-                  </p>
-                </CardContent>
-              </Card>
+                title={metric.title}
+                tooltip={metric.info}
+                value={metric.value}
+                description={metric.description}
+                footerValue={metric.footer}
+              />
             ))}
           </div>
           {charts.slice(0, 2).map(([title, description, values, tone]) => (
@@ -201,7 +173,7 @@ export function CollectionInsights({ className, collectionID, ref, ...props }: C
         </div>
         <Card className="mt-5 min-h-29">
           <CardContent className="py-3">
-            <div className="flex items-center gap-2 text-sm/5 font-semibold text-[#a2a8b4]">
+            <div className="flex items-center gap-2 text-sm/5 font-semibold text-tabs-foreground">
               <span>Last 30d transactions</span>
               <Tooltip>
                 <TooltipTrigger
@@ -241,29 +213,24 @@ export function CollectionInsights({ className, collectionID, ref, ...props }: C
         </Card>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Contacts</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Contacts</h2>
         <div className="grid gap-5 xl:grid-cols-[245px_1fr]">
           <div className="space-y-5">
             {insights.contactMetrics.map((metric) => (
-              <Card
+              <MetricCard
                 key={metric.title}
-                className="min-h-34"
-              >
-                <CardContent className="flex flex-1 flex-col py-3">
-                  <p className="text-sm/5 font-semibold text-tabs-foreground">{metric.title}</p>
-                  <p className="mt-1 text-2xl/7 font-bold">{metric.value}</p>
-                  <p className="mt-1 text-[13px]/[18px] text-tabs-foreground">{metric.description}</p>
-                  <p className="mt-auto border-t border-[#465065] pt-2 text-[13px]/[18px] text-tabs-foreground">
-                    {metric.footer}
-                  </p>
-                </CardContent>
-              </Card>
+                title={metric.title}
+                tooltip={metric.info}
+                value={metric.value}
+                description={metric.description}
+                footerValue={metric.footer}
+              />
             ))}
           </div>
           <Card>
-            <h3 className="px-5 pt-3 text-sm/5 font-semibold text-tabs-foreground">Twitter influencers</h3>
+            <h3 className="px-5 pt-3 text-sm/5 font-medium text-tabs-foreground">Twitter influencers</h3>
             <div className="pb-2.5">
-              <Table className="min-w-[700px] [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
+              <Table className="min-w-[700px] [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_thead_tr]:hover:bg-transparent">
                 <TableHeader>
                   <TableRow>
                     <TableHead>Name</TableHead>
@@ -301,7 +268,7 @@ export function CollectionInsights({ className, collectionID, ref, ...props }: C
         </div>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Wallet profile</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Wallet profile</h2>
         <div className="grid gap-5 lg:grid-cols-2">
           {charts.slice(2).map(([title, , values, tone]) => (
             <CollectionInsightBarChart
@@ -315,10 +282,10 @@ export function CollectionInsights({ className, collectionID, ref, ...props }: C
         </div>
       </section>
       <section>
-        <h2 className="mb-4 text-xl/6 font-bold">Audience overlap</h2>
+        <h2 className="flex h-14 items-center text-xl/6 font-bold">Audience overlap</h2>
         <Card>
           <div className="pb-2.5">
-            <Table className="min-w-[1000px] [&_tbody_tr]:h-14 [&_tbody_tr]:hover:bg-[#303744] [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-[49px] [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-[49px] [&_thead_tr]:hover:bg-transparent">
+            <Table className="min-w-[1000px] [&_tbody_tr]:h-14 [&_td]:h-14 [&_td]:px-5 [&_td]:py-0 [&_td]:text-sm/5 [&_td]:text-[#a2a8b4] [&_td:first-child]:w-[49px] [&_th]:h-[54px] [&_th]:px-5 [&_th]:pt-6 [&_th]:pb-3 [&_th]:text-[13px]/[18px] [&_th]:font-semibold [&_th]:text-[#717a8c] [&_th:first-child]:w-[49px] [&_thead_tr]:hover:bg-transparent">
               <TableHeader>
                 <TableRow>
                   <TableHead>#</TableHead>

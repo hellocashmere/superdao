@@ -32,6 +32,7 @@ const baseProfiles = [
   ["0xd89...6fc1", "0xD89...6Fc1", "/avatars/dbddda90c038310e2d96e4e642c8be6b.png"],
   ["publicgoods.eth", "publicgoods.eth", "/avatars/dbde396050d6172077732d83de635853.png"],
   ["alpha.ton", "alpha.ton", "/avatars/2829f4b7e9841e3f8903815c4a10013c.png"],
+  ["ayoemanise", "AyoeManise", "/avatars/16a336dbd2f769162d56ef6eb90d8f75.png"],
 ];
 
 const profileModifiers = [
@@ -65,103 +66,103 @@ const profiles = [
   }),
 ];
 
-const searchResults = [
+const searchResultSeeds = [
   {
     id: "crypto-kitties",
     name: "CryptoKitties",
     type: "NFT collection",
-    href: "/explore/nft-collections",
+    fallback_href: "/explore/nft-collections",
     avatar_src: "/avatars/0d285ad92806c93fcc7d680188a0c6e8.png",
   },
   {
-    id: "cryptoboss",
+    id: "cryptoboss.eth",
     name: "cryptoboss.eth",
     type: "Wallet",
-    href: "/explore/wallets/cryptoboss.eth",
+    fallback_href: "/explore/wallets",
     avatar_src: "/avatars/8011097d544d3394192a4931205299aa.png",
   },
   {
-    id: "cryptokatya",
-    name: "cryptokatya.eth",
+    id: "cashmere.ton",
+    name: "cashmere.ton",
     type: "Wallet",
-    href: "/explore/wallets/cryptokatya.eth",
+    fallback_href: "/explore/wallets",
     avatar_src: "/avatars/8553af2b045a6752c135140a88835e32.png",
   },
   {
-    id: "wrapped-cryptopunks",
+    id: "wrapped-cryptopunks-1",
     name: "Wrapped Cryptopunks",
     type: "NFT collection",
-    href: "/explore/nft-collections",
+    fallback_href: "/explore/nft-collections",
     avatar_src: "/avatars/13dc38b7e837a16722c6c7b6a695fa46.png",
   },
   {
-    id: "wallet-b4e",
-    name: "0xb4e...3bbb",
+    id: "0x959...4a35",
+    name: "0x959...4A35",
     type: "Wallet",
-    href: "/explore/wallets/0xb4e3bbb",
+    fallback_href: "/explore/wallets",
     avatar_src: "/avatars/16a336dbd2f769162d56ef6eb90d8f75.png",
   },
   {
     id: "mirror-xyz",
     name: "mirror.xyz",
     type: "Audience",
-    href: "/audiences/mirror-xyz",
+    fallback_href: "/audiences/mirror-xyz",
     glyph: "audience",
   },
   {
     id: "token-investor",
     name: "Token investor",
     type: "Label",
-    href: "/explore/labels/token-investor/wallets",
+    fallback_href: "/explore/labels",
     glyph: "label",
   },
   {
-    id: "ethereum",
+    id: "ethereum-1",
     name: "Ethereum",
     type: "Token",
-    href: "/explore/tokens",
+    fallback_href: "/explore/tokens",
     avatar_src: "/avatars/199f61e6ecd63f52024e2db2f37f1364.png",
   },
   {
-    id: "polygon",
+    id: "polygon-9",
     name: "Polygon",
     type: "Token",
-    href: "/explore/tokens",
+    fallback_href: "/explore/tokens",
     avatar_src: "/avatars/25e31f4e1df7b5c0376e9d3c12aae2cd.png",
   },
   {
     id: "music",
     name: "Music",
     type: "Label",
-    href: "/explore/labels/music/wallets",
+    fallback_href: "/explore/labels",
     glyph: "music",
   },
   {
-    id: "nakamigos",
+    id: "nakamigos-6",
     name: "Nakamigos",
     type: "NFT collection",
-    href: "/explore/nft-collections",
+    fallback_href: "/explore/nft-collections",
     avatar_src: "/avatars/b52d052299464663127e357ee72393e6.png",
   },
   {
-    id: "wallet-jk8",
-    name: "0xjK8...A435",
+    id: "gm.ton",
+    name: "gm.ton",
     type: "Wallet",
-    href: "/explore/wallets/0xjK8A435",
+    fallback_href: "/explore/wallets",
     avatar_src: "/avatars/bd0ad205c2a1919c89917a4cb4edd5f4.png",
   },
   {
-    id: "uniswap",
+    id: "uniswap-1",
     name: "Uniswap",
-    type: "Wallet",
-    href: "/explore/wallets/uniswap",
+    type: "Dapp",
+    fallback_href: "/explore/dapps",
     avatar_src: "/avatars/cb44db6f71d4a369fcc8632253735afb.png",
   },
   {
-    id: "ardizor",
-    name: "ardizor.eth",
+    id: "daoist.eth",
+    name: "daoist.eth",
     type: "Wallet",
-    href: "/explore/wallets/ardizor.eth",
+    fallback_href: "/explore/wallets",
     avatar_src: "/avatars/cd4e088ebcf6499cd849d5a20f2d5a01.png",
   },
 ];
@@ -170,8 +171,8 @@ function rotateOrder(index, offset) {
   return ((index - offset + profiles.length) % profiles.length) + 1;
 }
 
-const wallets = profiles.map(([id, name, avatar], index) => ({
-  id,
+const wallets = profiles.map(([_legacyID, name, avatar], index) => ({
+  id: index + 1,
   name,
   avatar,
   recent_order: index + 1,
@@ -301,7 +302,7 @@ const walletDetails = {
     ["0xa31...de70", "0xA31...dE70", "89", "/avatars/25e31f4e1df7b5c0376e9d3c12aae2cd.png"],
     ["socialgraph.eth", "socialgraph.eth", "77", "/avatars/b52d052299464663127e357ee72393e6.png"],
     ["gm.ton", "gm.ton", "64", "/avatars/bd0ad205c2a1919c89917a4cb4edd5f4.png"],
-  ].map(([id, name, score, avatar]) => ({ id, name, score, avatar })),
+  ].map(([walletName, name, score, avatar]) => ({ walletName, name, score, avatar })),
   transactions: {
     title: "Last 30d transactions",
     tooltip: "Made at least one transaction",
@@ -341,16 +342,37 @@ const walletDetails = {
 };
 
 const { activity, contacts, labels, similar_wallets: similarWallets, transactions, ...overview } = walletDetails;
-const walletOverviews = wallets.map((wallet) => ({ ...overview, id: wallet.id }));
+const walletOverviews = wallets.map((wallet, index) => ({ ...overview, id: index + 1, wallet_id: wallet.id }));
 const walletActivities = wallets.flatMap((wallet) =>
-  activity.map((collection) => ({ ...collection, wallet_id: wallet.id }))
+  activity.map((collection) => ({ ...collection, id: `${wallet.id}-${collection.id}`, wallet_id: wallet.id }))
 );
-const walletContacts = wallets.flatMap((wallet) => contacts.map((contact) => ({ ...contact, wallet_id: wallet.id })));
-const walletLabels = wallets.flatMap((wallet) => labels.map((label) => ({ ...label, wallet_id: wallet.id })));
+const walletContacts = wallets.flatMap((wallet) =>
+  contacts.map((contact) => ({ ...contact, id: `${wallet.id}-${contact.id}`, wallet_id: wallet.id }))
+);
+const walletLabels = wallets.flatMap((wallet) =>
+  labels.map((label) => ({ ...label, id: `${wallet.id}-${label.id}`, wallet_id: wallet.id }))
+);
 const walletSimilarWallets = wallets.flatMap((wallet) =>
-  similarWallets.map((similarWallet) => ({ ...similarWallet, wallet_id: wallet.id }))
+  similarWallets.map(({ walletName, ...similarWallet }) => {
+    const matches = wallets.filter((candidate) => candidate.name.toLowerCase() === walletName.toLowerCase());
+
+    if (matches.length !== 1) {
+      throw new Error(`Expected exactly one wallet named ${walletName}, received ${matches.length}`);
+    }
+
+    return {
+      ...similarWallet,
+      id: `${wallet.id}-${matches[0].id}`,
+      wallet_id: wallet.id,
+      similar_wallet_id: matches[0].id,
+    };
+  })
 );
-const walletTransactionSummaries = wallets.map((wallet) => ({ ...transactions, id: wallet.id }));
+const walletTransactionSummaries = wallets.map((wallet, index) => ({
+  ...transactions,
+  id: index + 1,
+  wallet_id: wallet.id,
+}));
 
 const labelDirectory = [
   ["art", "Art", "#D693FF", "interest"],
@@ -370,7 +392,14 @@ const labelDirectory = [
   ["donor", "Donor", "#FFDA1A", "persona"],
   ["voter", "Voter", "#D693FF", "persona"],
   ["non-human", "Non-human", "#DBDEFF", "persona"],
-].map(([id, name, color, category]) => ({ id, name, wallet_count: "340k", color, category }));
+].map(([slug, name, color, category], index) => ({
+  id: index + 1,
+  slug,
+  name,
+  wallet_count: "340k",
+  color,
+  category,
+}));
 
 const labelTagSeeds = [
   { name: "Developer", tone: "pink" },
@@ -381,10 +410,18 @@ const labelTagSeeds = [
   { name: "Whale", tone: "orange" },
 ];
 const labelContactSeeds = ["opensea", "mirror", "link", "twitter", "email"];
-const labelWallets = labelDirectory.flatMap((label, labelIndex) =>
-  wallets.slice(0, 60).map((wallet, index) => ({
-    id: labelIndex * 60 + index + 1,
-    label_id: label.id,
+const AUDIENCE_WALLET_COUNT = 50;
+
+function getAudienceWallets(seed) {
+  const [primaryWallet, ...otherWallets] = wallets;
+  const offset = seed % otherWallets.length;
+  const rotatedWallets = [...otherWallets.slice(offset), ...otherWallets.slice(0, offset)];
+
+  return [primaryWallet, ...rotatedWallets.slice(0, AUDIENCE_WALLET_COUNT - 1)];
+}
+
+function createAudienceWallet(wallet, index) {
+  return {
     name: wallet.name,
     avatar: wallet.avatar,
     rank: wallet.metrics.rank.primary,
@@ -400,6 +437,14 @@ const labelWallets = labelDirectory.flatMap((label, labelIndex) =>
       avatar: activityWallet.avatar,
     })),
     contacts: labelContactSeeds.slice(0, 2 + (index % 4)),
+  };
+}
+
+const labelWallets = labelDirectory.flatMap((label, labelIndex) =>
+  getAudienceWallets(labelIndex).map((wallet, index) => ({
+    ...createAudienceWallet(wallet, index),
+    id: labelIndex * AUDIENCE_WALLET_COUNT + index + 1,
+    label_id: label.id,
   }))
 );
 
@@ -462,7 +507,7 @@ const labelBalanceDistribution = [
   ["10k+", 1000, "1k"],
 ].map(([label, value, displayValue]) => ({ label, value, display_value: displayValue }));
 const labelHighlights = labelDirectory.map((label) => ({
-  id: label.id,
+  id: `label-highlight-${label.id}`,
   label_id: label.id,
   metrics: labelMetrics,
   balance_distribution: labelBalanceDistribution,
@@ -486,6 +531,21 @@ const overlapSeeds = [
   ["Bored Ape Yacht Club", "12", "0.01%", "10k", "274", "10k", "60", "ethereum"],
   ["Captainz", "48", "7%", "10k", "128", "10k", "6.65", "polygon"],
   ["Azuki", "2.9k", "84%", "10k", "13", "10k", "14.69", "ethereum"],
+  ["Doodles", "1.8k", "72%", "6.1k", "3.9k", "10k", "4.21", "ethereum"],
+  ["Pudgy Penguins", "2.4k", "79%", "5.2k", "4.6k", "8.9k", "8.73", "ethereum"],
+  ["Moonbirds", "914", "41%", "6.5k", "1.7k", "10k", "1.82", "ethereum"],
+  ["Clone X", "763", "36%", "9.6k", "1.2k", "19.5k", "2.48", "ethereum"],
+  ["Cool Cats", "522", "28%", "5.6k", "984", "10k", "0.91", "ethereum"],
+  ["World of Women", "1.1k", "53%", "5.5k", "2.2k", "10k", "1.37", "ethereum"],
+  ["DeGods", "687", "33%", "4.3k", "1.4k", "8.9k", "3.16", "ethereum"],
+  ["CryptoKitties", "3.3k", "88%", "119k", "8.7k", "2m", "0.042", "ethereum"],
+  ["ENS", "4.7k", "91%", "671k", "15.3k", "3m", "0.008", "ethereum"],
+  ["Art Blocks Curated", "836", "39%", "12.8k", "1.9k", "65k", "0.74", "ethereum"],
+  ["The Sandbox", "2.1k", "68%", "23.7k", "5.1k", "166k", "0.19", "polygon"],
+  ["Decentraland", "1.4k", "57%", "8.1k", "3.2k", "97k", "0.31", "polygon"],
+  ["RTFKT", "472", "24%", "14.2k", "861", "20k", "0.58", "ethereum"],
+  ["Checks", "318", "18%", "4.8k", "579", "16k", "0.27", "ethereum"],
+  ["Zora", "2.6k", "81%", "192k", "6.8k", "742k", "0.015", "ethereum"],
 ];
 const audienceOverlap = Array.from({ length: 25 }, (_, index) => {
   const [name, ownersInAudience, shareInAudience, owners, itemsInAudience, items, floorPrice, chain] =
@@ -537,7 +597,7 @@ const labelInsightsTemplate = {
   ],
   twitter_influencers: wallets.slice(0, 5).map((wallet, index) => ({
     name: wallet.name,
-    username: `@${wallet.id.replace(/[^a-z0-9]/gi, "")}`,
+    username: `@${wallet.name.replace(/[^a-z0-9]/gi, "")}`,
     followers: ["1 158 923", "135 382", "125 323", "84 729", "72 908"][index],
     nfts: ["128", "93", "42", "123", "56"][index],
     balance: ["38,934.50", "43,245.18", "7,832.38", "0", "18,402.90"][index],
@@ -576,7 +636,7 @@ const labelInsightsTemplate = {
   notable_projects: audienceOverlap.filter((_collection, index) => index % 3 === 0),
 };
 const labelInsights = labelDirectory.map((label) => ({
-  id: label.id,
+  id: `label-insight-${label.id}`,
   label_id: label.id,
   ...labelInsightsTemplate,
 }));
@@ -621,6 +681,11 @@ const exploreResourceMetrics = [
   ["5k", "10k", "14.69"],
 ];
 const exploreResourceKinds = ["nft-collection", "token", "dapp"];
+const canonicalResourceAvatarPaths = {
+  "wrapped-cryptopunks-1": "/avatars/13dc38b7e837a16722c6c7b6a695fa46.png",
+  "ethereum-1": "/avatars/199f61e6ecd63f52024e2db2f37f1364.png",
+  "uniswap-1": "/avatars/cb44db6f71d4a369fcc8632253735afb.png",
+};
 const exploreResources = exploreResourceKinds.flatMap((kind) =>
   Array.from({ length: 48 }, (_, index) => {
     const seedIndex = index % exploreResourceNames[kind].length;
@@ -630,12 +695,14 @@ const exploreResources = exploreResourceKinds.flatMap((kind) =>
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
+    const resourceSlug = `${slug}-${index + 1}`;
 
     return {
-      id: `${slug}-${index + 1}`,
+      id: index + 1,
+      slug: resourceSlug,
       kind,
       name,
-      avatar: wallets[seedIndex].avatar,
+      avatar: canonicalResourceAvatarPaths[resourceSlug] ?? wallets[seedIndex].avatar,
       owners,
       active_wallets: owners,
       supply,
@@ -653,14 +720,63 @@ const exploreResourceHighlights = exploreResources.map((resource) => ({
   balance_distribution: labelBalanceDistribution,
 }));
 const exploreResourceWallets = exploreResources.flatMap((resource, resourceIndex) =>
-  labelWallets.slice(0, 60).map(({ label_id: _labelID, ...wallet }, index) => ({
-    ...wallet,
-    id: resourceIndex * 60 + index + 1,
+  getAudienceWallets(labelDirectory.length + resourceIndex).map((wallet, index) => ({
+    ...createAudienceWallet(wallet, index),
+    id: resourceIndex * AUDIENCE_WALLET_COUNT + index + 1,
     kind: resource.kind,
     resource_id: resource.id,
   }))
 );
-const exploreResourceInsights = exploreResources.map((resource) => ({
+
+function formatInsightCount(value) {
+  if (value < 1000) return String(value);
+
+  const compactValue = value / 1000;
+  return `${compactValue >= 10 ? Math.round(compactValue) : compactValue.toFixed(1)}k`;
+}
+
+function createResourceInfluencers(resourceIndex) {
+  const offset = (resourceIndex * 7 + 5) % wallets.length;
+
+  return Array.from({ length: 5 }, (_, index) => {
+    const wallet = wallets[(offset + index * 3) % wallets.length];
+    const followers = 48000 + (((resourceIndex + 3) * 7311 + index * 19427) % 980000);
+    const balance = 1200 + (((resourceIndex + 5) * 2879 + index * 6317) % 85000);
+
+    return {
+      name: wallet.name,
+      username: `@${wallet.name.replace(/[^a-z0-9]/gi, "")}`,
+      followers: followers.toLocaleString("en-US").replaceAll(",", " "),
+      nfts: String(12 + (((resourceIndex + 1) * 17 + index * 29) % 240)),
+      balance: balance.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      avatar: wallet.avatar,
+    };
+  });
+}
+
+function createResourceOverlap(resourceIndex) {
+  const offset = ((resourceIndex + 1) * 3) % audienceOverlap.length;
+
+  return audienceOverlap.map((_item, index, items) => {
+    const item = items[(index + offset) % items.length];
+    const ownersInAudience = 180 + (((resourceIndex + 2) * 137 + index * 911) % 32000);
+    const owners = 1600 + (((resourceIndex + 4) * 821 + index * 2707) % 120000);
+    const share = 4 + (((resourceIndex + 3) * 17 + index * 13) % 930) / 10;
+    const floorPrice = 0.08 + (((resourceIndex + 7) * 31 + index * 19) % 7500) / 100;
+
+    return {
+      ...item,
+      owners_in_audience: formatInsightCount(ownersInAudience),
+      share_in_audience: `${share.toFixed(1).replace(".0", "")}%`,
+      owners: formatInsightCount(owners),
+      items_in_audience: formatInsightCount(ownersInAudience + 380 + index * 43),
+      items: formatInsightCount(owners * 2 + 700 + index * 97),
+      floor_price: floorPrice.toFixed(2).replace(/0+$/, "").replace(/\.$/, ""),
+    };
+  });
+}
+
+const exploreResourceInsights = exploreResources.map((resource, resourceIndex) => ({
   id: resource.id,
   kind: resource.kind,
   resource_id: resource.id,
@@ -669,11 +785,11 @@ const exploreResourceInsights = exploreResources.map((resource) => ({
   nft_allocation: labelInsightsTemplate.nft_allocation,
   transaction_stats: labelInsightsTemplate.transaction_stats,
   contact_metrics: labelInsightsTemplate.contact_metrics,
-  influencers: labelInsightsTemplate.twitter_influencers,
+  influencers: createResourceInfluencers(resourceIndex),
   superrank: labelInsightsTemplate.superrank,
   interests: labelInsightsTemplate.interests,
   personas: labelInsightsTemplate.personas,
-  overlap: labelInsightsTemplate.audience_overlap,
+  overlap: createResourceOverlap(resourceIndex),
 }));
 
 function createExploreEntityData(kind, foreignKey) {
@@ -682,20 +798,23 @@ function createExploreEntityData(kind, foreignKey) {
     .map(({ kind: _kind, ...resource }) => resource);
   const highlights = exploreResourceHighlights
     .filter((highlight) => highlight.kind === kind)
-    .map(({ kind: _kind, resource_id: resourceID, ...highlight }) => ({
+    .map(({ kind: _kind, resource_id: resourceID, ...highlight }, index) => ({
       ...highlight,
+      id: `${kind}-highlight-${index + 1}`,
       [foreignKey]: resourceID,
     }));
   const resourceWallets = exploreResourceWallets
     .filter((wallet) => wallet.kind === kind)
-    .map(({ kind: _kind, resource_id: resourceID, ...wallet }) => ({
+    .map(({ kind: _kind, resource_id: resourceID, ...wallet }, index) => ({
       ...wallet,
+      id: index + 1,
       [foreignKey]: resourceID,
     }));
   const insights = exploreResourceInsights
     .filter((insight) => insight.kind === kind)
-    .map(({ kind: _kind, resource_id: resourceID, ...insight }) => ({
+    .map(({ kind: _kind, resource_id: resourceID, ...insight }, index) => ({
       ...insight,
+      id: `${kind}-insight-${index + 1}`,
       [foreignKey]: resourceID,
     }));
 
@@ -705,6 +824,57 @@ function createExploreEntityData(kind, foreignKey) {
 const dappData = createExploreEntityData("dapp", "dapp_id");
 const nftCollectionData = createExploreEntityData("nft-collection", "nft_collection_id");
 const tokenData = createExploreEntityData("token", "token_id");
+
+const searchTargetKinds = {
+  Dapp: "dapp",
+  Label: "label",
+  "NFT collection": "nft-collection",
+  Token: "token",
+  Wallet: "wallet",
+};
+const searchCollections = {
+  dapp: dappData.resources,
+  label: labelDirectory,
+  "nft-collection": nftCollectionData.resources,
+  token: tokenData.resources,
+  wallet: wallets,
+};
+const searchResultSegments = {
+  dapp: "dapps",
+  label: "labels",
+  "nft-collection": "nft-collections",
+  token: "tokens",
+  wallet: "wallets",
+};
+const searchResults = searchResultSeeds.map((result, index) => {
+  const { fallback_href: fallbackHref, ...searchResult } = result;
+  const targetKind = searchTargetKinds[result.type];
+  const isExploreDetail = targetKind && result.type !== "Audience" && result.id !== "crypto-kitties";
+
+  if (!isExploreDetail) {
+    return { ...searchResult, id: `search-${index + 1}`, href: fallbackHref };
+  }
+
+  const matches = searchCollections[targetKind].filter((resource) => {
+    const searchValue = targetKind === "wallet" ? resource.name : resource.slug;
+    return searchValue.toLowerCase() === result.id.toLowerCase();
+  });
+
+  if (matches.length !== 1) {
+    throw new Error(`Expected exactly one ${targetKind} search target for ${result.id}, received ${matches.length}`);
+  }
+
+  const target = matches[0];
+  const suffix = targetKind === "wallet" ? "" : "/wallets";
+
+  return {
+    ...searchResult,
+    id: `search-${index + 1}`,
+    target_id: target.id,
+    target_kind: targetKind,
+    href: `/explore/${searchResultSegments[targetKind]}/${target.id}${suffix}`,
+  };
+});
 
 const databasePath = fileURLToPath(new URL("../db.json", import.meta.url));
 await writeFile(

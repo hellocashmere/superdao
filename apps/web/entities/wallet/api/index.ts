@@ -3,7 +3,7 @@ export {
   useGetRecentWallets,
   useGetSimilarWallets,
   useGetWalletActivity,
-  useGetWalletByID,
+  useGetWalletByName,
   useGetWalletContacts,
   useGetWalletHeader,
   useGetWalletLabels,

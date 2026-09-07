@@ -16,12 +16,11 @@ import { createColumnHelper } from "@tanstack/react-table";
 
 import type { LabelWallet } from "@/entities/label";
 
-import type { DataTableFeatures } from "../model/data-table-features";
-
 import { getAgeDetails } from "../lib/get-age-details";
 import type { WalletContact } from "../lib/get-contact-href";
 import { getContactHref } from "../lib/get-contact-href";
 import { isMissingValue } from "../lib/is-missing-value";
+import type { DataTableFeatures } from "../model/data-table-features";
 
 export const filterLabels = [
   "Developer",

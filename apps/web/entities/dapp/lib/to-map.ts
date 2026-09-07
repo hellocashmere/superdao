@@ -20,7 +20,8 @@ import type {
  */
 export function DappDTOToView(dto: DappDTO): DappView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
+    slug: dto.slug,
     name: dto.name,
     avatar: dto.avatar,
     owners: dto.owners,
@@ -67,7 +68,7 @@ export function DappHighlightsDTOToView(dto: DappHighlightsDTO): DappHighlightsV
  */
 export function DappWalletDTOToView(dto: DappWalletDTO): DappWalletView {
   return {
-    id: dto.id,
+    id: Number(dto.id),
     name: dto.name,
     avatar: dto.avatar,
     rank: dto.rank,

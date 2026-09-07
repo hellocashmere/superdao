@@ -6,7 +6,7 @@ import { DappHighlights } from "./components/highlights";
 import { DappWalletsTable } from "./components/table";
 
 export interface DappWalletsTabProps extends ComponentPropsWithRef<"div"> {
-  dappID: string;
+  dappID: number;
 }
 
 /**

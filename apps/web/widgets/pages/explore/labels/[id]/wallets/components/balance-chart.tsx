@@ -24,7 +24,7 @@ export interface LabelBalanceChartProps extends ComponentPropsWithRef<typeof Car
   /**
    * Identifier of the label whose wallet balance distribution is rendered.
    */
-  label: string;
+  label: number;
 }
 
 /**

@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@superdao/ui/components/card";

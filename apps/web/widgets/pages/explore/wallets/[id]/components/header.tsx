@@ -16,24 +16,25 @@ import { Skeleton } from "@superdao/ui/components/skeleton";
 import { toast } from "@superdao/ui/components/toast";
 
 import { useGetWalletHeader } from "@/entities/wallet";
+import { throwResourceError } from "@/shared/api";
 
 import { WalletBioHoverCard } from "./bio-hover-card";
 import { WalletInfoTooltip } from "./info-tooltip";
 
 export interface WalletIDHeaderProps extends ComponentPropsWithRef<typeof Card> {
   /**
-   * Identifier of the wallet whose header is rendered.
+   * Backend ID of the wallet whose header is rendered.
    */
-  id: string;
+  walletID: number;
 }
 
 /**
  * Renders wallet identity, social bio, and primary statistics.
  */
-export function WalletIDHeader({ className, id, ref, ...props }: WalletIDHeaderProps) {
-  const walletHeaderQuery = useGetWalletHeader(id);
+export function WalletIDHeader({ className, ref, walletID, ...props }: WalletIDHeaderProps) {
+  const walletHeaderQuery = useGetWalletHeader(walletID);
 
-  if (walletHeaderQuery.error) throw walletHeaderQuery.error;
+  if (walletHeaderQuery.error) throwResourceError(walletHeaderQuery.error);
 
   if (walletHeaderQuery.isPending) {
     return (
@@ -73,13 +74,13 @@ export function WalletIDHeader({ className, id, ref, ...props }: WalletIDHeaderP
     try {
       await navigator.clipboard.writeText(id);
       toast.add({
-        title: "Wallet identifier copied",
-        description: "The identifier has been copied to your clipboard.",
+        title: "Wallet value copied",
+        description: "The selected wallet value has been copied to your clipboard.",
         type: "success",
       });
     } catch {
       toast.add({
-        title: "Couldn't copy wallet identifier",
+        title: "Couldn't copy wallet value",
         description: "Check your browser permissions and try again.",
         type: "error",
       });
@@ -107,7 +108,7 @@ export function WalletIDHeader({ className, id, ref, ...props }: WalletIDHeaderP
               <h1 className="truncate text-xl/6 font-bold">{details.wallet.name}</h1>
               <DropdownMenu>
                 <DropdownMenuTrigger
-                  aria-label="Copy wallet identifier"
+                  aria-label="Copy wallet values"
                   className="shrink-0 text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/40"
                 >
                   <DropdownBoldIcon size={16} />

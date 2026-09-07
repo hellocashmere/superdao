@@ -37,13 +37,12 @@ import type {
 } from "./types/types";
 
 /**
- * Loads a wallet by its identifier for server-side consumers.
+ * Loads a wallet by its numeric ID for server-side consumers.
  *
  * Endpoint: `GET /wallets/:id`.
  */
-export async function getWalletByID(id: string): Promise<WalletPreviewView> {
-  const normalizedID = id.trim().toLowerCase();
-  const response = await baseQuery<WalletDTO>(`/wallets/${encodeURIComponent(normalizedID)}`, {
+export async function getWalletByID(id: number): Promise<WalletPreviewView> {
+  const response = await baseQuery<WalletDTO>(`/wallets/${id}`, {
     method: "GET",
   });
 
@@ -141,24 +140,27 @@ export function useGetWalletsByFilter({
 }
 
 /**
- * Loads a wallet by its identifier.
+ * Loads a wallet by its displayed name, address, or domain.
  *
- * Endpoint: `GET /wallets/:id`.
+ * Endpoint: `GET /wallets`.
  */
-export function useGetWalletByID(id: string): UseQueryResult<WalletPreviewView, Error> {
-  const normalizedID = id.trim().toLowerCase();
+export function useGetWalletByName(name: string): UseQueryResult<WalletPreviewView, Error> {
+  const normalizedName = name.trim().toLowerCase();
 
-  return useQuery<APIResponse<WalletDTO>, Error, WalletPreviewView>({
-    queryKey: ["wallets", normalizedID],
+  return useQuery<APIResponse<readonly WalletDTO[]>, Error, WalletPreviewView>({
+    queryKey: ["wallets", "by-name", normalizedName],
     queryFn: () => {
-      return baseQuery<WalletDTO>(`/wallets/${encodeURIComponent(normalizedID)}`, {
+      return baseQuery<readonly WalletDTO[]>("/wallets", {
         method: "GET",
       });
     },
     select: (response) => {
-      return WalletDTOToPreviewView(response.data);
+      const wallet = response.data.find((item) => item.name.toLowerCase() === normalizedName);
+
+      if (!wallet) throw new Error(`Wallet was not found for name ${normalizedName}.`);
+      return WalletDTOToPreviewView(wallet);
     },
-    enabled: normalizedID.length > 0,
+    enabled: normalizedName.length > 0,
   });
 }
 
@@ -167,20 +169,18 @@ export function useGetWalletByID(id: string): UseQueryResult<WalletPreviewView, 
  *
  * Endpoints: `GET /wallets/:id`, `GET /wallet-overviews?id=:id`.
  */
-export function useGetWalletHeader(id: string): UseQueryResult<WalletDetailsHeaderView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetWalletHeader(id: number): UseQueryResult<WalletDetailsHeaderView, Error> {
   return useQuery<APIResponse<WalletDetailsHeaderView>, Error, WalletDetailsHeaderView>({
-    queryKey: ["wallets", normalizedID, "header"],
+    queryKey: ["wallets", "by-id", id, "header"],
     queryFn: async () => {
       const [walletResponse, overviewResponse] = await Promise.all([
-        baseQuery<WalletDTO>(`/wallets/${encodeURIComponent(normalizedID)}`, { method: "GET" }),
-        baseQuery<WalletOverviewDTO[]>("/wallet-overviews", { method: "GET", params: { id: normalizedID } }),
+        baseQuery<WalletDTO>(`/wallets/${id}`, { method: "GET" }),
+        baseQuery<WalletOverviewDTO[]>("/wallet-overviews", { method: "GET", params: { wallet_id: id } }),
       ]);
       const overview = overviewResponse.data[0];
 
       if (!overview) {
-        throw new Error(`Wallet overview was not found for wallet ${normalizedID}.`);
+        throw new Error(`Wallet overview was not found for wallet ${id}.`);
       }
 
       return {
@@ -190,7 +190,6 @@ export function useGetWalletHeader(id: string): UseQueryResult<WalletDetailsHead
     select: (response: APIResponse<WalletDetailsHeaderView>): WalletDetailsHeaderView => {
       return response.data;
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -199,21 +198,18 @@ export function useGetWalletHeader(id: string): UseQueryResult<WalletDetailsHead
  *
  * Endpoint: `GET /wallet-contacts?wallet_id=:id`.
  */
-export function useGetWalletContacts(id: string): UseQueryResult<readonly WalletContactView[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetWalletContacts(id: number): UseQueryResult<readonly WalletContactView[], Error> {
   return useQuery<APIResponse<readonly WalletContactDTO[]>, Error, readonly WalletContactView[]>({
-    queryKey: ["wallets", normalizedID, "contacts"],
+    queryKey: ["wallets", "by-id", id, "contacts"],
     queryFn: () => {
       return baseQuery<readonly WalletContactDTO[]>("/wallet-contacts", {
         method: "GET",
-        params: { wallet_id: normalizedID },
+        params: { wallet_id: id },
       });
     },
     select: (response) => {
       return response.data.map(WalletContactDTOToView);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -222,21 +218,18 @@ export function useGetWalletContacts(id: string): UseQueryResult<readonly Wallet
  *
  * Endpoint: `GET /wallet-labels?wallet_id=:id`.
  */
-export function useGetWalletLabels(id: string): UseQueryResult<readonly WalletLabelView[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetWalletLabels(id: number): UseQueryResult<readonly WalletLabelView[], Error> {
   return useQuery<APIResponse<readonly WalletLabelDTO[]>, Error, readonly WalletLabelView[]>({
-    queryKey: ["wallets", normalizedID, "labels"],
+    queryKey: ["wallets", "by-id", id, "labels"],
     queryFn: () => {
       return baseQuery<readonly WalletLabelDTO[]>("/wallet-labels", {
         method: "GET",
-        params: { wallet_id: normalizedID },
+        params: { wallet_id: id },
       });
     },
     select: (response) => {
       return response.data.map(WalletLabelDTOToView);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -245,21 +238,18 @@ export function useGetWalletLabels(id: string): UseQueryResult<readonly WalletLa
  *
  * Endpoint: `GET /wallet-activities?wallet_id=:id`.
  */
-export function useGetWalletActivity(id: string): UseQueryResult<readonly WalletActivityCollectionView[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetWalletActivity(id: number): UseQueryResult<readonly WalletActivityCollectionView[], Error> {
   return useQuery<APIResponse<readonly WalletActivityCollectionDTO[]>, Error, readonly WalletActivityCollectionView[]>({
-    queryKey: ["wallets", normalizedID, "activity"],
+    queryKey: ["wallets", "by-id", id, "activity"],
     queryFn: () => {
       return baseQuery<readonly WalletActivityCollectionDTO[]>("/wallet-activities", {
         method: "GET",
-        params: { wallet_id: normalizedID },
+        params: { wallet_id: id },
       });
     },
     select: (response) => {
       return response.data.map(WalletActivityCollectionDTOToView);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -268,21 +258,18 @@ export function useGetWalletActivity(id: string): UseQueryResult<readonly Wallet
  *
  * Endpoint: `GET /wallet-similar-wallets?wallet_id=:id`.
  */
-export function useGetSimilarWallets(id: string): UseQueryResult<readonly WalletSimilarWalletView[], Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetSimilarWallets(id: number): UseQueryResult<readonly WalletSimilarWalletView[], Error> {
   return useQuery<APIResponse<readonly WalletSimilarWalletDTO[]>, Error, readonly WalletSimilarWalletView[]>({
-    queryKey: ["wallets", normalizedID, "similar"],
+    queryKey: ["wallets", "by-id", id, "similar"],
     queryFn: () => {
       return baseQuery<readonly WalletSimilarWalletDTO[]>("/wallet-similar-wallets", {
         method: "GET",
-        params: { wallet_id: normalizedID },
+        params: { wallet_id: id },
       });
     },
     select: (response) => {
       return response.data.map(WalletSimilarWalletDTOToView);
     },
-    enabled: normalizedID.length > 0,
   });
 }
 
@@ -291,26 +278,23 @@ export function useGetSimilarWallets(id: string): UseQueryResult<readonly Wallet
  *
  * Endpoint: `GET /wallet-transaction-summaries?id=:id`.
  */
-export function useGetWalletTransactions(id: string): UseQueryResult<WalletTransactionsView, Error> {
-  const normalizedID = id.trim().toLowerCase();
-
+export function useGetWalletTransactions(id: number): UseQueryResult<WalletTransactionsView, Error> {
   return useQuery<APIResponse<WalletTransactionsDTO[]>, Error, WalletTransactionsView>({
-    queryKey: ["wallets", normalizedID, "transactions"],
+    queryKey: ["wallets", "by-id", id, "transactions"],
     queryFn: () => {
       return baseQuery<WalletTransactionsDTO[]>("/wallet-transaction-summaries", {
         method: "GET",
-        params: { id: normalizedID },
+        params: { wallet_id: id },
       });
     },
     select: (response) => {
       const transactions = response.data[0];
 
       if (!transactions) {
-        throw new Error(`Wallet transactions were not found for wallet ${normalizedID}.`);
+        throw new Error(`Wallet transactions were not found for wallet ${id}.`);
       }
 
       return WalletTransactionsDTOToView(transactions);
     },
-    enabled: normalizedID.length > 0,
   });
 }

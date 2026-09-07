@@ -6,6 +6,7 @@ import { cn } from "@superdao/lib/utils";
 import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
 
 import type { NftCollectionView } from "@/entities/nft-collection";
+import { exploreRoutes } from "@/shared/lib/routes";
 import { PageHeader } from "@/shared/ui/page-layout";
 
 import { CollectionTabsList } from "./tabs";
@@ -27,13 +28,13 @@ export function CollectionIDHeader({ className, collection, ref, ...props }: Col
     >
       <div className="flex min-w-0 items-center gap-3">
         <Link
-          href="/explore/nft-collections"
+          href={exploreRoutes.nftCollections()}
           aria-label="Back to NFT collections"
-          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-md text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
+          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-full text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
         >
           <ArrowLeftIcon size={24} />
         </Link>
-        <Avatar className="size-8 shrink-0">
+        <Avatar size="s">
           <AvatarImage
             src={collection.avatar}
             alt=""
