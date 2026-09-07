@@ -20,10 +20,7 @@ import { PageBody, PageHeader } from "@/shared/ui/page-layout";
 import type { MemberDraft } from "./components/member-draft-fields";
 import { MemberDraftFields } from "./components/member-draft-fields";
 
-const initialDrafts: readonly MemberDraft[] = [
-  { id: 1, wallet: "", role: null, email: "" },
-  { id: 2, wallet: "", role: null, email: "" },
-];
+const initialDrafts: readonly MemberDraft[] = [{ id: 1, wallet: "", role: null, email: "" }];
 
 function formatWalletName(wallet: string) {
   if (wallet.length <= 13) {
@@ -102,7 +99,10 @@ export function AddMembersPage({ className, ref, ...props }: AddMembersPageProps
       {...props}
       ref={ref}
       data-slot="add-members-page"
-      className={cn("mx-auto flex min-h-0 flex-1 flex-col sm:max-w-[640px]", className)}
+      className={cn(
+        "mx-auto flex h-[calc(100svh-3.5rem)] min-h-0 flex-col overflow-hidden sm:max-w-[640px] md:h-svh",
+        className
+      )}
     >
       <PageHeader className="flex min-h-18 items-center gap-3">
         <Button
@@ -117,33 +117,40 @@ export function AddMembersPage({ className, ref, ...props }: AddMembersPageProps
         </Button>
         <h1 className="font-heading text-2xl/[28px] font-bold">Add members</h1>
       </PageHeader>
-      <PageBody>
-        <form onSubmit={submitMembers}>
-          <div className="space-y-4">
-            {drafts.map((draft, index) => (
-              <MemberDraftFields
-                key={draft.id}
-                draft={draft}
-                index={index}
-                canRemove={drafts.length > 1}
-                onDraftChange={updateDraft}
-                onRemove={removeDraft}
-              />
-            ))}
+      <PageBody className="flex flex-col overflow-hidden">
+        <form
+          className="flex h-full min-h-0 flex-col"
+          onSubmit={submitMembers}
+        >
+          <div className="no-scrollbar min-h-0 flex-1 scroll-fade overflow-y-auto px-1">
+            <div className="flex flex-col gap-4 pb-4">
+              <div className="space-y-4">
+                {drafts.map((draft, index) => (
+                  <MemberDraftFields
+                    key={draft.id}
+                    draft={draft}
+                    index={index}
+                    canRemove={drafts.length > 1}
+                    onDraftChange={updateDraft}
+                    onRemove={removeDraft}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="flex h-10 items-center gap-4 text-[15px]/6 font-semibold"
+                onClick={addDraft}
+              >
+                <span className="flex size-10 items-center justify-center rounded-full bg-[#252b36]">
+                  <AddIcon size={24} />
+                </span>
+                Add more
+              </button>
+            </div>
           </div>
 
-          <button
-            type="button"
-            className="mt-4 flex h-10 items-center gap-4 text-[15px]/6 font-semibold"
-            onClick={addDraft}
-          >
-            <span className="flex size-10 items-center justify-center rounded-full bg-[#252b36]">
-              <AddIcon size={24} />
-            </span>
-            Add more
-          </button>
-
-          <div className="mt-10 flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3 bg-background py-4">
             <Button
               type="submit"
               className="px-6"

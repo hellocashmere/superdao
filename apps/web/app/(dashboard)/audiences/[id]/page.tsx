@@ -15,7 +15,5 @@ export async function generateMetadata({ params }: PageProps<"/audiences/[id]">)
 export default async function Page({ params }: PageProps<"/audiences/[id]">) {
   const { id } = await params;
 
-  return (
-    <AudienceDetailsPage audienceID={id} />
-  );
+  return <AudienceDetailsPage audienceID={id} />;
 }

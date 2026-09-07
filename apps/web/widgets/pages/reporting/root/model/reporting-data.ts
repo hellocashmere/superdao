@@ -2,6 +2,12 @@ export type ReportingContact = "link" | "mirror" | "opensea" | "twitter";
 
 export type ReportingAction = "WALLET_CONNECT" | "PAGE_VIEW" | "TARGET_ACTION_MINT";
 
+export interface ReportingAccount {
+  id: number;
+  name: string;
+  walletCount: string;
+}
+
 export interface ReportingWallet {
   id: number;
   wallet: string;
@@ -24,6 +30,21 @@ export interface ReportingDateRange {
 }
 
 type ReportingWalletSeed = Omit<ReportingWallet, "occurredAt">;
+
+const reportingAccounts: readonly ReportingAccount[] = [
+  {
+    id: 666,
+    name: "cashmere.ton",
+    walletCount: "44 684",
+  },
+];
+
+/**
+ * Returns the reporting account with the requested numeric ID.
+ */
+export function getReportingAccount(id: number): ReportingAccount | undefined {
+  return reportingAccounts.find((account) => account.id === id);
+}
 
 const reportingWalletSeeds: readonly ReportingWalletSeed[] = [
   {

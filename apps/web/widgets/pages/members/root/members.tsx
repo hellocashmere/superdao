@@ -4,17 +4,16 @@ import type { ComponentPropsWithRef } from "react";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 
-import { useLoading } from "@superdao/hooks";
 import { AddIcon } from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
 import { Button } from "@superdao/ui/components/button";
+import { toast } from "@superdao/ui/components/toast";
 
 import type { MemberRole } from "@/entities/member";
 import { useMemberStore } from "@/entities/member";
 import { Container } from "@/shared/ui/container";
 import { PageBody, PageHeader } from "@/shared/ui/page-layout";
 
-import { MembersPageSkeleton } from "./components/members-page-skeleton";
 import { MembersPagination } from "./components/members-pagination";
 import { MembersTable } from "./components/members-table";
 
@@ -29,7 +28,6 @@ export interface MembersPageProps extends ComponentPropsWithRef<typeof Container
 export function MembersPage({ className, ref, ...props }: MembersPageProps) {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(defaultPageSize);
-  const isLoading = useLoading(3000);
   const allMembers = useMemberStore((state) => state.members);
   const changeMemberRole = useMemberStore((state) => state.changeMemberRole);
   const removeStoredMember = useMemberStore((state) => state.removeMember);
@@ -39,21 +37,29 @@ export function MembersPage({ className, ref, ...props }: MembersPageProps) {
   const visibleMembers = members.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   function changeRole(memberID: string, role: MemberRole) {
+    const member = allMembers.find((candidate) => candidate.id === memberID);
+
+    if (!member || member.role === role) return;
+
     changeMemberRole(memberID, role);
+    toast.add({
+      title: role === "Member" ? `${member.role} rights revoked` : `${role} rights granted`,
+      description: `${member.name}'s role is now ${role}.`,
+      type: "success",
+    });
   }
 
   function removeMember(memberID: string) {
-    removeStoredMember(memberID);
-  }
+    const member = allMembers.find((candidate) => candidate.id === memberID);
 
-  if (isLoading) {
-    return (
-      <MembersPageSkeleton
-        {...props}
-        ref={ref}
-        className={className}
-      />
-    );
+    if (!member) return;
+
+    removeStoredMember(memberID);
+    toast.add({
+      title: "Member removed",
+      description: `${member.name} was removed from the organization.`,
+      type: "success",
+    });
   }
 
   return (

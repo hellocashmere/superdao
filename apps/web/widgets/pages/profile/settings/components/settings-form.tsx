@@ -15,17 +15,12 @@ import { z } from "zod";
 
 import { useSessionStore } from "@/entities/session";
 import { useUserStore } from "@/entities/user";
+import { isWalletIdentifier } from "@/shared/lib/crypto";
 
 const profileSettingsSchema = z.object({
   avatarUrl: z.string(),
   name: z.string().trim().min(1, "Display name is required."),
-  wallet: z
-    .string()
-    .trim()
-    .refine(
-      (value) => /^0x[a-fA-F0-9]{40}$/.test(value) || /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.eth$/i.test(value),
-      "Enter a valid wallet address or ENS name."
-    ),
+  wallet: z.string().trim().refine(isWalletIdentifier, "Enter a wallet address or domain name."),
 });
 
 type ProfileSettings = z.infer<typeof profileSettingsSchema>;
@@ -186,7 +181,7 @@ export function ProfileSettingsForm({ className, ref, ...props }: ProfileSetting
               {...field}
               id="profile-wallet"
               aria-invalid={fieldState.invalid}
-              placeholder="Wallet address or ENS"
+              placeholder="Wallet address or domain"
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
@@ -204,6 +199,7 @@ export function ProfileSettingsForm({ className, ref, ...props }: ProfileSetting
       <div className="pt-6">
         <Button
           type="submit"
+          className="px-6 active:translate-y-0"
           disabled={form.formState.isSubmitting}
         >
           Save profile

@@ -12,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@superdao/ui/components/dropdown-menu";
+import { toast } from "@superdao/ui/components/toast";
 
 import type { CommunityMember, MemberRole } from "@/entities/member";
 
@@ -33,7 +34,20 @@ export function MemberActionsMenu({
   ...props
 }: MemberActionsMenuProps) {
   async function copyAddress() {
-    await navigator.clipboard.writeText(member.address);
+    try {
+      await navigator.clipboard.writeText(member.address);
+      toast.add({
+        title: "Address copied",
+        description: `${member.name}'s address has been copied to your clipboard.`,
+        type: "success",
+      });
+    } catch {
+      toast.add({
+        title: "Couldn't copy address",
+        description: "Check your browser permissions and try again.",
+        type: "error",
+      });
+    }
   }
 
   return (

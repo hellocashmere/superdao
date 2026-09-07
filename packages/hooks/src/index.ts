@@ -4,8 +4,6 @@ export type { UseDebounceValueOptions, UseDebounceValueReturn } from "./use-debo
 export { useDebounceValue } from "./use-debounce-value";
 export type { UseIntersectionObserverOptions, UseIntersectionObserverReturn } from "./use-intersection-observer";
 export { useIntersectionObserver } from "./use-intersection-observer";
-export type { UseLoadingOptions, UseLoadingReturn } from "./use-loading";
-export { useLoading } from "./use-loading";
 export type { UseMediaQueryOptions, UseMediaQueryReturn } from "./use-media-query";
 export { useMediaQuery } from "./use-media-query";
 export type { UseIsMobileReturn } from "./use-mobile";

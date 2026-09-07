@@ -8,7 +8,14 @@ import { cn } from "@superdao/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@superdao/ui/components/avatar";
 import { Button } from "@superdao/ui/components/button";
 import { Card } from "@superdao/ui/components/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@superdao/ui/components/select";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@superdao/ui/components/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@superdao/ui/components/table";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@superdao/ui/components/tooltip";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
@@ -115,24 +122,24 @@ export function ReportingTable({
       </div>
 
       <div className="min-h-[654px] [&>[data-slot=table-container]]:min-h-[654px]">
-        <Table className="min-w-[1080px] table-fixed">
+        <Table className="min-w-[1088px] table-fixed">
           <TableHeader>
-            <TableRow className="h-[54px] border-0 hover:bg-transparent">
+            <TableRow className="h-13.5 border-0 hover:bg-transparent">
               <TableHead
                 data-column="index"
-                className="w-[49px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[29px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 #
               </TableHead>
               <TableHead
                 data-column="wallet"
-                className="w-[191px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[171px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Wallet
               </TableHead>
               <TableHead
                 data-column="rank"
-                className="w-[75px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[75px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 <button
                   type="button"
@@ -149,43 +156,43 @@ export function ReportingTable({
               </TableHead>
               <TableHead
                 data-column="target"
-                className="w-[145px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[145px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Target
               </TableHead>
               <TableHead
                 data-column="source"
-                className="w-[130px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[130px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Source
               </TableHead>
               <TableHead
                 data-column="labels"
-                className="w-[126px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[206px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Labels ↗
               </TableHead>
               <TableHead
                 data-column="balance"
-                className="w-[93px] px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[93px] px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Balance, $
               </TableHead>
               <TableHead
                 data-column="nfts"
-                className="w-[59px] px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[59px] px-5 pt-6 pb-3 text-right text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 NFTs
               </TableHead>
               <TableHead
                 data-column="contacts"
-                className="w-[132px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-[#717a8c]"
+                className="w-[132px] px-5 pt-6 pb-3 text-[13px]/[18px] font-semibold text-muted-foreground"
               >
                 Contacts
               </TableHead>
               <TableHead
                 data-column="actions"
-                className="w-12 px-2 pt-6 pb-3"
+                className="w-12 px-5 pt-6 pb-3"
               >
                 <span className="sr-only">Actions</span>
               </TableHead>
@@ -195,7 +202,7 @@ export function ReportingTable({
             {pageWallets.map((wallet) => (
               <TableRow
                 key={wallet.id}
-                className="h-14 border-0 hover:bg-sidebar-accent/50"
+                className="h-14 border-0"
               >
                 <TableCell
                   data-column="index"
@@ -208,7 +215,7 @@ export function ReportingTable({
                   className="px-5 py-0"
                 >
                   <div className="flex min-w-0 items-center gap-3">
-                    <Avatar className="size-7">
+                    <Avatar className="size-8">
                       <AvatarImage
                         src={wallet.avatar}
                         alt=""
@@ -268,7 +275,7 @@ export function ReportingTable({
                 </TableCell>
                 <TableCell
                   data-column="actions"
-                  className="px-2 py-0"
+                  className="px-5 py-0"
                 >
                   <ReportingWalletActions wallet={wallet} />
                 </TableCell>
@@ -315,17 +322,23 @@ export function ReportingTable({
             <SelectTrigger
               size="sm"
               className="w-20"
+              aria-label="Rows per page"
             >
-              <SelectValue />
+              <SelectValue placeholder={pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
-              <SelectItem value="12">12</SelectItem>
-              <SelectItem value="24">24</SelectItem>
-              <SelectItem value="48">48</SelectItem>
+              <SelectGroup>
+                <SelectItem value="12">12</SelectItem>
+                <SelectItem value="24">24</SelectItem>
+                <SelectItem value="48">48</SelectItem>
+              </SelectGroup>
             </SelectContent>
           </Select>
         </div>
-        <span className="min-w-28 text-center text-foreground">
+        <span
+          className="min-w-20 text-center text-foreground"
+          aria-live="polite"
+        >
           {currentPageIndex + 1} of {pageCount} pages
         </span>
         <div className="flex items-center gap-2">

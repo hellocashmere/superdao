@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { cn } from "@superdao/lib/utils";
 
+import { AudienceStoreProvider, useAudienceStore } from "@/entities/audience";
 import { MemberStoreProvider, useMemberStore } from "@/entities/member";
 import { OrganizationStoreProvider, useOrganizationStore } from "@/entities/organization";
 import { SearchStoreProvider, useSearchStore } from "@/entities/search";
@@ -23,13 +24,15 @@ export interface AppStateGateProps extends ComponentPropsWithRef<"div"> {
 export function AppStateGate({ children, className, ref, ...props }: AppStateGateProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const audienceHydrated = useAudienceStore((state) => state.hasHydrated);
   const memberHydrated = useMemberStore((state) => state.hasHydrated);
   const organizationHydrated = useOrganizationStore((state) => state.hasHydrated);
   const searchHydrated = useSearchStore((state) => state.hasHydrated);
   const sessionHydrated = useSessionStore((state) => state.hasHydrated);
   const sessionStatus = useSessionStore((state) => state.status);
   const userHydrated = useUserStore((state) => state.hasHydrated);
-  const hasHydrated = memberHydrated && organizationHydrated && searchHydrated && sessionHydrated && userHydrated;
+  const hasHydrated =
+    audienceHydrated && memberHydrated && organizationHydrated && searchHydrated && sessionHydrated && userHydrated;
   const isAuthRootRoute = pathname === "/auth";
   const isAuthRoute = isAuthRootRoute || pathname.startsWith("/auth/");
   const isComponentCatalogRoute = pathname === "/_components";
@@ -78,17 +81,19 @@ export interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
   return (
     <QueryClientProvider>
-      <SessionStoreProvider>
-        <UserStoreProvider>
-          <SearchStoreProvider>
-            <OrganizationStoreProvider>
-              <MemberStoreProvider>
-                <AppStateGate>{children}</AppStateGate>
-              </MemberStoreProvider>
-            </OrganizationStoreProvider>
-          </SearchStoreProvider>
-        </UserStoreProvider>
-      </SessionStoreProvider>
+      <AudienceStoreProvider>
+        <SessionStoreProvider>
+          <UserStoreProvider>
+            <SearchStoreProvider>
+              <OrganizationStoreProvider>
+                <MemberStoreProvider>
+                  <AppStateGate>{children}</AppStateGate>
+                </MemberStoreProvider>
+              </OrganizationStoreProvider>
+            </SearchStoreProvider>
+          </UserStoreProvider>
+        </SessionStoreProvider>
+      </AudienceStoreProvider>
     </QueryClientProvider>
   );
 }

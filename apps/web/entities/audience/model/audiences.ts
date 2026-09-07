@@ -1,7 +1,5 @@
 const audienceNames: Readonly<Record<string, string>> = {
-  "lens-profiles": "Lens profiles",
-  "mirror-xyz": "mirror.xyz",
-  "superdao-robots": "Superdao robots",
+  "cashmere-ton": "cashmere.ton",
   new: "New audience",
 };
 

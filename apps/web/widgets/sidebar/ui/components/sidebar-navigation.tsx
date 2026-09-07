@@ -1,8 +1,10 @@
 import type { ComponentPropsWithRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { ArrowDownIcon } from "@superdao/icons";
+import { AddIcon } from "@superdao/icons/outline";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@superdao/ui/components/collapsible";
 import {
   SidebarGroup,
@@ -14,6 +16,11 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@superdao/ui/components/sidebar";
+import { toast } from "@superdao/ui/components/toast";
+
+import { useAudienceStore } from "@/entities/audience";
+import type { CreatedAudience } from "@/features/create-audience";
+import { CreateAudienceDialog } from "@/features/create-audience";
 
 import { sidebarNavigation } from "../../model/navigation";
 
@@ -24,6 +31,23 @@ export interface SidebarNavigationProps extends ComponentPropsWithRef<"nav"> {}
  */
 export function SidebarNavigation({ className, ref, ...props }: SidebarNavigationProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const audiences = useAudienceStore((state) => state.audiences);
+  const createAudience = useAudienceStore((state) => state.createAudience);
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  function saveAudience(audience: CreatedAudience) {
+    const audienceID = createAudience(audience);
+
+    setIsCreateDialogOpen(false);
+    toast.add({
+      title: "Audience created",
+      description: `${audience.name} is ready to explore.`,
+      type: "success",
+    });
+    router.push(`/audiences/${audienceID}`);
+  }
 
   return (
     <nav
@@ -39,12 +63,26 @@ export function SidebarNavigation({ className, ref, ...props }: SidebarNavigatio
           <SidebarMenu>
             {sidebarNavigation.map((item) => {
               const Icon = item.icon;
-              const isItemActive = pathname === item.href;
-              const hasActiveChild = item.children?.some(
+              const children =
+                item.kind === "audiences"
+                  ? [
+                      ...audiences.map((audience) => ({
+                        title: audience.name,
+                        href: `/audiences/${audience.id}`,
+                        meta:
+                          (audience.walletCount ?? 0) > 0
+                            ? new Intl.NumberFormat("en", { notation: "compact" }).format(audience.walletCount ?? 0)
+                            : undefined,
+                      })),
+                      { title: "Add audience", href: "/audiences/new", meta: "+" },
+                    ]
+                  : item.children;
+              const hasActiveChild = children?.some(
                 (child) => pathname === child.href || pathname.startsWith(`${child.href}/`)
               );
+              const isItemActive = pathname === item.href && !hasActiveChild;
 
-              if (!item.children) {
+              if (!children) {
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
@@ -61,7 +99,10 @@ export function SidebarNavigation({ className, ref, ...props }: SidebarNavigatio
               return (
                 <Collapsible
                   key={item.title}
-                  defaultOpen={item.defaultOpen || isItemActive || hasActiveChild}
+                  open={openSections[item.title] ?? Boolean(item.defaultOpen || isItemActive || hasActiveChild)}
+                  onOpenChange={(open) => {
+                    setOpenSections((currentSections) => ({ ...currentSections, [item.title]: open }));
+                  }}
                 >
                   <SidebarMenuItem>
                     <CollapsibleTrigger
@@ -77,21 +118,39 @@ export function SidebarNavigation({ className, ref, ...props }: SidebarNavigatio
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.children.map((child) => (
-                          <SidebarMenuSubItem key={child.title}>
-                            <SidebarMenuSubButton
-                              isActive={pathname === child.href || pathname.startsWith(`${child.href}/`)}
-                              render={<Link href={child.href} />}
-                            >
-                              <span>{child.title}</span>
-                              {child.meta ? (
-                                <span className="ml-auto text-xs text-sidebar-muted-foreground tabular-nums">
-                                  {child.meta}
-                                </span>
-                              ) : null}
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
+                        {children.map((child) => {
+                          const isAddAudience = child.href === "/audiences/new";
+
+                          return (
+                            <SidebarMenuSubItem key={child.title}>
+                              <SidebarMenuSubButton
+                                isActive={pathname === child.href || pathname.startsWith(`${child.href}/`)}
+                                render={<Link href={child.href} />}
+                                data-action={isAddAudience ? "add-audience" : undefined}
+                                className="data-[action=add-audience]:font-semibold data-[action=add-audience]:hover:[&>svg]:text-sidebar-muted-foreground data-[action=add-audience]:active:[&>svg]:text-sidebar-muted-foreground"
+                                onClick={(event) => {
+                                  if (isAddAudience) {
+                                    event.preventDefault();
+                                    setIsCreateDialogOpen(true);
+                                  }
+                                }}
+                              >
+                                <span>{child.title}</span>
+                                {isAddAudience ? (
+                                  <AddIcon
+                                    size={16}
+                                    className="ml-auto"
+                                    aria-hidden="true"
+                                  />
+                                ) : child.meta ? (
+                                  <span className="ml-auto text-xs text-sidebar-muted-foreground tabular-nums">
+                                    {child.meta}
+                                  </span>
+                                ) : null}
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   </SidebarMenuItem>
@@ -101,6 +160,11 @@ export function SidebarNavigation({ className, ref, ...props }: SidebarNavigatio
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
+      <CreateAudienceDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        onCreate={saveAudience}
+      />
     </nav>
   );
 }

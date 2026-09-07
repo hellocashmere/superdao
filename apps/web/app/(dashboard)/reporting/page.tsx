@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-
-import { ReportingPage } from "@/widgets/pages/reporting/root";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Reporting",
 };
 
 /**
- * Renders the reporting overview route.
+ * Redirects the reporting root to the canonical account route.
  */
 export default function Page() {
-  return <ReportingPage />;
+  redirect("/reporting/666");
 }

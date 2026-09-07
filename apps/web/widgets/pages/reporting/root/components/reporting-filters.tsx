@@ -3,22 +3,30 @@
 import type { ComponentPropsWithRef } from "react";
 import { useState } from "react";
 
+import {
+  ArrowDownIcon,
+  CalendarIcon,
+  CloseIcon,
+  DocumentIcon,
+  LinkIcon,
+  SearchIcon,
+  TagIcon,
+  TransactionIcon,
+} from "@superdao/icons/outline";
 import { cn } from "@superdao/lib/utils";
 import { Button } from "@superdao/ui/components/button";
 import { Calendar } from "@superdao/ui/components/calendar";
 import { Checkbox } from "@superdao/ui/components/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@superdao/ui/components/dropdown-menu";
+import { Field, FieldGroup, FieldLabel, FieldSet } from "@superdao/ui/components/field";
 import { Input } from "@superdao/ui/components/input";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@superdao/ui/components/input-group";
+import { Popover, PopoverContent, PopoverTrigger } from "@superdao/ui/components/popover";
 import { RadioGroup, RadioGroupItem } from "@superdao/ui/components/radio-group";
-import { ChevronDown, Search, Share2, SlidersHorizontal, X } from "lucide-react";
 
 import type { ReportingDateRange, ReportingPeriod } from "../model/reporting-data";
 import { actionOptions, labelOptions, reportingActionLabels, sourceOptions } from "../model/reporting-data";
+
+import { ReportingExportDialog } from "./export-dialog";
 
 export interface ReportingFiltersProps extends ComponentPropsWithRef<"div"> {
   query: string;
@@ -36,7 +44,9 @@ export interface ReportingFiltersProps extends ComponentPropsWithRef<"div"> {
   onResetFilters: () => void;
 }
 
-/** Renders the reporting search, filter controls, result count, and export action. */
+/**
+ * Renders reporting search, filter controls, result count, and table actions.
+ */
 export function ReportingFilters({
   className,
   ref,
@@ -55,158 +65,280 @@ export function ReportingFilters({
   onResetFilters,
   ...props
 }: ReportingFiltersProps) {
-  const activeFilterCount =
-    Number(period !== "All time") +
-    Number(selectedActions.length > 0) +
-    Number(selectedSources.length > 0) +
-    Number(selectedLabels.length > 0);
-  const hasFilters = activeFilterCount > 0 || query.length > 0;
+  const [openFilter, setOpenFilter] = useState<"period" | "action" | "source" | "labels" | null>(null);
+  const [customPeriodOpen, setCustomPeriodOpen] = useState(false);
+  const hasActiveCriteria =
+    query.trim().length > 0 ||
+    period !== "All time" ||
+    selectedActions.length > 0 ||
+    selectedSources.length > 0 ||
+    selectedLabels.length > 0;
+  const hasActiveFilters =
+    period !== "All time" || selectedActions.length > 0 || selectedSources.length > 0 || selectedLabels.length > 0;
+
+  function handleFilterOpenChange(filter: Exclude<typeof openFilter, null>, nextOpen: boolean) {
+    setOpenFilter(nextOpen ? filter : null);
+    if (!nextOpen && filter === "period") setCustomPeriodOpen(false);
+  }
 
   return (
     <div
       {...props}
       ref={ref}
       data-slot="reporting-filters"
-      data-filtered={hasFilters}
-      className={cn("space-y-4 pb-1", className)}
+      data-filtered={hasActiveCriteria}
+      className={cn("flex flex-col gap-4 pb-1", className)}
     >
-      <div className="flex min-h-10 flex-wrap items-center gap-x-5 gap-y-3">
-        <label className="relative block w-full sm:w-80">
+      <div className="flex min-h-10 flex-wrap items-center gap-5">
+        <label className="block w-full sm:w-55">
           <span className="sr-only">Search wallets</span>
-          <Search className="pointer-events-none absolute top-3 left-3 size-4 text-[#717a8c]" />
-          <Input
-            type="search"
-            value={query}
-            placeholder="Search wallets"
-            className="pr-9 pl-9 [&::-webkit-search-cancel-button]:appearance-none"
-            onChange={(event) => onQueryChange(event.target.value)}
-          />
-          {query ? (
-            <button
-              type="button"
-              aria-label="Clear wallet search"
-              className="absolute top-1 right-1 grid size-8 place-items-center rounded-md text-[#717a8c] outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
-              onClick={() => onQueryChange("")}
-            >
-              <X className="size-4" />
-            </button>
-          ) : null}
+          <InputGroup>
+            <InputGroupAddon className="pl-3 text-icon">
+              <SearchIcon size={16} />
+            </InputGroupAddon>
+            <InputGroupInput
+              type="search"
+              value={query}
+              placeholder="Search"
+              className="pr-0 [&::-webkit-search-cancel-button]:appearance-none [&::-webkit-search-decoration]:appearance-none"
+              onChange={(event) => onQueryChange(event.target.value)}
+            />
+            {query ? (
+              <InputGroupAddon
+                align="inline-end"
+                className="text-icon"
+              >
+                <InputGroupButton
+                  type="button"
+                  variant="ghost"
+                  size="icon-xs"
+                  aria-label="Clear search"
+                  onClick={() => onQueryChange("")}
+                >
+                  <CloseIcon className="size-4!" />
+                </InputGroupButton>
+              </InputGroupAddon>
+            ) : null}
+          </InputGroup>
         </label>
 
-        <p
-          aria-live="polite"
-          className="text-sm/5"
+        <Popover
+          open={openFilter === "period"}
+          onOpenChange={(nextOpen) => handleFilterOpenChange("period", nextOpen)}
         >
-          <span className="font-semibold tabular-nums">{resultCount.toLocaleString("en-US").replaceAll(",", " ")}</span>{" "}
-          <span className="text-tabs-foreground">wallets</span>
-        </p>
+          <PopoverTrigger
+            render={
+              <Button
+                type="button"
+                variant="secondary"
+                data-active={period !== "All time"}
+                className="font-normal data-[active=true]:bg-secondary-hover"
+              />
+            }
+          >
+            <CalendarIcon data-icon="inline-start" />
+            {period === "All time" ? "Period" : getPeriodLabel(period, dateRange)}
+            <ArrowDownIcon data-icon="inline-end" />
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            initialFocus={false}
+          >
+            {customPeriodOpen ? (
+              <ReportingDatePicker
+                value={dateRange}
+                onCancel={() => setCustomPeriodOpen(false)}
+                onSave={(nextRange) => {
+                  onPeriodChange(nextRange?.from ? "Custom period" : "All time", nextRange);
+                  setOpenFilter(null);
+                  setCustomPeriodOpen(false);
+                }}
+              />
+            ) : (
+              <PeriodFilterSection
+                value={period}
+                onValueChange={(nextPeriod) => {
+                  if (nextPeriod === "Custom period") setCustomPeriodOpen(true);
+                  else onPeriodChange(nextPeriod);
+                }}
+              />
+            )}
+          </PopoverContent>
+        </Popover>
 
-        <Button
-          type="button"
-          variant="ghost"
-          className="ml-auto font-normal"
+        <Popover
+          open={openFilter === "action"}
+          onOpenChange={(nextOpen) => handleFilterOpenChange("action", nextOpen)}
         >
-          <Share2
-            data-icon="inline-start"
-            className="text-tabs-foreground"
-          />
-          Export
-        </Button>
+          <PopoverTrigger
+            render={
+              <Button
+                type="button"
+                variant="secondary"
+                data-active={selectedActions.length > 0}
+                className="font-normal data-[active=true]:bg-secondary-hover"
+              />
+            }
+          >
+            <TransactionIcon data-icon="inline-start" />
+            Action{selectedActions.length > 0 ? ` · ${selectedActions.length}` : null}
+            <ArrowDownIcon data-icon="inline-end" />
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            initialFocus={false}
+          >
+            <FilterCheckboxGroup
+              label="Action"
+              options={actionOptions}
+              optionLabels={reportingActionLabels}
+              selected={selectedActions}
+              onValueChange={onActionsChange}
+            />
+          </PopoverContent>
+        </Popover>
+
+        <Popover
+          open={openFilter === "source"}
+          onOpenChange={(nextOpen) => handleFilterOpenChange("source", nextOpen)}
+        >
+          <PopoverTrigger
+            render={
+              <Button
+                type="button"
+                variant="secondary"
+                data-active={selectedSources.length > 0}
+                className="font-normal data-[active=true]:bg-secondary-hover"
+              />
+            }
+          >
+            <LinkIcon data-icon="inline-start" />
+            Source{selectedSources.length > 0 ? ` · ${selectedSources.length}` : null}
+            <ArrowDownIcon data-icon="inline-end" />
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            initialFocus={false}
+          >
+            <FilterCheckboxGroup
+              label="Source"
+              options={sourceOptions}
+              selected={selectedSources}
+              onValueChange={onSourcesChange}
+            />
+          </PopoverContent>
+        </Popover>
+
+        <Popover
+          open={openFilter === "labels"}
+          onOpenChange={(nextOpen) => handleFilterOpenChange("labels", nextOpen)}
+        >
+          <PopoverTrigger
+            render={
+              <Button
+                type="button"
+                variant="secondary"
+                data-active={selectedLabels.length > 0}
+                className="font-normal data-[active=true]:bg-secondary-hover"
+              />
+            }
+          >
+            <TagIcon data-icon="inline-start" />
+            Labels{selectedLabels.length > 0 ? ` · ${selectedLabels.length}` : null}
+            <ArrowDownIcon data-icon="inline-end" />
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            initialFocus={false}
+          >
+            <FilterCheckboxGroup
+              label="Labels"
+              options={labelOptions}
+              selected={selectedLabels}
+              columns
+              onValueChange={onLabelsChange}
+            />
+          </PopoverContent>
+        </Popover>
+
+        {hasActiveCriteria ? (
+          <p
+            aria-live="polite"
+            className="flex gap-1 text-sm/5"
+          >
+            <span className="font-semibold tabular-nums">
+              {resultCount.toLocaleString("en-US").replaceAll(",", " ")}
+            </span>
+            <span className="text-tabs-foreground">wallets</span>
+          </p>
+        ) : null}
+
+        <div className="ml-auto flex items-center gap-2">
+          <Button
+            type="button"
+            variant="ghost"
+            className="font-normal"
+          >
+            <DocumentIcon
+              data-icon="inline-start"
+              className="text-tabs-foreground"
+            />
+            FAQ
+          </Button>
+          <ReportingExportDialog />
+        </div>
       </div>
 
-      <div className="flex min-h-9 flex-wrap items-center gap-2">
-        <div className="mr-1 flex h-9 items-center gap-2 text-sm/5 font-semibold">
-          <SlidersHorizontal className="size-4 text-tabs-foreground" />
-          <span>Filters</span>
-          {activeFilterCount > 0 ? (
-            <span className="grid size-5 place-items-center rounded-full bg-primary text-xs font-bold text-primary-foreground tabular-nums">
-              {activeFilterCount}
-            </span>
+      {hasActiveFilters ? (
+        <div className="flex min-h-12 flex-wrap items-center gap-3 pt-4">
+          {period !== "All time" ? (
+            <ActiveFilterChip
+              label={getPeriodLabel(period, dateRange)}
+              accessibleLabel="period"
+              onRemove={() => onPeriodChange("All time")}
+            />
           ) : null}
-        </div>
-
-        <PeriodFilter
-          value={period}
-          range={dateRange}
-          onValueChange={onPeriodChange}
-        />
-        <MultiSelectFilter
-          label="Action"
-          placeholder="Any action"
-          options={actionOptions}
-          optionLabels={reportingActionLabels}
-          selected={selectedActions}
-          onValueChange={onActionsChange}
-        />
-        <MultiSelectFilter
-          label="Source"
-          placeholder="Any source"
-          options={sourceOptions}
-          selected={selectedSources}
-          onValueChange={onSourcesChange}
-        />
-        <MultiSelectFilter
-          label="Labels"
-          placeholder="Any label"
-          options={labelOptions}
-          selected={selectedLabels}
-          columns
-          onValueChange={onLabelsChange}
-        />
-
-        {hasFilters ? (
+          {selectedActions.map((action) => (
+            <ActiveFilterChip
+              key={action}
+              label={reportingActionLabels[action as keyof typeof reportingActionLabels] ?? action}
+              accessibleLabel={`action ${action}`}
+              onRemove={() => onActionsChange(selectedActions.filter((selected) => selected !== action))}
+            />
+          ))}
+          {selectedSources.map((source) => (
+            <ActiveFilterChip
+              key={source}
+              label={source}
+              accessibleLabel={`source ${source}`}
+              onRemove={() => onSourcesChange(selectedSources.filter((selected) => selected !== source))}
+            />
+          ))}
+          {selectedLabels.map((label) => (
+            <ActiveFilterChip
+              key={label}
+              label={label}
+              accessibleLabel={`label ${label}`}
+              onRemove={() => onLabelsChange(selectedLabels.filter((selected) => selected !== label))}
+            />
+          ))}
           <Button
             type="button"
             variant="ghost"
             size="sm"
-            className="ml-auto rounded-full font-normal text-tabs-foreground"
+            className="rounded-full text-tabs-foreground"
             onClick={onResetFilters}
           >
             Clear all
           </Button>
-        ) : null}
-      </div>
-
-      {activeFilterCount > 0 ? (
-        <div className="flex flex-wrap items-center gap-2 border-t border-white/5 pt-3">
-          <span className="mr-1 text-xs/4 font-semibold text-tabs-foreground uppercase">Applied</span>
-          {period !== "All time" ? (
-            <ActiveFilterChip
-              label="Period"
-              value={getPeriodLabel(period, dateRange)}
-              onRemove={() => onPeriodChange("All time")}
-            />
-          ) : null}
-          {selectedActions.length > 0 ? (
-            <ActiveFilterChip
-              label="Action"
-              value={getSelectionLabel(selectedActions, reportingActionLabels)}
-              onRemove={() => onActionsChange([])}
-            />
-          ) : null}
-          {selectedSources.length > 0 ? (
-            <ActiveFilterChip
-              label="Source"
-              value={getSelectionLabel(selectedSources)}
-              onRemove={() => onSourcesChange([])}
-            />
-          ) : null}
-          {selectedLabels.length > 0 ? (
-            <ActiveFilterChip
-              label="Labels"
-              value={getSelectionLabel(selectedLabels)}
-              onRemove={() => onLabelsChange([])}
-            />
-          ) : null}
         </div>
       ) : null}
     </div>
   );
 }
 
-export interface MultiSelectFilterProps extends ComponentPropsWithRef<"div"> {
+export interface FilterCheckboxGroupProps extends ComponentPropsWithRef<typeof FieldSet> {
   label: string;
-  placeholder: string;
   options: readonly string[];
   optionLabels?: Readonly<Record<string, string>>;
   selected: readonly string[];
@@ -214,237 +346,119 @@ export interface MultiSelectFilterProps extends ComponentPropsWithRef<"div"> {
   onValueChange: (value: readonly string[]) => void;
 }
 
-/** Renders a compact checkbox filter with a readable selection summary. */
-export function MultiSelectFilter({
+/**
+ * Renders a labeled group of reporting filter checkboxes.
+ */
+export function FilterCheckboxGroup({
   className,
   ref,
   label,
-  placeholder,
   options,
   optionLabels,
   selected,
   columns = false,
   onValueChange,
   ...props
-}: MultiSelectFilterProps) {
-  const displayValue = selected.length === 0 ? placeholder : getSelectionLabel(selected, optionLabels);
-
+}: FilterCheckboxGroupProps) {
   function toggle(option: string, checked: boolean) {
     onValueChange(checked ? [...selected, option] : selected.filter((item) => item !== option));
   }
 
   return (
-    <div
+    <FieldSet
       {...props}
       ref={ref}
-      data-slot="reporting-multi-select-filter"
-      data-filtered={selected.length > 0}
-      className={cn("min-w-0", className)}
+      data-slot="reporting-filter-group"
+      className={cn("gap-2", className)}
     >
-      <DropdownMenu>
-        <DropdownMenuTrigger
-          render={
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              data-active={selected.length > 0}
-              className="max-w-56 rounded-full px-3 font-normal data-[active=true]:bg-[#414958]"
-              aria-label={`${label}: ${displayValue}`}
-            />
-          }
-        >
-          <span className="text-tabs-foreground">{label}:</span>
-          <span className="max-w-32 truncate">{displayValue}</span>
-          <ChevronDown
-            data-icon="inline-end"
-            className="text-tabs-foreground"
-          />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          className={cn("gap-0", columns ? "w-[462px] max-w-[calc(100vw-32px)]" : "w-[248px]")}
-        >
-          <div className="grid grid-cols-2 border-b border-white/10 py-1">
-            <FilterMenuAction
-              checked={selected.length === options.length}
-              label="Select all"
-              onClick={() => onValueChange(options)}
-            />
-            <FilterMenuAction
-              label="Clear"
-              onClick={() => onValueChange([])}
-            />
-          </div>
-          <div className={cn("grid py-1", columns && "sm:grid-cols-2")}>
-            {options.map((option) => {
-              const checked = selected.includes(option);
-
-              return (
-                <DropdownMenuItem
-                  key={option}
-                  closeOnClick={false}
-                  className="h-10 gap-3 px-4 text-sm/5"
-                  onClick={() => toggle(option, !checked)}
-                >
-                  <Checkbox
-                    checked={checked}
-                    className="pointer-events-none size-5"
-                  />
-                  <span className="truncate">{optionLabels?.[option] ?? option}</span>
-                </DropdownMenuItem>
-              );
-            })}
-          </div>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
-  );
-}
-
-export interface FilterMenuActionProps extends ComponentPropsWithRef<typeof DropdownMenuItem> {
-  checked?: boolean;
-  label: string;
-}
-
-/** Renders a bulk-selection action inside a reporting filter menu. */
-export function FilterMenuAction({ className, ref, checked = false, label, ...props }: FilterMenuActionProps) {
-  return (
-    <DropdownMenuItem
-      {...props}
-      ref={ref}
-      closeOnClick={false}
-      className={cn("flex h-10 items-center gap-3 px-4 text-left text-sm/5 hover:bg-secondary-hover", className)}
-    >
-      <Checkbox
-        checked={checked}
-        className="pointer-events-none size-5"
-      />
-      {label}
-    </DropdownMenuItem>
-  );
-}
-
-export interface PeriodFilterProps extends ComponentPropsWithRef<"div"> {
-  value: ReportingPeriod;
-  range?: ReportingDateRange;
-  onValueChange: (period: ReportingPeriod, range?: ReportingDateRange) => void;
-}
-
-/** Renders the reporting period shortcuts and custom date-range picker. */
-export function PeriodFilter({ className, ref, value, range, onValueChange, ...props }: PeriodFilterProps) {
-  const [open, setOpen] = useState(false);
-  const [customMode, setCustomMode] = useState(false);
-  const displayValue = getPeriodLabel(value, range);
-
-  return (
-    <div
-      {...props}
-      ref={ref}
-      data-slot="reporting-period-filter"
-      data-filtered={value !== "All time"}
-      className={cn("min-w-0", className)}
-    >
-      <DropdownMenu
-        open={open}
-        onOpenChange={(nextOpen) => {
-          setOpen(nextOpen);
-          if (!nextOpen) setCustomMode(false);
-        }}
+      <FieldGroup
+        data-slot="checkbox-group"
+        className={cn("grid gap-1", columns && "sm:grid-cols-2")}
       >
-        <DropdownMenuTrigger
-          render={
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              data-active={value !== "All time"}
-              className="max-w-60 rounded-full px-3 font-normal data-[active=true]:bg-[#414958]"
-              aria-label={`Period: ${displayValue}`}
-            />
-          }
-        >
-          <span className="text-tabs-foreground">Period:</span>
-          <span className="max-w-40 truncate">{displayValue}</span>
-          <ChevronDown
-            data-icon="inline-end"
-            className="text-tabs-foreground"
-          />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          className={cn("gap-0", customMode ? "w-[328px] bg-card" : "w-[248px]")}
-        >
-          {customMode ? (
-            <ReportingDatePicker
-              value={range}
-              onCancel={() => setCustomMode(false)}
-              onSave={(nextRange) => {
-                onValueChange(nextRange?.from ? "Custom period" : "All time", nextRange);
-                setOpen(false);
-              }}
-            />
-          ) : (
-            <PeriodMenu
-              value={value}
-              onValueChange={(nextValue) => {
-                if (nextValue === "Custom period") setCustomMode(true);
-                else {
-                  onValueChange(nextValue);
-                  setOpen(false);
-                }
-              }}
-            />
-          )}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+        {options.map((option) => {
+          const checkboxID = `reporting-${label.toLowerCase()}-${option.toLowerCase().replaceAll(/[^a-z0-9]+/g, "-")}`;
+
+          return (
+            <Field
+              key={option}
+              orientation="horizontal"
+              className="h-9 gap-3 rounded-md px-2 hover:bg-secondary-hover"
+            >
+              <Checkbox
+                id={checkboxID}
+                checked={selected.includes(option)}
+                onCheckedChange={(checked) => toggle(option, checked)}
+              />
+              <FieldLabel
+                htmlFor={checkboxID}
+                className="min-w-0 cursor-pointer font-normal"
+              >
+                <span className="truncate">{optionLabels?.[option] ?? option}</span>
+              </FieldLabel>
+            </Field>
+          );
+        })}
+      </FieldGroup>
+    </FieldSet>
   );
 }
 
-export interface PeriodMenuProps extends ComponentPropsWithRef<"div"> {
+export interface PeriodFilterSectionProps extends ComponentPropsWithRef<typeof FieldSet> {
   value: ReportingPeriod;
   onValueChange: (value: ReportingPeriod) => void;
 }
 
-/** Renders quick period presets with one current selection. */
-export function PeriodMenu({ className, ref, value, onValueChange, ...props }: PeriodMenuProps) {
+/**
+ * Renders reporting period presets and the custom date-range action.
+ */
+export function PeriodFilterSection({ className, ref, value, onValueChange, ...props }: PeriodFilterSectionProps) {
   const quickPeriods: ReportingPeriod[] = ["All time", "Today", "Last 7 days", "Last 30 days"];
 
   return (
-    <div
+    <FieldSet
       {...props}
       ref={ref}
-      data-slot="reporting-period-menu"
-      className={className}
+      data-slot="reporting-period-filter"
+      className={cn("gap-2", className)}
     >
       <RadioGroup
         value={value}
-        className="gap-0 py-1"
+        className="gap-1"
+        onValueChange={(nextValue) => onValueChange(nextValue as ReportingPeriod)}
       >
-        {quickPeriods.map((item) => (
-          <DropdownMenuItem
-            key={item}
-            closeOnClick={false}
-            className="flex h-10 cursor-pointer items-center gap-3 px-4 text-sm/5 hover:bg-secondary-hover"
-            onClick={() => onValueChange(item)}
-          >
-            <RadioGroupItem
-              value={item}
-              className="pointer-events-none size-5"
-            />
-            {item}
-          </DropdownMenuItem>
-        ))}
+        {quickPeriods.map((item) => {
+          const radioID = `reporting-period-${item.toLowerCase().replaceAll(" ", "-")}`;
+
+          return (
+            <Field
+              key={item}
+              orientation="horizontal"
+              className="h-9 gap-3 rounded-md px-2 hover:bg-secondary-hover"
+            >
+              <RadioGroupItem
+                id={radioID}
+                value={item}
+              />
+              <FieldLabel
+                htmlFor={radioID}
+                className="cursor-pointer font-normal"
+              >
+                {item}
+              </FieldLabel>
+            </Field>
+          );
+        })}
       </RadioGroup>
-      <DropdownMenuItem
-        closeOnClick={false}
-        className="flex h-10 w-full items-center border-t border-white/10 px-4 text-sm/5 hover:bg-secondary-hover"
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        className="justify-start font-normal"
         onClick={() => onValueChange("Custom period")}
       >
         Choose date range…
-      </DropdownMenuItem>
-    </div>
+      </Button>
+    </FieldSet>
   );
 }
 
@@ -454,7 +468,9 @@ export interface ReportingDatePickerProps extends ComponentPropsWithRef<"div"> {
   onSave: (value: ReportingDateRange | undefined) => void;
 }
 
-/** Renders a compact date-range calendar with editable boundaries. */
+/**
+ * Renders a compact date-range calendar with editable boundaries.
+ */
 export function ReportingDatePicker({ className, ref, value, onCancel, onSave, ...props }: ReportingDatePickerProps) {
   const [draft, setDraft] = useState<ReportingDateRange>(value ?? { from: undefined });
   const formatter = new Intl.DateTimeFormat("en-US", {
@@ -468,7 +484,7 @@ export function ReportingDatePicker({ className, ref, value, onCancel, onSave, .
       {...props}
       ref={ref}
       data-slot="reporting-date-picker"
-      className={cn("overflow-hidden rounded-lg bg-card", className)}
+      className={cn("w-[328px] overflow-hidden rounded-lg bg-card", className)}
     >
       <div className="relative px-6 pt-5 pb-5">
         <Calendar
@@ -529,39 +545,43 @@ export function ReportingDatePicker({ className, ref, value, onCancel, onSave, .
   );
 }
 
-export interface ActiveFilterChipProps extends ComponentPropsWithRef<typeof Button> {
+export interface ActiveFilterChipProps extends ComponentPropsWithRef<"button"> {
   label: string;
-  value: string;
+  accessibleLabel: string;
   onRemove: () => void;
 }
 
-/** Renders a removable summary of one applied filter group. */
-export function ActiveFilterChip({ className, ref, label, value, onRemove, ...props }: ActiveFilterChipProps) {
+/**
+ * Renders one removable applied reporting filter value.
+ */
+export function ActiveFilterChip({
+  className,
+  ref,
+  label,
+  accessibleLabel,
+  onRemove,
+  ...props
+}: ActiveFilterChipProps) {
   return (
-    <Button
+    <button
       {...props}
       ref={ref}
       type="button"
-      variant="secondary"
-      size="sm"
       data-slot="active-filter-chip"
-      className={cn("h-8 rounded-full px-3 font-normal", className)}
-      aria-label={`Remove ${label.toLowerCase()} filter`}
+      className={cn(
+        "flex h-8 items-center gap-1 rounded-full bg-popover px-4 text-sm/5 font-semibold outline-none hover:bg-secondary-hover focus-visible:ring-2 focus-visible:ring-ring/40",
+        className
+      )}
+      aria-label={`Remove ${accessibleLabel} filter`}
       onClick={onRemove}
     >
-      <span className="text-tabs-foreground">{label}:</span>
-      <span className="max-w-48 truncate">{value}</span>
-      <X
-        data-icon="inline-end"
+      {label}
+      <CloseIcon
+        size={16}
         className="text-tabs-foreground"
       />
-    </Button>
+    </button>
   );
-}
-
-function getSelectionLabel(selected: readonly string[], labels?: Readonly<Record<string, string>>) {
-  const first = labels?.[selected[0] ?? ""] ?? selected[0] ?? "";
-  return selected.length === 1 ? first : `${first} +${selected.length - 1}`;
 }
 
 function getPeriodLabel(period: ReportingPeriod, range?: ReportingDateRange) {

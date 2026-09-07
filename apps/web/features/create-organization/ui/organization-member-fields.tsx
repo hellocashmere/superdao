@@ -12,8 +12,10 @@ import {
   SelectValue,
 } from "@superdao/ui/components/select";
 
+import { isEthereumAddress } from "@/shared/lib/crypto";
+
 import type { OrganizationMemberDraft } from "../model/create-organization";
-import { isOrganizationWalletValid, organizationMemberRoles } from "../model/create-organization";
+import { organizationMemberRoles } from "../model/create-organization";
 
 export interface OrganizationMemberFieldsProps extends ComponentPropsWithRef<"fieldset"> {
   draft: OrganizationMemberDraft;
@@ -33,7 +35,7 @@ export function OrganizationMemberFields({
   ...props
 }: OrganizationMemberFieldsProps) {
   const hasWallet = Boolean(draft.wallet.trim());
-  const isWalletValid = isOrganizationWalletValid(draft.wallet);
+  const isWalletValid = !hasWallet || isEthereumAddress(draft.wallet);
 
   return (
     <fieldset

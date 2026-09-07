@@ -47,9 +47,6 @@ export function ReportingWalletActions({ ref, wallet, ...props }: ReportingWalle
           className="w-52"
         >
           <DropdownMenuGroup>
-            <DropdownMenuItem onClick={() => window.location.assign(`/explore/wallets/${identifier}`)}>
-              Open wallet profile
-            </DropdownMenuItem>
             <DropdownMenuItem onClick={() => void navigator.clipboard.writeText(wallet.wallet)}>
               Copy wallet
             </DropdownMenuItem>

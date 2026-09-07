@@ -10,6 +10,8 @@ import {
   TopNavIcon,
 } from "@superdao/icons/nav";
 
+import { exploreRoutes } from "@/shared/lib/routes";
+
 export interface SidebarNavigationChild {
   title: string;
   href: string;
@@ -22,6 +24,7 @@ export interface SidebarNavigationItem {
   icon: ComponentType<IconProps>;
   children?: readonly SidebarNavigationChild[];
   defaultOpen?: boolean;
+  kind?: "audiences";
 }
 
 export const sidebarNavigation: readonly SidebarNavigationItem[] = [
@@ -31,27 +34,19 @@ export const sidebarNavigation: readonly SidebarNavigationItem[] = [
     icon: DiscoverNavIcon,
     defaultOpen: true,
     children: [
-      { title: "Wallets", href: "/explore/wallets" },
-      { title: "Labels", href: "/explore/labels" },
-      { title: "NFT collections", href: "/explore/nft-collections" },
-      { title: "Tokens", href: "/explore/tokens" },
-      { title: "Dapps", href: "/explore/dapps" },
+      { title: "Wallets", href: exploreRoutes.wallets() },
+      { title: "Labels", href: exploreRoutes.labels() },
+      { title: "NFT collections", href: exploreRoutes.nftCollections() },
+      { title: "Tokens", href: exploreRoutes.tokens() },
+      { title: "Dapps", href: exploreRoutes.dapps() },
     ],
   },
   {
     title: "Audiences",
-    href: "/audiences/mirror-xyz",
+    href: "/audiences/cashmere-ton",
     icon: GroupNavIcon,
-    children: [
-      { title: "Lens profiles", href: "/audiences/lens-profiles", meta: "44k" },
-      { title: "mirror.xyz", href: "/audiences/mirror-xyz", meta: "20k" },
-      {
-        title: "Superdao robots",
-        href: "/audiences/superdao-robots",
-        meta: "24k",
-      },
-      { title: "Add audience", href: "/audiences/new", meta: "+" },
-    ],
+    children: [],
+    kind: "audiences",
   },
   {
     title: "Campaigns",
@@ -62,7 +57,7 @@ export const sidebarNavigation: readonly SidebarNavigationItem[] = [
     title: "Reporting",
     href: "/reporting",
     icon: TopNavIcon,
-    children: [{ title: "cashmere.ton", href: "/reporting/cashmere.ton" }],
+    children: [{ title: "cashmere.ton", href: "/reporting/666" }],
   },
   {
     title: "Members",

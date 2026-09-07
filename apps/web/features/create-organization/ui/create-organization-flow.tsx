@@ -23,20 +23,18 @@ import { Input } from "@superdao/ui/components/input";
 import { Textarea } from "@superdao/ui/components/textarea";
 import { toast } from "@superdao/ui/components/toast";
 
+import { useAudienceStore } from "@/entities/audience";
 import { useMemberStore } from "@/entities/member";
 import { useOrganizationStore } from "@/entities/organization";
 import { useSessionStore } from "@/entities/session";
 import { useUserStore } from "@/entities/user";
+import type { CreatedAudience } from "@/features/create-audience";
+import { CreateAudienceDialog } from "@/features/create-audience";
+import { isEthereumAddress } from "@/shared/lib/crypto";
 
 import type { OrganizationMemberDraft } from "../model/create-organization";
-import {
-  createAudienceID,
-  formatOrganizationWallet,
-  initialOrganizationMemberDrafts,
-  isOrganizationWalletValid,
-} from "../model/create-organization";
+import { formatOrganizationWallet, initialOrganizationMemberDrafts } from "../model/create-organization";
 
-import { CreateAudienceDialog } from "./create-audience-dialog";
 import { OrganizationMemberFields } from "./organization-member-fields";
 import { OrganizationProgress } from "./organization-progress";
 
@@ -45,6 +43,7 @@ export interface CreateOrganizationFlowProps extends ComponentPropsWithRef<"div"
 /** Renders the complete guided flow for creating a new organization. */
 export function CreateOrganizationFlow({ className, ref, ...props }: CreateOrganizationFlowProps) {
   const router = useRouter();
+  const saveAudience = useAudienceStore((state) => state.createAudience);
   const createOrganization = useOrganizationStore((state) => state.createOrganization);
   const addMembers = useMemberStore((state) => state.addMembers);
   const userID = useSessionStore((state) => state.userID);
@@ -58,7 +57,11 @@ export function CreateOrganizationFlow({ className, ref, ...props }: CreateOrgan
   const [isAudienceDialogOpen, setIsAudienceDialogOpen] = useState(false);
   const isDirty = Boolean(name.trim() || description.trim() || logoUrl);
   const isSaved = step === 3;
-  const hasInvalidWallet = drafts.some((draft) => !isOrganizationWalletValid(draft.wallet));
+  const hasInvalidWallet = drafts.some((draft) => {
+    const wallet = draft.wallet.trim();
+
+    return wallet !== "" && !isEthereumAddress(wallet);
+  });
 
   useEffect(() => {
     function confirmBrowserExit(event: BeforeUnloadEvent) {
@@ -166,14 +169,16 @@ export function CreateOrganizationFlow({ className, ref, ...props }: CreateOrgan
     setStep(3);
   }
 
-  function createAudience(name: string) {
+  function createAudience(audience: CreatedAudience) {
+    const audienceID = saveAudience(audience);
+
     setIsAudienceDialogOpen(false);
     toast.add({
       title: "Audience created",
-      description: `${name} is ready to explore.`,
+      description: `${audience.name} is ready to explore.`,
       type: "success",
     });
-    router.push(`/audiences/${createAudienceID(name)}`);
+    router.push(`/audiences/${audienceID}`);
   }
 
   return (

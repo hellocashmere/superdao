@@ -107,7 +107,9 @@ export function OrganizationSwitcher({ className, ref, ...props }: OrganizationS
               className="h-10 gap-3 rounded-none px-3 text-[15px]/[24px] font-semibold"
               render={<Link href="/organizations/new" />}
             >
-              <AddIcon />
+              <span className="flex size-8 shrink-0 items-center justify-center text-icon">
+                <AddIcon className="size-6 text-icon!" />
+              </span>
               Create organization
             </DropdownMenuItem>
           </DropdownMenuGroup>

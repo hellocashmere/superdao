@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { cn } from "@superdao/lib/utils";
-import { Button } from "@superdao/ui/components/button";
+import { buttonVariants } from "@superdao/ui/components/button";
 
 import { useSessionStore } from "@/entities/session";
 import { useUserStore } from "@/entities/user";
@@ -64,12 +64,12 @@ export function EmailSettingsResult({ className, ref, state, ...props }: EmailSe
             )}
           </p>
         </div>
-        <Button
-          className="mt-6 px-6"
-          render={<Link href={isConfirmed ? "/profile/settings" : "/profile/email/settings"} />}
+        <Link
+          className={buttonVariants({ className: "mt-6 px-6" })}
+          href={isConfirmed ? "/profile/settings" : "/profile/email/settings"}
         >
           {isConfirmed ? "Go to profile" : "Go to settings"}
-        </Button>
+        </Link>
       </div>
     </div>
   );

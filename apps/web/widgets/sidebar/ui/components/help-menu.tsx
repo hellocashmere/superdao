@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 
 import { CalendarIcon, InfoIcon, LifebuoyNavIcon, SendIcon } from "@superdao/icons";

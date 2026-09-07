@@ -57,7 +57,7 @@ export function MembersTable({ className, ref, members, onRemove, onRoleChange, 
               <TableRow
                 key={member.id}
                 data-role={member.role.toLowerCase()}
-                className="group/member-row h-14 border-0 hover:bg-[#343a46]"
+                className="group/member-row h-14 border-0"
               >
                 <TableCell className="h-14 px-5 py-0 text-right text-[#717a8c] tabular-nums">{member.index}</TableCell>
                 <TableCell className="h-14 px-5 py-0">

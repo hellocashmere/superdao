@@ -1,7 +1,7 @@
 "use client";
 
 import type { ChangeEvent, ComponentPropsWithRef } from "react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Controller, useFieldArray, useForm, useWatch } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,15 +16,12 @@ import { toast } from "@superdao/ui/components/toast";
 import { z } from "zod";
 
 import { useOrganizationStore } from "@/entities/organization";
+import { isEthereumAddress } from "@/shared/lib/crypto";
 
 const walletIDSchema = z
   .string()
   .trim()
-  .refine(
-    (value) =>
-      value === "" || /^0x[a-fA-F0-9]{40}$/.test(value) || /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.eth$/i.test(value),
-    "Enter a valid wallet address or ENS name."
-  );
+  .refine((value) => value === "" || isEthereumAddress(value), "Wallet address must start with 0x.");
 
 const settingsSchema = z.object({
   admins: z.array(z.object({ wallet: walletIDSchema })),
@@ -53,7 +50,7 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
   const form = useForm<Settings>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
-      admins: [...(activeOrganization?.admins ?? []).map((wallet) => ({ wallet })), { wallet: "" }],
+      admins: (activeOrganization?.admins ?? []).map((wallet) => ({ wallet })),
       avatarUrl: activeOrganization?.avatarUrl ?? "",
       name: activeOrganization?.name ?? "",
       slug: activeOrganization?.slug ?? "",
@@ -67,12 +64,16 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
     name: "avatarUrl",
     control: form.control,
   });
+  const adminValuesOnFocus = useRef(new Map<string, string>());
+  const initializedOrganizationID = useRef<string | undefined>(undefined);
 
   useEffect(() => {
-    if (!activeOrganization) return;
+    if (!activeOrganization || initializedOrganizationID.current === activeOrganization.id) return;
+
+    initializedOrganizationID.current = activeOrganization.id;
 
     form.reset({
-      admins: [...(activeOrganization.admins ?? []).map((wallet) => ({ wallet })), { wallet: "" }],
+      admins: (activeOrganization.admins ?? []).map((wallet) => ({ wallet })),
       avatarUrl: activeOrganization.avatarUrl,
       name: activeOrganization.name,
       slug: activeOrganization.slug,
@@ -102,6 +103,52 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
     reader.readAsDataURL(file);
   }
 
+  function addAdmin() {
+    admins.append({ wallet: "" });
+    toast.add({
+      title: "Admin added",
+      description: "Enter the new admin's wallet address, then save your changes.",
+      type: "success",
+    });
+  }
+
+  function startEditingAdmin(fieldID: string, wallet: string) {
+    adminValuesOnFocus.current.set(fieldID, wallet);
+  }
+
+  function finishEditingAdmin(fieldID: string, wallet: string) {
+    const previousWallet = adminValuesOnFocus.current.get(fieldID);
+    adminValuesOnFocus.current.delete(fieldID);
+
+    if (previousWallet === undefined || previousWallet === wallet) return;
+
+    toast.add({
+      title: "Admin updated",
+      description: "The admin's wallet address was changed. Save to apply the update.",
+      type: "success",
+    });
+  }
+
+  function removeAdmin(index: number) {
+    const currentAdmins = form.getValues("admins");
+
+    if (!currentAdmins[index] || !activeOrganization) return;
+
+    admins.replace(currentAdmins.filter((_, adminIndex) => adminIndex !== index));
+
+    if (index < activeOrganization.admins.length) {
+      updateOrganization(activeOrganization.id, {
+        admins: activeOrganization.admins.filter((_, adminIndex) => adminIndex !== index),
+      });
+    }
+
+    toast.add({
+      title: "Admin removed",
+      description: "The admin was removed and the change was saved.",
+      type: "success",
+    });
+  }
+
   function saveSettings(values: Settings) {
     if (!activeOrganization) return;
 
@@ -116,7 +163,7 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
     updateOrganization(activeOrganization.id, normalizedSettings);
     form.reset({
       ...normalizedSettings,
-      admins: [...normalizedAdmins.map((wallet) => ({ wallet })), { wallet: "" }],
+      admins: normalizedAdmins.map((wallet) => ({ wallet })),
     });
     toast.add({
       title: "Settings saved",
@@ -259,6 +306,11 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
                           autoCapitalize="none"
                           autoCorrect="off"
                           spellCheck={false}
+                          onFocus={() => startEditingAdmin(admin.id, field.value)}
+                          onBlur={() => {
+                            field.onBlur();
+                            finishEditingAdmin(admin.id, field.value);
+                          }}
                         />
                         <Button
                           type="button"
@@ -266,7 +318,7 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
                           size="icon"
                           className="text-muted-foreground hover:text-foreground"
                           aria-label={`Remove admin ${index + 1}`}
-                          onClick={() => admins.remove(index)}
+                          onClick={() => removeAdmin(index)}
                         >
                           <CloseIcon className="size-4!" />
                         </Button>
@@ -282,7 +334,7 @@ export function SettingsForm({ className, ref, ...props }: SettingsFormProps) {
                 type="button"
                 variant="ghost"
                 className="gap-4 px-0 hover:bg-transparent active:translate-y-0 active:bg-transparent aria-expanded:bg-transparent"
-                onClick={() => admins.append({ wallet: "" })}
+                onClick={addAdmin}
               >
                 <span className="flex size-10 items-center justify-center rounded-full bg-secondary text-muted-foreground">
                   <AddIcon size={24} />
