@@ -1,9 +1,7 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 
+import { THEMES } from "../config";
 import type { ChartConfig } from "../context";
-import { THEMES } from "../context";
 
 export interface ChartStyleProps extends ComponentPropsWithRef<"style"> {
   /**

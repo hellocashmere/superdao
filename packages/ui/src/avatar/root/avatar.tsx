@@ -3,12 +3,18 @@
 import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import { cn } from "@superdao/lib/utils";
 
+/**
+ * Supported visual sizes for the avatar.
+ */
+export type AvatarSize = "xs" | "s" | "m" | "l" | "xl" | "xxl";
+
 export interface AvatarProps extends AvatarPrimitive.Root.Props {
   /**
-   * Controls the avatar's visual size.
-   * TODO: вынести в type, например: export type AvatarSize
+   * Controls the avatar's rendered dimensions.
+   *
+   * @defaultValue `"m"`
    */
-  size?: "xs" | "s" | "m" | "l" | "xl" | "xxl";
+  size?: AvatarSize;
 }
 
 /**

@@ -18,11 +18,12 @@ export type ErrorVariant = "not-found" | "server-error" | "unknown-error" | "mai
 
 export interface ErrorProps extends ComponentPropsWithRef<"section"> {
   /**
-   * TODO: add docs
+   * Optional recovery or navigation control displayed below the error message.
    */
   action?: ReactNode;
+
   /**
-   * TODO: add docs
+   * Selects the predefined title, description, illustration, and state identifier.
    */
   variant: ErrorVariant;
 }

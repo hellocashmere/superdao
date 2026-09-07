@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef } from "react";
 
 import { cn } from "@superdao/lib/utils";
@@ -15,7 +13,7 @@ export function CardDescription({ className, ref, ...props }: CardDescriptionPro
       {...props}
       ref={ref}
       data-slot="card-description"
-      className={cn("text-[13px]/[18px] tracking-[-0.08px] text-muted-foreground", className)}
+      className={cn("text-[13px]/[18px] text-muted-foreground", className)}
     />
   );
 }

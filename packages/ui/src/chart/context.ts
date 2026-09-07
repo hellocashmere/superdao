@@ -3,7 +3,7 @@
 import type { ComponentType, ReactNode } from "react";
 import { createContext, useContext } from "react";
 
-export const THEMES = { light: "", dark: ".dark" } as const;
+import type { THEMES } from "./config";
 
 export type ChartConfig = Record<
   string,

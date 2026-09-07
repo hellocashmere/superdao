@@ -1,5 +1,3 @@
-"use client";
-
 import type { ComponentPropsWithRef, ReactNode } from "react";
 
 import { InfoIcon } from "@superdao/icons/outline";
@@ -17,37 +15,42 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@superdao/ui/components
 
 export interface MetricCardProps extends ComponentPropsWithRef<typeof Card> {
   /**
-   * TODO: add docs
+   * Heading that identifies the metric.
    */
   title: string;
 
   /**
-   * TODO: add docs
+   * Supporting context displayed below the primary value.
    */
   description: string;
 
   /**
-   * TODO: add docs
+   * Primary formatted value of the metric.
    */
   value: string;
 
   /**
-   * TODO: add docs
+   * Formatted secondary value displayed in the card footer.
+   *
+   * When `footerLabel` is omitted, the first space-delimited segment is emphasized and the remaining text is used as
+   * the label.
    */
   footerValue: string;
 
   /**
-   * TODO: add docs
+   * Explicit label displayed after the footer value.
+   *
+   * When omitted, the label is inferred from `footerValue`.
    */
   footerLabel?: string;
 
   /**
-   * TODO: add docs
+   * Optional visual rendered in the card header action area.
    */
   icon?: ReactNode;
 
   /**
-   * TODO: add docs
+   * Explanatory text shown from an information tooltip beside the title.
    */
   tooltip?: string;
 }
@@ -67,6 +70,10 @@ export function MetricCard({
   value,
   ...props
 }: MetricCardProps) {
+  const [inferredFooterValue, ...inferredFooterLabelParts] = footerValue.split(" ");
+  const resolvedFooterValue = footerLabel === undefined ? inferredFooterValue : footerValue;
+  const resolvedFooterLabel = footerLabel ?? inferredFooterLabelParts.join(" ");
+
   return (
     <Card
       {...props}
@@ -102,13 +109,13 @@ export function MetricCard({
         </CardTitle>
         {icon ? <CardAction className="flex text-icon">{icon}</CardAction> : null}
       </CardHeader>
-      <CardContent className="pt-1">
+      <CardContent className="space-y-1 pt-1">
         <p className="text-2xl/7 font-bold">{value}</p>
         <CardDescription>{description}</CardDescription>
       </CardContent>
       <CardFooter className="gap-1 pb-3 text-[13px]/[18px] text-muted-foreground">
-        <span className="font-semibold">{footerValue}</span>
-        {footerLabel}
+        <span className="font-semibold">{resolvedFooterValue}</span>
+        {resolvedFooterLabel}
       </CardFooter>
     </Card>
   );

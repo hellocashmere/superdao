@@ -1,5 +1,3 @@
-"use client";
-
 import type { ButtonProps } from "../../button";
 import { Button } from "../../button";
 

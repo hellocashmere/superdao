@@ -9,17 +9,21 @@ import { Button } from "@superdao/ui/components/button";
 
 export interface BannerProps extends ComponentPropsWithRef<"aside"> {
   /**
-   * TODO: add docs
+   * Called with the next visibility state when the banner is dismissed.
    */
   onOpenChange?: (open: boolean) => void;
 
   /**
-   * TODO: add docs
+   * Controls whether the banner is visible.
+   *
+   * When omitted, the banner manages its own visibility and starts open.
    */
   open?: boolean;
 
   /**
-   * TODO: add docs
+   * Determines whether the built-in dismissal button is rendered.
+   *
+   * @defaultValue `true`
    */
   showCloseButton?: boolean;
 }
@@ -78,8 +82,8 @@ export function Banner({
       data-state={isVisible ? "open" : "closed"}
       data-show-close-button={showCloseButton ? "true" : "false"}
       className={cn(
-        "fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 z-50 mx-auto flex w-auto items-center gap-4 rounded-lg bg-card px-5 py-3 text-card-foreground shadow-2xl shadow-black/20 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=closed]:pointer-events-none data-[state=closed]:translate-y-[calc(100%+1.5rem)] data-[state=closed]:opacity-0 data-[state=open]:translate-y-0 data-[state=open]:opacity-100 motion-reduce:transition-none sm:right-6 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:left-6 sm:max-w-190",
-        "max-sm:flex-wrap max-sm:items-start",
+        "fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 z-50 mx-auto flex w-auto items-center gap-4 rounded-2xl py-3 pr-6 pl-4 text-tooltip-foreground shadow-2xl shadow-black/20 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=closed]:pointer-events-none data-[state=closed]:translate-y-[calc(100%+1.5rem)] data-[state=closed]:opacity-0 data-[state=open]:translate-y-0 data-[state=open]:opacity-100 motion-reduce:transition-none sm:right-6 sm:bottom-[max(1.5rem,env(safe-area-inset-bottom))] sm:left-6 sm:max-w-[778px]",
+        "bg-tooltip max-sm:flex-wrap max-sm:items-start",
         className
       )}
       {...props}

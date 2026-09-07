@@ -8,5 +8,5 @@ export type { AvatarGroupCountProps } from "./group-count/avatar-group-count";
 export { AvatarGroupCount } from "./group-count/avatar-group-count";
 export type { AvatarImageProps } from "./image/avatar-image";
 export { AvatarImage } from "./image/avatar-image";
-export type { AvatarProps } from "./root/avatar";
+export type { AvatarProps, AvatarSize } from "./root/avatar";
 export { Avatar } from "./root/avatar";

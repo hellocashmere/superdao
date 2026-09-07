@@ -37,13 +37,12 @@ export function CookieBanner({ ref, className, ...props }: CookieBannerProps) {
         <Image
           src="/auth/cookie.svg"
           alt=""
-          width={40}
-          height={40}
-          className="size-10"
+          width={36}
+          height={36}
+          className="size-9"
         />
       </BannerIcon>
       <BannerTitle>
-        We use cookies
         <BannerDescription>
           We use cookies to improve your browsing experience. By clicking &#34;Accept Cookies&#34;, you agree to the use
           of cookies on our website. To find out more visit our{" "}
@@ -56,7 +55,12 @@ export function CookieBanner({ ref, className, ...props }: CookieBannerProps) {
         </BannerDescription>
       </BannerTitle>
       <BannerActions>
-        <Button onClick={acceptCookies}>Accept cookies</Button>
+        <Button
+          onClick={acceptCookies}
+          size="sm"
+        >
+          Accept cookies
+        </Button>
       </BannerActions>
     </Banner>
   );

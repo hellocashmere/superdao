@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { Button } from "@superdao/ui/button";
+import { buttonVariants } from "@superdao/ui/button";
 
 import { Error as ErrorPage } from "@/widgets/error";
 
@@ -14,12 +14,12 @@ export default function NotFound() {
   return (
     <ErrorPage
       action={
-        <Button
-          className="px-6"
-          render={<Link href="/" />}
+        <Link
+          className={buttonVariants({ className: "px-6" })}
+          href="/"
         >
           Go to homepage
-        </Button>
+        </Link>
       }
       className="min-h-svh"
       variant="not-found"
