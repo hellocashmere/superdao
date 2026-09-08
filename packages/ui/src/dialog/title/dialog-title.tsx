@@ -11,11 +11,11 @@ export interface DialogTitleProps extends DialogPrimitive.Title.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogTitle({ className, ...props }: DialogTitleProps) {
-  return (
-    <DialogPrimitive.Title
-      data-slot="dialog-title"
-      className={cn("w-full font-heading text-2xl leading-7 font-bold", className)}
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Title
+			data-slot="dialog-title"
+			className={cn("w-full font-heading text-2xl leading-7 font-bold", className)}
+			{...props}
+		/>
+	);
 }

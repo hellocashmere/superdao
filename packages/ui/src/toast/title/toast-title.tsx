@@ -11,11 +11,11 @@ export interface ToastTitleProps extends ToastPrimitive.Title.Props {}
  * @see https://base-ui.com/react/components/toast
  */
 export function ToastTitle({ className, ...props }: ToastTitleProps) {
-  return (
-    <ToastPrimitive.Title
-      data-slot="toast-title"
-      className={cn("text-[15px] leading-6 font-semibold", className)}
-      {...props}
-    />
-  );
+	return (
+		<ToastPrimitive.Title
+			data-slot="toast-title"
+			className={cn("text-[15px] leading-6 font-semibold", className)}
+			{...props}
+		/>
+	);
 }

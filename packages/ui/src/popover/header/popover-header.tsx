@@ -10,11 +10,11 @@ export interface PopoverHeaderProps extends ComponentProps<"div"> {}
  * @see https://base-ui.com/react/components/popover
  */
 export function PopoverHeader({ className, ...props }: PopoverHeaderProps) {
-  return (
-    <div
-      data-slot="popover-header"
-      className={cn("flex flex-col gap-0.5 text-sm", className)}
-      {...props}
-    />
-  );
+	return (
+		<div
+			data-slot="popover-header"
+			className={cn("flex flex-col gap-0.5 text-sm", className)}
+			{...props}
+		/>
+	);
 }

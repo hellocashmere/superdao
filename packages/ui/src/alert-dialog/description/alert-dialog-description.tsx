@@ -10,16 +10,16 @@ export interface AlertDialogDescriptionProps extends AlertDialogPrimitive.Descri
  *
  * @see https://base-ui.com/react/components/alert-dialog
  */
-export function AlertDialogDescription({ className, ref, ...props }: AlertDialogDescriptionProps) {
-  return (
-    <AlertDialogPrimitive.Description
-      ref={ref}
-      data-slot="alert-dialog-description"
-      className={cn(
-        "w-full text-[15px] leading-6 font-normal text-foreground *:[a]:underline *:[a]:underline-offset-3",
-        className
-      )}
-      {...props}
-    />
-  );
+export function AlertDialogDescription({ ref, className, ...props }: AlertDialogDescriptionProps) {
+	return (
+		<AlertDialogPrimitive.Description
+			ref={ref}
+			data-slot="alert-dialog-description"
+			className={cn(
+				"w-full text-[15px] leading-6 font-normal text-foreground *:[a]:underline *:[a]:underline-offset-3",
+				className
+			)}
+			{...props}
+		/>
+	);
 }

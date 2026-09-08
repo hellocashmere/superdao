@@ -10,10 +10,10 @@ export interface DropdownMenuTriggerProps extends MenuPrimitive.Trigger.Props {}
  * @see https://base-ui.com/react/components/menu
  */
 export function DropdownMenuTrigger({ ...props }: DropdownMenuTriggerProps) {
-  return (
-    <MenuPrimitive.Trigger
-      data-slot="dropdown-menu-trigger"
-      {...props}
-    />
-  );
+	return (
+		<MenuPrimitive.Trigger
+			data-slot="dropdown-menu-trigger"
+			{...props}
+		/>
+	);
 }

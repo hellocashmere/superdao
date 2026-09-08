@@ -9,11 +9,11 @@ export interface AlertDialogActionProps extends ButtonProps {}
  * @see https://base-ui.com/react/components/alert-dialog
  */
 export function AlertDialogAction({ ref, ...props }: AlertDialogActionProps) {
-  return (
-    <Button
-      ref={ref}
-      data-slot="alert-dialog-action"
-      {...props}
-    />
-  );
+	return (
+		<Button
+			ref={ref}
+			data-slot="alert-dialog-action"
+			{...props}
+		/>
+	);
 }

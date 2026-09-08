@@ -24,10 +24,10 @@ export interface AlertDialogProps extends AlertDialogPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/alert-dialog
  */
 export function AlertDialog(props: AlertDialogProps) {
-  return (
-    <AlertDialogPrimitive.Root
-      data-slot="alert-dialog"
-      {...props}
-    />
-  );
+	return (
+		<AlertDialogPrimitive.Root
+			data-slot="alert-dialog"
+			{...props}
+		/>
+	);
 }

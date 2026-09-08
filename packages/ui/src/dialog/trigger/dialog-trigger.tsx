@@ -10,10 +10,10 @@ export interface DialogTriggerProps extends DialogPrimitive.Trigger.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogTrigger({ ...props }: DialogTriggerProps) {
-  return (
-    <DialogPrimitive.Trigger
-      data-slot="dialog-trigger"
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Trigger
+			data-slot="dialog-trigger"
+			{...props}
+		/>
+	);
 }

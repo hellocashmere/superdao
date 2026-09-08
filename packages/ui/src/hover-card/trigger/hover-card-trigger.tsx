@@ -12,11 +12,11 @@ export interface HoverCardTriggerProps extends ComponentPropsWithRef<typeof Prev
  * @see https://base-ui.com/react/components/preview-card
  */
 export function HoverCardTrigger({ ref, ...props }: HoverCardTriggerProps) {
-  return (
-    <PreviewCardPrimitive.Trigger
-      ref={ref}
-      data-slot="hover-card-trigger"
-      {...props}
-    />
-  );
+	return (
+		<PreviewCardPrimitive.Trigger
+			ref={ref}
+			data-slot="hover-card-trigger"
+			{...props}
+		/>
+	);
 }

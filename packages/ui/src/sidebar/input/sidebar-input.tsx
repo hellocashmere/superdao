@@ -9,15 +9,15 @@ export interface SidebarInputProps extends ComponentProps<typeof Input> {}
  * Renders the sidebar input component.
  */
 export function SidebarInput({ className, ...props }: SidebarInputProps) {
-  return (
-    <Input
-      data-slot="sidebar-input"
-      data-sidebar="input"
-      className={cn(
-        "h-9 w-full bg-field shadow-none hover:bg-sidebar-accent focus-visible:bg-sidebar-accent",
-        className
-      )}
-      {...props}
-    />
-  );
+	return (
+		<Input
+			data-slot="sidebar-input"
+			data-sidebar="input"
+			className={cn(
+				"h-9 w-full bg-field shadow-none hover:bg-sidebar-accent focus-visible:bg-sidebar-accent",
+				className
+			)}
+			{...props}
+		/>
+	);
 }

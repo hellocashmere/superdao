@@ -20,10 +20,10 @@ export interface PopoverProps extends PopoverPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/popover
  */
 export function Popover({ ...props }: PopoverProps) {
-  return (
-    <PopoverPrimitive.Root
-      data-slot="popover"
-      {...props}
-    />
-  );
+	return (
+		<PopoverPrimitive.Root
+			data-slot="popover"
+			{...props}
+		/>
+	);
 }

@@ -22,10 +22,10 @@ export interface SheetProps extends SheetPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function Sheet({ ...props }: SheetProps) {
-  return (
-    <SheetPrimitive.Root
-      data-slot="sheet"
-      {...props}
-    />
-  );
+	return (
+		<SheetPrimitive.Root
+			data-slot="sheet"
+			{...props}
+		/>
+	);
 }

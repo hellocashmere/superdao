@@ -8,44 +8,47 @@ import type * as RechartsPrimitive from "recharts";
 import type { ChartConfig } from "../context";
 import { useChart } from "../context";
 
+/**
+ * Returns the payload config from payload.
+ */
 function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
-  if (typeof payload !== "object" || payload === null) {
-    return undefined;
-  }
+	if (typeof payload !== "object" || payload === null) {
+		return undefined;
+	}
 
-  const payloadPayload =
-    "payload" in payload && typeof payload.payload === "object" && payload.payload !== null
-      ? payload.payload
-      : undefined;
+	const payloadPayload =
+		"payload" in payload && typeof payload.payload === "object" && payload.payload !== null
+			? payload.payload
+			: undefined;
 
-  let configLabelKey: string = key;
+	let configLabelKey: string = key;
 
-  if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
-    configLabelKey = payload[key as keyof typeof payload] as string;
-  } else if (
-    payloadPayload &&
-    key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
-  ) {
-    configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
-  }
+	if (key in payload && typeof payload[key as keyof typeof payload] === "string") {
+		configLabelKey = payload[key as keyof typeof payload] as string;
+	} else if (
+		payloadPayload &&
+		key in payloadPayload &&
+		typeof payloadPayload[key as keyof typeof payloadPayload] === "string"
+	) {
+		configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string;
+	}
 
-  return configLabelKey in config ? config[configLabelKey] : config[key];
+	return configLabelKey in config ? config[configLabelKey] : config[key];
 }
 
 export interface ChartLegendContentProps extends Pick<
-  ComponentProps<"div"> & RechartsPrimitive.DefaultLegendContentProps,
-  keyof (ComponentProps<"div"> & RechartsPrimitive.DefaultLegendContentProps)
+	ComponentProps<"div"> & RechartsPrimitive.DefaultLegendContentProps,
+	keyof (ComponentProps<"div"> & RechartsPrimitive.DefaultLegendContentProps)
 > {
-  /**
-   * Hides the color indicator shown for each legend item.
-   */
-  hideIcon?: boolean;
+	/**
+	 * Hides the color indicator shown for each legend item.
+	 */
+	hideIcon?: boolean;
 
-  /**
-   * Identifies the payload property used as the legend label.
-   */
-  nameKey?: string;
+	/**
+	 * Identifies the payload property used as the legend label.
+	 */
+	nameKey?: string;
 }
 
 /**
@@ -54,45 +57,45 @@ export interface ChartLegendContentProps extends Pick<
  * @see https://recharts.github.io/en-US/guide
  */
 export function ChartLegendContent({
-  className,
-  hideIcon = false,
-  payload,
-  verticalAlign = "bottom",
-  nameKey,
+	className,
+	hideIcon = false,
+	payload,
+	verticalAlign = "bottom",
+	nameKey,
 }: ChartLegendContentProps) {
-  const { config } = useChart();
+	const { config } = useChart();
 
-  if (!payload?.length) {
-    return null;
-  }
+	if (!payload?.length) {
+		return null;
+	}
 
-  return (
-    <div className={cn("flex items-center justify-center gap-4", verticalAlign === "top" ? "pb-3" : "pt-3", className)}>
-      {payload
-        .filter((item) => item.type !== "none")
-        .map((item, index) => {
-          const key = `${nameKey ?? item.dataKey ?? "value"}`;
-          const itemConfig = getPayloadConfigFromPayload(config, item, key);
+	return (
+		<div className={cn("flex items-center justify-center gap-4", verticalAlign === "top" ? "pb-3" : "pt-3", className)}>
+			{payload
+				.filter((item) => item.type !== "none")
+				.map((item, index) => {
+					const key = `${nameKey ?? item.dataKey ?? "value"}`;
+					const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
-          return (
-            <div
-              key={index}
-              className={cn("flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground")}
-            >
-              {itemConfig?.icon && !hideIcon ? (
-                <itemConfig.icon />
-              ) : (
-                <div
-                  className="h-2 w-2 shrink-0 rounded-xs"
-                  style={{
-                    backgroundColor: item.color,
-                  }}
-                />
-              )}
-              {itemConfig?.label}
-            </div>
-          );
-        })}
-    </div>
-  );
+					return (
+						<div
+							key={index}
+							className={cn("flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-muted-foreground")}
+						>
+							{itemConfig?.icon && !hideIcon ? (
+								<itemConfig.icon />
+							) : (
+								<div
+									className="h-2 w-2 shrink-0 rounded-xs"
+									style={{
+										backgroundColor: item.color,
+									}}
+								/>
+							)}
+							{itemConfig?.label}
+						</div>
+					);
+				})}
+		</div>
+	);
 }

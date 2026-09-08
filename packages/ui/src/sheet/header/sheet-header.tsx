@@ -10,11 +10,11 @@ export interface SheetHeaderProps extends ComponentProps<"div"> {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function SheetHeader({ className, ...props }: SheetHeaderProps) {
-  return (
-    <div
-      data-slot="sheet-header"
-      className={cn("flex flex-col gap-0.5 p-4", className)}
-      {...props}
-    />
-  );
+	return (
+		<div
+			data-slot="sheet-header"
+			className={cn("flex flex-col gap-0.5 p-4", className)}
+			{...props}
+		/>
+	);
 }

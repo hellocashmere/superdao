@@ -10,10 +10,10 @@ export interface CollapsibleTriggerProps extends CollapsiblePrimitive.Trigger.Pr
  * @see https://base-ui.com/react/components/collapsible
  */
 export function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
-  return (
-    <CollapsiblePrimitive.Trigger
-      data-slot="collapsible-trigger"
-      {...props}
-    />
-  );
+	return (
+		<CollapsiblePrimitive.Trigger
+			data-slot="collapsible-trigger"
+			{...props}
+		/>
+	);
 }

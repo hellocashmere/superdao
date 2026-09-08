@@ -10,11 +10,11 @@ export interface DialogBodyProps extends ComponentProps<"div"> {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogBody({ className, ...props }: DialogBodyProps) {
-  return (
-    <div
-      data-slot="dialog-body"
-      className={cn("bg-card px-6 pt-4 pb-5", className)}
-      {...props}
-    />
-  );
+	return (
+		<div
+			data-slot="dialog-body"
+			className={cn("bg-card px-6 pt-4 pb-5", className)}
+			{...props}
+		/>
+	);
 }

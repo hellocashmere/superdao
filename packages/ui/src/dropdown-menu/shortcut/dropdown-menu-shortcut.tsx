@@ -10,14 +10,14 @@ export interface DropdownMenuShortcutProps extends ComponentProps<"span"> {}
  * @see https://base-ui.com/react/components/menu
  */
 export function DropdownMenuShortcut({ className, ...props }: DropdownMenuShortcutProps) {
-  return (
-    <span
-      data-slot="dropdown-menu-shortcut"
-      className={cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground group-data-highlighted/dropdown-menu-item:text-accent-foreground",
-        className
-      )}
-      {...props}
-    />
-  );
+	return (
+		<span
+			data-slot="dropdown-menu-shortcut"
+			className={cn(
+				"ml-auto text-xs tracking-widest text-muted-foreground group-data-highlighted/dropdown-menu-item:text-accent-foreground",
+				className
+			)}
+			{...props}
+		/>
+	);
 }

@@ -10,5 +10,5 @@ export interface ToastProviderProps extends ToastPrimitive.Provider.Props {}
  * @see https://base-ui.com/react/components/toast
  */
 export function ToastProvider({ ...props }: ToastProviderProps) {
-  return <ToastPrimitive.Provider {...props} />;
+	return <ToastPrimitive.Provider {...props} />;
 }

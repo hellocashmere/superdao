@@ -17,10 +17,10 @@ export interface CollapsibleProps extends CollapsiblePrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/collapsible
  */
 export function Collapsible({ ...props }: CollapsibleProps) {
-  return (
-    <CollapsiblePrimitive.Root
-      data-slot="collapsible"
-      {...props}
-    />
-  );
+	return (
+		<CollapsiblePrimitive.Root
+			data-slot="collapsible"
+			{...props}
+		/>
+	);
 }

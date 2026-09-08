@@ -10,11 +10,11 @@ export interface TooltipProviderProps extends TooltipPrimitive.Provider.Props {}
  * @see https://base-ui.com/react/components/tooltip
  */
 export function TooltipProvider({ delay = 0, ...props }: TooltipProviderProps) {
-  return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
-      delay={delay}
-      {...props}
-    />
-  );
+	return (
+		<TooltipPrimitive.Provider
+			data-slot="tooltip-provider"
+			delay={delay}
+			{...props}
+		/>
+	);
 }

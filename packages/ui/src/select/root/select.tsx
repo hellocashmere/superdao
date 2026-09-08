@@ -25,5 +25,5 @@ export interface SelectProps extends ComponentPropsWithRef<typeof SelectPrimitiv
  * @see https://base-ui.com/react/components/select
  */
 export function Select(props: SelectProps) {
-  return <SelectPrimitive.Root {...props} />;
+	return <SelectPrimitive.Root {...props} />;
 }

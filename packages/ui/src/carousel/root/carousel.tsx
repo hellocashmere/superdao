@@ -1,7 +1,7 @@
 "use client";
 
 import type { ComponentProps, KeyboardEvent } from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useSyncExternalStore } from "react";
 
 import { cn } from "@superdao/lib/utils";
 import useEmblaCarousel from "embla-carousel-react";
@@ -10,25 +10,25 @@ import type { CarouselApi, CarouselOptions, CarouselPlugin } from "../context";
 import { CarouselContext } from "../context";
 
 export interface CarouselProps extends ComponentProps<"div"> {
-  /**
-   * Embla carousel configuration.
-   */
-  opts?: CarouselOptions;
+	/**
+	 * Embla carousel configuration.
+	 */
+	opts?: CarouselOptions;
 
-  /**
-   * Embla plugins applied to the carousel.
-   */
-  plugins?: CarouselPlugin;
+	/**
+	 * Embla plugins applied to the carousel.
+	 */
+	plugins?: CarouselPlugin;
 
-  /**
-   * Determines the slide axis and navigation placement.
-   */
-  orientation?: "horizontal" | "vertical";
+	/**
+	 * Determines the slide axis and navigation placement.
+	 */
+	orientation?: "horizontal" | "vertical";
 
-  /**
-   * Receives the initialized Embla API.
-   */
-  setApi?: (api: CarouselApi) => void;
+	/**
+	 * Receives the initialized Embla API.
+	 */
+	setApi?: (api: CarouselApi) => void;
 }
 
 /**
@@ -46,85 +46,90 @@ export interface CarouselProps extends ComponentProps<"div"> {
  * @see https://www.embla-carousel.com/get-started/react/
  */
 export function Carousel({
-  orientation = "horizontal",
-  opts,
-  setApi,
-  plugins,
-  className,
-  children,
-  ...props
+	orientation = "horizontal",
+	opts,
+	setApi,
+	plugins,
+	className,
+	children,
+	...props
 }: CarouselProps) {
-  const [carouselRef, api] = useEmblaCarousel({ ...opts, axis: orientation === "horizontal" ? "x" : "y" }, plugins);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+	const [carouselRef, api] = useEmblaCarousel({ ...opts, axis: orientation === "horizontal" ? "x" : "y" }, plugins);
+	const subscribe = useCallback(
+		(onStoreChange: () => void) => {
+			if (!api) return () => {};
 
-  const onSelect = useCallback((currentApi: CarouselApi) => {
-    if (!currentApi) return;
-    setCanScrollPrev(currentApi.canScrollPrev());
-    setCanScrollNext(currentApi.canScrollNext());
-  }, []);
+			api.on("reInit", onStoreChange);
+			api.on("select", onStoreChange);
 
-  const scrollPrev = useCallback(() => {
-    api?.scrollPrev();
-  }, [api]);
+			return () => {
+				api.off("reInit", onStoreChange);
+				api.off("select", onStoreChange);
+			};
+		},
+		[api]
+	);
 
-  const scrollNext = useCallback(() => {
-    api?.scrollNext();
-  }, [api]);
+	const canScrollPrev = useSyncExternalStore(
+		subscribe,
+		() => api?.canScrollPrev() ?? false,
+		() => false
+	);
 
-  const handleKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        scrollPrev();
-      } else if (event.key === "ArrowRight") {
-        event.preventDefault();
-        scrollNext();
-      }
-    },
-    [scrollNext, scrollPrev]
-  );
+	const canScrollNext = useSyncExternalStore(
+		subscribe,
+		() => api?.canScrollNext() ?? false,
+		() => false
+	);
 
-  useEffect(() => {
-    if (api && setApi) setApi(api);
-  }, [api, setApi]);
+	const scrollPrev = useCallback(() => {
+		api?.scrollPrev();
+	}, [api]);
 
-  useEffect(() => {
-    if (!api) return;
-    // Embla exposes its initial selection only after the API is initialized.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    onSelect(api);
-    api.on("reInit", onSelect);
-    api.on("select", onSelect);
-    return () => {
-      api.off("reInit", onSelect);
-      api.off("select", onSelect);
-    };
-  }, [api, onSelect]);
+	const scrollNext = useCallback(() => {
+		api?.scrollNext();
+	}, [api]);
 
-  return (
-    <CarouselContext.Provider
-      value={{
-        carouselRef: carouselRef,
-        api: api,
-        opts: opts,
-        orientation: orientation,
-        scrollPrev: scrollPrev,
-        scrollNext: scrollNext,
-        canScrollPrev: canScrollPrev,
-        canScrollNext: canScrollNext,
-      }}
-    >
-      <div
-        onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
-        role="region"
-        aria-roledescription="carousel"
-        data-slot="carousel"
-        {...props}
-      >
-        {children}
-      </div>
-    </CarouselContext.Provider>
-  );
+	const handleKeyDown = useCallback(
+		(event: KeyboardEvent<HTMLDivElement>) => {
+			if (event.key === "ArrowLeft") {
+				event.preventDefault();
+				scrollPrev();
+			} else if (event.key === "ArrowRight") {
+				event.preventDefault();
+				scrollNext();
+			}
+		},
+		[scrollNext, scrollPrev]
+	);
+
+	useEffect(() => {
+		if (api && setApi) setApi(api);
+	}, [api, setApi]);
+
+	return (
+		<CarouselContext.Provider
+			value={{
+				carouselRef: carouselRef,
+				api: api,
+				opts: opts,
+				orientation: orientation,
+				scrollPrev: scrollPrev,
+				scrollNext: scrollNext,
+				canScrollPrev: canScrollPrev,
+				canScrollNext: canScrollNext,
+			}}
+		>
+			<div
+				onKeyDownCapture={handleKeyDown}
+				className={cn("relative", className)}
+				role="region"
+				aria-roledescription="carousel"
+				data-slot="carousel"
+				{...props}
+			>
+				{children}
+			</div>
+		</CarouselContext.Provider>
+	);
 }

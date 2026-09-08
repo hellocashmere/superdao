@@ -11,11 +11,11 @@ export interface PopoverDescriptionProps extends PopoverPrimitive.Description.Pr
  * @see https://base-ui.com/react/components/popover
  */
 export function PopoverDescription({ className, ...props }: PopoverDescriptionProps) {
-  return (
-    <PopoverPrimitive.Description
-      data-slot="popover-description"
-      className={cn("text-muted-foreground", className)}
-      {...props}
-    />
-  );
+	return (
+		<PopoverPrimitive.Description
+			data-slot="popover-description"
+			className={cn("text-muted-foreground", className)}
+			{...props}
+		/>
+	);
 }

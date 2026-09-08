@@ -10,10 +10,10 @@ export interface SheetTriggerProps extends SheetPrimitive.Trigger.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function SheetTrigger({ ...props }: SheetTriggerProps) {
-  return (
-    <SheetPrimitive.Trigger
-      data-slot="sheet-trigger"
-      {...props}
-    />
-  );
+	return (
+		<SheetPrimitive.Trigger
+			data-slot="sheet-trigger"
+			{...props}
+		/>
+	);
 }

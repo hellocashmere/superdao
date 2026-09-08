@@ -10,10 +10,10 @@ export interface AlertDialogPortalProps extends AlertDialogPrimitive.Portal.Prop
  * @see https://base-ui.com/react/components/alert-dialog
  */
 export function AlertDialogPortal(props: AlertDialogPortalProps) {
-  return (
-    <AlertDialogPrimitive.Portal
-      data-slot="alert-dialog-portal"
-      {...props}
-    />
-  );
+	return (
+		<AlertDialogPrimitive.Portal
+			data-slot="alert-dialog-portal"
+			{...props}
+		/>
+	);
 }

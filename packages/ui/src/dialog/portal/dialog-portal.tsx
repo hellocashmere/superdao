@@ -10,10 +10,10 @@ export interface DialogPortalProps extends DialogPrimitive.Portal.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogPortal({ ...props }: DialogPortalProps) {
-  return (
-    <DialogPrimitive.Portal
-      data-slot="dialog-portal"
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Portal
+			data-slot="dialog-portal"
+			{...props}
+		/>
+	);
 }

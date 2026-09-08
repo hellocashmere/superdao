@@ -18,10 +18,10 @@ export interface TooltipProps extends TooltipPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/tooltip
  */
 export function Tooltip({ ...props }: TooltipProps) {
-  return (
-    <TooltipPrimitive.Root
-      data-slot="tooltip"
-      {...props}
-    />
-  );
+	return (
+		<TooltipPrimitive.Root
+			data-slot="tooltip"
+			{...props}
+		/>
+	);
 }

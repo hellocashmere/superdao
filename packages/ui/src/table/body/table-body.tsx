@@ -8,11 +8,11 @@ export interface TableBodyProps extends ComponentProps<"tbody"> {}
  * Renders the table body component.
  */
 export function TableBody({ className, ...props }: TableBodyProps) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn(className)}
-      {...props}
-    />
-  );
+	return (
+		<tbody
+			data-slot="table-body"
+			className={cn(className)}
+			{...props}
+		/>
+	);
 }

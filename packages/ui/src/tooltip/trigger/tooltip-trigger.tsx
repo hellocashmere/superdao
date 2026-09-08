@@ -11,13 +11,13 @@ export interface TooltipTriggerProps extends ComponentPropsWithRef<typeof Toolti
  *
  * @see https://base-ui.com/react/components/tooltip
  */
-export function TooltipTrigger({ delay = 100, ref, ...props }: TooltipTriggerProps) {
-  return (
-    <TooltipPrimitive.Trigger
-      ref={ref}
-      data-slot="tooltip-trigger"
-      delay={delay}
-      {...props}
-    />
-  );
+export function TooltipTrigger({ ref, delay = 100, ...props }: TooltipTriggerProps) {
+	return (
+		<TooltipPrimitive.Trigger
+			ref={ref}
+			data-slot="tooltip-trigger"
+			delay={delay}
+			{...props}
+		/>
+	);
 }

@@ -10,10 +10,10 @@ export interface DropdownMenuSubProps extends MenuPrimitive.SubmenuRoot.Props {}
  * @see https://base-ui.com/react/components/menu
  */
 export function DropdownMenuSub({ ...props }: DropdownMenuSubProps) {
-  return (
-    <MenuPrimitive.SubmenuRoot
-      data-slot="dropdown-menu-sub"
-      {...props}
-    />
-  );
+	return (
+		<MenuPrimitive.SubmenuRoot
+			data-slot="dropdown-menu-sub"
+			{...props}
+		/>
+	);
 }

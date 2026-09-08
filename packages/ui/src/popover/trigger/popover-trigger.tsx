@@ -10,10 +10,10 @@ export interface PopoverTriggerProps extends PopoverPrimitive.Trigger.Props {}
  * @see https://base-ui.com/react/components/popover
  */
 export function PopoverTrigger({ ...props }: PopoverTriggerProps) {
-  return (
-    <PopoverPrimitive.Trigger
-      data-slot="popover-trigger"
-      {...props}
-    />
-  );
+	return (
+		<PopoverPrimitive.Trigger
+			data-slot="popover-trigger"
+			{...props}
+		/>
+	);
 }

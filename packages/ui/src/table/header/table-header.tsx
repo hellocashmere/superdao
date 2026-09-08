@@ -8,11 +8,11 @@ export interface TableHeaderProps extends ComponentProps<"thead"> {}
  * Renders the table header component.
  */
 export function TableHeader({ className, ...props }: TableHeaderProps) {
-  return (
-    <thead
-      data-slot="table-header"
-      className={cn(className)}
-      {...props}
-    />
-  );
+	return (
+		<thead
+			data-slot="table-header"
+			className={cn(className)}
+			{...props}
+		/>
+	);
 }

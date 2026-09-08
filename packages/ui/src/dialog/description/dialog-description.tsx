@@ -11,14 +11,14 @@ export interface DialogDescriptionProps extends DialogPrimitive.Description.Prop
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogDescription({ className, ...props }: DialogDescriptionProps) {
-  return (
-    <DialogPrimitive.Description
-      data-slot="dialog-description"
-      className={cn(
-        "w-full text-[15px] leading-6 font-normal text-foreground *:[a]:underline *:[a]:underline-offset-3",
-        className
-      )}
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Description
+			data-slot="dialog-description"
+			className={cn(
+				"w-full text-[15px] leading-6 font-normal text-foreground *:[a]:underline *:[a]:underline-offset-3",
+				className
+			)}
+			{...props}
+		/>
+	);
 }

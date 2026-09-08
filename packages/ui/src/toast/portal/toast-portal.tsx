@@ -10,10 +10,10 @@ export interface ToastPortalProps extends ToastPrimitive.Portal.Props {}
  * @see https://base-ui.com/react/components/toast
  */
 export function ToastPortal({ ...props }: ToastPortalProps) {
-  return (
-    <ToastPrimitive.Portal
-      data-slot="toast-portal"
-      {...props}
-    />
-  );
+	return (
+		<ToastPrimitive.Portal
+			data-slot="toast-portal"
+			{...props}
+		/>
+	);
 }

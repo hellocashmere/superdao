@@ -4,15 +4,15 @@ import { THEMES } from "../config";
 import type { ChartConfig } from "../context";
 
 export interface ChartStyleProps extends ComponentPropsWithRef<"style"> {
-  /**
-   * Stable chart identifier used by generated CSS selectors.
-   */
-  id: string;
+	/**
+	 * Stable chart identifier used by generated CSS selectors.
+	 */
+	id: string;
 
-  /**
-   * Series configuration converted into CSS custom properties.
-   */
-  config: ChartConfig;
+	/**
+	 * Series configuration converted into CSS custom properties.
+	 */
+	config: ChartConfig;
 }
 
 /**
@@ -20,31 +20,31 @@ export interface ChartStyleProps extends ComponentPropsWithRef<"style"> {
  *
  * @see https://recharts.github.io/en-US/guide
  */
-export function ChartStyle({ id, config, ref, ...props }: ChartStyleProps) {
-  const colorConfig = Object.entries(config).filter(([, itemConfig]) => itemConfig.theme ?? itemConfig.color);
+export function ChartStyle({ ref, id, config, ...props }: ChartStyleProps) {
+	const colorConfig = Object.entries(config).filter(([, itemConfig]) => itemConfig.theme ?? itemConfig.color);
 
-  if (!colorConfig.length) return null;
+	if (!colorConfig.length) return null;
 
-  return (
-    <style
-      ref={ref}
-      {...props}
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
+	return (
+		<style
+			ref={ref}
+			{...props}
+			dangerouslySetInnerHTML={{
+				__html: Object.entries(THEMES)
+					.map(
+						([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
 ${colorConfig
-  .map(([key, itemConfig]) => {
-    const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
-    return color ? `  --color-${key}: ${color};` : null;
-  })
-  .join("\n")}
+	.map(([key, itemConfig]) => {
+		const color = itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ?? itemConfig.color;
+		return color ? `  --color-${key}: ${color};` : null;
+	})
+	.join("\n")}
 }
 `
-          )
-          .join("\n"),
-      }}
-    />
-  );
+					)
+					.join("\n"),
+			}}
+		/>
+	);
 }

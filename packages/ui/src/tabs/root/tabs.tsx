@@ -19,12 +19,12 @@ export interface TabsProps extends TabsPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/tabs
  */
 export function Tabs({ className, orientation = "horizontal", ...props }: TabsProps) {
-  return (
-    <TabsPrimitive.Root
-      data-slot="tabs"
-      data-orientation={orientation}
-      className={cn("group/tabs flex gap-2 data-horizontal:flex-col", className)}
-      {...props}
-    />
-  );
+	return (
+		<TabsPrimitive.Root
+			data-slot="tabs"
+			data-orientation={orientation}
+			className={cn("group/tabs flex gap-2 data-horizontal:flex-col", className)}
+			{...props}
+		/>
+	);
 }

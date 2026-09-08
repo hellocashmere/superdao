@@ -12,5 +12,5 @@ export interface ChartTooltipProps extends ComponentPropsWithRef<typeof Recharts
  * @see https://recharts.github.io/en-US/guide
  */
 export function ChartTooltip(props: ChartTooltipProps) {
-  return <RechartsPrimitive.Tooltip {...props} />;
+	return <RechartsPrimitive.Tooltip {...props} />;
 }

@@ -10,10 +10,10 @@ export interface DialogCloseProps extends DialogPrimitive.Close.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function DialogClose({ ...props }: DialogCloseProps) {
-  return (
-    <DialogPrimitive.Close
-      data-slot="dialog-close"
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Close
+			data-slot="dialog-close"
+			{...props}
+		/>
+	);
 }

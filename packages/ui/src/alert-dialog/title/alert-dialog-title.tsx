@@ -10,13 +10,13 @@ export interface AlertDialogTitleProps extends AlertDialogPrimitive.Title.Props 
  *
  * @see https://base-ui.com/react/components/alert-dialog
  */
-export function AlertDialogTitle({ className, ref, ...props }: AlertDialogTitleProps) {
-  return (
-    <AlertDialogPrimitive.Title
-      ref={ref}
-      data-slot="alert-dialog-title"
-      className={cn("w-full font-heading text-2xl leading-7 font-bold", className)}
-      {...props}
-    />
-  );
+export function AlertDialogTitle({ ref, className, ...props }: AlertDialogTitleProps) {
+	return (
+		<AlertDialogPrimitive.Title
+			ref={ref}
+			data-slot="alert-dialog-title"
+			className={cn("w-full font-heading text-2xl leading-7 font-bold", className)}
+			{...props}
+		/>
+	);
 }

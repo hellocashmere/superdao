@@ -11,11 +11,11 @@ export interface SelectValueProps extends SelectPrimitive.Value.Props {}
  * @see https://base-ui.com/react/components/select
  */
 export function SelectValue({ className, ...props }: SelectValueProps) {
-  return (
-    <SelectPrimitive.Value
-      data-slot="select-value"
-      className={cn("flex flex-1 text-left text-foreground", className)}
-      {...props}
-    />
-  );
+	return (
+		<SelectPrimitive.Value
+			data-slot="select-value"
+			className={cn("flex flex-1 text-left text-foreground", className)}
+			{...props}
+		/>
+	);
 }

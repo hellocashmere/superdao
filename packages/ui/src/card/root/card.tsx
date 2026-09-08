@@ -3,10 +3,10 @@ import type { ComponentPropsWithRef } from "react";
 import { cn } from "@superdao/lib/utils";
 
 export interface CardProps extends ComponentPropsWithRef<"div"> {
-  /**
-   * Controls the horizontal inset used by the card sections.
-   */
-  size?: "default" | "sm";
+	/**
+	 * Controls the horizontal inset used by the card sections.
+	 */
+	size?: "default" | "sm";
 }
 
 /**
@@ -23,17 +23,17 @@ export interface CardProps extends ComponentPropsWithRef<"div"> {
  * └── CardFooter
  * ```
  */
-export function Card({ className, ref, size = "default", ...props }: CardProps) {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      data-slot="card"
-      data-size={size}
-      className={cn(
-        "group/card flex min-w-0 flex-col overflow-hidden rounded-lg bg-card text-sm text-card-foreground [--card-padding-inline:--spacing(5)] data-[size=sm]:[--card-padding-inline:--spacing(4)] *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg",
-        className
-      )}
-    />
-  );
+export function Card({ ref, className, size = "default", ...props }: CardProps) {
+	return (
+		<div
+			{...props}
+			ref={ref}
+			data-slot="card"
+			data-size={size}
+			className={cn(
+				"group/card flex min-w-0 flex-col overflow-hidden rounded-lg bg-card text-sm text-card-foreground [--card-padding-inline:--spacing(5)] data-[size=sm]:[--card-padding-inline:--spacing(4)] *:[img:first-child]:rounded-t-lg *:[img:last-child]:rounded-b-lg",
+				className
+			)}
+		/>
+	);
 }

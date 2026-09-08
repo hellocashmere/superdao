@@ -10,11 +10,11 @@ export interface SheetFooterProps extends ComponentProps<"div"> {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function SheetFooter({ className, ...props }: SheetFooterProps) {
-  return (
-    <div
-      data-slot="sheet-footer"
-      className={cn("mt-auto flex flex-col gap-2 p-4", className)}
-      {...props}
-    />
-  );
+	return (
+		<div
+			data-slot="sheet-footer"
+			className={cn("mt-auto flex flex-col gap-2 p-4", className)}
+			{...props}
+		/>
+	);
 }

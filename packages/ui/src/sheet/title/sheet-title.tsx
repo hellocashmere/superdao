@@ -11,11 +11,11 @@ export interface SheetTitleProps extends SheetPrimitive.Title.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function SheetTitle({ className, ...props }: SheetTitleProps) {
-  return (
-    <SheetPrimitive.Title
-      data-slot="sheet-title"
-      className={cn("font-heading text-base font-medium text-foreground", className)}
-      {...props}
-    />
-  );
+	return (
+		<SheetPrimitive.Title
+			data-slot="sheet-title"
+			className={cn("font-heading text-base font-medium text-foreground", className)}
+			{...props}
+		/>
+	);
 }

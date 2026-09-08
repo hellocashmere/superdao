@@ -6,15 +6,15 @@ import type { ButtonProps } from "../../button";
 import { Button } from "../../button";
 
 export interface AlertDialogCancelProps extends AlertDialogPrimitive.Close.Props {
-  /**
-   * Visual treatment inherited from Button.
-   */
-  variant?: ButtonProps["variant"];
+	/**
+	 * Visual treatment inherited from Button.
+	 */
+	variant?: ButtonProps["variant"];
 
-  /**
-   * Size inherited from Button.
-   */
-  size?: ButtonProps["size"];
+	/**
+	 * Size inherited from Button.
+	 */
+	size?: ButtonProps["size"];
 }
 
 /**
@@ -23,17 +23,17 @@ export interface AlertDialogCancelProps extends AlertDialogPrimitive.Close.Props
  * @see https://base-ui.com/react/components/alert-dialog
  */
 export function AlertDialogCancel({ ref, variant = "ghost", size = "default", ...props }: AlertDialogCancelProps) {
-  return (
-    <AlertDialogPrimitive.Close
-      ref={ref}
-      data-slot="alert-dialog-cancel"
-      render={
-        <Button
-          variant={variant}
-          size={size}
-        />
-      }
-      {...props}
-    />
-  );
+	return (
+		<AlertDialogPrimitive.Close
+			ref={ref}
+			data-slot="alert-dialog-cancel"
+			render={
+				<Button
+					variant={variant}
+					size={size}
+				/>
+			}
+			{...props}
+		/>
+	);
 }

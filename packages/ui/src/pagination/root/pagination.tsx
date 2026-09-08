@@ -19,13 +19,13 @@ export interface PaginationProps extends ComponentProps<"nav"> {}
  * ```
  */
 export function Pagination({ className, ...props }: PaginationProps) {
-  return (
-    <nav
-      role="navigation"
-      aria-label="pagination"
-      data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center", className)}
-      {...props}
-    />
-  );
+	return (
+		<nav
+			role="navigation"
+			aria-label="pagination"
+			data-slot="pagination"
+			className={cn("mx-auto flex w-full justify-center", className)}
+			{...props}
+		/>
+	);
 }

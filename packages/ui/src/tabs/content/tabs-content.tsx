@@ -11,11 +11,11 @@ export interface TabsContentProps extends TabsPrimitive.Panel.Props {}
  * @see https://base-ui.com/react/components/tabs
  */
 export function TabsContent({ className, ...props }: TabsContentProps) {
-  return (
-    <TabsPrimitive.Panel
-      data-slot="tabs-content"
-      className={cn("flex-1 text-sm outline-none", className)}
-      {...props}
-    />
-  );
+	return (
+		<TabsPrimitive.Panel
+			data-slot="tabs-content"
+			className={cn("flex-1 text-sm outline-none", className)}
+			{...props}
+		/>
+	);
 }

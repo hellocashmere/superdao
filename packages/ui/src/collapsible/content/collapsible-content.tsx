@@ -10,10 +10,10 @@ export interface CollapsibleContentProps extends CollapsiblePrimitive.Panel.Prop
  * @see https://base-ui.com/react/components/collapsible
  */
 export function CollapsibleContent({ ...props }: CollapsibleContentProps) {
-  return (
-    <CollapsiblePrimitive.Panel
-      data-slot="collapsible-content"
-      {...props}
-    />
-  );
+	return (
+		<CollapsiblePrimitive.Panel
+			data-slot="collapsible-content"
+			{...props}
+		/>
+	);
 }

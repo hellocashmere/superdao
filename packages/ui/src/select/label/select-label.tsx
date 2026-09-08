@@ -11,11 +11,11 @@ export interface SelectLabelProps extends SelectPrimitive.GroupLabel.Props {}
  * @see https://base-ui.com/react/components/select
  */
 export function SelectLabel({ className, ...props }: SelectLabelProps) {
-  return (
-    <SelectPrimitive.GroupLabel
-      data-slot="select-label"
-      className={cn("px-1.5 py-1 text-xs text-muted-foreground", className)}
-      {...props}
-    />
-  );
+	return (
+		<SelectPrimitive.GroupLabel
+			data-slot="select-label"
+			className={cn("px-1.5 py-1 text-xs text-muted-foreground", className)}
+			{...props}
+		/>
+	);
 }

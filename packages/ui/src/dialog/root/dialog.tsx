@@ -25,10 +25,10 @@ export interface DialogProps extends DialogPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/dialog
  */
 export function Dialog({ ...props }: DialogProps) {
-  return (
-    <DialogPrimitive.Root
-      data-slot="dialog"
-      {...props}
-    />
-  );
+	return (
+		<DialogPrimitive.Root
+			data-slot="dialog"
+			{...props}
+		/>
+	);
 }

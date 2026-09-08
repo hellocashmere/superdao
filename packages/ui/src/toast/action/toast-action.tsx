@@ -12,21 +12,21 @@ export interface ToastActionProps extends ToastPrimitive.Action.Props {}
  * @see https://base-ui.com/react/components/toast
  */
 export function ToastAction({
-  className,
-  render = (
-    <Button
-      variant="secondary"
-      size="sm"
-    />
-  ),
-  ...props
+	className,
+	render = (
+		<Button
+			variant="secondary"
+			size="sm"
+		/>
+	),
+	...props
 }: ToastActionProps) {
-  return (
-    <ToastPrimitive.Action
-      data-slot="toast-action"
-      render={render}
-      className={cn("shrink-0", className)}
-      {...props}
-    />
-  );
+	return (
+		<ToastPrimitive.Action
+			data-slot="toast-action"
+			render={render}
+			className={cn("shrink-0", className)}
+			{...props}
+		/>
+	);
 }

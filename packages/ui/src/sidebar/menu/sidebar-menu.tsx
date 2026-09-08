@@ -8,12 +8,12 @@ export interface SidebarMenuProps extends ComponentProps<"ul"> {}
  * Renders the sidebar menu component.
  */
 export function SidebarMenu({ className, ...props }: SidebarMenuProps) {
-  return (
-    <ul
-      data-slot="sidebar-menu"
-      data-sidebar="menu"
-      className={cn("flex w-full min-w-0 flex-col", className)}
-      {...props}
-    />
-  );
+	return (
+		<ul
+			data-slot="sidebar-menu"
+			data-sidebar="menu"
+			className={cn("flex w-full min-w-0 flex-col", className)}
+			{...props}
+		/>
+	);
 }

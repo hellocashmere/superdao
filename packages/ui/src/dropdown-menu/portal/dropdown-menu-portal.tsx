@@ -10,10 +10,10 @@ export interface DropdownMenuPortalProps extends MenuPrimitive.Portal.Props {}
  * @see https://base-ui.com/react/components/menu
  */
 export function DropdownMenuPortal({ ...props }: DropdownMenuPortalProps) {
-  return (
-    <MenuPrimitive.Portal
-      data-slot="dropdown-menu-portal"
-      {...props}
-    />
-  );
+	return (
+		<MenuPrimitive.Portal
+			data-slot="dropdown-menu-portal"
+			{...props}
+		/>
+	);
 }

@@ -11,11 +11,11 @@ export interface PopoverTitleProps extends PopoverPrimitive.Title.Props {}
  * @see https://base-ui.com/react/components/popover
  */
 export function PopoverTitle({ className, ...props }: PopoverTitleProps) {
-  return (
-    <PopoverPrimitive.Title
-      data-slot="popover-title"
-      className={cn("font-medium", className)}
-      {...props}
-    />
-  );
+	return (
+		<PopoverPrimitive.Title
+			data-slot="popover-title"
+			className={cn("font-medium", className)}
+			{...props}
+		/>
+	);
 }

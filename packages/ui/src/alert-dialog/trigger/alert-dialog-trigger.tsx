@@ -10,11 +10,11 @@ export interface AlertDialogTriggerProps extends AlertDialogPrimitive.Trigger.Pr
  * @see https://base-ui.com/react/components/alert-dialog
  */
 export function AlertDialogTrigger({ ref, ...props }: AlertDialogTriggerProps) {
-  return (
-    <AlertDialogPrimitive.Trigger
-      ref={ref}
-      data-slot="alert-dialog-trigger"
-      {...props}
-    />
-  );
+	return (
+		<AlertDialogPrimitive.Trigger
+			ref={ref}
+			data-slot="alert-dialog-trigger"
+			{...props}
+		/>
+	);
 }

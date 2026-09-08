@@ -17,11 +17,11 @@ export interface RadioGroupProps extends RadioGroupPrimitive.Props {}
  * @see https://base-ui.com/react/components/radio-group
  */
 export function RadioGroup({ className, ...props }: RadioGroupProps) {
-  return (
-    <RadioGroupPrimitive
-      data-slot="radio-group"
-      className={cn("grid w-full gap-2", className)}
-      {...props}
-    />
-  );
+	return (
+		<RadioGroupPrimitive
+			data-slot="radio-group"
+			className={cn("grid w-full gap-2", className)}
+			{...props}
+		/>
+	);
 }

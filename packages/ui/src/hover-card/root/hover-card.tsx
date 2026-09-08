@@ -10,10 +10,10 @@ export interface HoverCardProps extends PreviewCardPrimitive.Root.Props {}
  * @see https://base-ui.com/react/components/preview-card
  */
 export function HoverCard({ ...props }: HoverCardProps) {
-  return (
-    <PreviewCardPrimitive.Root
-      data-slot="hover-card"
-      {...props}
-    />
-  );
+	return (
+		<PreviewCardPrimitive.Root
+			data-slot="hover-card"
+			{...props}
+		/>
+	);
 }

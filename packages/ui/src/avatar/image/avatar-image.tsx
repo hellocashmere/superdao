@@ -11,11 +11,11 @@ export interface AvatarImageProps extends AvatarPrimitive.Image.Props {}
  * @see https://base-ui.com/react/components/avatar
  */
 export function AvatarImage({ className, ...props }: AvatarImageProps) {
-  return (
-    <AvatarPrimitive.Image
-      data-slot="avatar-image"
-      className={cn("aspect-square size-full rounded-full object-cover", className)}
-      {...props}
-    />
-  );
+	return (
+		<AvatarPrimitive.Image
+			data-slot="avatar-image"
+			className={cn("aspect-square size-full rounded-full object-cover", className)}
+			{...props}
+		/>
+	);
 }

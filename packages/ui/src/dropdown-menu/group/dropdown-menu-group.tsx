@@ -11,11 +11,11 @@ export interface DropdownMenuGroupProps extends MenuPrimitive.Group.Props {}
  * @see https://base-ui.com/react/components/menu
  */
 export function DropdownMenuGroup({ className, ...props }: DropdownMenuGroupProps) {
-  return (
-    <MenuPrimitive.Group
-      data-slot="dropdown-menu-group"
-      className={cn("scroll-my-1", className)}
-      {...props}
-    />
-  );
+	return (
+		<MenuPrimitive.Group
+			data-slot="dropdown-menu-group"
+			className={cn("scroll-my-1", className)}
+			{...props}
+		/>
+	);
 }

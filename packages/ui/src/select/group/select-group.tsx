@@ -11,11 +11,11 @@ export interface SelectGroupProps extends SelectPrimitive.Group.Props {}
  * @see https://base-ui.com/react/components/select
  */
 export function SelectGroup({ className, ...props }: SelectGroupProps) {
-  return (
-    <SelectPrimitive.Group
-      data-slot="select-group"
-      className={cn("scroll-my-1 py-1", className)}
-      {...props}
-    />
-  );
+	return (
+		<SelectPrimitive.Group
+			data-slot="select-group"
+			className={cn("scroll-my-1 py-1", className)}
+			{...props}
+		/>
+	);
 }

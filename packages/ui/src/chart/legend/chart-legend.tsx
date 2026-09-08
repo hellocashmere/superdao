@@ -12,5 +12,5 @@ export interface ChartLegendProps extends ComponentPropsWithRef<typeof RechartsP
  * @see https://recharts.github.io/en-US/guide
  */
 export function ChartLegend(props: ChartLegendProps) {
-  return <RechartsPrimitive.Legend {...props} />;
+	return <RechartsPrimitive.Legend {...props} />;
 }

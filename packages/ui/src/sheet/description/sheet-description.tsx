@@ -11,11 +11,11 @@ export interface SheetDescriptionProps extends SheetPrimitive.Description.Props 
  * @see https://base-ui.com/react/components/dialog
  */
 export function SheetDescription({ className, ...props }: SheetDescriptionProps) {
-  return (
-    <SheetPrimitive.Description
-      data-slot="sheet-description"
-      className={cn("text-sm text-muted-foreground", className)}
-      {...props}
-    />
-  );
+	return (
+		<SheetPrimitive.Description
+			data-slot="sheet-description"
+			className={cn("text-sm text-muted-foreground", className)}
+			{...props}
+		/>
+	);
 }
