@@ -10,5 +10,5 @@ export type UseIsMobileReturn = boolean;
  * Reports whether the viewport is narrower than the mobile breakpoint.
  */
 export function useIsMobile(): UseIsMobileReturn {
-  return useMediaQuery(MOBILE_MEDIA_QUERY);
+	return useMediaQuery(MOBILE_MEDIA_QUERY);
 }

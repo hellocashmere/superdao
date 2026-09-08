@@ -10,5 +10,5 @@ export type UseIntersectionObserverReturn = ReturnType<typeof useIntersectionObs
  * Tracks whether an element intersects its root or the viewport.
  */
 export function useIntersectionObserver(options?: UseIntersectionObserverOptions): UseIntersectionObserverReturn {
-  return useIntersectionObserverPrimitive(options);
+	return useIntersectionObserverPrimitive(options);
 }

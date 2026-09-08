@@ -10,5 +10,5 @@ export type UseMediaQueryReturn = ReturnType<typeof useMediaQueryPrimitive>;
  * Reports whether the current viewport matches a CSS media query.
  */
 export function useMediaQuery(...args: UseMediaQueryOptions): UseMediaQueryReturn {
-  return useMediaQueryPrimitive(...args);
+	return useMediaQueryPrimitive(...args);
 }

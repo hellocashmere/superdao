@@ -10,5 +10,5 @@ export type UseDebounceValueReturn<T> = ReturnType<typeof useDebounceValuePrimit
  * Returns a debounced value using the shared hook implementation.
  */
 export function useDebounceValue<T>(...args: UseDebounceValueOptions<T>): UseDebounceValueReturn<T> {
-  return useDebounceValuePrimitive(...args);
+	return useDebounceValuePrimitive(...args);
 }
