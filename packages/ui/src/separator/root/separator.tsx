@@ -13,7 +13,6 @@ export interface SeparatorProps extends SeparatorPrimitive.Props {}
 export function Separator({ ref, className, orientation = "horizontal", ...props }: SeparatorProps) {
 	return (
 		<SeparatorPrimitive
-			{...props}
 			ref={ref}
 			data-slot="separator"
 			orientation={orientation}
@@ -21,6 +20,7 @@ export function Separator({ ref, className, orientation = "horizontal", ...props
 				"shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch",
 				className
 			)}
+			{...props}
 		/>
 	);
 }

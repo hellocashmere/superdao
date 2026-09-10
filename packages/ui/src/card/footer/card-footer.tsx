@@ -10,10 +10,10 @@ export interface CardFooterProps extends ComponentPropsWithRef<"div"> {}
 export function CardFooter({ ref, className, ...props }: CardFooterProps) {
 	return (
 		<div
-			{...props}
 			ref={ref}
 			data-slot="card-footer"
 			className={cn("mx-(--card-padding-inline) mt-auto flex items-center border-t border-border py-2", className)}
+			{...props}
 		/>
 	);
 }

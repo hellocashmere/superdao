@@ -10,10 +10,10 @@ export interface CardContentProps extends ComponentPropsWithRef<"div"> {}
 export function CardContent({ ref, className, ...props }: CardContentProps) {
 	return (
 		<div
-			{...props}
 			ref={ref}
 			data-slot="card-content"
 			className={cn("px-(--card-padding-inline)", className)}
+			{...props}
 		/>
 	);
 }

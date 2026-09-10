@@ -28,7 +28,6 @@ export function ChartStyle({ ref, id, config, ...props }: ChartStyleProps) {
 	return (
 		<style
 			ref={ref}
-			{...props}
 			dangerouslySetInnerHTML={{
 				__html: Object.entries(THEMES)
 					.map(
@@ -45,6 +44,7 @@ ${colorConfig
 					)
 					.join("\n"),
 			}}
+			{...props}
 		/>
 	);
 }
