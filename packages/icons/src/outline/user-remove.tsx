@@ -7,9 +7,9 @@ export interface UserRemoveIconProps extends ComponentPropsWithRef<typeof IconBa
 export function UserRemoveIcon({ ref, className, ...props }: UserRemoveIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

@@ -7,9 +7,9 @@ export interface AssetCoinBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function AssetCoinBoldIcon({ ref, className, ...props }: AssetCoinBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

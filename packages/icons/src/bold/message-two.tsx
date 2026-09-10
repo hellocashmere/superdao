@@ -7,9 +7,9 @@ export interface MessageTwoBoldIconProps extends ComponentPropsWithRef<typeof Ic
 export function MessageTwoBoldIcon({ ref, className, ...props }: MessageTwoBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

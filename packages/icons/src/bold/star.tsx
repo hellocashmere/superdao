@@ -7,9 +7,9 @@ export interface StarBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function StarBoldIcon({ ref, className, ...props }: StarBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

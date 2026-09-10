@@ -7,9 +7,9 @@ export interface SpeakerBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function SpeakerBoldIcon({ ref, className, ...props }: SpeakerBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

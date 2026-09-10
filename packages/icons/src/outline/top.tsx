@@ -7,9 +7,9 @@ export interface TopIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function TopIcon({ ref, className, ...props }: TopIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

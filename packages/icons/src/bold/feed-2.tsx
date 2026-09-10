@@ -7,9 +7,9 @@ export interface Feed2BoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function Feed2BoldIcon({ ref, className, ...props }: Feed2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

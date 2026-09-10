@@ -7,9 +7,9 @@ export interface Google2BoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function Google2BoldIcon({ ref, className, ...props }: Google2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

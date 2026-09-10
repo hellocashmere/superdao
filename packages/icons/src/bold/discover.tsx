@@ -7,9 +7,9 @@ export interface DiscoverBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function DiscoverBoldIcon({ ref, className, ...props }: DiscoverBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

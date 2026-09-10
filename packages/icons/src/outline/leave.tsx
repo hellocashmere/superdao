@@ -7,9 +7,9 @@ export interface LeaveIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function LeaveIcon({ ref, className, ...props }: LeaveIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

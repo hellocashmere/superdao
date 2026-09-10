@@ -7,9 +7,9 @@ export interface FoodIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function FoodIcon({ ref, className, ...props }: FoodIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

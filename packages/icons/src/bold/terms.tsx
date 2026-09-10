@@ -7,9 +7,9 @@ export interface TermsBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function TermsBoldIcon({ ref, className, ...props }: TermsBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface BirdBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function BirdBoldIcon({ ref, className, ...props }: BirdBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

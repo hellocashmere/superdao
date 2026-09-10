@@ -7,9 +7,9 @@ export interface CampaignsNavIconProps extends ComponentPropsWithRef<typeof Icon
 export function CampaignsNavIcon({ ref, className, ...props }: CampaignsNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

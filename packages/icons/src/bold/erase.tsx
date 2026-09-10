@@ -7,9 +7,9 @@ export interface EraseBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function EraseBoldIcon({ ref, className, ...props }: EraseBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

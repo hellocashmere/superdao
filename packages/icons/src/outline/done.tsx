@@ -7,9 +7,9 @@ export interface DoneIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function DoneIcon({ ref, className, ...props }: DoneIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

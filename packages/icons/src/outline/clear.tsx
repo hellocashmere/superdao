@@ -7,9 +7,9 @@ export interface ClearIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function ClearIcon({ ref, className, ...props }: ClearIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

@@ -7,9 +7,9 @@ export interface GroupIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function GroupIcon({ ref, className, ...props }: GroupIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

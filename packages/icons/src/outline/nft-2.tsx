@@ -7,9 +7,9 @@ export interface Nft2IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function Nft2Icon({ ref, className, ...props }: Nft2IconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

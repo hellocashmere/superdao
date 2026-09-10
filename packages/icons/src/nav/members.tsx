@@ -7,9 +7,9 @@ export interface MembersNavIconProps extends ComponentPropsWithRef<typeof IconBa
 export function MembersNavIcon({ ref, className, ...props }: MembersNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

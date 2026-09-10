@@ -7,9 +7,9 @@ export interface StickerIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function StickerIcon({ ref, className, ...props }: StickerIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

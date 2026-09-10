@@ -7,9 +7,9 @@ export interface OpenseaIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function OpenseaIcon({ ref, className, ...props }: OpenseaIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface TransportBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function TransportBoldIcon({ ref, className, ...props }: TransportBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

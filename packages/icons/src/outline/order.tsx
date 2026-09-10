@@ -7,9 +7,9 @@ export interface OrderIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function OrderIcon({ ref, className, ...props }: OrderIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

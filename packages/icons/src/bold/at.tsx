@@ -7,9 +7,9 @@ export interface AtBoldIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function AtBoldIcon({ ref, className, ...props }: AtBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

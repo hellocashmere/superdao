@@ -7,9 +7,9 @@ export interface DeveloperBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function DeveloperBoldIcon({ ref, className, ...props }: DeveloperBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface TelegramIconProps extends ComponentPropsWithRef<typeof IconBase
 export function TelegramIcon({ ref, className, ...props }: TelegramIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

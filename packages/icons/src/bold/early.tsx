@@ -7,9 +7,9 @@ export interface EarlyBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function EarlyBoldIcon({ ref, className, ...props }: EarlyBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

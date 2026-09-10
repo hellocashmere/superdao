@@ -7,9 +7,9 @@ export interface CupBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function CupBoldIcon({ ref, className, ...props }: CupBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

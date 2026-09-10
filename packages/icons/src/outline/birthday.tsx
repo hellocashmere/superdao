@@ -7,9 +7,9 @@ export interface BirthdayIconProps extends ComponentPropsWithRef<typeof IconBase
 export function BirthdayIcon({ ref, className, ...props }: BirthdayIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

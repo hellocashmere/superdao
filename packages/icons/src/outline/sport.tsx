@@ -7,9 +7,9 @@ export interface SportIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function SportIcon({ ref, className, ...props }: SportIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface ReplyIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function ReplyIcon({ ref, className, ...props }: ReplyIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

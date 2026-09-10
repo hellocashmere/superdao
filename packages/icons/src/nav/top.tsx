@@ -7,9 +7,9 @@ export interface TopNavIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function TopNavIcon({ ref, className, ...props }: TopNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface FullScreenIconProps extends ComponentPropsWithRef<typeof IconBa
 export function FullScreenIcon({ ref, className, ...props }: FullScreenIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

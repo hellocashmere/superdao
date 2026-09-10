@@ -7,9 +7,9 @@ export interface WalletAddIconProps extends ComponentPropsWithRef<typeof IconBas
 export function WalletAddIcon({ ref, className, ...props }: WalletAddIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

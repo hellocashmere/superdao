@@ -7,9 +7,9 @@ export interface StarIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function StarIcon({ ref, className, ...props }: StarIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

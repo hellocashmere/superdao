@@ -7,9 +7,9 @@ export interface OpenseaBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function OpenseaBoldIcon({ ref, className, ...props }: OpenseaBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

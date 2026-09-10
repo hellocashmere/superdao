@@ -7,9 +7,9 @@ export interface HelpBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function HelpBoldIcon({ ref, className, ...props }: HelpBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

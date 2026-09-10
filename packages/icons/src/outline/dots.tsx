@@ -7,9 +7,9 @@ export interface DotsIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function DotsIcon({ ref, className, ...props }: DotsIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

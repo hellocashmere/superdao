@@ -7,9 +7,9 @@ export interface NotificationsNewBadgeIconProps extends ComponentPropsWithRef<ty
 export function NotificationsNewBadgeIcon({ ref, className, ...props }: NotificationsNewBadgeIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

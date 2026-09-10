@@ -7,9 +7,9 @@ export interface FullScreenExitIconProps extends ComponentPropsWithRef<typeof Ic
 export function FullScreenExitIcon({ ref, className, ...props }: FullScreenExitIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

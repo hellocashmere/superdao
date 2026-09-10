@@ -7,9 +7,9 @@ export interface LifebuoyNavIconProps extends ComponentPropsWithRef<typeof IconB
 export function LifebuoyNavIcon({ ref, className, ...props }: LifebuoyNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

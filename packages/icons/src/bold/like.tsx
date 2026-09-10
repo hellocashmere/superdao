@@ -7,9 +7,9 @@ export interface LikeBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function LikeBoldIcon({ ref, className, ...props }: LikeBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

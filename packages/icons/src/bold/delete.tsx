@@ -7,9 +7,9 @@ export interface DeleteBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function DeleteBoldIcon({ ref, className, ...props }: DeleteBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

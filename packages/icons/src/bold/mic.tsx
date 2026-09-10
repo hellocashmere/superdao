@@ -7,9 +7,9 @@ export interface MicBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function MicBoldIcon({ ref, className, ...props }: MicBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

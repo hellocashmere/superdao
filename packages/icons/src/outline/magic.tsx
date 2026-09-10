@@ -7,9 +7,9 @@ export interface MagicIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function MagicIcon({ ref, className, ...props }: MagicIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

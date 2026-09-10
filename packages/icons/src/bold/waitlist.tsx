@@ -7,9 +7,9 @@ export interface WaitlistBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function WaitlistBoldIcon({ ref, className, ...props }: WaitlistBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

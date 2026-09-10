@@ -7,9 +7,9 @@ export interface TagBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function TagBoldIcon({ ref, className, ...props }: TagBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

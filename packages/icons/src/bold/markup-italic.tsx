@@ -7,9 +7,9 @@ export interface MarkupItalicBoldIconProps extends ComponentPropsWithRef<typeof 
 export function MarkupItalicBoldIcon({ ref, className, ...props }: MarkupItalicBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

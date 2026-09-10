@@ -7,9 +7,9 @@ export interface DoneBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function DoneBoldIcon({ ref, className, ...props }: DoneBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

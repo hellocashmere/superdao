@@ -7,9 +7,9 @@ export interface SizeDownBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function SizeDownBoldIcon({ ref, className, ...props }: SizeDownBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

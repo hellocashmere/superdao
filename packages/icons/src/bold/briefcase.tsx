@@ -7,9 +7,9 @@ export interface BriefcaseBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function BriefcaseBoldIcon({ ref, className, ...props }: BriefcaseBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

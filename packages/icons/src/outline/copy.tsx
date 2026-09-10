@@ -7,9 +7,9 @@ export interface CopyIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function CopyIcon({ ref, className, ...props }: CopyIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

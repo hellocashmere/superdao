@@ -7,9 +7,9 @@ export interface MailLockedBoldIconProps extends ComponentPropsWithRef<typeof Ic
 export function MailLockedBoldIcon({ ref, className, ...props }: MailLockedBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,10 +7,10 @@ export interface CameraIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function CameraIcon({ ref, className, ...props }: CameraIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
 			viewBox="0 0 32 29"
+			{...props}
 		>
 			<path
 				fillRule="evenodd"

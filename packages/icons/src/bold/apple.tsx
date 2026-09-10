@@ -7,9 +7,9 @@ export interface AppleBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function AppleBoldIcon({ ref, className, ...props }: AppleBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

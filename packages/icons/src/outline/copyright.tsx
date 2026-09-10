@@ -7,9 +7,9 @@ export interface CopyrightIconProps extends ComponentPropsWithRef<typeof IconBas
 export function CopyrightIcon({ ref, className, ...props }: CopyrightIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

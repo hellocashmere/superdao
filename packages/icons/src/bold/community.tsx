@@ -7,9 +7,9 @@ export interface CommunityBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function CommunityBoldIcon({ ref, className, ...props }: CommunityBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

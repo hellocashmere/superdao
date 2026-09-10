@@ -7,9 +7,9 @@ export interface RecentIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function RecentIcon({ ref, className, ...props }: RecentIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

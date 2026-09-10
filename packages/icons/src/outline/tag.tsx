@@ -7,9 +7,9 @@ export interface TagIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function TagIcon({ ref, className, ...props }: TagIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

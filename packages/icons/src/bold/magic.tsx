@@ -7,9 +7,9 @@ export interface MagicBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function MagicBoldIcon({ ref, className, ...props }: MagicBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

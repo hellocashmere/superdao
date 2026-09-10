@@ -7,9 +7,9 @@ export interface PolygonBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function PolygonBoldIcon({ ref, className, ...props }: PolygonBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

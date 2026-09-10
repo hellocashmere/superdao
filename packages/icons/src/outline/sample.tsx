@@ -7,9 +7,9 @@ export interface SampleIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function SampleIcon({ ref, className, ...props }: SampleIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

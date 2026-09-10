@@ -7,9 +7,9 @@ export interface LinkExternalBoldIconProps extends ComponentPropsWithRef<typeof 
 export function LinkExternalBoldIcon({ ref, className, ...props }: LinkExternalBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<path
 				fillRule="evenodd"

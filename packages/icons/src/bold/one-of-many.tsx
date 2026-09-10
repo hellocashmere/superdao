@@ -7,9 +7,9 @@ export interface OneOfManyBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function OneOfManyBoldIcon({ ref, className, ...props }: OneOfManyBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

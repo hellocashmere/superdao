@@ -7,9 +7,9 @@ export interface ArrowUpBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function ArrowUpBoldIcon({ ref, className, ...props }: ArrowUpBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

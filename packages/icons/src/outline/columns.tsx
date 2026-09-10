@@ -7,9 +7,9 @@ export interface ColumnsIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function ColumnsIcon({ ref, className, ...props }: ColumnsIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface ShareIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function ShareIcon({ ref, className, ...props }: ShareIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface ZapperCircleBoldIconProps extends ComponentPropsWithRef<typeof 
 export function ZapperCircleBoldIcon({ ref, className, ...props }: ZapperCircleBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

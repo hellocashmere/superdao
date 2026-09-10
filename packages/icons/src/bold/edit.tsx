@@ -7,9 +7,9 @@ export interface EditBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function EditBoldIcon({ ref, className, ...props }: EditBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface NotificationsIconProps extends ComponentPropsWithRef<typeof Ico
 export function NotificationsIcon({ ref, className, ...props }: NotificationsIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

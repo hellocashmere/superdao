@@ -7,9 +7,9 @@ export interface MonetBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function MonetBoldIcon({ ref, className, ...props }: MonetBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

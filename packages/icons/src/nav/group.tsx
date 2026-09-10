@@ -7,9 +7,9 @@ export interface GroupNavIconProps extends ComponentPropsWithRef<typeof IconBase
 export function GroupNavIcon({ ref, className, ...props }: GroupNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

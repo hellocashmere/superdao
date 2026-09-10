@@ -7,9 +7,9 @@ export interface AtIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function AtIcon({ ref, className, ...props }: AtIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

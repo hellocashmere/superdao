@@ -7,9 +7,9 @@ export interface TraderBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function TraderBoldIcon({ ref, className, ...props }: TraderBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

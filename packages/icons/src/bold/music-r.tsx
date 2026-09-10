@@ -7,9 +7,9 @@ export interface MusicRBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function MusicRBoldIcon({ ref, className, ...props }: MusicRBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

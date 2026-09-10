@@ -7,9 +7,9 @@ export interface PauseBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function PauseBoldIcon({ ref, className, ...props }: PauseBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

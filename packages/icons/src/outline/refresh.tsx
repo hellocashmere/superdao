@@ -7,9 +7,9 @@ export interface RefreshIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function RefreshIcon({ ref, className, ...props }: RefreshIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

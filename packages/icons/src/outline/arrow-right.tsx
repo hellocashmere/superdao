@@ -7,9 +7,9 @@ export interface ArrowRightIconProps extends ComponentPropsWithRef<typeof IconBa
 export function ArrowRightIcon({ ref, className, ...props }: ArrowRightIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface ViewBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function ViewBoldIcon({ ref, className, ...props }: ViewBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

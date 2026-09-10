@@ -7,9 +7,9 @@ export interface MessageCounterBoldIconProps extends ComponentPropsWithRef<typeo
 export function MessageCounterBoldIcon({ ref, className, ...props }: MessageCounterBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

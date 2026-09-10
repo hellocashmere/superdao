@@ -7,9 +7,9 @@ export interface AccessIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function AccessIcon({ ref, className, ...props }: AccessIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

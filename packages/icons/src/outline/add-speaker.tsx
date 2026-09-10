@@ -7,9 +7,9 @@ export interface AddSpeakerIconProps extends ComponentPropsWithRef<typeof IconBa
 export function AddSpeakerIcon({ ref, className, ...props }: AddSpeakerIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

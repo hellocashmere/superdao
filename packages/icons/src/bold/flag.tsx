@@ -7,9 +7,9 @@ export interface FlagBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function FlagBoldIcon({ ref, className, ...props }: FlagBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

@@ -7,9 +7,9 @@ export interface Map1IconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function Map1Icon({ ref, className, ...props }: Map1IconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

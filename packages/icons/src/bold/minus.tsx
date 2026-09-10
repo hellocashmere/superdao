@@ -7,9 +7,9 @@ export interface MinusBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function MinusBoldIcon({ ref, className, ...props }: MinusBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

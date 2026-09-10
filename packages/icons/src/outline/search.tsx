@@ -7,9 +7,9 @@ export interface SearchIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function SearchIcon({ ref, className, ...props }: SearchIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface DownloadIconProps extends ComponentPropsWithRef<typeof IconBase
 export function DownloadIcon({ ref, className, ...props }: DownloadIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

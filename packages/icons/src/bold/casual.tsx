@@ -7,9 +7,9 @@ export interface CasualBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function CasualBoldIcon({ ref, className, ...props }: CasualBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

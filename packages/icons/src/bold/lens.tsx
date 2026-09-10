@@ -7,9 +7,9 @@ export interface LensBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function LensBoldIcon({ ref, className, ...props }: LensBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

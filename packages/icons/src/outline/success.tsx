@@ -7,9 +7,9 @@ export interface SuccessIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function SuccessIcon({ ref, className, ...props }: SuccessIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface NotificationsBoldIconProps extends ComponentPropsWithRef<typeof
 export function NotificationsBoldIcon({ ref, className, ...props }: NotificationsBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface Badge3IconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function Badge3Icon({ ref, className, ...props }: Badge3IconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface CallExternalBoldIconProps extends ComponentPropsWithRef<typeof 
 export function CallExternalBoldIcon({ ref, className, ...props }: CallExternalBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

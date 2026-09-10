@@ -7,9 +7,9 @@ export interface AddIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function AddIcon({ ref, className, ...props }: AddIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface DiscoverNavIconProps extends ComponentPropsWithRef<typeof IconB
 export function DiscoverNavIcon({ ref, className, ...props }: DiscoverNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

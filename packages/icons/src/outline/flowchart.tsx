@@ -7,9 +7,9 @@ export interface FlowchartIconProps extends ComponentPropsWithRef<typeof IconBas
 export function FlowchartIcon({ ref, className, ...props }: FlowchartIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

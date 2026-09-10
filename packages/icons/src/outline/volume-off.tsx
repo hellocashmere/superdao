@@ -7,9 +7,9 @@ export interface VolumeOffIconProps extends ComponentPropsWithRef<typeof IconBas
 export function VolumeOffIcon({ ref, className, ...props }: VolumeOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

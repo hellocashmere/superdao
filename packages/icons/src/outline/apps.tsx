@@ -7,9 +7,9 @@ export interface AppsIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function AppsIcon({ ref, className, ...props }: AppsIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

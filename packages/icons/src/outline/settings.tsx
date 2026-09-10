@@ -7,9 +7,9 @@ export interface SettingsIconProps extends ComponentPropsWithRef<typeof IconBase
 export function SettingsIcon({ ref, className, ...props }: SettingsIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

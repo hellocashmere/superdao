@@ -7,9 +7,9 @@ export interface EtherscanBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function EtherscanBoldIcon({ ref, className, ...props }: EtherscanBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

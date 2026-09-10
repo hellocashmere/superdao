@@ -7,9 +7,9 @@ export interface ZombieBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function ZombieBoldIcon({ ref, className, ...props }: ZombieBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

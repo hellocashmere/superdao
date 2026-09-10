@@ -7,9 +7,9 @@ export interface GooglePlayBoldIconProps extends ComponentPropsWithRef<typeof Ic
 export function GooglePlayBoldIcon({ ref, className, ...props }: GooglePlayBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

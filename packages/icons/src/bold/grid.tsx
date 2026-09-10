@@ -7,9 +7,9 @@ export interface GridBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function GridBoldIcon({ ref, className, ...props }: GridBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

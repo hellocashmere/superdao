@@ -7,9 +7,9 @@ export interface PollBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function PollBoldIcon({ ref, className, ...props }: PollBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

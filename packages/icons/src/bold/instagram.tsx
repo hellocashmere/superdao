@@ -7,9 +7,9 @@ export interface InstagramBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function InstagramBoldIcon({ ref, className, ...props }: InstagramBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

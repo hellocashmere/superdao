@@ -5,7 +5,6 @@ export interface ExpandIconProps extends ComponentPropsWithRef<"svg"> {}
 export function ExpandIcon({ ref, className, ...props }: ExpandIconProps) {
 	return (
 		<svg
-			{...props}
 			ref={ref}
 			width="9"
 			height="13"
@@ -15,6 +14,7 @@ export function ExpandIcon({ ref, className, ...props }: ExpandIconProps) {
 			className={className}
 			aria-hidden={props["aria-label"] ? undefined : true}
 			focusable="false"
+			{...props}
 		>
 			<path
 				fillRule="evenodd"

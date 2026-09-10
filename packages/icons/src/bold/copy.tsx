@@ -7,9 +7,9 @@ export interface CopyBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function CopyBoldIcon({ ref, className, ...props }: CopyBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

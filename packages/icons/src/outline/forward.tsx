@@ -7,9 +7,9 @@ export interface ForwardIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function ForwardIcon({ ref, className, ...props }: ForwardIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface DocumentBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function DocumentBoldIcon({ ref, className, ...props }: DocumentBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

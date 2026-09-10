@@ -7,9 +7,9 @@ export interface HunterBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function HunterBoldIcon({ ref, className, ...props }: HunterBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

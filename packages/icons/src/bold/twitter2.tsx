@@ -7,9 +7,9 @@ export interface Twitter2BoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function Twitter2BoldIcon({ ref, className, ...props }: Twitter2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

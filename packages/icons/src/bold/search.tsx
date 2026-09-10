@@ -7,9 +7,9 @@ export interface SearchBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function SearchBoldIcon({ ref, className, ...props }: SearchBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface RoomIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function RoomIcon({ ref, className, ...props }: RoomIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

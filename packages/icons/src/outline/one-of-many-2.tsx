@@ -7,9 +7,9 @@ export interface OneOfMany2IconProps extends ComponentPropsWithRef<typeof IconBa
 export function OneOfMany2Icon({ ref, className, ...props }: OneOfMany2IconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

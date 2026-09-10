@@ -7,9 +7,9 @@ export interface MessageRBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function MessageRBoldIcon({ ref, className, ...props }: MessageRBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

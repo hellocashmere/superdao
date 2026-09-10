@@ -7,9 +7,9 @@ export interface AttachIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function AttachIcon({ ref, className, ...props }: AttachIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

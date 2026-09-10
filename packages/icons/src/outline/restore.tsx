@@ -7,9 +7,9 @@ export interface RestoreIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function RestoreIcon({ ref, className, ...props }: RestoreIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

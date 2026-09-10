@@ -7,9 +7,9 @@ export interface SmileBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function SmileBoldIcon({ ref, className, ...props }: SmileBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

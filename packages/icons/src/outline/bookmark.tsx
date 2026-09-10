@@ -7,9 +7,9 @@ export interface BookmarkIconProps extends ComponentPropsWithRef<typeof IconBase
 export function BookmarkIcon({ ref, className, ...props }: BookmarkIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -27,7 +27,6 @@ export function IconBase({ ref, children, size = 24, title, viewBox = "0 0 24 24
 
 	return (
 		<svg
-			{...props}
 			ref={ref}
 			width={size}
 			height={size}
@@ -37,6 +36,7 @@ export function IconBase({ ref, children, size = 24, title, viewBox = "0 0 24 24
 			focusable="false"
 			aria-hidden={ariaHidden}
 			role={isLabelled ? (props.role ?? "img") : props.role}
+			{...props}
 		>
 			{title ? <title>{title}</title> : null}
 			{children}

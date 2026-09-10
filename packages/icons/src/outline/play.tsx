@@ -7,9 +7,9 @@ export interface PlayIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function PlayIcon({ ref, className, ...props }: PlayIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

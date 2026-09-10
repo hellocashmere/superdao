@@ -7,9 +7,9 @@ export interface TextIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function TextIcon({ ref, className, ...props }: TextIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

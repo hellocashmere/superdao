@@ -7,9 +7,9 @@ export interface MarkupH2BoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function MarkupH2BoldIcon({ ref, className, ...props }: MarkupH2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

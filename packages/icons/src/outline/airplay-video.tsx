@@ -7,9 +7,9 @@ export interface AirplayVideoIconProps extends ComponentPropsWithRef<typeof Icon
 export function AirplayVideoIcon({ ref, className, ...props }: AirplayVideoIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

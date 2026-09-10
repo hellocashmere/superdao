@@ -7,9 +7,9 @@ export interface LockOffBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function LockOffBoldIcon({ ref, className, ...props }: LockOffBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

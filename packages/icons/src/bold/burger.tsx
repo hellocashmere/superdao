@@ -7,9 +7,9 @@ export interface BurgerBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function BurgerBoldIcon({ ref, className, ...props }: BurgerBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

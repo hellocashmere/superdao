@@ -7,9 +7,9 @@ export interface CallIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function CallIcon({ ref, className, ...props }: CallIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

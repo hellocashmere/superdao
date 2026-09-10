@@ -7,9 +7,9 @@ export interface WhaleBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function WhaleBoldIcon({ ref, className, ...props }: WhaleBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

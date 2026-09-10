@@ -7,9 +7,9 @@ export interface KeyboardIconProps extends ComponentPropsWithRef<typeof IconBase
 export function KeyboardIcon({ ref, className, ...props }: KeyboardIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

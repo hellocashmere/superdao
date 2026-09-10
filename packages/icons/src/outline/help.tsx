@@ -7,9 +7,9 @@ export interface HelpIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function HelpIcon({ ref, className, ...props }: HelpIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

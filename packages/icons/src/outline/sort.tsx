@@ -7,9 +7,9 @@ export interface SortIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function SortIcon({ ref, className, ...props }: SortIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

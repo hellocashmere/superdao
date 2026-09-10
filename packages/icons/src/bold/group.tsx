@@ -7,9 +7,9 @@ export interface GroupBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function GroupBoldIcon({ ref, className, ...props }: GroupBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

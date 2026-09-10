@@ -7,9 +7,9 @@ export interface DollarIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function DollarIcon({ ref, className, ...props }: DollarIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

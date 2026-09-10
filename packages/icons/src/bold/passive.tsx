@@ -7,9 +7,9 @@ export interface PassiveBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function PassiveBoldIcon({ ref, className, ...props }: PassiveBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

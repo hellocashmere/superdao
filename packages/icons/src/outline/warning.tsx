@@ -7,9 +7,9 @@ export interface WarningIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function WarningIcon({ ref, className, ...props }: WarningIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

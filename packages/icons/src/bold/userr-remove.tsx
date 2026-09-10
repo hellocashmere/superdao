@@ -7,9 +7,9 @@ export interface UserrRemoveBoldIconProps extends ComponentPropsWithRef<typeof I
 export function UserrRemoveBoldIcon({ ref, className, ...props }: UserrRemoveBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

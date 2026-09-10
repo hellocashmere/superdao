@@ -7,9 +7,9 @@ export interface LinkedinIconProps extends ComponentPropsWithRef<typeof IconBase
 export function LinkedinIcon({ ref, className, ...props }: LinkedinIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

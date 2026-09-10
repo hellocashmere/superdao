@@ -7,9 +7,9 @@ export interface AnimalIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function AnimalIcon({ ref, className, ...props }: AnimalIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

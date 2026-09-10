@@ -7,9 +7,9 @@ export interface InfoSmallIconProps extends ComponentPropsWithRef<typeof IconBas
 export function InfoSmallIcon({ ref, className, ...props }: InfoSmallIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g transform="scale(1.5)">
 				<path

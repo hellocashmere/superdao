@@ -7,9 +7,9 @@ export interface DropdownBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function DropdownBoldIcon({ ref, className, ...props }: DropdownBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

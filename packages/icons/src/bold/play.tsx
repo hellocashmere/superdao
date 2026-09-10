@@ -7,9 +7,9 @@ export interface PlayBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function PlayBoldIcon({ ref, className, ...props }: PlayBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

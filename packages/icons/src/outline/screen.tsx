@@ -7,9 +7,9 @@ export interface ScreenIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function ScreenIcon({ ref, className, ...props }: ScreenIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

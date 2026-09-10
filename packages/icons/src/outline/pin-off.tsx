@@ -7,9 +7,9 @@ export interface PinOffIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function PinOffIcon({ ref, className, ...props }: PinOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

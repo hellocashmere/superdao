@@ -7,9 +7,9 @@ export interface ReadIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function ReadIcon({ ref, className, ...props }: ReadIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface CycleIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function CycleIcon({ ref, className, ...props }: CycleIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

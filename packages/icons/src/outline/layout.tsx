@@ -7,9 +7,9 @@ export interface LayoutIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function LayoutIcon({ ref, className, ...props }: LayoutIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

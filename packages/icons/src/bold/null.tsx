@@ -7,9 +7,9 @@ export interface NullBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function NullBoldIcon({ ref, className, ...props }: NullBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

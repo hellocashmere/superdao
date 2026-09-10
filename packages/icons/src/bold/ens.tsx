@@ -7,9 +7,9 @@ export interface EnsBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function EnsBoldIcon({ ref, className, ...props }: EnsBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

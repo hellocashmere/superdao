@@ -7,9 +7,9 @@ export interface VideoOffIconProps extends ComponentPropsWithRef<typeof IconBase
 export function VideoOffIcon({ ref, className, ...props }: VideoOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

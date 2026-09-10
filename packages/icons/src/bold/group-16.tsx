@@ -7,10 +7,10 @@ export interface Group16BoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function Group16BoldIcon({ ref, className, ...props }: Group16BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
 			viewBox="0 0 16 16"
+			{...props}
 		>
 			<path
 				fillRule="evenodd"

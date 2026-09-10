@@ -7,9 +7,9 @@ export interface UserExportIconProps extends ComponentPropsWithRef<typeof IconBa
 export function UserExportIcon({ ref, className, ...props }: UserExportIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

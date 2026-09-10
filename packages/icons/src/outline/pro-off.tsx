@@ -7,9 +7,9 @@ export interface ProOffIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function ProOffIcon({ ref, className, ...props }: ProOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

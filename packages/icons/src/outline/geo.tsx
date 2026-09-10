@@ -7,9 +7,9 @@ export interface GeoIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function GeoIcon({ ref, className, ...props }: GeoIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

@@ -7,9 +7,9 @@ export interface Verified2BoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function Verified2BoldIcon({ ref, className, ...props }: Verified2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface LikeIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function LikeIcon({ ref, className, ...props }: LikeIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

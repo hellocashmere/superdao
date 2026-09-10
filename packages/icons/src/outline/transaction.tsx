@@ -7,9 +7,9 @@ export interface TransactionIconProps extends ComponentPropsWithRef<typeof IconB
 export function TransactionIcon({ ref, className, ...props }: TransactionIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

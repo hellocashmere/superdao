@@ -7,9 +7,9 @@ export interface NewBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function NewBoldIcon({ ref, className, ...props }: NewBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

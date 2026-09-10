@@ -7,9 +7,9 @@ export interface UserCounterBoldIconProps extends ComponentPropsWithRef<typeof I
 export function UserCounterBoldIcon({ ref, className, ...props }: UserCounterBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

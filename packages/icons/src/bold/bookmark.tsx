@@ -7,9 +7,9 @@ export interface BookmarkBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function BookmarkBoldIcon({ ref, className, ...props }: BookmarkBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

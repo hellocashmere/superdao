@@ -7,9 +7,9 @@ export interface SettingsCounterIconProps extends ComponentPropsWithRef<typeof I
 export function SettingsCounterIcon({ ref, className, ...props }: SettingsCounterIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

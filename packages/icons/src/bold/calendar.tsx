@@ -7,9 +7,9 @@ export interface CalendarBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function CalendarBoldIcon({ ref, className, ...props }: CalendarBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

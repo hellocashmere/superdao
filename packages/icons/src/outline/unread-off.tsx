@@ -7,9 +7,9 @@ export interface UnreadOffIconProps extends ComponentPropsWithRef<typeof IconBas
 export function UnreadOffIcon({ ref, className, ...props }: UnreadOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

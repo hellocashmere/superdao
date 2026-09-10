@@ -7,9 +7,9 @@ export interface YoutubeIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function YoutubeIcon({ ref, className, ...props }: YoutubeIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface BotBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function BotBoldIcon({ ref, className, ...props }: BotBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

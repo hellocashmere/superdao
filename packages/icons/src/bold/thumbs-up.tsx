@@ -7,9 +7,9 @@ export interface ThumbsUpBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function ThumbsUpBoldIcon({ ref, className, ...props }: ThumbsUpBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

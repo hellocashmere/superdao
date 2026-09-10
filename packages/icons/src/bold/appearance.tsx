@@ -7,9 +7,9 @@ export interface AppearanceBoldIconProps extends ComponentPropsWithRef<typeof Ic
 export function AppearanceBoldIcon({ ref, className, ...props }: AppearanceBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

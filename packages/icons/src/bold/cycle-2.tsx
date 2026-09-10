@@ -7,9 +7,9 @@ export interface Cycle2BoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function Cycle2BoldIcon({ ref, className, ...props }: Cycle2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

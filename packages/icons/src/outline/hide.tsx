@@ -7,9 +7,9 @@ export interface HideIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function HideIcon({ ref, className, ...props }: HideIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

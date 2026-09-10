@@ -7,9 +7,9 @@ export interface MessageCounterIconProps extends ComponentPropsWithRef<typeof Ic
 export function MessageCounterIcon({ ref, className, ...props }: MessageCounterIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

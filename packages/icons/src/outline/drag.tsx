@@ -7,9 +7,9 @@ export interface DragIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function DragIcon({ ref, className, ...props }: DragIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

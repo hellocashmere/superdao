@@ -7,9 +7,9 @@ export interface MirrorIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function MirrorIcon({ ref, className, ...props }: MirrorIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

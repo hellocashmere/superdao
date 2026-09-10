@@ -7,9 +7,9 @@ export interface StackIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function StackIcon({ ref, className, ...props }: StackIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

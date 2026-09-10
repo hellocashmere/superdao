@@ -7,9 +7,9 @@ export interface MailLockedIconProps extends ComponentPropsWithRef<typeof IconBa
 export function MailLockedIcon({ ref, className, ...props }: MailLockedIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

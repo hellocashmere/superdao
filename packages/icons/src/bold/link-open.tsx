@@ -7,9 +7,9 @@ export interface LinkOpenBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function LinkOpenBoldIcon({ ref, className, ...props }: LinkOpenBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface GalleryBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function GalleryBoldIcon({ ref, className, ...props }: GalleryBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

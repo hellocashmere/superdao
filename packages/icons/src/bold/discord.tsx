@@ -7,9 +7,9 @@ export interface DiscordBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function DiscordBoldIcon({ ref, className, ...props }: DiscordBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

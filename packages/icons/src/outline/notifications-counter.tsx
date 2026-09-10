@@ -7,9 +7,9 @@ export interface NotificationsCounterIconProps extends ComponentPropsWithRef<typ
 export function NotificationsCounterIcon({ ref, className, ...props }: NotificationsCounterIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

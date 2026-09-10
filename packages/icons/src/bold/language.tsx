@@ -7,9 +7,9 @@ export interface LanguageBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function LanguageBoldIcon({ ref, className, ...props }: LanguageBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

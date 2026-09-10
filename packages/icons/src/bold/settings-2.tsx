@@ -7,9 +7,9 @@ export interface Settings2BoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function Settings2BoldIcon({ ref, className, ...props }: Settings2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

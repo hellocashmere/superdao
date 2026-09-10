@@ -7,9 +7,9 @@ export interface RefreshBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function RefreshBoldIcon({ ref, className, ...props }: RefreshBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

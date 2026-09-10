@@ -7,9 +7,9 @@ export interface PlusBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function PlusBoldIcon({ ref, className, ...props }: PlusBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

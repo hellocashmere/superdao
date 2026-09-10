@@ -7,9 +7,9 @@ export interface CrownOffIconProps extends ComponentPropsWithRef<typeof IconBase
 export function CrownOffIcon({ ref, className, ...props }: CrownOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

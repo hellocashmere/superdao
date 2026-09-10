@@ -7,9 +7,9 @@ export interface RestoreBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function RestoreBoldIcon({ ref, className, ...props }: RestoreBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

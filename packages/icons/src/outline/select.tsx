@@ -7,9 +7,9 @@ export interface SelectIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function SelectIcon({ ref, className, ...props }: SelectIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

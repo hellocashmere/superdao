@@ -7,9 +7,9 @@ export interface LinkIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function LinkIcon({ ref, className, ...props }: LinkIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

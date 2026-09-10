@@ -7,9 +7,9 @@ export interface UserCounterIconProps extends ComponentPropsWithRef<typeof IconB
 export function UserCounterIcon({ ref, className, ...props }: UserCounterIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

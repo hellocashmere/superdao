@@ -7,9 +7,9 @@ export interface PolygonIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function PolygonIcon({ ref, className, ...props }: PolygonIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

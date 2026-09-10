@@ -7,9 +7,9 @@ export interface KeynoteIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function KeynoteIcon({ ref, className, ...props }: KeynoteIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

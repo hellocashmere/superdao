@@ -7,10 +7,10 @@ export interface DocumentIconProps extends ComponentPropsWithRef<typeof IconBase
 export function DocumentIcon({ ref, className, ...props }: DocumentIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
 			viewBox="0 0 15 18"
+			{...props}
 		>
 			<g>
 				<path

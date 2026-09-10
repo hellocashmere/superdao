@@ -7,9 +7,9 @@ export interface MegaphoneBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function MegaphoneBoldIcon({ ref, className, ...props }: MegaphoneBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

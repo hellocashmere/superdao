@@ -7,9 +7,9 @@ export interface ZerionIconProps extends ComponentPropsWithRef<typeof IconBase> 
 export function ZerionIcon({ ref, className, ...props }: ZerionIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

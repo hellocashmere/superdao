@@ -7,9 +7,9 @@ export interface FashionRBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function FashionRBoldIcon({ ref, className, ...props }: FashionRBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

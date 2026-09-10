@@ -7,9 +7,9 @@ export interface BlockBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function BlockBoldIcon({ ref, className, ...props }: BlockBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

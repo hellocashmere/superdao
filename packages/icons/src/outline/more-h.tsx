@@ -7,9 +7,9 @@ export interface MoreHIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function MoreHIcon({ ref, className, ...props }: MoreHIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

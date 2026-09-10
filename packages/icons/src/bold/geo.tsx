@@ -7,9 +7,9 @@ export interface GeoBoldIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function GeoBoldIcon({ ref, className, ...props }: GeoBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

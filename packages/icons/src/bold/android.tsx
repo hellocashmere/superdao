@@ -7,9 +7,9 @@ export interface AndroidBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function AndroidBoldIcon({ ref, className, ...props }: AndroidBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

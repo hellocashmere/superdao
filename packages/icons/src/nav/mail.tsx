@@ -7,9 +7,9 @@ export interface MailNavIconProps extends ComponentPropsWithRef<typeof IconBase>
 export function MailNavIcon({ ref, className, ...props }: MailNavIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

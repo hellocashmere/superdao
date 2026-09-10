@@ -7,9 +7,9 @@ export interface CameraVideoBoldIconProps extends ComponentPropsWithRef<typeof I
 export function CameraVideoBoldIcon({ ref, className, ...props }: CameraVideoBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

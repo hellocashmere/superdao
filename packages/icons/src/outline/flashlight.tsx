@@ -7,9 +7,9 @@ export interface FlashlightIconProps extends ComponentPropsWithRef<typeof IconBa
 export function FlashlightIcon({ ref, className, ...props }: FlashlightIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

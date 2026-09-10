@@ -7,9 +7,9 @@ export interface LeaveBoldIconProps extends ComponentPropsWithRef<typeof IconBas
 export function LeaveBoldIcon({ ref, className, ...props }: LeaveBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface FacebookIconProps extends ComponentPropsWithRef<typeof IconBase
 export function FacebookIcon({ ref, className, ...props }: FacebookIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface AttachBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function AttachBoldIcon({ ref, className, ...props }: AttachBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

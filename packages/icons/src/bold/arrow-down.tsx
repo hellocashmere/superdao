@@ -7,9 +7,9 @@ export interface ArrowDownBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function ArrowDownBoldIcon({ ref, className, ...props }: ArrowDownBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

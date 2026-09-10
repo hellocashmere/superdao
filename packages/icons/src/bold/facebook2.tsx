@@ -7,9 +7,9 @@ export interface Facebook2BoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function Facebook2BoldIcon({ ref, className, ...props }: Facebook2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

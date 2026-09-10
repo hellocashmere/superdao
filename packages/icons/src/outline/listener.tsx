@@ -7,9 +7,9 @@ export interface ListenerIconProps extends ComponentPropsWithRef<typeof IconBase
 export function ListenerIcon({ ref, className, ...props }: ListenerIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

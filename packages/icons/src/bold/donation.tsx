@@ -7,9 +7,9 @@ export interface DonationBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function DonationBoldIcon({ ref, className, ...props }: DonationBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

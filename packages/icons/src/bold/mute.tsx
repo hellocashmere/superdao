@@ -7,9 +7,9 @@ export interface MuteBoldIconProps extends ComponentPropsWithRef<typeof IconBase
 export function MuteBoldIcon({ ref, className, ...props }: MuteBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

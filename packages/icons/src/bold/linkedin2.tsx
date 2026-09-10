@@ -7,9 +7,9 @@ export interface Linkedin2BoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function Linkedin2BoldIcon({ ref, className, ...props }: Linkedin2BoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

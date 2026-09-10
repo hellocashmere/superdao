@@ -7,9 +7,9 @@ export interface Send2IconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function Send2Icon({ ref, className, ...props }: Send2IconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

@@ -7,9 +7,9 @@ export interface FollowOffIconProps extends ComponentPropsWithRef<typeof IconBas
 export function FollowOffIcon({ ref, className, ...props }: FollowOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

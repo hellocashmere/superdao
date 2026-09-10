@@ -7,9 +7,9 @@ export interface RandomBoldIconProps extends ComponentPropsWithRef<typeof IconBa
 export function RandomBoldIcon({ ref, className, ...props }: RandomBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

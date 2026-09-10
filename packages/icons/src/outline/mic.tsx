@@ -7,9 +7,9 @@ export interface MicIconProps extends ComponentPropsWithRef<typeof IconBase> {}
 export function MicIcon({ ref, className, ...props }: MicIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

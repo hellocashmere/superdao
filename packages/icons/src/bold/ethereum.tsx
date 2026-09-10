@@ -7,9 +7,9 @@ export interface EthereumBoldIconProps extends ComponentPropsWithRef<typeof Icon
 export function EthereumBoldIcon({ ref, className, ...props }: EthereumBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

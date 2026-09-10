@@ -7,9 +7,9 @@ export interface EnterIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function EnterIcon({ ref, className, ...props }: EnterIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

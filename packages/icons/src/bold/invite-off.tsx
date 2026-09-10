@@ -7,9 +7,9 @@ export interface InviteOffBoldIconProps extends ComponentPropsWithRef<typeof Ico
 export function InviteOffBoldIcon({ ref, className, ...props }: InviteOffBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

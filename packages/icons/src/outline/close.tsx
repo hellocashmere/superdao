@@ -7,9 +7,9 @@ export interface CloseIconProps extends ComponentPropsWithRef<typeof IconBase> {
 export function CloseIcon({ ref, className, ...props }: CloseIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

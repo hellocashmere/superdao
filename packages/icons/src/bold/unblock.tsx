@@ -7,9 +7,9 @@ export interface UnblockBoldIconProps extends ComponentPropsWithRef<typeof IconB
 export function UnblockBoldIcon({ ref, className, ...props }: UnblockBoldIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path

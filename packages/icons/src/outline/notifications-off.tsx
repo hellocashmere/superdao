@@ -7,9 +7,9 @@ export interface NotificationsOffIconProps extends ComponentPropsWithRef<typeof 
 export function NotificationsOffIcon({ ref, className, ...props }: NotificationsOffIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<g>

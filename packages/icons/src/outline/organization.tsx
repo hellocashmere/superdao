@@ -7,9 +7,9 @@ export interface OrganizationIconProps extends ComponentPropsWithRef<typeof Icon
 export function OrganizationIcon({ ref, className, ...props }: OrganizationIconProps) {
 	return (
 		<IconBase
-			{...props}
 			ref={ref}
 			className={className}
+			{...props}
 		>
 			<g>
 				<path
