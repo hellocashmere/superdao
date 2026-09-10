@@ -23,13 +23,12 @@ export interface BadgeProps extends ComponentPropsWithRef<"span"> {
 export function Badge({ ref, className, color = "gray", variant = "default", ...props }: BadgeProps) {
 	return (
 		<span
-			{...props}
 			ref={ref}
 			data-slot="badge"
 			data-color={color}
 			data-variant={variant}
 			className={cn(
-				"inline-flex w-fit shrink-0 items-center rounded-sm px-1.5 py-1 font-sans [font-feature-settings:'liga'_off,'clig'_off] text-[12px] leading-3 font-semibold whitespace-nowrap",
+				"inline-flex w-fit shrink-0 items-center rounded-sm px-1.5 py-1 font-sans text-[12px] leading-3 font-semibold whitespace-nowrap",
 				"data-[color=gray]:bg-muted-foreground/15 data-[color=gray]:text-muted-foreground",
 				"data-[color=lime]:bg-lime/15 data-[color=lime]:text-lime",
 				"data-[color=orange]:bg-orange/15 data-[color=orange]:text-orange",
@@ -45,9 +44,9 @@ export function Badge({ ref, className, color = "gray", variant = "default", ...
 				"data-[variant=indicator]:data-[color=purple]:before:bg-purple",
 				"data-[variant=indicator]:data-[color=red]:before:bg-red",
 				"data-[variant=indicator]:data-[color=yellow]:before:bg-yellow",
-				"data-[variant=prominent]:h-7 data-[variant=prominent]:rounded-lg data-[variant=prominent]:bg-accent! data-[variant=prominent]:px-3! data-[variant=prominent]:text-sm/5 data-[variant=prominent]:text-foreground/80",
 				className
 			)}
+			{...props}
 		/>
 	);
 }
