@@ -1,0 +1,4 @@
+{
+	"extends": "@superdao/typescript-config/nextjs.json",
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.js", ".next/types/**/*.ts"]
+}

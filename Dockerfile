@@ -6,7 +6,7 @@ RUN npm install --global pnpm@11.25.0
 FROM base AS web-deps
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 COPY apps/web/package.json apps/web/package.json
-COPY apps/mock-api/package.json apps/mock-api/package.json
+COPY apps/api/package.json apps/api/package.json
 COPY packages/ui/package.json packages/ui/package.json
 COPY packages/icons/package.json packages/icons/package.json
 COPY packages/hooks/package.json packages/hooks/package.json
@@ -36,17 +36,16 @@ EXPOSE 3000
 HEALTHCHECK --interval=10s --timeout=5s --start-period=20s --retries=5 CMD node -e "fetch('http://127.0.0.1:3000').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
 CMD ["node", "apps/web/server.js"]
 
-FROM web-deps AS mock-build
-COPY apps/mock-api ./apps/mock-api
-COPY apps/web/public/avatars ./apps/web/public/avatars
-RUN pnpm --filter @superdao/mock-api seed && pnpm deploy --legacy --filter @superdao/mock-api --prod /out
-RUN cp apps/mock-api/db.json /out/db.json
+FROM web-deps AS api-build
+COPY . .
+RUN pnpm --filter @superdao/api build
 
-FROM node:22.22.2-bookworm-slim AS mock-api
+FROM node:22.22.2-bookworm-slim AS api
 WORKDIR /app
-RUN useradd --system --uid 1001 mockapi
-COPY --from=mock-build --chown=mockapi:mockapi /out/ ./
-USER mockapi
+RUN useradd --system --uid 1001 api
+COPY --from=api-build --chown=api:api /repo/apps/api/.next/standalone/ ./
+COPY --from=api-build --chown=api:api /repo/apps/api/.next/static ./apps/api/.next/static
+USER api
 EXPOSE 3001
-HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/wallets?_start=0&_limit=1').then(async r=>{if(!r.ok||!(await r.json()).length)process.exit(1)}).catch(()=>process.exit(1))"
-CMD ["/app/node_modules/.bin/json-server", "db.json", "--host", "0.0.0.0", "--port", "3001"]
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+CMD ["node", "apps/api/server.js"]

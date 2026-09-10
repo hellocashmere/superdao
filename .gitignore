@@ -36,9 +36,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# generated mock API database
-apps/mock-api/db.json
-
 # env files
 .env*
 !.env.example

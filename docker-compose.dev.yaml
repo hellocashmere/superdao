@@ -1,14 +1,14 @@
 services:
-  mock-api:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
-      target: mock-api
+      target: api
     init: true
     ports:
       - "127.0.0.1:3001:3001"
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/wallets?_start=0&_limit=1').then(async r=>{if(!r.ok||!(await r.json()).length)process.exit(1)}).catch(()=>process.exit(1))"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -24,7 +24,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
-      mock-api:
+      api:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]

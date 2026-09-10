@@ -4,10 +4,35 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:web": "pnpm --filter @superdao/web build",
+    "build:api": "pnpm --filter @superdao/api build",
+    "docker": "docker compose -f docker-compose.dev.yaml up --build",
+    "docker:down": "docker compose -f docker-compose.dev.yaml down",
+    "docker:prod": "docker compose -f docker-compose.prod.yaml up --build",
     "dev": "turbo dev",
+    "dev:api": "pnpm --filter @superdao/api dev",
+    "dev:web": "pnpm --filter @superdao/web dev",
     "lint": "turbo lint",
+    "lint:api": "pnpm --filter @superdao/api lint",
+    "lint:hooks": "pnpm --filter @superdao/hooks lint",
+    "lint:icons": "pnpm --filter @superdao/icons lint",
+    "lint:lib": "pnpm --filter @superdao/lib lint",
+    "lint:ui": "pnpm --filter @superdao/ui lint",
+    "lint:web": "pnpm --filter @superdao/web lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "format:hooks": "pnpm --filter @superdao/hooks format",
+    "format:icons": "pnpm --filter @superdao/icons format",
+    "format:lib": "pnpm --filter @superdao/lib format",
+    "format:ui": "pnpm --filter @superdao/ui format",
+    "format:web": "pnpm --filter @superdao/web format",
+    "typecheck": "turbo typecheck",
+    "typecheck:api": "pnpm --filter @superdao/api typecheck",
+    "test:api": "pnpm --filter @superdao/api test",
+    "typecheck:hooks": "pnpm --filter @superdao/hooks typecheck",
+    "typecheck:icons": "pnpm --filter @superdao/icons typecheck",
+    "typecheck:lib": "pnpm --filter @superdao/lib typecheck",
+    "typecheck:ui": "pnpm --filter @superdao/ui typecheck",
+    "typecheck:web": "pnpm --filter @superdao/web typecheck"
   },
   "devDependencies": {
     "@superdao/eslint-config": "workspace:*",
@@ -17,7 +42,7 @@
     "turbo": "^2.9.18",
     "typescript": "^5"
   },
-  "packageManager": "pnpm@11.25.0",
+  "packageManager": "pnpm@12.3.4",
   "engines": {
     "node": ">=20"
   }
