@@ -3,12 +3,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: api
+      target: development
+    command: pnpm --filter @superdao/api dev
     init: true
+    working_dir: /repo
+    environment:
+      API_URL: http://localhost:3001
     ports:
       - "127.0.0.1:3001:3001"
+    volumes:
+      - .:/repo
+      - node_modules:/repo/node_modules
+      - api_next:/repo/apps/api/.next
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1&offset=0').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -17,12 +25,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: web
-      args:
-        NEXT_PUBLIC_API_URL: http://localhost:3001
+      target: development
+    command: pnpm --filter @superdao/web dev
     init: true
+    working_dir: /repo
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
     ports:
       - "127.0.0.1:3000:3000"
+    volumes:
+      - .:/repo
+      - node_modules:/repo/node_modules
+      - web_next:/repo/apps/web/.next
     depends_on:
       api:
         condition: service_healthy
@@ -32,3 +46,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
+volumes:
+  api_next:
+  node_modules:
+  web_next:

@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 FROM node:22.22.2-bookworm-slim AS base
 WORKDIR /repo
-RUN npm install --global pnpm@11.25.0
+RUN npm install --global pnpm@12.3.4
 
 FROM base AS web-deps
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
@@ -20,6 +20,9 @@ COPY . .
 ARG NEXT_PUBLIC_API_URL=http://localhost:3001
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 RUN pnpm --filter @superdao/web build
+
+FROM web-deps AS development
+COPY . .
 
 FROM node:22.22.2-bookworm-slim AS web
 WORKDIR /app
@@ -42,10 +45,15 @@ RUN pnpm --filter @superdao/api build
 
 FROM node:22.22.2-bookworm-slim AS api
 WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV HOSTNAME=0.0.0.0
+ENV PORT=3001
 RUN useradd --system --uid 1001 api
 COPY --from=api-build --chown=api:api /repo/apps/api/.next/standalone/ ./
 COPY --from=api-build --chown=api:api /repo/apps/api/.next/static ./apps/api/.next/static
+COPY --from=api-build --chown=api:api /repo/apps/api/public ./apps/api/public
 USER api
 EXPOSE 3001
-HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1&offset=0').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
 CMD ["node", "apps/api/server.js"]
