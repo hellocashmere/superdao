@@ -27,65 +27,95 @@ The interface is based on the [Superdao Growth Web App community file in Figma](
 
 ```text
 apps/
-  web/                Next.js application
-  mock-api/           Seeded json-server API for local demos
+  web/                Next.js application and product UI
+  api/                Seeded read-only Next.js API for local development
 packages/
-  ui/                 Shared UI components and global styles
-  icons/              Shared icon package
-  eslint-config/      Shared ESLint configuration
-  typescript-config/  Shared TypeScript configuration
+  ui/                 UI primitives, components, and styles
+  icons/              Icon components
+  hooks/              React hooks
+  lib/                Framework-agnostic utilities
+  eslint-config/      ESLint configuration
+  typescript-config/  TypeScript configuration
 ```
 
-## Quick start with Docker
+## Quick start
 
-Prerequisite: Docker Engine or Docker Desktop with Compose v2.
+Install dependencies from the repository root:
 
 ```bash
-docker compose -f docker-compose.dev.yaml up --build
+pnpm install
 ```
 
-Open the app at http://localhost:3000 and the mock API at http://localhost:3001.
-Stop with `docker compose -f docker-compose.dev.yaml down`; add `--remove-orphans` when troubleshooting cleanup. The first build downloads images and dependencies and is slower; subsequent builds use the cache.
-
-To run the production Compose variant:
+Copy `apps/web/.env.example` to `apps/web/.env.local`, then start the complete local development environment:
 
 ```bash
-docker compose -f docker-compose.prod.yaml up --build
+pnpm dev
 ```
 
-Both variants currently compile `NEXT_PUBLIC_API_URL=http://localhost:3001` into the browser bundle. Changing it requires rebuilding the web image.
+This starts the Next.js app and the seeded read-only API. Its versioned endpoints are available under `/api/v1`; the web client migration is tracked separately. Their published ports are defined in the project configuration and can be changed when needed.
 
-| Issue | Resolution |
-| --- | --- |
-| Port 3000/3001 occupied | Stop the conflicting process or change the published ports in the selected Compose file. |
-| Stale images | Run `docker compose -f docker-compose.dev.yaml up --build`. |
-| Health failures | Run `docker compose -f docker-compose.dev.yaml logs web mock-api`. |
+To run only one service, use the package-specific aliases:
 
-## Running locally
+```bash
+pnpm dev:web
+pnpm dev:api
+```
 
-1. Install dependencies:
+Docker Compose is an optional alternative when you want the services isolated from the host Node.js environment. Docker Engine or Docker Desktop with Compose v2 is required:
 
-   ```bash
-   pnpm install
-   ```
+```bash
+pnpm docker
+```
 
-2. Copy `apps/web/.env.example` to `apps/web/.env.local`.
+The services are available on the published ports defined in the selected Compose file. Stop the stack with `pnpm docker:down`.
 
-3. Start all development tasks (including the mock API):
+The equivalent commands are available for stopping the development stack and starting the production Compose variant:
 
-   ```bash
-   pnpm dev
-   ```
+```bash
+pnpm docker:down
+pnpm docker:prod
+```
 
 ## Available commands
+
+Run commands from the repository root. Aggregate commands use Turborepo; package aliases target one workspace directly.
 
 ```bash
 pnpm dev
 pnpm build
+pnpm build:web
 pnpm lint
 pnpm typecheck
 pnpm format
+
+pnpm lint:web
+pnpm lint:ui
+pnpm lint:hooks
+pnpm lint:icons
+pnpm lint:lib
+
+pnpm typecheck:web
+pnpm typecheck:ui
+pnpm typecheck:hooks
+pnpm typecheck:icons
+pnpm typecheck:lib
+
+pnpm format:web
+pnpm format:ui
+pnpm format:hooks
+pnpm format:icons
+pnpm format:lib
 ```
+
+The underlying workspace form is also available when you prefer an explicit package name:
+
+```bash
+pnpm --filter @superdao/web lint
+pnpm --filter @superdao/ui typecheck
+pnpm --filter @superdao/api test
+```
+
+`@superdao/eslint-config` and `@superdao/typescript-config` are configuration packages and do not expose runtime commands.
 
 ## License
 

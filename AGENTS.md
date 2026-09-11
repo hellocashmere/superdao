@@ -8,6 +8,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Project architecture
 
+## Command execution
+
+- Do not run linting, type-checking, build, test, formatting, Prettier, or similar validation and code-modifying commands unless the user explicitly approves the specific command first.
+- This restriction applies even after making code changes. Report which commands could be run, and wait for the user's approval before running them.
+
 This project uses Feature-Sliced Design (FSD) with Next.js App Router as the routing layer. Next.js conventions take precedence for routes and framework files.
 
 ## Layers and dependency direction
@@ -188,7 +193,15 @@ a lower layer when multiple page widgets depend on it.
 
 - Write all TSDoc comments in English.
 - Always format TSDoc as a multiline block, even when it contains only one sentence. Never use a single-line comment such as `/** Accumulated data returned by an infinite query. */`.
+- Add meaningful multiline TSDoc immediately above every named function declaration, including local handlers and icon components. `TODO: add docs` is not documentation.
 - Keep the summary and supplementary information, such as an endpoint or documentation link, in separate paragraphs.
+
+## State, callbacks, and forms
+
+- Give every `useState` call an explicit generic argument. Use exact primitive or literal-union types, nullable unions for nullable state, explicit element types for arrays, the same explicit type for lazy initializers, and `ReturnType<typeof createStore>` for store factories without a named public type. Do not widen literal unions to `string` or use `any` or `unknown` merely to satisfy this rule.
+- Use concise state-transition parameters: use `next` for a single next value and unprefixed domain names such as `period`, `range`, or `size` when a callback receives multiple values. Do not name function parameters `nextOpen`, `nextValue`, `nextPeriod`, or similar. Descriptive local variables such as `nextSearchParams` are allowed.
+- Deprecated APIs are prohibited. Current migration examples are React's `SubmitEvent<HTMLFormElement>` in place of `FormEvent` and Zod's `z.email()` composed with `pipe` in place of chained `.email()`.
+- Put form schemas, inferred value types, pure default factories, and pure normalization helpers in a colocated `model/form.ts`. Keep hooks, effects, event handlers, store access, and JSX in the UI component.
 
 ```ts
 /**
@@ -239,9 +252,10 @@ Every reusable React component in `widgets`, `features`, `entities`, `shared`, a
 1. Export a named `<ComponentName>Props` interface.
 2. The interface must extend `ComponentPropsWithRef<"element">` for an intrinsic root, or `ComponentPropsWithRef<typeof BaseComponent>` when wrapping another component.
 3. Export the component as a named function declaration.
-4. Destructure `className`, `ref`, and the remaining props in the function signature when the component has a styled root element.
+4. Destructure `ref`, `className`, and the remaining props in the function signature when the component has a styled root element. `ref` must be first whenever it is present in an object-binding parameter.
 5. Pass `ref` to the root element and spread the remaining props onto it.
-6. Add a concise TSDoc comment immediately above the component function describing what it renders or does.
+6. Always place `{...props}` last among the root element attributes, after explicit props such as `ref`, `className`, state, variant, and data attributes, so callers cannot override those values accidentally.
+7. Add a concise TSDoc comment immediately above the component function describing what it renders or does.
 
 Canonical example:
 
@@ -253,7 +267,7 @@ export interface FooterProps extends ComponentPropsWithRef<"footer"> {}
 /**
  * Renders the site footer with navigation and payment information.
  */
-export function Footer({ className, ref, ...props }: FooterProps) {
+export function Footer({ ref, className, ...props }: FooterProps) {
   return (
     <footer
       ref={ref}
@@ -265,6 +279,8 @@ export function Footer({ className, ref, ...props }: FooterProps) {
 ```
 
 Add component-specific properties to the exported interface while retaining the inherited ref-capable props. Do not use `React.FC`, anonymous component exports, default exports for reusable components, or a props `type` alias in place of the required interface. Next.js special files are exempt where the framework requires a default export.
+
+Application code must not pass `className` to components imported from `@superdao/ui` or `@superdao/ui/components/*`. Prefer design-system defaults, semantic props or variants, or native wrappers for caller-owned layout. Reusable components must continue accepting and forwarding `className` at their own boundaries. The only permitted application use is exact `className={className}` forwarding to the rendered root UI primitive of a separately declared product composition when `className` is destructured unchanged from that composition's props. Literals, template expressions, `cn(...)`, renamed values, nested primitives, and ordinary call sites remain prohibited.
 
 ## Data attributes for variants and state
 
@@ -280,7 +296,7 @@ export interface ContainerProps extends ComponentPropsWithRef<"div"> {
 /**
  * Constrains content to a responsive maximum width.
  */
-export function Container({ className, ref, size = "default", ...props }: ContainerProps) {
+export function Container({ ref, className, size = "default", ...props }: ContainerProps) {
   return (
     <div
       {...props}
@@ -296,7 +312,8 @@ export function Container({ className, ref, size = "default", ...props }: Contai
 - Use semantic names such as `data-size`, `data-variant`, `data-tone`, `data-orientation`, and `data-state`.
 - Keep all possible Tailwind classes as complete static strings so Tailwind can discover them at build time.
 - Do not use a JavaScript lookup table or conditional class expression when the same styling can be expressed through a `data-*` selector.
-- Use `data-slot` to identify the component and its public structural parts independently from its visual variant attributes.
+- Put exactly one stable `data-slot` on the rendered root of each separately declared component. Nested raw DOM or internal primitive nodes must not add another `data-slot`; another separately declared component may identify its own root.
+- Do not use `data-page`.
 - Preserve native semantic and accessibility attributes such as `disabled`, `aria-expanded`, and `aria-invalid`; styling data attributes do not replace them.
 - When a UI primitive already emits a suitable state attribute, consume that attribute instead of duplicating the state.
 
