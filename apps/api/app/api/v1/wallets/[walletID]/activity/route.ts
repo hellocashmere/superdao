@@ -1,3 +1,4 @@
+import { getAvatarUrl } from "../../../../../../shared/api/avatar-url";
 import { failure, success } from "../../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../../shared/api/route-params";
 import { routeID } from "../../../../../../shared/api/route-params";
@@ -27,7 +28,7 @@ function getWalletActivity(id: number): WalletActivity[] | undefined {
 		id: `${id}-activity-${index + 1}`,
 		wallet_id: id,
 		name: names[index % names.length] ?? "Collection",
-		avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
+		avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
 	}));
 }
 

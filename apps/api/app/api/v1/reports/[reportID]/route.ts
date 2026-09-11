@@ -1,3 +1,4 @@
+import { getAvatarUrl } from "../../../../../shared/api/avatar-url";
 import { parseID } from "../../../../../shared/api/query-params";
 import { failure, success } from "../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../shared/api/route-params";
@@ -14,7 +15,7 @@ const avatarHashes = [
 interface Report {
 	id: number;
 	name: string;
-	wallet_count: string;
+	wallet_count: number;
 	wallets: Array<{
 		id: number;
 		wallet: string;
@@ -24,13 +25,13 @@ interface Report {
 		target: "WALLET_CONNECT" | "PAGE_VIEW" | "TARGET_ACTION_MINT";
 		source: string;
 		labels: string[];
-		balance: string;
-		nfts: string;
+		balance: number;
+		nfts: number;
 		contacts: Array<"link" | "mirror" | "opensea" | "twitter">;
 	}>;
 	source_summaries: Array<{
 		title: string;
-		rows: Array<{ source: string; count: string; percent: string; width: number }>;
+		rows: Array<{ source: string; count: number; percent: number; width: number }>;
 	}>;
 	conversion_data: Array<{ date: string; page_view: number; wallet_connect: number; mint: number }>;
 }
@@ -43,26 +44,26 @@ function getReport(id: number): Report | undefined {
 	return {
 		id: id,
 		name: `Reporting account ${id}`,
-		wallet_count: "44 684",
+		wallet_count: 44_684,
 		wallets: Array.from({ length: 50 }, (_, index): Report["wallets"][number] => ({
 			id: index + 1,
 			wallet: `wallet-${index + 1}.eth`,
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
 			occurred_at: `Apr ${20 - (index % 15)}, 2023`,
 			rank: 100 - index,
 			target: targets[index % targets.length] ?? "PAGE_VIEW",
 			source: index % 2 === 0 ? "Twitter" : "Direct",
 			labels: ["Crypto native", index % 2 === 0 ? "Developer" : "Collector"],
-			balance: `$${(20827 + index * 173).toLocaleString("en-US")}`,
-			nfts: `${24 + index}`,
+			balance: 20_827 + index * 173,
+			nfts: 24 + index,
 			contacts: index % 2 === 0 ? ["twitter", "opensea"] : ["link", "mirror"],
 		})),
 		source_summaries: ["Top sources", "Conversions"].map((title, summaryIndex) => ({
 			title: title,
 			rows: Array.from({ length: 4 }, (_, index) => ({
 				source: ["Twitter", "Direct", "Mirror", "Other"][index] ?? "Other",
-				count: `${1200 - summaryIndex * 100 - index * 173}`,
-				percent: `${45 - index * 9}%`,
+				count: 1_200 - summaryIndex * 100 - index * 173,
+				percent: 45 - index * 9,
 				width: 90 - index * 17,
 			})),
 		})),

@@ -1,3 +1,4 @@
+import { getAvatarUrl } from "../../../../../shared/api/avatar-url";
 import { parseID } from "../../../../../shared/api/query-params";
 import { failure, success } from "../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../shared/api/route-params";
@@ -23,13 +24,13 @@ function getDapp(id: number): ExploreResource | undefined {
 			id: index + 1,
 			slug: `${slug}-${index + 1}`,
 			name: name,
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
-			owners: `${1526 + index * 137}`,
-			active_wallets: `${1200 + index * 113}`,
-			supply: `${17500 + index * 251}`,
-			price: (0.68 + (index % 10) * 0.71).toFixed(2),
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			owners: 1_526 + index * 137,
+			active_wallets: 1_200 + index * 113,
+			supply: 17_500 + index * 251,
+			price: (68 + (index % 10) * 71) / 100,
 			chain: index % 3 === 1 ? "polygon" : "ethereum",
-			wallet_count: `${44684 + index * 83}`,
+			wallet_count: 44_684 + index * 83,
 		};
 	}).find((item) => item.id === id);
 }

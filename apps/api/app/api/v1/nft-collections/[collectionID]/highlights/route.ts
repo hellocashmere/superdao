@@ -5,24 +5,24 @@ import type { BalanceDistributionDatum, HighlightMetric } from "../../../../../.
 import { GENERATED_ENTITY_COUNT } from "../../../../../../shared/config/fixtures";
 
 const metricSeeds = [
-	["Active last 30d", "370", "Wallets made transactions", "3%", "of all", "activity"],
-	["Total balance", "$ 208.2 M", "On Ethereum & Polygon", "$694.7", "average", "balance"],
-	["NFTs owned", "128.4 M", "Total", "95%", "have 10+ NFTs", "nfts"],
-	["Email", "3 928", "Contacts available", "4%", "of all", "email"],
-	["Twitter", "15 037", "Contacts available", "23%", "of all", "twitter"],
-	["Influencers", "29 203", "3k+ Twitter followers", "25%", "of all", "influencers"],
+	["Active last 30d", 370, "Wallets made transactions", 3, "percent of all", "activity"],
+	["Total balance", 208_200_000, "On Ethereum & Polygon", 694.7, "average", "balance"],
+	["NFTs owned", 128_400_000, "Total", 95, "percent have 10+ NFTs", "nfts"],
+	["Email", 3_928, "Contacts available", 4, "percent of all", "email"],
+	["Twitter", 15_037, "Contacts available", 23, "percent of all", "twitter"],
+	["Influencers", 29_203, "3000+ Twitter followers", 25, "percent of all", "influencers"],
 ] as const;
 
 const distributionSeeds = [
-	[10, 10000],
-	[100, 9000],
-	[1000, 8000],
-	[10000, 7000],
-	[100000, 6000],
-	[1000000, 5000],
-	[10000000, 4000],
-	[100000000, 3000],
-	[1000000000, 1000],
+	[10, 10_000],
+	[100, 9_000],
+	[1_000, 8_000],
+	[10_000, 7_000],
+	[100_000, 6_000],
+	[1_000_000, 5_000],
+	[10_000_000, 4_000],
+	[100_000_000, 3_000],
+	[1_000_000_000, 1_000],
 ] as const;
 
 interface NftCollectionHighlights {

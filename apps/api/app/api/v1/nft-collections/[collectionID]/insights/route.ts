@@ -1,3 +1,4 @@
+import { CASHMERE_AVATAR_URL, CASHMERE_NAME, getAvatarUrl } from "../../../../../../shared/api/avatar-url";
 import { failure, success } from "../../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../../shared/api/route-params";
 import { routeID } from "../../../../../../shared/api/route-params";
@@ -9,6 +10,7 @@ import type {
 	InsightMetric,
 	TransactionStat,
 } from "../../../../../../shared/api/types";
+import { CASHMERE_INFLUENCER_PROFILE } from "../../../../../../shared/config/cashmere-profile";
 import { GENERATED_ENTITY_COUNT } from "../../../../../../shared/config/fixtures";
 
 const avatarHashes = [
@@ -18,20 +20,20 @@ const avatarHashes = [
 	"00f38963ebda80fb6bcc422f6d6cd499",
 ];
 
-const names = ["cashmere.ton", "vitalik.eth", "punk6529.eth", "cryptoboss.eth", "daoist.eth"];
+const names = [CASHMERE_NAME, "vitalik.eth", "punk6529.eth", "cryptoboss.eth", "daoist.eth"];
 
 const collections = ["Wrapped Cryptopunks", "MetaZellys ETH", "Milady Maker", "Nakamigos", "Azuki"];
 
 const balanceDistributionSeeds = [
-	[10, 10000],
-	[100, 9000],
-	[1000, 8000],
-	[10000, 7000],
-	[100000, 6000],
-	[1000000, 5000],
-	[10000000, 4000],
-	[100000000, 3000],
-	[1000000000, 1000],
+	[10, 10_000],
+	[100, 9_000],
+	[1_000, 8_000],
+	[10_000, 7_000],
+	[100_000, 6_000],
+	[1_000_000, 5_000],
+	[10_000_000, 4_000],
+	[100_000_000, 3_000],
+	[1_000_000_000, 1_000],
 ] as const;
 
 interface NftCollectionInsights {
@@ -63,31 +65,32 @@ function getNftCollectionsInsights(id: number): NftCollectionInsights | undefine
 		(_, index): Influencer => ({
 			name: names[index] ?? "Wallet",
 			username: `@${(names[index] ?? "wallet").replace(/[^a-z0-9]/gi, "")}`,
-			followers: `${48000 + id * 7311 + index * 19427}`,
-			nfts: `${12 + ((id * 17 + index * 29) % 240)}`,
-			balance: (1200 + ((id * 2879 + index * 6317) % 85000)).toFixed(2),
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
+			followers: 48_000 + id * 7_311 + index * 19_427,
+			nfts: 12 + ((id * 17 + index * 29) % 240),
+			balance: 1_200 + ((id * 2_879 + index * 6_317) % 85_000),
+			avatar:
+				names[index] === CASHMERE_NAME ? CASHMERE_AVATAR_URL : getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			...(names[index] === CASHMERE_NAME ? CASHMERE_INFLUENCER_PROFILE : {}),
 		})
 	);
 	const overlap = Array.from(
 		{ length: 25 },
-		(_, index): Overlap => ({
+		(_, index): AudienceOverlap => ({
 			name: collections[(id + index) % collections.length] ?? "Collection",
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
-			owners_in_audience: `${180 + ((id * 137 + index * 911) % 32000)}`,
-			share_in_audience: `${(4 + ((id * 17 + index * 13) % 930) / 10).toFixed(1)}%`,
-			owners: `${1600 + ((id * 821 + index * 2707) % 120000)}`,
-			items_in_audience: `${560 + id * 31 + index * 43}`,
-			items: `${3900 + id * 97 + index * 83}`,
-			floor_price: (0.08 + ((id * 31 + index * 19) % 7500) / 100).toFixed(2),
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			owners_in_audience: 180 + ((id * 137 + index * 911) % 32_000),
+			share_in_audience: 4 + ((id * 17 + index * 13) % 930) / 10,
+			owners: 1_600 + ((id * 821 + index * 2_707) % 120_000),
+			items_in_audience: 560 + id * 31 + index * 43,
+			items: 3_900 + id * 97 + index * 83,
+			floor_price: 0.08 + ((id * 31 + index * 19) % 7_500) / 100,
 			chain: index % 4 === 1 ? "polygon" : "ethereum",
 		})
 	);
-	const chart = (seeds: ReadonlyArray<readonly [string, number, string]>): ChartDatum[] =>
-		seeds.map(([label, value, displayValue]) => ({
+	const chart = (seeds: ReadonlyArray<readonly [string, number, string?]>): ChartDatum[] =>
+		seeds.map(([label, value]) => ({
 			label: label,
 			value: value,
-			display_value: displayValue,
 		}));
 
 	return {
@@ -96,54 +99,73 @@ function getNftCollectionsInsights(id: number): NftCollectionInsights | undefine
 		balance_metrics: [
 			{
 				title: "Total balance",
-				value: "$ 208.2 M",
+				value: 208_200_000,
 				description: "On Ethereum & Polygon",
-				footer: "$694.7 average balance",
+				footer_value: 694.7,
+				footer_label: "average balance",
 			},
-			{ title: "NFTs owned", value: "128 402", description: "Total", footer: "95% of wallets own NFTs" },
+			{
+				title: "NFTs owned",
+				value: 128_402,
+				description: "Total",
+				footer_value: 95,
+				footer_label: "percent of wallets own NFTs",
+			},
 		],
 		wallet_balance: walletBalance,
 		nft_allocation: chart([
-			["1-19", 10000, "10k"],
-			["20-39", 7000, "7k"],
-			["40-59", 6000, "6k"],
-			["60-79", 3000, "3k"],
-			["80-99", 8000, "8k"],
-			["100-499", 5000, "5k"],
-			["500+", 2000, "2k"],
+			["1-19", 10_000, "10k"],
+			["20-39", 7_000, "7k"],
+			["40-59", 6_000, "6k"],
+			["60-79", 3_000, "3k"],
+			["80-99", 8_000, "8k"],
+			["100-499", 5_000, "5k"],
+			["500+", 2_000, "2k"],
 		]),
 		transaction_stats: [
-			{ label: "Count", value: "258 940", tone: "default" },
-			{ label: "Volume", value: "$370,827.38", tone: "default" },
-			{ label: "Income", value: "+$403,735.50", tone: "positive" },
-			{ label: "Outcome", value: "-$429,040.02", tone: "negative" },
+			{ label: "Count", value: 258_940, tone: "default" },
+			{ label: "Volume", value: 370_827.38, tone: "default" },
+			{ label: "Income", value: 403_735.5, tone: "positive" },
+			{ label: "Outcome", value: -429_040.02, tone: "negative" },
 		],
 		contact_metrics: [
-			{ title: "Twitter", value: "15 037", description: "Contacts available", footer: "23% of all" },
-			{ title: "Email", value: "3 928", description: "Contacts available", footer: "4% of all" },
+			{
+				title: "Twitter",
+				value: 15_037,
+				description: "Contacts available",
+				footer_value: 23,
+				footer_label: "percent of all",
+			},
+			{
+				title: "Email",
+				value: 3_928,
+				description: "Contacts available",
+				footer_value: 4,
+				footer_label: "percent of all",
+			},
 		],
 		influencers,
 		overlap,
 		superrank: chart([
 			["<14", 630, "630"],
-			["15-29", 5200, "5.2k"],
-			["30-44", 4200, "4.2k"],
-			["45-59", 6800, "6.8k"],
-			["60-74", 3400, "3.4k"],
-			["75-89", 5300, "5.3k"],
-			["90-100", 9800, "9.8k"],
+			["15-29", 5_200, "5.2k"],
+			["30-44", 4_200, "4.2k"],
+			["45-59", 6_800, "6.8k"],
+			["60-74", 3_400, "3.4k"],
+			["75-89", 5_300, "5.3k"],
+			["90-100", 9_800, "9.8k"],
 		]),
 		interests: chart([
-			["Luxury", 97500, "97.5k"],
-			["Art", 43200, "43.2k"],
-			["Music", 12700, "12.7k"],
+			["Luxury", 97_500, "97.5k"],
+			["Art", 43_200, "43.2k"],
+			["Music", 12_700, "12.7k"],
 			["Fashion", 0, "0"],
 		]),
 		personas: chart([
-			["Voter", 37200, "37.2k"],
-			["Gamer", 31500, "31.5k"],
-			["Early adopter", 26400, "26.4k"],
-			["Developer", 22800, "22.8k"],
+			["Voter", 37_200, "37.2k"],
+			["Gamer", 31_500, "31.5k"],
+			["Early adopter", 26_400, "26.4k"],
+			["Developer", 22_800, "22.8k"],
 		]),
 	};
 }

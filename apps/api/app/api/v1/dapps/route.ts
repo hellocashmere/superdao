@@ -1,3 +1,4 @@
+import { getAvatarUrl } from "../../../../shared/api/avatar-url";
 import { getFilteredRows, getListQuery, getSortedRows } from "../../../../shared/api/list-query";
 import { getPaginate } from "../../../../shared/api/pagination";
 import { invalidQuery } from "../../../../shared/api/query-params";
@@ -24,13 +25,13 @@ function getDapps(): ExploreResource[] {
 			id: index + 1,
 			slug: `${slug}-${index + 1}`,
 			name: name,
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
-			owners: `${1526 + index * 137}`,
-			active_wallets: `${1200 + index * 113}`,
-			supply: `${17500 + index * 251}`,
-			price: (0.68 + (index % 10) * 0.71).toFixed(2),
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			owners: 1_526 + index * 137,
+			active_wallets: 1_200 + index * 113,
+			supply: 17_500 + index * 251,
+			price: (68 + (index % 10) * 71) / 100,
 			chain: index % 3 === 1 ? "polygon" : "ethereum",
-			wallet_count: `${44684 + index * 83}`,
+			wallet_count: 44_684 + index * 83,
 		};
 	});
 }

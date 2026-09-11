@@ -1,3 +1,4 @@
+import { getAvatarUrl } from "../../../../../../shared/api/avatar-url";
 import { failure, success } from "../../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../../shared/api/route-params";
 import { routeID } from "../../../../../../shared/api/route-params";
@@ -17,7 +18,7 @@ interface SimilarWallet {
 	similar_wallet_id: number;
 	name: string;
 	avatar: string;
-	score: string;
+	score: number;
 }
 
 /**
@@ -32,8 +33,8 @@ function getSimilarWallets(id: number): SimilarWallet[] | undefined {
 			wallet_id: id,
 			similar_wallet_id: similarWalletID,
 			name: names[index % names.length] ?? "wallet.eth",
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
-			score: `${60 + ((id + index * 7) % 40)}`,
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			score: 60 + ((id + index * 7) % 40),
 		};
 	});
 }

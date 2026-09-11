@@ -1,3 +1,4 @@
+import { CASHMERE_AVATAR_URL, CASHMERE_NAME, getAvatarUrl } from "../../../../shared/api/avatar-url";
 import { invalidQuery, scalar, validateKeys } from "../../../../shared/api/query-params";
 import { success } from "../../../../shared/api/response";
 
@@ -10,7 +11,7 @@ const avatarHashes = [
 const seeds = [
 	["CryptoKitties", "NFT collection", "/explore/nft-collections", "nft-collection"],
 	["cryptoboss.eth", "Wallet", "/explore/wallets/6", "wallet"],
-	["cashmere.ton", "Wallet", "/explore/wallets/1", "wallet"],
+	[CASHMERE_NAME, "Wallet", "/explore/wallets/1", "wallet"],
 	["Wrapped Cryptopunks", "NFT collection", "/explore/nft-collections/1/wallets", "nft-collection"],
 	["Token investor", "Label", "/explore/labels/14/wallets", "label"],
 	["Ethereum", "Token", "/explore/tokens/1/wallets", "token"],
@@ -39,7 +40,7 @@ function getSearchResults(): SearchResult[] {
 		href: href,
 		target_id: index + 1,
 		target_kind: targetKind,
-		avatar_src: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
+		avatar_src: name === CASHMERE_NAME ? CASHMERE_AVATAR_URL : getAvatarUrl(avatarHashes[index % avatarHashes.length]),
 	}));
 }
 

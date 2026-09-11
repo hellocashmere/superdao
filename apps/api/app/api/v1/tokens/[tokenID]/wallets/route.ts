@@ -1,3 +1,4 @@
+import { CASHMERE_AVATAR_URL, CASHMERE_NAME, getAvatarUrl } from "../../../../../../shared/api/avatar-url";
 import { getPaginate } from "../../../../../../shared/api/pagination";
 import { invalidQuery, pagination, scalar, stableSort, validateKeys } from "../../../../../../shared/api/query-params";
 import { failure, success } from "../../../../../../shared/api/response";
@@ -8,10 +9,11 @@ import type {
 	AudienceWalletContact,
 	AudienceWalletTag,
 } from "../../../../../../shared/api/types";
+import { CASHMERE_AUDIENCE_PROFILE } from "../../../../../../shared/config/cashmere-profile";
 import { GENERATED_ENTITY_COUNT } from "../../../../../../shared/config/fixtures";
 
 const names = [
-	"cashmere.ton",
+	CASHMERE_NAME,
 	"vitalik.eth",
 	"0x959...4A35",
 	"punk6529.eth",
@@ -44,14 +46,14 @@ interface TokenWallet {
 	token_id: number;
 	name: string;
 	avatar: string;
-	rank: string;
+	rank: number;
 	rank_tone: "constructive" | "lime" | "orange";
 	age: string;
 	age_details?: string;
 	labels: AudienceWalletTag[];
-	balance: string;
-	nfts: string;
-	twitter: string;
+	balance: number;
+	nfts: number;
+	twitter: number | null;
 	activity: AudienceWalletActivity[];
 	contacts: AudienceWalletContact[];
 }
@@ -63,25 +65,28 @@ function getTokensWallets(id: number): TokenWallet[] | undefined {
 	if (id > GENERATED_ENTITY_COUNT) return undefined;
 
 	return Array.from({ length: 50 }, (_, index): TokenWallet => {
-		const avatar = `/avatars/${avatarHashes[(id + index) % avatarHashes.length]}.png`;
+		const name = names[(id + index) % names.length] ?? "wallet.eth";
+		const avatar =
+			name === CASHMERE_NAME ? CASHMERE_AVATAR_URL : getAvatarUrl(avatarHashes[(id + index) % avatarHashes.length]);
 		return {
 			id: index + 1,
 			token_id: id,
-			name: names[(id + index) % names.length] ?? "wallet.eth",
+			name,
 			avatar: avatar,
-			rank: `${100 - index}`,
+			rank: 100 - index,
 			rank_tone: index < 20 ? "constructive" : index < 40 ? "lime" : "orange",
 			age: index % 9 === 0 ? "—" : `${1 + (index % 7)}.${index % 10}y`,
 			age_details: index % 9 === 0 ? undefined : `${1 + (index % 7)} years and ${index % 12} months`,
 			labels: index % 6 === 0 ? [] : labelSeeds.slice(0, 1 + (index % labelSeeds.length)),
-			balance: `${Math.max(0.1, 8.4 - index * 0.12).toFixed(1)}M`,
-			nfts: `${Math.max(3, 450 - index * 7)}`,
-			twitter: index % 8 === 0 ? "—" : `${Math.max(1, 982 - index * 17)}K`,
+			balance: Math.round(Math.max(0.1, 8.4 - index * 0.12) * 1_000_000),
+			nfts: Math.max(3, 450 - index * 7),
+			twitter: index % 8 === 0 ? null : Math.max(1, 982 - index * 17) * 1_000,
 			activity: Array.from({ length: index % 4 }, (_, activityIndex) => ({
 				name: names[(index + activityIndex + 1) % names.length] ?? "wallet.eth",
-				avatar: `/avatars/${avatarHashes[(index + activityIndex + 1) % avatarHashes.length]}.png`,
+				avatar: getAvatarUrl(avatarHashes[(index + activityIndex + 1) % avatarHashes.length]),
 			})),
 			contacts: contactSeeds.slice(0, 2 + (index % 4)),
+			...(name === CASHMERE_NAME ? CASHMERE_AUDIENCE_PROFILE : {}),
 		};
 	});
 }

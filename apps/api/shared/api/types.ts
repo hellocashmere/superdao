@@ -8,9 +8,9 @@ export type MetricKind = "activity" | "balance" | "email" | "influencers" | "nft
  */
 export interface HighlightMetric {
 	title: string;
-	value: string;
+	value: number;
 	description: string;
-	footer_value: string;
+	footer_value: number;
 	footer_label: string;
 	kind: MetricKind;
 	info?: string;
@@ -22,7 +22,6 @@ export interface HighlightMetric {
 export interface ChartDatum {
 	label: string;
 	value: number;
-	display_value: string;
 	fill?: string;
 }
 
@@ -39,9 +38,10 @@ export interface BalanceDistributionDatum {
  */
 export interface InsightMetric {
 	title: string;
-	value: string;
+	value: number;
 	description: string;
-	footer: string;
+	footer_value: number;
+	footer_label: string;
 	info?: string;
 }
 
@@ -50,7 +50,7 @@ export interface InsightMetric {
  */
 export interface TransactionStat {
 	label: string;
-	value: string;
+	value: number;
 	tone: "default" | "negative" | "positive";
 }
 
@@ -60,9 +60,9 @@ export interface TransactionStat {
 export interface Influencer {
 	name: string;
 	username: string;
-	followers: string;
-	nfts: string;
-	balance: string;
+	followers: number;
+	nfts: number;
+	balance: number;
 	avatar: string;
 }
 
@@ -72,12 +72,12 @@ export interface Influencer {
 export interface AudienceOverlap {
 	name: string;
 	avatar: string;
-	owners_in_audience: string;
-	share_in_audience: string;
-	owners: string;
-	items_in_audience: string;
-	items: string;
-	floor_price: string;
+	owners_in_audience: number;
+	share_in_audience: number;
+	owners: number;
+	items_in_audience: number;
+	items: number;
+	floor_price: number;
 	chain: "ethereum" | "polygon";
 }
 
@@ -110,10 +110,10 @@ export interface ExploreResource {
 	slug: string;
 	name: string;
 	avatar: string;
-	owners: string;
-	active_wallets: string;
-	supply: string;
-	price: string;
+	owners: number;
+	active_wallets: number;
+	supply: number;
+	price: number;
 	chain: "ethereum" | "polygon";
-	wallet_count: string;
+	wallet_count: number;
 }

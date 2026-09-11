@@ -1,10 +1,11 @@
+import { CASHMERE_AVATAR_URL, CASHMERE_NAME, getAvatarUrl } from "../../../../shared/api/avatar-url";
 import { getPaginate } from "../../../../shared/api/pagination";
 import { invalidQuery, pagination, scalar, stableSort, validateKeys } from "../../../../shared/api/query-params";
 import { success } from "../../../../shared/api/response";
 import { GENERATED_ENTITY_COUNT } from "../../../../shared/config/fixtures";
 
 const baseNames = [
-	"cashmere.ton",
+	CASHMERE_NAME,
 	"vitalik.eth",
 	"0x959...4A35",
 	"punk6529.eth",
@@ -26,9 +27,9 @@ const avatarHashes = [
 const sorts = ["recent", "rank", "balance", "transactions", "twitter"];
 
 interface WalletMetric {
-	primary: string;
-	secondary: string;
-	tertiary: string;
+	primary: number;
+	secondary: number;
+	tertiary: number;
 }
 
 interface Wallet {
@@ -47,12 +48,13 @@ interface Wallet {
  * Creates deterministic wallet summaries.
  */
 function getWallets(): Wallet[] {
-	return Array.from(
-		{ length: GENERATED_ENTITY_COUNT },
-		(_, index): Wallet => ({
+	return Array.from({ length: GENERATED_ENTITY_COUNT }, (_, index): Wallet => {
+		const name = names[index] ?? `wallet-${index + 1}.eth`;
+
+		return {
 			id: index + 1,
-			name: names[index] ?? `wallet-${index + 1}.eth`,
-			avatar: `/avatars/${avatarHashes[index % avatarHashes.length]}.png`,
+			name,
+			avatar: name === CASHMERE_NAME ? CASHMERE_AVATAR_URL : getAvatarUrl(avatarHashes[index % avatarHashes.length]),
 			recent_order: index + 1,
 			rank_order: ((index + GENERATED_ENTITY_COUNT) % GENERATED_ENTITY_COUNT) + 1,
 			balance_order: ((index + GENERATED_ENTITY_COUNT - 5) % GENERATED_ENTITY_COUNT) + 1,
@@ -60,28 +62,28 @@ function getWallets(): Wallet[] {
 			twitter_order: ((index + GENERATED_ENTITY_COUNT - 15) % GENERATED_ENTITY_COUNT) + 1,
 			metrics: {
 				rank: {
-					primary: `${100 - index}`,
-					secondary: `$${Math.max(0.05, 2.2 - index * 0.03).toFixed(2)}M`,
-					tertiary: `${Math.max(3, 450 - index * 5)} NFTs`,
+					primary: name === CASHMERE_NAME ? 92 : 100 - index,
+					secondary: name === CASHMERE_NAME ? 20_100_000 : Math.round(Math.max(0.05, 2.2 - index * 0.03) * 1_000_000),
+					tertiary: name === CASHMERE_NAME ? 1_000 : Math.max(3, 450 - index * 5),
 				},
 				balance: {
-					primary: `$${Math.max(0.1, 8.4 - index * 0.1).toFixed(1)}M`,
-					secondary: `${8 - (index % 5)} chains`,
-					tertiary: `${128 + index * 7} tokens`,
+					primary: name === CASHMERE_NAME ? 20_100_000 : Math.round(Math.max(0.1, 8.4 - index * 0.1) * 1_000_000),
+					secondary: 8 - (index % 5),
+					tertiary: 128 + index * 7,
 				},
 				transactions: {
-					primary: `${Math.max(0.1, 24.8 - index * 0.25).toFixed(1)}K`,
-					secondary: `${Math.max(1, 1200 - index * 13)} this month`,
-					tertiary: `${12 + (index % 9)} dapps`,
+					primary: Math.round(Math.max(0.1, 24.8 - index * 0.25) * 1_000),
+					secondary: Math.max(1, 1_200 - index * 13),
+					tertiary: 12 + (index % 9),
 				},
 				twitter: {
-					primary: `${Math.max(1, 982 - index * 11)}K`,
-					secondary: `${18 + index}K followers`,
-					tertiary: `${Math.max(0.1, 4.8 - index * 0.04).toFixed(1)}% ER`,
+					primary: name === CASHMERE_NAME ? 33_500 : Math.max(1, 982 - index * 11) * 1_000,
+					secondary: name === CASHMERE_NAME ? 72_900 : (18 + index) * 1_000,
+					tertiary: Math.max(0.1, 4.8 - index * 0.04),
 				},
 			},
-		})
-	);
+		};
+	});
 }
 
 /**

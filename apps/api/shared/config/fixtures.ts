@@ -3,4 +3,4 @@
  *
  * Increase this value when local development needs a larger dataset.
  */
-export const GENERATED_ENTITY_COUNT = 1000;
+export const GENERATED_ENTITY_COUNT = 1_000;

@@ -7,7 +7,7 @@ interface Label {
 	id: number;
 	slug: string;
 	name: string;
-	wallet_count: string;
+	wallet_count: number;
 	color: string;
 	category: "interest" | "persona";
 }
@@ -44,7 +44,7 @@ function getLabels(): Label[] {
 			id: index + 1,
 			slug: slug,
 			name: name,
-			wallet_count: `${340 + index * 7}k`,
+			wallet_count: (340 + index * 7) * 1_000,
 			color: color,
 			category: category,
 		};
