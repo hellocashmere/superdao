@@ -10,9 +10,9 @@ export interface SpinnerProps extends ComponentProps<"svg"> {
 	size?: "default" | "medium" | "large";
 
 	/**
-	 * Controls the spinner's semantic color.
+	 * Controls the spinner's visual variant.
 	 */
-	tone?: "default" | "muted" | "placeholder" | "subdued";
+	variant?: "default" | "muted" | "placeholder" | "subdued";
 
 	/**
 	 * Centers the spinner in its available horizontal space.
@@ -23,17 +23,17 @@ export interface SpinnerProps extends ComponentProps<"svg"> {
 /**
  * Renders the spinner component.
  */
-export function Spinner({ className, size = "default", tone = "default", centered = false, ...props }: SpinnerProps) {
+export function Spinner({ className, size = "default", variant = "default", centered = false, ...props }: SpinnerProps) {
 	return (
 		<Loader2Icon
 			data-slot="spinner"
 			data-size={size}
-			data-tone={tone}
+			data-variant={variant}
 			data-centered={centered}
 			role="status"
 			aria-label="Loading"
 			className={cn(
-				"size-4 animate-spin data-[centered=true]:mx-auto data-[size=large]:size-6 data-[size=medium]:size-5 data-[tone=muted]:text-muted-foreground data-[tone=placeholder]:text-field-placeholder data-[tone=subdued]:text-tabs-foreground",
+				"size-4 animate-spin data-[centered=true]:mx-auto data-[size=large]:size-6 data-[size=medium]:size-5 data-[variant=muted]:text-muted-foreground data-[variant=placeholder]:text-field-placeholder data-[variant=subdued]:text-tabs-foreground",
 				className
 			)}
 			{...props}

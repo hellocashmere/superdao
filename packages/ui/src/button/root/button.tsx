@@ -35,25 +35,6 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {
-	/**
-	 * Controls the button's text weight.
-	 */
-	weight?: "default" | "normal";
-
-	/**
-	 * Controls the button's corner shape.
-	 */
-	shape?: "default" | "pill";
-
-	/**
-	 * Controls responsive visibility for secondary desktop actions.
-	 */
-	visibility?: "default" | "desktop";
-
-	/**
-	 * Controls the button's semantic foreground tone.
-	 */
-	tone?: "default" | "muted" | "tabs";
 }
 
 /**
@@ -63,22 +44,14 @@ export function Button({
 	className,
 	variant = "default",
 	size = "default",
-	weight = "default",
-	shape = "default",
-	visibility = "default",
-	tone = "default",
 	...props
 }: ButtonProps) {
 	return (
 		<ButtonPrimitive
 			data-slot="button"
-			data-weight={weight}
-			data-shape={shape}
-			data-visibility={visibility}
-			data-tone={tone}
 			className={cn(
 				buttonVariants({ variant, size }),
-				"data-[active=true]:bg-secondary-hover data-[shape=pill]:rounded-full data-[tone=muted]:text-muted-foreground data-[tone=muted]:hover:text-foreground data-[tone=tabs]:text-tabs-foreground data-[visibility=desktop]:hidden data-[weight=normal]:font-normal data-[visibility=desktop]:lg:inline-flex",
+				"data-[active=true]:bg-secondary-hover",
 				className
 			)}
 			{...props}
