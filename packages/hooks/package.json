@@ -11,7 +11,8 @@
     "./use-debounce-value": "./src/use-debounce-value/index.ts",
     "./use-intersection-observer": "./src/use-intersection-observer/index.ts",
     "./use-media-query": "./src/use-media-query/index.ts",
-    "./use-pagination": "./src/use-pagination/index.ts"
+    "./use-pagination": "./src/use-pagination/index.ts",
+    "./use-number-formatter": "./src/use-number-formatter/index.ts"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",

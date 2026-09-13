@@ -8,5 +8,7 @@ export type { UseMediaQueryOptions, UseMediaQueryReturn } from "./use-media-quer
 export { useMediaQuery } from "./use-media-query";
 export type { UseIsMobileReturn } from "./use-mobile";
 export { useIsMobile } from "./use-mobile";
+export type { UseNumberFormatterOptions, UseNumberFormatterReturn } from "./use-number-formatter";
+export { useNumberFormatter } from "./use-number-formatter";
 export type { UsePaginationOptions, UsePaginationReturn } from "./use-pagination";
 export { usePagination } from "./use-pagination";
