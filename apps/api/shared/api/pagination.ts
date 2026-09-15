@@ -68,7 +68,7 @@ export function getPaginate<Row extends object>(rows: readonly Row[], opts: Pagi
 	return {
 		data: rows.slice(offset, offset + limit),
 		metadata: {
-			offset,
+			offset: offset,
 			page_size: limit,
 			total: rows.length,
 			total_pages: rows.length === 0 ? 0 : Math.ceil(rows.length / limit),

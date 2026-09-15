@@ -35,11 +35,11 @@ export function scalar(params: URLSearchParams, key: string): string | null | un
 /**
  * Parses strict offset pagination bounded to the public API limits.
  */
-export function pagination(params: URLSearchParams): PaginationOptions | null {
+export function pagination(params: URLSearchParams, defaultLimit: number): PaginationOptions | null {
 	const limitValue = scalar(params, "limit");
 	const offsetValue = scalar(params, "offset");
-	const limit = limitValue === undefined ? NaN : Number(limitValue);
-	const offset = offsetValue === undefined ? NaN : Number(offsetValue);
+	const limit = limitValue === undefined ? defaultLimit : Number(limitValue);
+	const offset = offsetValue === undefined ? 0 : Number(offsetValue);
 
 	if (!Number.isInteger(limit) || limit < 1 || limit > 100 || !Number.isInteger(offset) || offset < 0) {
 		return null;

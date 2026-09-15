@@ -17,7 +17,7 @@ interface WalletTransactionSummary {
 	wallet_id: number;
 	title: string;
 	tooltip: string;
-	metrics: Array<{ id: string; label: string; value: number; tone: "default" | "negative" | "positive" }>;
+	metrics: Array<{ id: string; label: string; value: number; variant: "default" | "negative" | "positive" }>;
 	transactions: Array<{
 		id: string;
 		type: string;
@@ -27,7 +27,7 @@ interface WalletTransactionSummary {
 		asset_icon: string | null;
 		amount: number | null;
 		direction: "down" | "none" | "up";
-		tone: "muted" | "negative" | "positive";
+		variant: "muted" | "negative" | "positive";
 	}>;
 }
 
@@ -42,10 +42,10 @@ function getWalletTransactionSummary(id: number): WalletTransactionSummary | und
 		title: "Last 30d transactions",
 		tooltip: "Made at least one transaction",
 		metrics: [
-			{ id: "outgoing-transactions", label: "Outgoing transactions", value: 258_940, tone: "default" },
-			{ id: "volume", label: "Volume", value: 370_827.38, tone: "default" },
-			{ id: "income", label: "Income", value: 403_735.5, tone: "positive" },
-			{ id: "outcome", label: "Outcome", value: -429_040.02, tone: "negative" },
+			{ id: "outgoing-transactions", label: "Outgoing transactions", value: 258_940, variant: "default" },
+			{ id: "volume", label: "Volume", value: 370_827.38, variant: "default" },
+			{ id: "income", label: "Income", value: 403_735.5, variant: "positive" },
+			{ id: "outcome", label: "Outcome", value: -429_040.02, variant: "negative" },
 		],
 		transactions: seeds.map(([type, amount, asset, date, tone, direction, kind, assetIcon], index) => ({
 			id: `${id}-transaction-${index + 1}`,
@@ -53,7 +53,7 @@ function getWalletTransactionSummary(id: number): WalletTransactionSummary | und
 			amount: amount,
 			asset: asset,
 			date: date,
-			tone: tone,
+			variant: tone,
 			direction: direction,
 			kind: kind,
 			asset_icon: assetIcon,
@@ -67,6 +67,7 @@ function getWalletTransactionSummary(id: number): WalletTransactionSummary | und
 export async function GET(_request: Request, context: RouteParams<"walletID">): Promise<Response> {
 	const id = await routeID(context.params, "walletID", "Invalid wallet id.");
 	if (id instanceof Response) return id;
+
 	const summary = getWalletTransactionSummary(id);
 	return summary === undefined ? failure(404, "RESOURCE_NOT_FOUND", "Wallet not found.") : success(summary);
 }

@@ -2,6 +2,7 @@ import { getAvatarUrl } from "../../../../../../shared/api/avatar-url";
 import { failure, success } from "../../../../../../shared/api/response";
 import type { RouteParams } from "../../../../../../shared/api/route-params";
 import { routeID } from "../../../../../../shared/api/route-params";
+import { isDemoProfileWallet } from "../../../../../../shared/config/demo-profile";
 import { GENERATED_ENTITY_COUNT } from "../../../../../../shared/config/fixtures";
 
 const names = ["Nakamigos", "ENS domains", "Art Blocks", "Meebits", "Azuki", "Potatoz", "Wrapped Cryptopunks"];
@@ -15,7 +16,7 @@ const avatarHashes = [
 interface WalletActivity {
 	id: string;
 	wallet_id: number;
-	name: string;
+	title: string;
 	avatar: string;
 }
 
@@ -24,11 +25,14 @@ interface WalletActivity {
  */
 function getWalletActivity(id: number): WalletActivity[] | undefined {
 	if (id > GENERATED_ENTITY_COUNT) return undefined;
-	return Array.from({ length: 14 }, (_, index) => ({
+
+	const activityCount = isDemoProfileWallet(id) ? 8 : 4 + (id % 5);
+
+	return Array.from({ length: activityCount }, (_, index) => ({
 		id: `${id}-activity-${index + 1}`,
 		wallet_id: id,
-		name: names[index % names.length] ?? "Collection",
-		avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+		title: names[(id + index) % names.length] ?? "Collection",
+		avatar: getAvatarUrl(avatarHashes[(id + index) % avatarHashes.length] ?? ""),
 	}));
 }
 
@@ -38,6 +42,7 @@ function getWalletActivity(id: number): WalletActivity[] | undefined {
 export async function GET(_request: Request, context: RouteParams<"walletID">): Promise<Response> {
 	const id = await routeID(context.params, "walletID", "Invalid wallet id.");
 	if (id instanceof Response) return id;
+
 	const activity = getWalletActivity(id);
 	return activity === undefined ? failure(404, "RESOURCE_NOT_FOUND", "Wallet not found.") : success(activity);
 }

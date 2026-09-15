@@ -2,23 +2,19 @@
  * Reads the public API URL used when building asset links.
  */
 function getApiUrl(): string {
-	const apiUrl = process.env.API_URL;
+	const apiUrl = process.env.API_URL?.trim();
 
-	if (!apiUrl) {
-		throw new Error("API_URL is not configured.");
-	}
-
-	return apiUrl.replace(/\/$/, "");
+	return apiUrl ? apiUrl.replace(/\/$/, "") : "";
 }
-
-export const CASHMERE_NAME = "cashmere.gram";
-export const CASHMERE_AVATAR_URL = `${getApiUrl()}/avatars/cashmere.png`;
 
 /**
  * Builds the public API URL for an avatar stored by the API.
  */
-export function getAvatarUrl(hash: string | undefined): string {
-	return `${getApiUrl()}/avatars/${hash ?? "cashmere"}.png`;
+export function getAvatarUrl(hash: string): string {
+	const assetHash = hash.trim();
+	if (!assetHash) throw new Error("Avatar asset identifier is required.");
+
+	return `${getApiUrl()}/avatars/${assetHash}.png`;
 }
 
 /**

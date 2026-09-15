@@ -16,7 +16,7 @@ interface SimilarWallet {
 	id: string;
 	wallet_id: number;
 	similar_wallet_id: number;
-	name: string;
+	title: string;
 	avatar: string;
 	score: number;
 }
@@ -32,8 +32,8 @@ function getSimilarWallets(id: number): SimilarWallet[] | undefined {
 			id: `${id}-${similarWalletID}`,
 			wallet_id: id,
 			similar_wallet_id: similarWalletID,
-			name: names[index % names.length] ?? "wallet.eth",
-			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
+			title: names[index % names.length] ?? "wallet.eth",
+			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length] ?? ""),
 			score: 60 + ((id + index * 7) % 40),
 		};
 	});
@@ -45,6 +45,7 @@ function getSimilarWallets(id: number): SimilarWallet[] | undefined {
 export async function GET(_request: Request, context: RouteParams<"walletID">): Promise<Response> {
 	const id = await routeID(context.params, "walletID", "Invalid wallet id.");
 	if (id instanceof Response) return id;
+
 	const wallets = getSimilarWallets(id);
 	return wallets === undefined ? failure(404, "RESOURCE_NOT_FOUND", "Wallet not found.") : success(wallets);
 }

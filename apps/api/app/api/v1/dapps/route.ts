@@ -1,39 +1,20 @@
-import { getAvatarUrl } from "../../../../shared/api/avatar-url";
 import { getFilteredRows, getListQuery, getSortedRows } from "../../../../shared/api/list-query";
 import { getPaginate } from "../../../../shared/api/pagination";
 import { invalidQuery } from "../../../../shared/api/query-params";
 import { success } from "../../../../shared/api/response";
-import type { ExploreResource } from "../../../../shared/api/types";
-import { GENERATED_ENTITY_COUNT } from "../../../../shared/config/fixtures";
+import { getDapps } from "../_fixtures/dapp";
 
-const names = ["Uniswap", "OpenSea", "Aave", "Blur", "Lido", "Curve", "1inch", "Zerion", "Zapper", "Mirror"];
-const avatarHashes = [
-	"cb44db6f71d4a369fcc8632253735afb",
-	"13dc38b7e837a16722c6c7b6a695fa46",
-	"199f61e6ecd63f52024e2db2f37f1364",
-];
-
-/**
- * Creates the deterministic dapp directory.
- */
-function getDapps(): ExploreResource[] {
-	return Array.from({ length: GENERATED_ENTITY_COUNT }, (_, index) => {
-		const name = names[index % names.length] ?? "Dapp";
-		const slug = name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-
-		return {
-			id: index + 1,
-			slug: `${slug}-${index + 1}`,
-			name: name,
-			avatar: getAvatarUrl(avatarHashes[index % avatarHashes.length]),
-			owners: 1_526 + index * 137,
-			active_wallets: 1_200 + index * 113,
-			supply: 17_500 + index * 251,
-			price: (68 + (index % 10) * 71) / 100,
-			chain: index % 3 === 1 ? "polygon" : "ethereum",
-			wallet_count: 44_684 + index * 83,
-		};
-	});
+interface ExploreResource {
+	id: number;
+	slug: string;
+	title: string;
+	avatar: string;
+	owners: number;
+	active_wallets: number;
+	supply: number;
+	price: number;
+	chain: "ethereum" | "polygon";
+	wallet_count: number;
 }
 
 /**
@@ -44,9 +25,10 @@ export function GET(request: Request): Response {
 	if (query instanceof Response) return query;
 	if (query.sort !== undefined && query.sort !== "name") return invalidQuery("Unsupported sort.");
 
-	const filteredDapps = getFilteredRows(getDapps(), query.query, (dapp) => dapp.name);
+	const dapps: ExploreResource[] = getDapps();
+	const filteredDapps = getFilteredRows(dapps, query.query, (dapp) => dapp.title);
 	const sortedDapps = getSortedRows(filteredDapps, query.sort, query.order, (left, right) =>
-		left.name.localeCompare(right.name)
+		left.title.localeCompare(right.title)
 	);
 	const result = getPaginate(sortedDapps, query.pagination);
 

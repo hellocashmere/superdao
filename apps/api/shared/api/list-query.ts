@@ -1,8 +1,6 @@
 import type { PaginationOptions } from "./pagination";
 import { invalidQuery, pagination, scalar, stableSort, validateKeys } from "./query-params";
 
-const listQueryKeys = ["q", "limit", "offset", "sort", "order"] as const;
-
 export type ListOrder = "asc" | "desc";
 
 /**
@@ -13,21 +11,33 @@ export interface ListQuery {
 	pagination: PaginationOptions;
 	sort?: string;
 	order?: ListOrder;
+	/** Repeated values accepted by this endpoint (for example audience labels). */
+	repeated: Record<string, string[]>;
+	/** Additional endpoint-specific scalar values validated for duplicate conflicts. */
+	values: Record<string, string | undefined>;
+}
+
+export interface ListQueryOptions {
+	defaultLimit: number;
+	keys?: readonly string[];
+	repeatedKeys?: readonly string[];
 }
 
 /**
  * Reads and validates query parameters shared by standard list endpoints.
  *
- * Both limit and offset are required.
+ * Missing pagination values use the directory defaults.
  */
-export function getListQuery(request: Request): ListQuery | Response {
+export function getListQuery(request: Request, options: ListQueryOptions = { defaultLimit: 16 }): ListQuery | Response {
 	const params = new URL(request.url).searchParams;
+	const keys = options.keys ?? ["q", "limit", "offset", "sort", "order"];
+	const allowedKeys = [...new Set([...keys, ...(options.repeatedKeys ?? [])])];
 
-	if (!validateKeys(params, listQueryKeys)) {
+	if (!validateKeys(params, allowedKeys)) {
 		return invalidQuery("Unsupported query parameter.");
 	}
 
-	const paginationOptions = pagination(params);
+	const paginationOptions = pagination(params, options.defaultLimit);
 	const query = scalar(params, "q");
 	const sort = scalar(params, "sort");
 	const order = scalar(params, "order");
@@ -40,11 +50,23 @@ export function getListQuery(request: Request): ListQuery | Response {
 		return invalidQuery("Unsupported order.");
 	}
 
+	const repeated: Record<string, string[]> = {};
+	for (const key of options.repeatedKeys ?? []) repeated[key] = params.getAll(key);
+	const values: Record<string, string | undefined> = {};
+	for (const key of keys) {
+		if (["q", "limit", "offset", "sort", "order"].includes(key)) continue;
+		const value = scalar(params, key);
+		if (value === null) return invalidQuery();
+		values[key] = value;
+	}
+
 	return {
 		query: query,
 		pagination: paginationOptions,
 		sort: sort,
 		order: order,
+		repeated,
+		values,
 	};
 }
 
