@@ -34,26 +34,16 @@ export const buttonVariants = cva(
 	}
 );
 
-export interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {
-}
+export interface ButtonProps extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {}
 
 /**
  * Renders the button component.
  */
-export function Button({
-	className,
-	variant = "default",
-	size = "default",
-	...props
-}: ButtonProps) {
+export function Button({ className, variant = "default", size = "default", ...props }: ButtonProps) {
 	return (
 		<ButtonPrimitive
 			data-slot="button"
-			className={cn(
-				buttonVariants({ variant, size }),
-				"data-[active=true]:bg-secondary-hover",
-				className
-			)}
+			className={cn(buttonVariants({ variant, size }), "data-[active=true]:bg-secondary-hover", className)}
 			{...props}
 		/>
 	);

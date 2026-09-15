@@ -23,7 +23,13 @@ export interface SpinnerProps extends ComponentProps<"svg"> {
 /**
  * Renders the spinner component.
  */
-export function Spinner({ className, size = "default", variant = "default", centered = false, ...props }: SpinnerProps) {
+export function Spinner({
+	className,
+	size = "default",
+	variant = "default",
+	centered = false,
+	...props
+}: SpinnerProps) {
 	return (
 		<Loader2Icon
 			data-slot="spinner"
