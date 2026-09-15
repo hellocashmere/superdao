@@ -56,7 +56,7 @@ export function useNumberFormatter({ locale = "en" }: UseNumberFormatterOptions 
 				new Intl.NumberFormat(locale, {
 					maximumFractionDigits: 1,
 					notation: "compact",
-					...options
+					...options,
 				}).format(value),
 			currency: (value: number | bigint, currency: string, options: Intl.NumberFormatOptions = {}) =>
 				new Intl.NumberFormat(locale, { currency, style: "currency", ...options }).format(value),

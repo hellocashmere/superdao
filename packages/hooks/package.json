@@ -1,37 +1,37 @@
 {
-  "name": "@superdao/hooks",
-  "version": "0.0.1",
-  "private": true,
-  "type": "module",
-  "sideEffects": false,
-  "exports": {
-    ".": "./src/index.ts",
-    "./use-mobile": "./src/use-mobile/index.ts",
-    "./use-debounce-callback": "./src/use-debounce-callback/index.ts",
-    "./use-debounce-value": "./src/use-debounce-value/index.ts",
-    "./use-intersection-observer": "./src/use-intersection-observer/index.ts",
-    "./use-media-query": "./src/use-media-query/index.ts",
-    "./use-pagination": "./src/use-pagination/index.ts",
-    "./use-number-formatter": "./src/use-number-formatter/index.ts"
-  },
-  "scripts": {
-    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "lint": "eslint src --max-warnings 0",
-    "typecheck": "tsc --noEmit"
-  },
-  "dependencies": {
-    "usehooks-ts": "3.1.1"
-  },
-  "peerDependencies": {
-    "react": "19.2.4"
-  },
-  "devDependencies": {
-    "@superdao/eslint-config": "workspace:*",
-    "@superdao/typescript-config": "workspace:*",
-    "@types/react": "^19",
-    "eslint": "^9",
-    "prettier": "^3.8.3",
-    "react": "19.2.4",
-    "typescript": "^5"
-  }
+	"name": "@superdao/hooks",
+	"version": "0.0.1",
+	"private": true,
+	"type": "module",
+	"sideEffects": false,
+	"exports": {
+		".": "./src/index.ts",
+		"./use-mobile": "./src/use-mobile/index.ts",
+		"./use-debounce-callback": "./src/use-debounce-callback/index.ts",
+		"./use-debounce-value": "./src/use-debounce-value/index.ts",
+		"./use-intersection-observer": "./src/use-intersection-observer/index.ts",
+		"./use-media-query": "./src/use-media-query/index.ts",
+		"./use-pagination": "./src/use-pagination/index.ts",
+		"./use-number-formatter": "./src/use-number-formatter/index.ts"
+	},
+	"scripts": {
+		"format": "prettier --write \"src/**/*.{ts,tsx}\"",
+		"lint": "eslint src --max-warnings 0",
+		"typecheck": "tsc --noEmit"
+	},
+	"dependencies": {
+		"usehooks-ts": "3.1.1"
+	},
+	"peerDependencies": {
+		"react": "19.2.4"
+	},
+	"devDependencies": {
+		"@superdao/eslint-config": "workspace:*",
+		"@superdao/typescript-config": "workspace:*",
+		"@types/react": "^19",
+		"eslint": "^9",
+		"prettier": "^3.8.3",
+		"react": "19.2.4",
+		"typescript": "^5"
+	}
 }
