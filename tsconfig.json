@@ -1,4 +1,3 @@
 {
-  "extends": "@superdao/typescript-config/base.json"
+	"extends": "@superdao/typescript-config/base.json"
 }
-

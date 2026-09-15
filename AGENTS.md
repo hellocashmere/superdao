@@ -268,13 +268,13 @@ export interface FooterProps extends ComponentPropsWithRef<"footer"> {}
  * Renders the site footer with navigation and payment information.
  */
 export function Footer({ ref, className, ...props }: FooterProps) {
-  return (
-    <footer
-      ref={ref}
-      className={className}
-      {...props}
-    />
-  );
+	return (
+		<footer
+			ref={ref}
+			className={className}
+			{...props}
+		/>
+	);
 }
 ```
 
@@ -290,22 +290,22 @@ Expose every visual variant or component state on the component's root element t
 export type ContainerSize = "default" | "sm";
 
 export interface ContainerProps extends ComponentPropsWithRef<"div"> {
-  size?: ContainerSize;
+	size?: ContainerSize;
 }
 
 /**
  * Constrains content to a responsive maximum width.
  */
 export function Container({ ref, className, size = "default", ...props }: ContainerProps) {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      data-slot="container"
-      data-size={size}
-      className={cn("data-[size=default]:sm:max-w-[400px] data-[size=sm]:sm:max-w-80", className)}
-    />
-  );
+	return (
+		<div
+			{...props}
+			ref={ref}
+			data-slot="container"
+			data-size={size}
+			className={cn("data-[size=default]:sm:max-w-[400px] data-[size=sm]:sm:max-w-80", className)}
+		/>
+	);
 }
 ```
 

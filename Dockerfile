@@ -41,6 +41,8 @@ CMD ["node", "apps/web/server.js"]
 
 FROM web-deps AS api-build
 COPY . .
+ARG API_URL=http://localhost:3001
+ENV API_URL=$API_URL
 RUN pnpm --filter @superdao/api build
 
 FROM node:22.22.2-bookworm-slim AS api
@@ -55,5 +57,5 @@ COPY --from=api-build --chown=api:api /repo/apps/api/.next/static ./apps/api/.ne
 COPY --from=api-build --chown=api:api /repo/apps/api/public ./apps/api/public
 USER api
 EXPOSE 3001
-HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/api/v1/dapps?limit=1&offset=0').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
+HEALTHCHECK --interval=10s --timeout=5s --start-period=10s --retries=5 CMD node -e "fetch('http://127.0.0.1:3001/api/v1/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
 CMD ["node", "apps/api/server.js"]

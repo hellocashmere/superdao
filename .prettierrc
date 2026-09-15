@@ -1,13 +1,13 @@
 {
-  "endOfLine": "lf",
-  "semi": true,
-  "singleQuote": false,
-  "tabWidth": 2,
-  "trailingComma": "es5",
-  "printWidth": 120,
-  "objectWrap": "preserve",
-  "singleAttributePerLine": true,
-  "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindStylesheet": "packages/ui/styles/globals.css",
-  "tailwindFunctions": ["cn", "cva"]
+	"endOfLine": "lf",
+	"semi": true,
+	"singleQuote": false,
+	"tabWidth": 2,
+	"trailingComma": "es5",
+	"printWidth": 120,
+	"objectWrap": "preserve",
+	"singleAttributePerLine": true,
+	"plugins": ["prettier-plugin-tailwindcss"],
+	"tailwindStylesheet": "packages/ui/styles/globals.css",
+	"tailwindFunctions": ["cn", "cva"]
 }
