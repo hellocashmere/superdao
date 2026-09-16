@@ -1,38 +1,34 @@
 /**
  * Audience details persisted by the client application.
  */
-export interface Audience {
-  id: string;
-  name: string;
-  walletCount?: number;
+export interface AudienceView {
+	/**
+	 * Unique audience ID.
+	 */
+	id: number;
+
+	/**
+	 * Audience title shown in navigation.
+	 */
+	title: string;
+
+	/**
+	 * Number of wallets in the audience.
+	 */
+	walletCount: number;
 }
 
 /**
  * Data required to create an audience.
  */
 export interface CreateAudienceInput {
-  name: string;
-  walletCount: number;
-}
+	/**
+	 * Title assigned to the new audience.
+	 */
+	title: string;
 
-/**
- * Persisted state owned by the audience store.
- */
-export interface AudienceState {
-  audiences: readonly Audience[];
-  hasHydrated: boolean;
+	/**
+	 * Initial number of wallets in the audience.
+	 */
+	walletCount: number;
 }
-
-/**
- * Mutations supported by the audience store.
- */
-export interface AudienceActions {
-  createAudience: (input: CreateAudienceInput) => string;
-  resetAudiences: () => void;
-  setHasHydrated: (hasHydrated: boolean) => void;
-}
-
-/**
- * Complete state and action contract for audiences.
- */
-export type AudienceStore = AudienceState & AudienceActions;
