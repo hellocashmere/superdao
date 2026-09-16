@@ -10,28 +10,31 @@ import { inter, sfProDisplay, sfProText } from "./fonts";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: {
-    default: "Superdao",
-    template: "%s / Superdao",
-  },
+	title: {
+		default: "Superdao",
+		template: "%s / Superdao",
+	},
 };
 
+/**
+ * Renders the root layout component.
+ */
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="en"
-      className={cn("dark font-sans antialiased", inter.variable, sfProDisplay.variable, sfProText.variable)}
-    >
-      <body>
-        <Providers>
-          {children}
-          <CookieBanner />
-        </Providers>
-      </body>
-    </html>
-  );
+	return (
+		<html
+			lang="en"
+			className={cn("dark font-sans antialiased", inter.variable, sfProDisplay.variable, sfProText.variable)}
+		>
+			<body>
+				<Providers>
+					{children}
+					<CookieBanner />
+				</Providers>
+			</body>
+		</html>
+	);
 }

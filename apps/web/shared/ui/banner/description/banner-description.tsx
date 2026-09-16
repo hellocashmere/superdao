@@ -7,13 +7,13 @@ export interface BannerDescriptionProps extends ComponentPropsWithRef<"div"> {}
 /**
  * Renders optional supporting copy below the banner title.
  */
-export function BannerDescription({ className, ref, ...props }: BannerDescriptionProps) {
-  return (
-    <div
-      ref={ref}
-      data-slot="banner-description"
-      className={cn("text-[13px]/[18px] font-normal text-tooltip-foreground", className)}
-      {...props}
-    />
-  );
+export function BannerDescription({ ref, className, ...props }: BannerDescriptionProps) {
+	return (
+		<div
+			ref={ref}
+			data-slot="banner-description"
+			className={cn("text-[13px]/[18px] font-normal text-tooltip-foreground", className)}
+			{...props}
+		/>
+	);
 }

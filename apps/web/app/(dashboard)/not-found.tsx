@@ -6,22 +6,25 @@ import { buttonVariants } from "@superdao/ui/button";
 import { Error as ErrorPage } from "@/widgets/error";
 
 export const metadata: Metadata = {
-  title: "404 — Page not found",
-  description: "The page you are looking for does not exist.",
+	title: "404 — Page not found",
+	description: "The page you are looking for does not exist.",
 };
 
+/**
+ * Renders the not found component.
+ */
 export default function NotFound() {
-  return (
-    <ErrorPage
-      action={
-        <Link
-          className={buttonVariants({ className: "px-6" })}
-          href="/"
-        >
-          Go to homepage
-        </Link>
-      }
-      variant="not-found"
-    />
-  );
+	return (
+		<ErrorPage
+			action={
+				<Link
+					className={buttonVariants({ className: "px-6" })}
+					href="/"
+				>
+					Go to homepage
+				</Link>
+			}
+			variant="not-found"
+		/>
+	);
 }

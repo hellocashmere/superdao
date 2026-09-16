@@ -7,13 +7,13 @@ export interface PageFooterProps extends ComponentPropsWithRef<"footer"> {}
 /**
  * Renders optional page footer content.
  */
-export function PageFooter({ className, ref, ...props }: PageFooterProps) {
-  return (
-    <footer
-      ref={ref}
-      data-slot="page-footer"
-      className={cn("shrink-0", className)}
-      {...props}
-    />
-  );
+export function PageFooter({ ref, className, ...props }: PageFooterProps) {
+	return (
+		<footer
+			ref={ref}
+			data-slot="page-footer"
+			className={cn("shrink-0", className)}
+			{...props}
+		/>
+	);
 }
