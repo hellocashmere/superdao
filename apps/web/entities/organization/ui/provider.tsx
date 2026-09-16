@@ -1,22 +1,63 @@
 "use client";
 
-import type { ComponentProps } from "react";
-import { useEffect, useState } from "react";
+import type { ComponentProps, Dispatch, SetStateAction } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-import { createOrganizationStore, OrganizationStoreContext } from "../model/store";
+interface OrganizationSelectionValue {
+	activeOrganizationID: string | undefined;
+	setActiveOrganizationID: Dispatch<SetStateAction<string | undefined>>;
+}
 
-export interface OrganizationStoreProviderProps extends Pick<
-  ComponentProps<typeof OrganizationStoreContext.Provider>,
-  "children"
+const storageKey = "superdao:active-organization-id";
+const OrganizationSelectionContext = createContext<OrganizationSelectionValue | undefined>(undefined);
+
+/**
+ * Reads the persisted organization selection when browser storage is available.
+ */
+function getInitialOrganizationID(): string | undefined {
+	if (typeof window === "undefined") return undefined;
+
+	try {
+		return localStorage.getItem(storageKey) ?? undefined;
+	} catch {
+		return undefined;
+	}
+}
+
+export interface OrganizationSelectionProviderProps extends Pick<
+	ComponentProps<typeof OrganizationSelectionContext.Provider>,
+	"children"
 > {}
 
-/** Provides one persisted organization store to the application tree. */
-export function OrganizationStoreProvider({ children }: OrganizationStoreProviderProps) {
-  const [store] = useState(createOrganizationStore);
+/**
+ * Provides the active organization selection to the application tree.
+ */
+export function OrganizationSelectionProvider({ children }: OrganizationSelectionProviderProps) {
+	const [activeOrganizationID, setActiveOrganizationID] = useState<string | undefined>(getInitialOrganizationID);
 
-  useEffect(() => {
-    void Promise.resolve(store.persist.rehydrate()).finally(() => store.getState().setHasHydrated(true));
-  }, [store]);
+	useEffect(() => {
+		try {
+			if (activeOrganizationID) localStorage.setItem(storageKey, activeOrganizationID);
+			else localStorage.removeItem(storageKey);
+		} catch {
+			// Selection remains usable when browser storage is unavailable.
+		}
+	}, [activeOrganizationID]);
 
-  return <OrganizationStoreContext.Provider value={store}>{children}</OrganizationStoreContext.Provider>;
+	return (
+		<OrganizationSelectionContext.Provider value={{ activeOrganizationID, setActiveOrganizationID }}>
+			{children}
+		</OrganizationSelectionContext.Provider>
+	);
+}
+
+/**
+ * Reads and updates the active organization selection.
+ */
+export function useOrganizationSelection(): OrganizationSelectionValue {
+	const selection = useContext(OrganizationSelectionContext);
+
+	if (!selection) throw new Error("useOrganizationSelection must be used within OrganizationSelectionProvider");
+
+	return selection;
 }

@@ -1,47 +1,68 @@
 /**
  * Organization details displayed throughout the application.
  */
-export interface Organization {
-  admins: readonly string[];
-  avatarUrl: string;
-  description?: string;
-  id: string;
-  name: string;
-  slug: string;
+export interface OrganizationView {
+	/**
+	 * Wallet addresses with administrative access.
+	 */
+	admins: readonly string[];
+	/**
+	 * Avatar image URL.
+	 */
+	avatarUrl: string;
+	/**
+	 * Supporting explanatory text.
+	 */
+	description: string;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Organization display name.
+	 */
+	name: string;
+	/**
+	 * URL-safe entity ID.
+	 */
+	slug: string;
 }
 
 /**
  * Data required to create an organization.
  */
 export interface CreateOrganizationInput {
-  admins?: readonly string[];
-  avatarUrl?: string;
-  description?: string;
-  name: string;
-  slug?: string;
+	/**
+	 * Wallet addresses with administrative access.
+	 */
+	admins?: readonly string[];
+	/**
+	 * Avatar image URL.
+	 */
+	avatarUrl?: string;
+	/**
+	 * Supporting explanatory text.
+	 */
+	description?: string;
+	/**
+	 * Display name requested for the new organization.
+	 */
+	name: string;
+	/**
+	 * URL-safe entity ID.
+	 */
+	slug?: string;
 }
 
 /**
- * Persisted state owned by the organization store.
+ * Fields accepted when updating an organization.
  */
-export interface OrganizationState {
-  activeOrganizationID: string;
-  hasHydrated: boolean;
-  organizations: readonly Organization[];
-}
+export type UpdateOrganizationInput = Partial<Omit<OrganizationView, "id">>;
 
 /**
- * Mutations supported by the organization store.
+ * Variables required by the organization update mutation.
  */
-export interface OrganizationActions {
-  createOrganization: (input: CreateOrganizationInput) => string;
-  resetOrganizations: () => void;
-  setActiveOrganization: (organizationID: string) => void;
-  setHasHydrated: (hasHydrated: boolean) => void;
-  updateOrganization: (organizationID: string, changes: Partial<Omit<Organization, "id">>) => void;
+export interface UpdateOrganizationVariables {
+	changes: UpdateOrganizationInput;
+	organizationID: string;
 }
-
-/**
- * Complete state and action contract for organizations.
- */
-export type OrganizationStore = OrganizationState & OrganizationActions;

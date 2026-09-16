@@ -1,2 +1,7 @@
+export * from "./api";
 export * from "./model";
-export { OrganizationStoreProvider, type OrganizationStoreProviderProps } from "./ui/provider";
+export {
+	OrganizationSelectionProvider,
+	type OrganizationSelectionProviderProps,
+	useOrganizationSelection,
+} from "./ui/provider";
