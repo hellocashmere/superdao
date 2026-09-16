@@ -6,19 +6,19 @@ import { useEffect, useState } from "react";
 import { createSearchStore, SearchStoreContext } from "../model/store";
 
 export interface SearchStoreProviderProps extends Pick<
-  ComponentProps<typeof SearchStoreContext.Provider>,
-  "children"
+	ComponentProps<typeof SearchStoreContext.Provider>,
+	"children"
 > {}
 
 /**
  * Provides one persisted search store to the application tree.
  */
 export function SearchStoreProvider({ children }: SearchStoreProviderProps) {
-  const [store] = useState(createSearchStore);
+	const [store] = useState<ReturnType<typeof createSearchStore>>(createSearchStore);
 
-  useEffect(() => {
-    void Promise.resolve(store.persist.rehydrate()).finally(() => store.getState().setHasHydrated(true));
-  }, [store]);
+	useEffect(() => {
+		void Promise.resolve(store.persist.rehydrate()).finally(() => store.getState().setHasHydrated(true));
+	}, [store]);
 
-  return <SearchStoreContext.Provider value={store}>{children}</SearchStoreContext.Provider>;
+	return <SearchStoreContext.Provider value={store}>{children}</SearchStoreContext.Provider>;
 }

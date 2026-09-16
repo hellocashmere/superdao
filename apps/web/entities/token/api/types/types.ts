@@ -1,154 +1,387 @@
 /**
- * A resource returned by the Explore directory and details endpoints.
+ * A token returned by the Explore directory and details endpoints.
  *
  * Endpoints: `GET /tokens`, `GET /tokens/:id`.
  */
 export interface TokenDTO {
-  id: string;
-  slug: string;
-  name: string;
-  avatar: string;
-  owners: string;
-  active_wallets: string;
-  supply: string;
-  price: string;
-  chain: "ethereum" | "polygon";
-  wallet_count: string;
+	/**
+	 * Unique token ID.
+	 */
+	id: number;
+	/**
+	 * URL-safe token ID.
+	 */
+	slug: string;
+	/**
+	 * Token title.
+	 */
+	title: string;
+	/**
+	 * Token avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Number of token owners.
+	 */
+	owners: number;
+	/**
+	 * Number of active wallets.
+	 */
+	active_wallets: number;
+	/**
+	 * Total token supply.
+	 */
+	supply: number;
+	/**
+	 * Current token price.
+	 */
+	price: number;
+	/**
+	 * Blockchain hosting the token.
+	 */
+	chain: "ethereum" | "polygon";
+	/**
+	 * Number of wallets in the token audience.
+	 */
+	wallet_count: number;
 }
 
 /**
- * A summary metric displayed above a resource wallet table.
+ * A summary metric displayed above the token wallet table.
  */
 export interface TokenMetricDTO {
-  title: string;
-  value: string;
-  description: string;
-  footer_value: string;
-  footer_label: string;
-  kind: "activity" | "balance" | "email" | "influencers" | "nfts" | "twitter";
-  info?: string;
+	/**
+	 * Stable metric ID.
+	 */
+	id: "activity" | "balance" | "email" | "influencers" | "nfts" | "twitter";
+	/**
+	 * Human-readable metric title.
+	 */
+	title: string;
+	/**
+	 * Numeric metric value.
+	 */
+	value: number;
+	/**
+	 * Explanation of the metric value.
+	 */
+	description: string;
+	/**
+	 * Numeric value displayed in the metric footer.
+	 */
+	footer_value: number;
+	/**
+	 * Label describing the footer value.
+	 */
+	footer_label: string;
+	/**
+	 * Optional tooltip information.
+	 */
+	info?: string;
 }
 
 /**
- * A bar in an Explore resource distribution chart.
+ * A bar in a token distribution chart.
  */
 export interface TokenChartDatumDTO {
-  label: string;
-  value: number;
-  display_value: string;
-  fill?: string;
+	/**
+	 * Label displayed for the chart bucket.
+	 */
+	label: string | number;
+	/**
+	 * Numeric value represented by the chart bucket.
+	 */
+	value: number;
+	/**
+	 * Optional chart color override.
+	 */
+	fill?: string;
 }
 
 /**
- * Highlights displayed above a resource wallet table.
+ * Highlights displayed above the token wallet table.
  *
- * Endpoint: `GET /token-highlights?token_id=:id`.
+ * Endpoint: `GET /tokens/:id/highlights`.
  */
 export interface TokenHighlightsDTO {
-  id: string;
-  token_id: number;
-  metrics: readonly TokenMetricDTO[];
-  balance_distribution: readonly TokenChartDatumDTO[];
+	/**
+	 * Stable highlights response ID.
+	 */
+	id: string;
+	/**
+	 * ID of the token these highlights describe.
+	 */
+	token_id: number;
+	/**
+	 * Summary metrics shown above the wallet table.
+	 */
+	metrics: readonly TokenMetricDTO[];
+	/**
+	 * Balance distribution chart data.
+	 */
+	balance_distribution: readonly TokenChartDatumDTO[];
 }
 
 /**
- * A classification assigned to a resource wallet.
+ * A classification assigned to a token wallet.
  */
 export interface TokenWalletTagDTO {
-  name: string;
-  tone: "blue" | "green" | "orange" | "pink" | "purple" | "yellow";
+	/**
+	 * Wallet label title.
+	 */
+	title: string;
+	/**
+	 * Visual variant used to render the wallet label.
+	 */
+	variant: "blue" | "green" | "orange" | "pink" | "purple" | "yellow";
 }
 
 /**
- * An activity identity associated with a resource wallet.
+ * An activity identity associated with a token wallet.
  */
 export interface TokenWalletActivityDTO {
-  avatar: string;
-  name: string;
+	/**
+	 * Activity avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Activity title.
+	 */
+	title: string;
 }
 
 /**
- * A wallet returned for an Explore resource audience.
+ * A wallet returned for a token audience.
  *
- * Endpoint: `GET /token-wallets?token_id=:id`.
+ * Endpoint: `GET /tokens/:id/wallets`.
  */
 export interface TokenWalletDTO {
-  id: string;
-  token_id: number;
-  name: string;
-  avatar: string;
-  rank: string;
-  rank_tone: "constructive" | "lime" | "orange";
-  age: string;
-  age_details?: string;
-  labels: readonly TokenWalletTagDTO[];
-  balance: string;
-  nfts: string;
-  twitter: string;
-  activity: readonly TokenWalletActivityDTO[];
-  contacts: readonly ("email" | "link" | "mirror" | "opensea" | "twitter")[];
+	/**
+	 * Unique wallet ID.
+	 */
+	id: number;
+	/**
+	 * ID of the token that owns this wallet row.
+	 */
+	token_id: number;
+	/**
+	 * Wallet title.
+	 */
+	title: string;
+	/**
+	 * Wallet avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Wallet rank within the token audience.
+	 */
+	rank: number;
+	/**
+	 * Human-readable wallet age.
+	 */
+	age: string;
+	/**
+	 * Detailed wallet age when available.
+	 */
+	age_details?: string;
+	/**
+	 * Labels assigned to the wallet.
+	 */
+	labels: readonly TokenWalletTagDTO[];
+	/**
+	 * Wallet balance.
+	 */
+	balance: number;
+	/**
+	 * Number of NFTs owned by the wallet.
+	 */
+	nfts: number;
+	/**
+	 * Twitter follower count when available.
+	 */
+	twitter: number | null;
+	/**
+	 * Recent activity identities.
+	 */
+	activity: readonly TokenWalletActivityDTO[];
+	/**
+	 * Contact methods available for the wallet.
+	 */
+	contacts: readonly ("email" | "link" | "mirror" | "opensea" | "twitter")[];
 }
 
 /**
- * A metric card displayed in resource analytics.
+ * A metric card displayed in token analytics.
  */
 export interface TokenInsightMetricDTO {
-  title: string;
-  value: string;
-  description: string;
-  footer: string;
-  info?: string;
+	/**
+	 * Insight metric title.
+	 */
+	title: string;
+	/**
+	 * Numeric insight metric value.
+	 */
+	value: number;
+	/**
+	 * Explanation of the insight metric.
+	 */
+	description: string;
+	/**
+	 * Numeric value displayed in the metric footer.
+	 */
+	footer_value: number;
+	/**
+	 * Label describing the metric footer value.
+	 */
+	footer_label: string;
+	/**
+	 * Optional tooltip information.
+	 */
+	info?: string;
 }
 
 /**
- * A transaction aggregate displayed in resource analytics.
+ * A transaction aggregate displayed in token analytics.
  */
 export interface TokenTransactionStatDTO {
-  label: string;
-  value: string;
-  tone: "default" | "negative" | "positive";
+	/**
+	 * Transaction aggregate label.
+	 */
+	label: string;
+	/**
+	 * Numeric transaction aggregate value.
+	 */
+	value: number;
+	/**
+	 * Visual variant for the transaction aggregate.
+	 */
+	variant: "default" | "negative" | "positive";
 }
 
 /**
- * A Twitter profile found in a resource audience.
+ * A Twitter profile found in a token audience.
  */
 export interface TokenInfluencerDTO {
-  name: string;
-  username: string;
-  followers: string;
-  nfts: string;
-  balance: string;
-  avatar: string;
+	/**
+	 * Influencer title.
+	 */
+	title: string;
+	/**
+	 * Influencer social-media handle.
+	 */
+	username: string;
+	/**
+	 * Influencer follower count.
+	 */
+	followers: number;
+	/**
+	 * Number of NFTs owned by the influencer.
+	 */
+	nfts: number;
+	/**
+	 * Influencer wallet balance.
+	 */
+	balance: number;
+	/**
+	 * Influencer avatar URL.
+	 */
+	avatar: string;
 }
 
 /**
- * An NFT collection that overlaps with a resource audience.
+ * An NFT collection that overlaps with a token audience.
  */
 export interface TokenOverlapDTO {
-  name: string;
-  avatar: string;
-  owners_in_audience: string;
-  share_in_audience: string;
-  owners: string;
-  floor_price: string;
+	/**
+	 * Overlapping collection title.
+	 */
+	title: string;
+	/**
+	 * Overlapping collection avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Number of collection owners in the token audience.
+	 */
+	owners_in_audience: number;
+	/**
+	 * Percentage of the token audience owning the collection.
+	 */
+	share_in_audience: number;
+	/**
+	 * Total number of collection owners.
+	 */
+	owners: number;
+	/**
+	 * Number of collection items owned by the token audience.
+	 */
+	items_in_audience: number;
+	/**
+	 * Total number of collection items.
+	 */
+	items: number;
+	/**
+	 * Collection floor price.
+	 */
+	floor_price: number;
+	/**
+	 * Blockchain hosting the collection.
+	 */
+	chain: "ethereum" | "polygon";
 }
 
 /**
- * Analytics displayed in an Explore resource Insights tab.
+ * Analytics displayed in the token Insights tab.
  *
- * Endpoint: `GET /token-insights?token_id=:id`.
+ * Endpoint: `GET /tokens/:id/insights`.
  */
 export interface TokenInsightsDTO {
-  id: string;
-  token_id: number;
-  balance_metrics: readonly TokenInsightMetricDTO[];
-  wallet_balance: readonly TokenChartDatumDTO[];
-  nft_allocation: readonly TokenChartDatumDTO[];
-  transaction_stats: readonly TokenTransactionStatDTO[];
-  contact_metrics: readonly TokenInsightMetricDTO[];
-  influencers: readonly TokenInfluencerDTO[];
-  superrank: readonly TokenChartDatumDTO[];
-  interests: readonly TokenChartDatumDTO[];
-  personas: readonly TokenChartDatumDTO[];
-  overlap: readonly TokenOverlapDTO[];
+	/**
+	 * Stable insights response ID.
+	 */
+	id: string;
+	/**
+	 * ID of the token these insights describe.
+	 */
+	token_id: number;
+	/**
+	 * Balance-related insight metrics.
+	 */
+	balance_metrics: readonly TokenInsightMetricDTO[];
+	/**
+	 * Wallet balance distribution chart data.
+	 */
+	wallet_balance: readonly TokenChartDatumDTO[];
+	/**
+	 * NFT allocation chart data.
+	 */
+	nft_allocation: readonly TokenChartDatumDTO[];
+	/**
+	 * Aggregated transaction statistics.
+	 */
+	transaction_stats: readonly TokenTransactionStatDTO[];
+	/**
+	 * Contact-related insight metrics.
+	 */
+	contact_metrics: readonly TokenInsightMetricDTO[];
+	/**
+	 * Influencers found in the token audience.
+	 */
+	influencers: readonly TokenInfluencerDTO[];
+	/**
+	 * Superrank distribution chart data.
+	 */
+	superrank: readonly TokenChartDatumDTO[];
+	/**
+	 * Interest distribution chart data.
+	 */
+	interests: readonly TokenChartDatumDTO[];
+	/**
+	 * Persona distribution chart data.
+	 */
+	personas: readonly TokenChartDatumDTO[];
+	/**
+	 * Collections overlapping with the token audience.
+	 */
+	overlap: readonly TokenOverlapDTO[];
 }

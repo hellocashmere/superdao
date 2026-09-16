@@ -7,9 +7,9 @@ import { exploreRoutes } from "@/shared/lib/routes";
  * Redirects the selected token to its default Wallets view.
  */
 export default async function Page({ params }: PageProps<"/explore/tokens/[id]">) {
-  const { id } = await params;
-  const tokenID = parseRouteID(id);
-  if (tokenID === undefined) notFound();
+	const { id } = await params;
+	const tokenID = parseRouteID(id);
+	if (tokenID === undefined) notFound();
 
-  redirect(exploreRoutes.tokenWallets(tokenID));
+	redirect(exploreRoutes.tokenWallets(tokenID));
 }

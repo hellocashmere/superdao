@@ -7,14 +7,14 @@ import { ExploreLabelDetailsPage } from "@/widgets/pages/explore/labels/[id]";
  * Renders wallets associated with the selected label.
  */
 export default async function Page({ params }: PageProps<"/explore/labels/[id]/wallets">) {
-  const { id } = await params;
-  const labelID = parseRouteID(id);
-  if (labelID === undefined) notFound();
+	const { id } = await params;
+	const labelID = parseRouteID(id);
+	if (labelID === undefined) notFound();
 
-  return (
-    <ExploreLabelDetailsPage
-      label={labelID}
-      tab="wallets"
-    />
-  );
+	return (
+		<ExploreLabelDetailsPage
+			label={labelID}
+			tab="wallets"
+		/>
+	);
 }

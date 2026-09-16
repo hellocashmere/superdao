@@ -4,9 +4,18 @@
  * Endpoint: `GET /wallets`.
  */
 export interface WalletMetricDTO {
-  primary: string;
-  secondary: string;
-  tertiary: string;
+	/**
+	 * Primary metric value.
+	 */
+	primary: number;
+	/**
+	 * Secondary metric value.
+	 */
+	secondary: number;
+	/**
+	 * Tertiary metric value.
+	 */
+	tertiary: number;
 }
 
 /**
@@ -15,158 +24,372 @@ export interface WalletMetricDTO {
  * Endpoints: `GET /wallets`, `GET /wallets/:id`.
  */
 export interface WalletDTO {
-  id: string;
-  name: string;
-  avatar: string;
-  metrics: Record<"balance" | "rank" | "transactions" | "twitter", WalletMetricDTO>;
-  balance_order: number;
-  rank_order: number;
-  recent_order: number;
-  transactions_order: number;
-  twitter_order: number;
+	/**
+	 * Unique entity ID.
+	 */
+	id: number;
+	/**
+	 * Display title.
+	 */
+	title: string;
+	/**
+	 * Avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Summary metrics displayed by the section.
+	 */
+	metrics: Record<"balance" | "rank" | "transactions" | "twitter", WalletMetricDTO>;
+	/**
+	 * Wallet IDs ordered by balance.
+	 */
+	balance_order: number;
+	/**
+	 * Wallet IDs ordered by rank.
+	 */
+	rank_order: number;
+	/**
+	 * Wallet IDs ordered by recent activity.
+	 */
+	recent_order: number;
+	/**
+	 * Wallet IDs ordered by transaction count.
+	 */
+	transactions_order: number;
+	/**
+	 * Wallet IDs ordered by Twitter audience.
+	 */
+	twitter_order: number;
+}
+
+/**
+ * A wallet identity and overview returned by the details endpoint.
+ *
+ * Endpoint: `GET /wallets/:id`.
+ */
+export interface WalletDetailsDTO {
+	/**
+	 * Unique entity ID.
+	 */
+	id: number;
+	/**
+	 * Display title.
+	 */
+	title: string;
+	/**
+	 * Avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Known addresses and domains associated with the wallet.
+	 */
+	ids: readonly string[];
+	/**
+	 * Renderable segments in the wallet biography.
+	 */
+	bio: readonly WalletBioSegmentDTO[];
+	/**
+	 * Expanded biography text shown in a tooltip.
+	 */
+	bio_tooltip: string;
+	/**
+	 * Computed wallet ranking score.
+	 */
+	superrank: number;
+	/**
+	 * Human-readable time since the wallet was refreshed.
+	 */
+	last_updated: string;
+	/**
+	 * Summary statistics displayed in the wallet header.
+	 */
+	stats: readonly WalletHeaderStatDTO[];
 }
 
 /**
  * A wallet overview displayed in the page header.
  *
- * Endpoint: `GET /wallet-overviews?id=:id`.
+ * Endpoint: `GET /wallets/:id`.
  */
-export interface WalletOverviewDTO {
-  id: number;
-  wallet_id: number;
-  ids: readonly string[];
-  bio: ReadonlyArray<WalletBioLinkSegmentDTO | WalletBioTextSegmentDTO>;
-  bio_tooltip: string;
-  superrank: number;
-  last_updated: string;
-  stats: readonly WalletHeaderStatDTO[];
-}
-
 /**
  * A text segment in a wallet biography.
  *
- * Endpoint: `GET /wallet-overviews?id=:id`.
+ * Endpoint: `GET /wallets/:id`.
  */
 export interface WalletBioTextSegmentDTO {
-  id: string;
-  type: "text";
-  value: string;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Result classification.
+	 */
+	type: "text";
+	/**
+	 * Value rendered for this field.
+	 */
+	value: string;
 }
 
 /**
  * A link segment in a wallet biography.
  *
- * Endpoint: `GET /wallet-overviews?id=:id`.
+ * Endpoint: `GET /wallets/:id`.
  */
 export interface WalletBioLinkSegmentDTO {
-  id: string;
-  type: "link";
-  label: string;
-  href: string;
-  heading: string;
-  description: string;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Result classification.
+	 */
+	type: "link";
+	/**
+	 * Human-readable field label.
+	 */
+	label: string;
+	/**
+	 * Destination URL.
+	 */
+	href: string;
+	/**
+	 * Heading displayed for the linked biography segment.
+	 */
+	heading: string;
+	/**
+	 * Supporting explanatory text.
+	 */
+	description: string;
 }
+
+/**
+ * A renderable segment in a wallet biography.
+ *
+ * Endpoint: `GET /wallets/:id`.
+ */
+export type WalletBioSegmentDTO = WalletBioLinkSegmentDTO | WalletBioTextSegmentDTO;
 
 /**
  * A statistic displayed in the wallet page header.
  *
- * Endpoint: `GET /wallet-overviews?id=:id`.
+ * Endpoint: `GET /wallets/:id`.
  */
 export interface WalletHeaderStatDTO {
-  id: string;
-  label: string;
-  value: string;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Human-readable field label.
+	 */
+	label: string;
+	/**
+	 * Value rendered for this field.
+	 */
+	value: number | string;
 }
 
 /**
  * A collection found in wallet activity.
  *
- * Endpoint: `GET /wallet-activities?wallet_id=:id`.
+ * Endpoint: `GET /wallets/:id/activity`.
  */
 export interface WalletActivityCollectionDTO {
-  id: string;
-  name: string;
-  avatar: string;
-  wallet_id: number;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Display title.
+	 */
+	title: string;
+	/**
+	 * Avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * ID of the wallet that owns this record.
+	 */
+	wallet_id: number;
 }
 
 /**
  * A wallet contact method.
  *
- * Endpoint: `GET /wallet-contacts?wallet_id=:id`.
+ * Endpoint: `GET /wallets/:id/contacts`.
  */
 export interface WalletContactDTO {
-  id: string;
-  provider: "email" | "etherscan" | "lens" | "mirror" | "opensea" | "polygonscan" | "twitter" | "zapper";
-  label: string;
-  wallet_id: number;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Contact or authentication provider.
+	 */
+	provider: "email" | "etherscan" | "lens" | "mirror" | "opensea" | "polygonscan" | "twitter" | "zapper";
+	/**
+	 * Human-readable field label.
+	 */
+	label: string;
+	/**
+	 * ID of the wallet that owns this record.
+	 */
+	wallet_id: number;
 }
 
 /**
  * A classification label assigned to a wallet.
  *
- * Endpoint: `GET /wallet-labels?wallet_id=:id`.
+ * Endpoint: `GET /wallets/:id/labels`.
  */
 export interface WalletLabelDTO {
-  id: string;
-  label: string;
-  tone: "amber" | "blue" | "constructive" | "cyan" | "fuchsia" | "primary" | "violet" | "yellow";
-  wallet_id: number;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Human-readable field label.
+	 */
+	label: string;
+	/**
+	 * Visual variant used to render the value.
+	 */
+	variant: "amber" | "blue" | "constructive" | "cyan" | "fuchsia" | "primary" | "violet" | "yellow";
+	/**
+	 * ID of the wallet that owns this record.
+	 */
+	wallet_id: number;
 }
 
 /**
  * A wallet similar to the selected wallet.
  *
- * Endpoint: `GET /wallet-similar-wallets?wallet_id=:id`.
+ * Endpoint: `GET /wallets/:id/similar-wallets`.
  */
 export interface WalletSimilarWalletDTO {
-  id: string;
-  similar_wallet_id: number;
-  name: string;
-  avatar: string;
-  score: string;
-  wallet_id: number;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * ID of the similar wallet.
+	 */
+	similar_wallet_id: number;
+	/**
+	 * Display title.
+	 */
+	title: string;
+	/**
+	 * Avatar URL.
+	 */
+	avatar: string;
+	/**
+	 * Similarity score relative to the selected wallet.
+	 */
+	score: number;
+	/**
+	 * ID of the wallet that owns this record.
+	 */
+	wallet_id: number;
 }
 
 /**
  * A metric from a wallet transaction summary.
  *
- * Endpoint: `GET /wallet-transaction-summaries?id=:id`.
+ * Endpoint: `GET /wallets/:id/transaction-summary`.
  */
 export interface WalletTransactionMetricDTO {
-  id: string;
-  label: string;
-  tone: "default" | "negative" | "positive";
-  value: string;
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Human-readable field label.
+	 */
+	label: string;
+	/**
+	 * Visual variant used to render the value.
+	 */
+	variant: "default" | "negative" | "positive";
+	/**
+	 * Value rendered for this field.
+	 */
+	value: number;
 }
 
 /**
  * A wallet transaction.
  *
- * Endpoint: `GET /wallet-transaction-summaries?id=:id`.
+ * Endpoint: `GET /wallets/:id/transaction-summary`.
  */
 export interface WalletTransactionDTO {
-  id: string;
-  type: string;
-  kind: "approved" | "contract" | "transfer" | "unknown";
-  date: string;
-  asset: string;
-  asset_icon: string | null;
-  amount: string;
-  direction: "down" | "none" | "up";
-  tone: "muted" | "negative" | "positive";
+	/**
+	 * Unique entity ID.
+	 */
+	id: string;
+	/**
+	 * Result classification.
+	 */
+	type: string;
+	/**
+	 * Transaction kind used to select its icon.
+	 */
+	kind: "approved" | "contract" | "transfer" | "unknown";
+	/**
+	 * Date associated with the record.
+	 */
+	date: string;
+	/**
+	 * Transaction asset symbol.
+	 */
+	asset: string;
+	/**
+	 * Optional transaction asset icon URL.
+	 */
+	asset_icon: string | null;
+	/**
+	 * Transaction amount when available.
+	 */
+	amount: number | null;
+	/**
+	 * Direction of the transaction value.
+	 */
+	direction: "down" | "none" | "up";
+	/**
+	 * Visual variant used to render the value.
+	 */
+	variant: "muted" | "negative" | "positive";
 }
 
 /**
  * A summary of wallet metrics and recent transactions.
  *
- * Endpoint: `GET /wallet-transaction-summaries?id=:id`.
+ * Endpoint: `GET /wallets/:id/transaction-summary`.
  */
 export interface WalletTransactionsDTO {
-  id: number;
-  wallet_id: number;
-  title: string;
-  tooltip: string;
-  metrics: readonly WalletTransactionMetricDTO[];
-  transactions: readonly WalletTransactionDTO[];
+	/**
+	 * Unique entity ID.
+	 */
+	id: number;
+	/**
+	 * ID of the wallet that owns this record.
+	 */
+	wallet_id: number;
+	/**
+	 * Display title.
+	 */
+	title: string;
+	/**
+	 * Tooltip text explaining the section.
+	 */
+	tooltip: string;
+	/**
+	 * Summary metrics displayed by the section.
+	 */
+	metrics: readonly WalletTransactionMetricDTO[];
+	/**
+	 * Recent wallet transactions.
+	 */
+	transactions: readonly WalletTransactionDTO[];
 }

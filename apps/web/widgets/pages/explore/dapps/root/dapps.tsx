@@ -22,62 +22,61 @@ export interface ExploreDappsPageProps extends ComponentPropsWithRef<"div"> {}
 /**
  * Renders the searchable dapps directory.
  */
-export function ExploreDappsPage({ className, ref, ...props }: ExploreDappsPageProps) {
-  const dappsQuery = useGetDapps();
-  const dapps = dappsQuery.data;
-  const [search, setSearch] = useState("");
-  const filteredDapps = useMemo(() => {
-    return (dapps ?? []).filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
-  }, [dapps, search]);
+export function ExploreDappsPage({ ref, className, ...props }: ExploreDappsPageProps) {
+	const dappsQuery = useGetDapps();
+	const dapps = dappsQuery.data;
+	const [search, setSearch] = useState<string>("");
+	const filteredDapps = useMemo(() => {
+		return (dapps ?? []).filter(({ title }) => title.toLowerCase().includes(search.toLowerCase()));
+	}, [dapps, search]);
 
-  const pagination = usePagination({
-    limit: defaultPageSize,
-    offset: 0,
-    total: filteredDapps.length,
-  });
+	const pagination = usePagination({
+		limit: defaultPageSize,
+		offset: 0,
+		total: filteredDapps.length,
+	});
 
-  const visibleDapps = filteredDapps.slice(pagination.offset, pagination.offset + pagination.limit);
+	const visibleDapps = filteredDapps.slice(pagination.offset, pagination.offset + pagination.limit);
 
-  if (dappsQuery.error) throw dappsQuery.error;
+	if (dappsQuery.error) throw dappsQuery.error;
 
-  if (dappsQuery.isPending) {
-    return (
-      <DappsRootSkeleton
-        {...props}
-        ref={ref}
-        className={className}
-      />
-    );
-  }
+	if (dappsQuery.isPending) {
+		return (
+			<DappsRootSkeleton
+				ref={ref}
+				className={className}
+				{...props}
+			/>
+		);
+	}
 
-  return (
-    <Container
-      {...props}
-      ref={ref}
-      data-page="explore-dapps-directory"
-      className={cn("flex min-h-0 flex-1 flex-col", className)}
-    >
-      <DappsRootHeader
-        search={search}
-        onClearSearch={() => {
-          setSearch("");
-          pagination.reset();
-        }}
-        onSearchChange={(event) => {
-          setSearch(event.target.value);
-          pagination.reset();
-        }}
-      />
-      <PageBody className="flex min-h-0 flex-1 flex-col pb-7">
-        <DappsRootTable
-          dapps={visibleDapps}
-          rowOffset={pagination.offset}
-        />
-        <DappsRootPagination
-          pagination={pagination}
-          pageSizeOptions={pageSizeOptions}
-        />
-      </PageBody>
-    </Container>
-  );
+	return (
+		<Container
+			ref={ref}
+			className={cn("flex min-h-0 flex-1 flex-col", className)}
+			{...props}
+		>
+			<DappsRootHeader
+				search={search}
+				onClearSearch={() => {
+					setSearch("");
+					pagination.reset();
+				}}
+				onSearchChange={(event) => {
+					setSearch(event.target.value);
+					pagination.reset();
+				}}
+			/>
+			<PageBody className="flex min-h-0 flex-1 flex-col pb-7">
+				<DappsRootTable
+					dapps={visibleDapps}
+					rowOffset={pagination.offset}
+				/>
+				<DappsRootPagination
+					pagination={pagination}
+					pageSizeOptions={pageSizeOptions}
+				/>
+			</PageBody>
+		</Container>
+	);
 }

@@ -1,141 +1,168 @@
 import type {
-  WalletActivityCollectionDTO,
-  WalletContactDTO,
-  WalletDTO,
-  WalletLabelDTO,
-  WalletOverviewDTO,
-  WalletSimilarWalletDTO,
-  WalletTransactionDTO,
-  WalletTransactionsDTO,
+	WalletActivityCollectionDTO,
+	WalletContactDTO,
+	WalletDetailsDTO,
+	WalletDTO,
+	WalletLabelDTO,
+	WalletSimilarWalletDTO,
+	WalletTransactionDTO,
+	WalletTransactionsDTO,
 } from "../api/types/types";
 import type {
-  RankedWalletView,
-  WalletActivityCollectionView,
-  WalletContactView,
-  WalletDetailsHeaderView,
-  WalletFilter,
-  WalletLabelView,
-  WalletPreviewView,
-  WalletSimilarWalletView,
-  WalletTransactionsView,
-  WalletTransactionView,
+	RankedWalletView,
+	WalletActivityCollectionView,
+	WalletContactView,
+	WalletDetailsHeaderView,
+	WalletFilter,
+	WalletLabelView,
+	WalletPreviewView,
+	WalletSimilarWalletView,
+	WalletTransactionsView,
+	WalletTransactionView,
 } from "../model/types/types";
 
 /**
- * Converts a wallet DTO into the compact wallet view used by cards and links.
+ * Converts a `WalletDTO` -> `WalletPreviewView`.
  */
 export function WalletDTOToPreviewView(dto: WalletDTO): WalletPreviewView {
-  return {
-    id: Number(dto.id),
-    name: dto.name,
-    avatar: dto.avatar,
-  };
+	return {
+		id: Number(dto.id),
+		title: dto.title,
+		avatar: dto.avatar,
+	};
 }
 
 /**
- * Converts a wallet DTO into a card view for the selected leaderboard metric.
+ * Converts a `WalletDetailsDTO` -> `WalletPreviewView`.
+ */
+export function WalletDetailsDTOToPreviewView(dto: WalletDetailsDTO): WalletPreviewView {
+	return {
+		id: dto.id,
+		title: dto.title,
+		avatar: dto.avatar,
+	};
+}
+
+/**
+ * Converts a `WalletDTO` -> `RankedWalletView`.
  */
 export function WalletDTOToRankedView(dto: WalletDTO, filter: WalletFilter): RankedWalletView {
-  const metrics = dto.metrics[filter];
+	const metrics = dto.metrics[filter];
 
-  return {
-    ...WalletDTOToPreviewView(dto),
-    primaryMetric: metrics.primary,
-    secondaryMetric: metrics.secondary,
-    tertiaryMetric: metrics.tertiary,
-  };
+	return {
+		id: Number(dto.id),
+		title: dto.title,
+		avatar: dto.avatar,
+		filter,
+		primaryMetric: metrics.primary,
+		secondaryMetric: metrics.secondary,
+		tertiaryMetric: metrics.tertiary,
+	};
 }
 
 /**
- * Combines wallet identity and overview data for the wallet header.
+ * Converts a `WalletDetailsDTO` -> `WalletDetailsHeaderView`.
  */
-export function WalletOverviewDTOToView(dto: WalletOverviewDTO, wallet: WalletPreviewView): WalletDetailsHeaderView {
-  return {
-    wallet: wallet,
-    ids: Array.from(new Set([wallet.name, ...dto.ids])),
-    bio: dto.bio.map((segment) => ({ ...segment })),
-    bioTooltip: dto.bio_tooltip,
-    superrank: dto.superrank,
-    lastUpdated: dto.last_updated,
-    stats: dto.stats.map((stat) => ({ ...stat })),
-  };
+export function WalletDetailsDTOToView(dto: WalletDetailsDTO): WalletDetailsHeaderView {
+	const wallet = WalletDetailsDTOToPreviewView(dto);
+
+	return {
+		wallet: wallet,
+		ids: Array.from(new Set([wallet.title, ...dto.ids])),
+		bio: dto.bio.map((segment) =>
+			segment.type === "link"
+				? {
+						id: segment.id,
+						type: segment.type,
+						label: segment.label,
+						href: segment.href,
+						heading: segment.heading,
+						description: segment.description,
+					}
+				: { id: segment.id, type: segment.type, value: segment.value }
+		),
+		bioTooltip: dto.bio_tooltip,
+		superrank: dto.superrank,
+		lastUpdated: dto.last_updated,
+		stats: dto.stats.map((stat) => ({ id: stat.id, label: stat.label, value: stat.value })),
+	};
 }
 
 /**
- * Maps a wallet contact DTO without its transport-only wallet reference.
+ * Converts a `WalletContactDTO` -> `WalletContactView`.
  */
 export function WalletContactDTOToView(dto: WalletContactDTO): WalletContactView {
-  return {
-    id: dto.id,
-    provider: dto.provider,
-    label: dto.label,
-  };
+	return {
+		id: dto.id,
+		provider: dto.provider,
+		label: dto.label,
+	};
 }
 
 /**
- * Maps a wallet label DTO without its transport-only wallet reference.
+ * Converts a `WalletLabelDTO` -> `WalletLabelView`.
  */
 export function WalletLabelDTOToView(dto: WalletLabelDTO): WalletLabelView {
-  return {
-    id: dto.id,
-    label: dto.label,
-    tone: dto.tone,
-  };
+	return {
+		id: dto.id,
+		label: dto.label,
+		variant: dto.variant,
+	};
 }
 
 /**
- * Maps an activity DTO without its transport-only wallet reference.
+ * Converts a `WalletActivityCollectionDTO` -> `WalletActivityCollectionView`.
  */
 export function WalletActivityCollectionDTOToView(dto: WalletActivityCollectionDTO): WalletActivityCollectionView {
-  return {
-    id: dto.id,
-    name: dto.name,
-    avatar: dto.avatar,
-  };
+	return {
+		id: dto.id,
+		title: dto.title,
+		avatar: dto.avatar,
+	};
 }
 
 /**
- * Maps a similar-wallet DTO without its transport-only wallet reference.
+ * Converts a `WalletSimilarWalletDTO` -> `WalletSimilarWalletView`.
  */
 export function WalletSimilarWalletDTOToView(dto: WalletSimilarWalletDTO): WalletSimilarWalletView {
-  return {
-    id: dto.similar_wallet_id,
-    name: dto.name,
-    avatar: dto.avatar,
-    score: dto.score,
-  };
+	return {
+		id: dto.similar_wallet_id,
+		title: dto.title,
+		avatar: dto.avatar,
+		score: dto.score,
+	};
 }
 
 /**
- * Converts a wallet transaction DTO into a renderable transaction view.
+ * Converts a `WalletTransactionDTO` -> `WalletTransactionView`.
  */
 export function WalletTransactionDTOToView(dto: WalletTransactionDTO): WalletTransactionView {
-  return {
-    id: dto.id,
-    type: dto.type,
-    kind: dto.kind,
-    date: dto.date,
-    asset: dto.asset,
-    assetIcon: dto.asset_icon ?? undefined,
-    amount: dto.amount,
-    direction: dto.direction,
-    tone: dto.tone,
-  };
+	return {
+		id: dto.id,
+		type: dto.type,
+		kind: dto.kind,
+		date: dto.date,
+		asset: dto.asset,
+		assetIcon: dto.asset_icon ?? undefined,
+		amount: dto.amount,
+		direction: dto.direction,
+		variant: dto.variant,
+	};
 }
 
 /**
- * Maps transaction summary data into the view consumed by the transactions block.
+ * Converts a `WalletTransactionsDTO` -> `WalletTransactionsView`.
  */
 export function WalletTransactionsDTOToView(dto: WalletTransactionsDTO): WalletTransactionsView {
-  return {
-    title: dto.title,
-    tooltip: dto.tooltip,
-    metrics: dto.metrics.map((metric) => ({
-      id: metric.id,
-      label: metric.label,
-      value: metric.value,
-      tone: metric.tone,
-    })),
-    transactions: dto.transactions.map(WalletTransactionDTOToView),
-  };
+	return {
+		title: dto.title,
+		tooltip: dto.tooltip,
+		metrics: dto.metrics.map((metric) => ({
+			id: metric.id,
+			label: metric.label,
+			value: metric.value,
+			variant: metric.variant,
+		})),
+		transactions: dto.transactions.map(WalletTransactionDTOToView),
+	};
 }

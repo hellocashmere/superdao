@@ -22,62 +22,61 @@ export interface ExploreNftCollectionsPageProps extends ComponentPropsWithRef<"d
 /**
  * Renders the searchable NFT collections directory.
  */
-export function ExploreNftCollectionsPage({ className, ref, ...props }: ExploreNftCollectionsPageProps) {
-  const collectionsQuery = useGetNftCollections();
-  const collections = collectionsQuery.data;
-  const [search, setSearch] = useState("");
-  const filteredCollections = useMemo(() => {
-    return (collections ?? []).filter(({ name }) => name.toLowerCase().includes(search.toLowerCase()));
-  }, [collections, search]);
+export function ExploreNftCollectionsPage({ ref, className, ...props }: ExploreNftCollectionsPageProps) {
+	const collectionsQuery = useGetNftCollections();
+	const collections = collectionsQuery.data;
+	const [search, setSearch] = useState<string>("");
+	const filteredCollections = useMemo(() => {
+		return (collections ?? []).filter(({ title }) => title.toLowerCase().includes(search.toLowerCase()));
+	}, [collections, search]);
 
-  const pagination = usePagination({
-    limit: defaultPageSize,
-    offset: 0,
-    total: filteredCollections.length,
-  });
+	const pagination = usePagination({
+		limit: defaultPageSize,
+		offset: 0,
+		total: filteredCollections.length,
+	});
 
-  const visibleCollections = filteredCollections.slice(pagination.offset, pagination.offset + pagination.limit);
+	const visibleCollections = filteredCollections.slice(pagination.offset, pagination.offset + pagination.limit);
 
-  if (collectionsQuery.error) throw collectionsQuery.error;
+	if (collectionsQuery.error) throw collectionsQuery.error;
 
-  if (collectionsQuery.isPending) {
-    return (
-      <NftCollectionsRootSkeleton
-        {...props}
-        ref={ref}
-        className={className}
-      />
-    );
-  }
+	if (collectionsQuery.isPending) {
+		return (
+			<NftCollectionsRootSkeleton
+				ref={ref}
+				className={className}
+				{...props}
+			/>
+		);
+	}
 
-  return (
-    <Container
-      {...props}
-      ref={ref}
-      data-page="explore-nft-collections-directory"
-      className={cn("flex min-h-0 flex-1 flex-col", className)}
-    >
-      <NftCollectionsRootHeader
-        search={search}
-        onClearSearch={() => {
-          setSearch("");
-          pagination.reset();
-        }}
-        onSearchChange={(event) => {
-          setSearch(event.target.value);
-          pagination.reset();
-        }}
-      />
-      <PageBody className="flex min-h-0 flex-1 flex-col pb-7">
-        <NftCollectionsRootTable
-          collections={visibleCollections}
-          rowOffset={pagination.offset}
-        />
-        <NftCollectionsRootPagination
-          pagination={pagination}
-          pageSizeOptions={pageSizeOptions}
-        />
-      </PageBody>
-    </Container>
-  );
+	return (
+		<Container
+			ref={ref}
+			className={cn("flex min-h-0 flex-1 flex-col", className)}
+			{...props}
+		>
+			<NftCollectionsRootHeader
+				search={search}
+				onClearSearch={() => {
+					setSearch("");
+					pagination.reset();
+				}}
+				onSearchChange={(event) => {
+					setSearch(event.target.value);
+					pagination.reset();
+				}}
+			/>
+			<PageBody className="flex min-h-0 flex-1 flex-col pb-7">
+				<NftCollectionsRootTable
+					collections={visibleCollections}
+					rowOffset={pagination.offset}
+				/>
+				<NftCollectionsRootPagination
+					pagination={pagination}
+					pageSizeOptions={pageSizeOptions}
+				/>
+			</PageBody>
+		</Container>
+	);
 }

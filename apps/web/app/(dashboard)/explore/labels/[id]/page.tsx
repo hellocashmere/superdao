@@ -7,9 +7,9 @@ import { exploreRoutes } from "@/shared/lib/routes";
  * Redirects the selected label to its default Wallets view.
  */
 export default async function Page({ params }: PageProps<"/explore/labels/[id]">) {
-  const { id } = await params;
-  const labelID = parseRouteID(id);
-  if (labelID === undefined) notFound();
+	const { id } = await params;
+	const labelID = parseRouteID(id);
+	if (labelID === undefined) notFound();
 
-  redirect(exploreRoutes.labelWallets(labelID));
+	redirect(exploreRoutes.labelWallets(labelID));
 }

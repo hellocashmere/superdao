@@ -3,25 +3,25 @@ import type { ComponentPropsWithRef } from "react";
 import { cn } from "@superdao/lib/utils";
 
 import { TokenHighlights } from "./components/highlights";
-import { DataTable } from "./components/table";
+import { TokenWalletsTable } from "./components/table/table";
 
 export interface TokenWalletsTabProps extends ComponentPropsWithRef<"div"> {
-  tokenID: number;
+	tokenID: number;
 }
 
 /**
  * Composes audience highlights and the token wallet directory.
  */
-export function TokenWalletsTab({ className, tokenID, ref, ...props }: TokenWalletsTabProps) {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      data-slot="token-wallets-tab"
-      className={cn("space-y-5", className)}
-    >
-      <TokenHighlights tokenID={tokenID} />
-      <DataTable tokenID={tokenID} />
-    </div>
-  );
+export function TokenWalletsTab({ ref, className, tokenID, ...props }: TokenWalletsTabProps) {
+	return (
+		<div
+			ref={ref}
+			data-slot="token-wallets-tab"
+			className={cn("space-y-5", className)}
+			{...props}
+		>
+			<TokenHighlights tokenID={tokenID} />
+			<TokenWalletsTable tokenID={tokenID} />
+		</div>
+	);
 }

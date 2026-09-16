@@ -1,51 +1,54 @@
 import type { ComponentPropsWithRef } from "react";
 import Link from "next/link";
 
-import { ArrowLeftIcon } from "@superdao/icons/outline";
-import { cn } from "@superdao/lib/utils";
-import { Avatar, AvatarImage } from "@superdao/ui/components/avatar";
+import { Group16BoldIcon, PollBoldIcon } from "@superdao/icons/bold";
+import { TabsList, TabsTrigger } from "@superdao/ui/components/tabs";
 
-import type { TokenView } from "@/entities/token";
 import { exploreRoutes } from "@/shared/lib/routes";
-import { PageHeader } from "@/shared/ui/page-layout";
+import { PageHeaderID } from "@/shared/ui/page-layout";
 
-import { TokenTabsList } from "./tabs";
-
-export interface TokenIDHeaderProps extends ComponentPropsWithRef<typeof PageHeader> {
-  token: TokenView;
+export interface TokenIDHeaderProps extends ComponentPropsWithRef<typeof PageHeaderID> {
+	/**
+	 * ID used to build the token tab routes.
+	 */
+	tokenID: number;
 }
 
 /**
- * Renders token identity, audience count, and help action.
+ * Renders token identity and route navigation for its detail page.
  */
-export function TokenIDHeader({ className, token, ref, ...props }: TokenIDHeaderProps) {
-  return (
-    <PageHeader
-      {...props}
-      ref={ref}
-      data-slot="token-id-header"
-      className={cn("flex min-h-18 items-center justify-between gap-5", className)}
-    >
-      <div className="flex min-w-0 items-center gap-3">
-        <Link
-          href={exploreRoutes.tokens()}
-          aria-label="Back to Tokens"
-          className="-ml-2 flex size-8 shrink-0 items-center justify-center rounded-full text-tabs-foreground outline-none hover:bg-sidebar-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/40"
-        >
-          <ArrowLeftIcon size={24} />
-        </Link>
-        <Avatar size="s">
-          <AvatarImage
-            src={token.avatar}
-            alt=""
-          />
-        </Avatar>
-        <div className="flex min-w-0 items-end gap-3">
-          <h1 className="truncate text-2xl/7 font-bold">{token.name}</h1>
-          <span className="pb-0.5 text-xl/6 font-bold text-tabs-foreground">{token.walletCount}</span>
-        </div>
-      </div>
-      <TokenTabsList tokenID={token.id} />
-    </PageHeader>
-  );
+export function TokenIDHeader({ ref, className, tokenID, ...props }: TokenIDHeaderProps) {
+	return (
+		<PageHeaderID
+			ref={ref}
+			back={exploreRoutes.tokens()}
+			data-slot="token-id-header"
+			className={className}
+			{...props}
+		>
+			<TabsList className="h-10 w-[300px] shrink-0 gap-1 rounded-lg p-1">
+				<TabsTrigger
+					className="h-8 rounded-[4px] px-3 py-1"
+					value="wallets"
+					nativeButton={false}
+					render={<Link href={exploreRoutes.tokenWallets(tokenID)} />}
+				>
+					<Group16BoldIcon
+						size={16}
+						className="text-tabs-foreground"
+					/>
+					Wallets
+				</TabsTrigger>
+				<TabsTrigger
+					className="h-8 rounded-[4px] px-3 py-1"
+					value="insights"
+					nativeButton={false}
+					render={<Link href={exploreRoutes.tokenInsights(tokenID)} />}
+				>
+					<PollBoldIcon className="size-4" />
+					Insights
+				</TabsTrigger>
+			</TabsList>
+		</PageHeaderID>
+	);
 }

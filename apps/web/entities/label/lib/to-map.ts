@@ -1,128 +1,142 @@
 import type {
-  LabelAudienceOverlapDTO,
-  LabelChartDatumDTO,
-  LabelDTO,
-  LabelHighlightsDTO,
-  LabelInsightMetricDTO,
-  LabelInsightsDTO,
-  LabelWalletDTO,
+	LabelChartDatumDTO,
+	LabelDTO,
+	LabelHighlightsDTO,
+	LabelInsightMetricDTO,
+	LabelInsightsDTO,
+	LabelOverlapDTO,
+	LabelWalletDTO,
 } from "../api/types/types";
 import type {
-  AudienceOverlapCollection,
-  InsightBarDatum,
-  LabelDetailsView,
-  LabelHighlightsView,
-  LabelInsightMetricView,
-  LabelInsightsView,
-  LabelPreviewView,
-  LabelWallet,
+	LabelChartDatumView,
+	LabelHighlightsView,
+	LabelInsightMetricView,
+	LabelInsightsView,
+	LabelOverlapView,
+	LabelView,
+	LabelWalletView,
 } from "../model/types/types";
 
 /**
- * Converts a label DTO into the compact view used by cards and headers.
+ * Converts a `LabelDTO` -> `LabelView`.
  */
-export function LabelDTOToPreviewView(dto: LabelDTO): LabelPreviewView {
-  return {
-    id: Number(dto.id),
-    slug: dto.slug,
-    name: dto.name,
-    walletCount: dto.wallet_count,
-    color: dto.color,
-    category: dto.category,
-  };
+export function LabelDTOToView(dto: LabelDTO): LabelView {
+	return {
+		id: Number(dto.id),
+		slug: dto.slug,
+		title: dto.title,
+		walletCount: dto.wallet_count,
+		color: dto.color,
+		category: dto.category,
+	};
 }
 
 /**
- * Converts a label DTO into the details view used by the label page header.
+ * Converts a `LabelChartDatumDTO` -> `LabelChartDatumView`.
  */
-export function LabelDTOToDetailsView(dto: LabelDTO): LabelDetailsView {
-  return LabelDTOToPreviewView(dto);
+export function LabelChartDatumDTOToView(dto: LabelChartDatumDTO): LabelChartDatumView {
+	return {
+		label: dto.label,
+		value: dto.value,
+		displayValue: dto.value,
+		fill: dto.fill,
+	};
 }
 
 /**
- * Converts a chart DTO into the chart model consumed by label visualizations.
+ * Converts a `LabelInsightMetricDTO` -> `LabelInsightMetricView`.
  */
-export function LabelChartDatumDTOToView(dto: LabelChartDatumDTO): InsightBarDatum {
-  return {
-    label: dto.label,
-    value: dto.value,
-    displayValue: dto.display_value,
-    fill: dto.fill,
-  };
+function LabelInsightMetricDTOToView(dto: LabelInsightMetricDTO): LabelInsightMetricView {
+	return {
+		title: dto.title,
+		value: dto.value,
+		description: dto.description,
+		footerValue: dto.footer_value,
+		footerLabel: dto.footer_label,
+		info: dto.info,
+	};
 }
 
 /**
- * Converts label highlight data into the view consumed above the wallet table.
+ * Converts a `LabelHighlightsDTO` -> `LabelHighlightsView`.
  */
 export function LabelHighlightsDTOToView(dto: LabelHighlightsDTO): LabelHighlightsView {
-  return {
-    metrics: dto.metrics.map((metric) => ({
-      title: metric.title,
-      value: metric.value,
-      description: metric.description,
-      footerValue: metric.footer_value,
-      footerLabel: metric.footer_label,
-      kind: metric.kind,
-      info: metric.info,
-    })),
-    balanceDistribution: dto.balance_distribution.map(LabelChartDatumDTOToView),
-  };
+	return {
+		metrics: dto.metrics.map((metric) => ({
+			id: metric.id,
+			title: metric.title,
+			value: metric.value,
+			description: metric.description,
+			footerValue: metric.footer_value,
+			footerLabel: metric.footer_label,
+			info: metric.info,
+		})),
+		balanceDistribution: dto.balance_distribution.map(LabelChartDatumDTOToView),
+	};
 }
 
 /**
- * Converts a label-wallet DTO into the table row view.
+ * Converts a `LabelWalletDTO` -> `LabelWalletView`.
  */
-export function LabelWalletDTOToView(dto: LabelWalletDTO): LabelWallet {
-  return {
-    id: Number(dto.id),
-    name: dto.name,
-    avatar: dto.avatar,
-    rank: dto.rank,
-    rankTone: dto.rank_tone,
-    age: dto.age,
-    ageDetails: dto.age_details,
-    labels: dto.labels.map((label) => ({ ...label })),
-    balance: dto.balance,
-    nfts: dto.nfts,
-    twitter: dto.twitter,
-    activity: dto.activity.map((activity) => ({ ...activity })),
-    contacts: [...dto.contacts],
-  };
-}
-
-function LabelInsightMetricDTOToView(dto: LabelInsightMetricDTO): LabelInsightMetricView {
-  return { ...dto };
-}
-
-function LabelAudienceOverlapDTOToView(dto: LabelAudienceOverlapDTO): AudienceOverlapCollection {
-  return {
-    name: dto.name,
-    avatar: dto.avatar,
-    ownersInAudience: dto.owners_in_audience,
-    shareInAudience: dto.share_in_audience,
-    owners: dto.owners,
-    itemsInAudience: dto.items_in_audience,
-    items: dto.items,
-    floorPrice: dto.floor_price,
-    chain: dto.chain,
-  };
+export function LabelWalletDTOToView(dto: LabelWalletDTO): LabelWalletView {
+	return {
+		id: Number(dto.id),
+		title: dto.title,
+		avatar: dto.avatar,
+		rank: dto.rank,
+		age: dto.age,
+		ageDetails: dto.age_details,
+		labels: dto.labels.map((label) => ({ title: label.title, variant: label.variant })),
+		balance: dto.balance,
+		nfts: dto.nfts,
+		twitter: dto.twitter,
+		activity: dto.activity.map((activity) => ({ avatar: activity.avatar, title: activity.title })),
+		contacts: [...dto.contacts],
+	};
 }
 
 /**
- * Converts label analytics into the view consumed by the Insights tab.
+ * Converts a `LabelOverlapDTO` -> `LabelOverlapView`.
+ */
+function LabelOverlapDTOToView(dto: LabelOverlapDTO): LabelOverlapView {
+	return {
+		title: dto.title,
+		avatar: dto.avatar,
+		ownersInAudience: dto.owners_in_audience,
+		shareInAudience: dto.share_in_audience,
+		owners: dto.owners,
+		itemsInAudience: dto.items_in_audience,
+		items: dto.items,
+		floorPrice: dto.floor_price,
+		chain: dto.chain,
+	};
+}
+
+/**
+ * Converts a `LabelInsightsDTO` -> `LabelInsightsView`.
  */
 export function LabelInsightsDTOToView(dto: LabelInsightsDTO): LabelInsightsView {
-  return {
-    balanceMetrics: dto.balance_metrics.map(LabelInsightMetricDTOToView),
-    walletBalance: dto.wallet_balance.map(LabelChartDatumDTOToView),
-    nftAllocation: dto.nft_allocation.map(LabelChartDatumDTOToView),
-    transactionStats: dto.transaction_stats.map((stat) => ({ ...stat })),
-    contactMetrics: dto.contact_metrics.map(LabelInsightMetricDTOToView),
-    twitterInfluencers: dto.twitter_influencers.map((profile) => ({ ...profile })),
-    superrank: dto.superrank.map(LabelChartDatumDTOToView),
-    interests: dto.interests.map(LabelChartDatumDTOToView),
-    personas: dto.personas.map(LabelChartDatumDTOToView),
-    audienceOverlap: dto.audience_overlap.map(LabelAudienceOverlapDTOToView),
-    notableProjects: dto.notable_projects.map(LabelAudienceOverlapDTOToView),
-  };
+	return {
+		balanceMetrics: dto.balance_metrics.map(LabelInsightMetricDTOToView),
+		walletBalance: dto.wallet_balance.map(LabelChartDatumDTOToView),
+		nftAllocation: dto.nft_allocation.map(LabelChartDatumDTOToView),
+		transactionStats: dto.transaction_stats.map((stat) => ({
+			label: stat.label,
+			value: stat.value,
+			variant: stat.variant,
+		})),
+		contactMetrics: dto.contact_metrics.map(LabelInsightMetricDTOToView),
+		influencers: dto.influencers.map((profile) => ({
+			title: profile.title,
+			username: profile.username,
+			followers: profile.followers,
+			nfts: profile.nfts,
+			balance: profile.balance,
+			avatar: profile.avatar,
+		})),
+		superrank: dto.superrank.map(LabelChartDatumDTOToView),
+		interests: dto.interests.map(LabelChartDatumDTOToView),
+		personas: dto.personas.map(LabelChartDatumDTOToView),
+		overlap: dto.overlap.map(LabelOverlapDTOToView),
+	};
 }

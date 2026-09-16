@@ -7,14 +7,14 @@ import { ExploreLabelDetailsPage } from "@/widgets/pages/explore/labels/[id]";
  * Renders insights for the selected label audience.
  */
 export default async function Page({ params }: PageProps<"/explore/labels/[id]/insights">) {
-  const { id } = await params;
-  const labelID = parseRouteID(id);
-  if (labelID === undefined) notFound();
+	const { id } = await params;
+	const labelID = parseRouteID(id);
+	if (labelID === undefined) notFound();
 
-  return (
-    <ExploreLabelDetailsPage
-      label={labelID}
-      tab="insights"
-    />
-  );
+	return (
+		<ExploreLabelDetailsPage
+			label={labelID}
+			tab="insights"
+		/>
+	);
 }

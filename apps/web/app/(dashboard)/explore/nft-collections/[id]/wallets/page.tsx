@@ -7,14 +7,14 @@ import { ExploreNftCollectionDetailsPage } from "@/widgets/pages/explore/nft-col
  * Renders wallets associated with the selected NFT collection.
  */
 export default async function Page({ params }: PageProps<"/explore/nft-collections/[id]/wallets">) {
-  const { id } = await params;
-  const collectionID = parseRouteID(id);
-  if (collectionID === undefined) notFound();
+	const { id } = await params;
+	const collectionID = parseRouteID(id);
+	if (collectionID === undefined) notFound();
 
-  return (
-    <ExploreNftCollectionDetailsPage
-      collectionID={collectionID}
-      tab="wallets"
-    />
-  );
+	return (
+		<ExploreNftCollectionDetailsPage
+			collectionID={collectionID}
+			tab="wallets"
+		/>
+	);
 }
