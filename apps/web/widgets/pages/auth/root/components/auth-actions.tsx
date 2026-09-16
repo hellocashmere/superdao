@@ -17,32 +17,35 @@ export interface AuthActionsProps extends ComponentPropsWithRef<"div"> {}
 /**
  * Renders wallet sign-in actions and persists the resulting session.
  */
-export function AuthActions({ className, ref, ...props }: AuthActionsProps) {
-  const authenticate = useSessionStore((state) => state.authenticate);
-  const [pendingProvider, setPendingProvider] = useState<AuthProvider | null>(null);
+export function AuthActions({ ref, className, ...props }: AuthActionsProps) {
+	const authenticate = useSessionStore((state) => state.authenticate);
+	const [pendingProvider, setPendingProvider] = useState<AuthProvider | null>(null);
 
-  async function connectWallet(provider: AuthProvider) {
-    setPendingProvider(provider);
-    await new Promise((resolve) => window.setTimeout(resolve, 650));
-    authenticate(provider, initialUsers[0]!.id);
-  }
+	/**
+	 * Starts a session with the selected wallet provider.
+	 */
+	async function connectWallet(provider: AuthProvider) {
+		setPendingProvider(provider);
+		await new Promise((resolve) => window.setTimeout(resolve, 650));
+		authenticate(provider, initialUsers[0]!.id);
+	}
 
-  return (
-    <div
-      {...props}
-      ref={ref}
-      data-slot="auth-actions"
-      className={cn("flex w-full flex-col gap-4", className)}
-    >
-      {authProviders.map((provider) => (
-        <AuthButton
-          key={provider}
-          provider={provider}
-          loading={pendingProvider === provider}
-          disabled={pendingProvider !== null}
-          onClick={() => void connectWallet(provider)}
-        />
-      ))}
-    </div>
-  );
+	return (
+		<div
+			ref={ref}
+			data-slot="auth-actions"
+			className={cn("flex w-full flex-col gap-4", className)}
+			{...props}
+		>
+			{authProviders.map((provider) => (
+				<AuthButton
+					key={provider}
+					provider={provider}
+					loading={pendingProvider === provider}
+					disabled={pendingProvider !== null}
+					onClick={() => void connectWallet(provider)}
+				/>
+			))}
+		</div>
+	);
 }

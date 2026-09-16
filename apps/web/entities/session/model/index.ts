@@ -1,3 +1,2 @@
-export type { SessionActions, SessionState, SessionStatus, SessionStore } from "./types/types";
+export type { SessionActions, SessionState, SessionStatus, SessionStore, SessionStoreAPI } from "./store";
 export { createSessionStore, useSessionStore } from "./store";
-export type { SessionStoreAPI } from "./store";

@@ -11,11 +11,11 @@ export interface UserStoreProviderProps extends Pick<ComponentProps<typeof UserS
  * Provides one persisted user-profile store to the rendered application tree.
  */
 export function UserStoreProvider({ children }: UserStoreProviderProps) {
-  const [store] = useState(createUserStore);
+	const [store] = useState<ReturnType<typeof createUserStore>>(createUserStore);
 
-  useEffect(() => {
-    void Promise.resolve(store.persist.rehydrate()).finally(() => store.getState().setHasHydrated(true));
-  }, [store]);
+	useEffect(() => {
+		void Promise.resolve(store.persist.rehydrate()).finally(() => store.getState().setHasHydrated(true));
+	}, [store]);
 
-  return <UserStoreContext.Provider value={store}>{children}</UserStoreContext.Provider>;
+	return <UserStoreContext.Provider value={store}>{children}</UserStoreContext.Provider>;
 }
