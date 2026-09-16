@@ -1,28 +1,29 @@
 {
-  "extends": "@superdao/typescript-config/nextjs.json",
-  "compilerOptions": {
-    "paths": {
-      "@/widgets/*": ["./widgets/*/index.ts"],
-      "@/features/*": ["./features/*/index.ts"],
-      "@/entities/*": ["./entities/*/index.ts"],
-      "@/shared/ui/*": ["./shared/ui/*/index.ts"],
-      "@/*": ["./*"],
-      "@superdao/ui/*": ["../../packages/ui/src/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "next-env.d.ts",
-    "next.config.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.mts",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": ["node_modules"]
+	"extends": "@superdao/typescript-config/nextjs.json",
+	"compilerOptions": {
+		"paths": {
+			"@/widgets/*": ["./widgets/*/index.ts"],
+			"@/features/*": ["./features/*/index.ts"],
+			"@/entities/*/server": ["./entities/*/index.server.ts"],
+			"@/entities/*": ["./entities/*/index.ts"],
+			"@/shared/ui/*": ["./shared/ui/*/index.ts"],
+			"@/*": ["./*"],
+			"@superdao/ui/*": ["../../packages/ui/src/*"]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
+	},
+	"include": [
+		"next-env.d.ts",
+		"next.config.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"**/*.mts",
+		".next/types/**/*.ts",
+		".next/dev/types/**/*.ts"
+	],
+	"exclude": ["node_modules"]
 }
